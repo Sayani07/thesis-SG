@@ -1,2 +1,11 @@
 base
+<<<<<<< HEAD
+=======
+methods
+datasets
+utils
+grDevices
+graphics
+stats
+>>>>>>> d41fc780cd943755c106c03802e3f7a5988a3197
 knitr
