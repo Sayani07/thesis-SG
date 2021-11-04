@@ -1,0 +1,234 @@
+---
+title: 'Visualization and analysis of probability distributions of large temporal data'
+author: 'Sayani Gupta'
+degreetype: 'Doctor of Philosophy'
+site: bookdown::bookdown_site
+degrees: 'M.Stat, B.Sc (Stat Hons)'
+bibliography: [bib/gravitas.bib, bib/hakear.bib, bib/gracsr.bib, bib/thesisrefs.bib]
+link-citations: yes
+---
+
+```{r initial, echo = FALSE, cache = FALSE, results = 'hide'}
+options("knitr.graphics.auto_pdf" = TRUE)
+library(knitr)
+opts_chunk$set(
+  warning = FALSE, message = FALSE, echo = FALSE,
+  fig.path = 'figure/', fig.align = 'center', fig.show = 'hold',
+  cache = TRUE, external = TRUE, comment = "#>", dpi = 300,
+  out.width = ifelse(is_html_output(), "100%", "\\textwidth"),
+  cache.path = ifelse(is_html_output(), 'cache-gitbook/', 'cache-pdfbook/')
+)
+hook_output <-  knit_hooks$get('output')
+knit_hooks$set(output = function(x, options) {
+  # this hook is used only when the linewidth option is not NULL
+  if (!is.null(n <- options$linewidth)) {
+    x = knitr:::split_lines(x)
+    # any lines wider than n should be wrapped
+    if (any(nchar(x) > n)) x = strwrap(x, width = n)
+    x = paste(x, collapse = '\n')
+  }
+  hook_output(x, options)
+})
+```
+
+`r if (knitr::is_latex_output()) '<!--'` 
+
+# Welcome {-}
+
+This is the website for my PhD thesis at Monash University (Australia), titled "Visualization and analysis of probability distributions of large temporal data".
+
+`r Sys.Date()`
+
+`r if (knitr::is_latex_output()) '-->'`
+
+<!--chapter:end:index.Rmd-->
+
+`r if (knitr::is_html_output()) '<!--'` 
+
+# Copyright notice {-}
+
+\textcopyright { }Sayani Gupta (\number\the\year). 
+
+I certify that I have made all reasonable efforts to secure copyright permissions for third-party content included in this thesis and have not knowingly added copyright content to my work without the owner's permission.
+
+\newpage
+
+`r if (knitr::is_html_output()) '-->'`
+
+<!--chapter:end:Rmd//00-a-copyright.Rmd-->
+
+# Abstract {-}
+
+This work is driven by the need for a conceptual framework to tackle temporal analyses in a data-centric workflow. Most research on temporal data focuses on modeling. Corresponding software requires very stringently formatted data, but does little in providing guidelines or tools for wrangling raw data into the required format. This has led to ad-hoc, and once-off solutions, which this research repairs.
+
+There are three original contributions for the temporal data analysis in this research. They are grounded in the spirit of exploratory data analysis for time-indexed data. The first contribution (Chapter \@ref(ch:gravitas)) is a new technique for visualizing data using a calendar layout. It is most useful when the data relates to daily human activity, and patterns can be explored in relation to people's schedules. The second contribution (Chapter \@ref(ch:hakear)) is a new data abstraction which streamlines transformation, visualization, and modeling in temporal contexts. This "tsibble" object is a data infrastructure forming the foundation of temporal data pipelines. The third contribution (Chapter \@ref(ch:gracsr)) is to equip analysts with exploratory and explanatory tools for discovering missing patterns in time, and thus facilitating decisions on appropriate imputation methods for further downstream analysis.
+
+\newpage
+
+<!--chapter:end:Rmd//00-b-abstract.Rmd-->
+
+
+# Declaration {-}
+
+Placeholder
+
+
+
+<!--chapter:end:Rmd//00-c-declaration.Rmd-->
+
+# Acknowledgements {-}
+
+This thesis would not be possible without many people.
+
+First and foremost, I would like to express my gratitude to my supervisors, Dianne Cook and Rob J Hyndman. They are outstanding supervisors, providing excellent insights on statistical computing and graphics during our weekly supervisory meetings. I'm deeply impressed by their dynamics, enthusiasm, and visions about open source software and data science, all of which have formed the support and encouragement for me to continue with this non-traditional research path.
+
+I thank Heike Hofmann for hosting me at Iowa State University during the summer of 2018. I enjoyed many discussions with Heike, where I received brilliant questions and insightful advice on my research. I thank Stuart Lee and Mitchell O'Hara-Wild for countless conversations on software development, that helped to shape this thesis. I thank David Frazier for being the best pingpong partner, truly boosting the creative thinking process.
+
+I thank Emi Tanaka for sending me PRs for proofreading my thesis on Github, unlocking the power of an open-sourced research compendium. I thank Wenjing Wang and Carson Sievert for being so helpful in the early days of my PhD. I thank the R community, the tidyverse team, and all NUMBATs for ongoing inspiration.
+
+Last but not least, I'd like to thank my mother for her unceasing love.
+
+<!--chapter:end:Rmd//00-d-acknowlegements.Rmd-->
+
+# Preface {-}
+
+Chapter \@ref(ch:gravitas) has been accepted by the *Journal of Computational and Graphical Statistics*. It has won the ACEMS Business Analytics Prize in 2020. The accompanying R package **gravitas** is on CRAN. Chapter \@ref(ch:hakear) and Chapter \@ref(ch:gracsr) are yet to be submitted.
+
+### Open and reproducible research {-}
+
+This thesis is written in R Markdown [@rmarkdown] with **bookdown** [@bookdown], using **renv** [@renv] to create reproducible environments. The online version of this thesis is hosted at <https://sayani.netlify.app/>, powered by [Netlify](http://netlify.com). All materials (including the data sets and source files) required to reproduce this document can be found at the Github repository <https://github.com/Sayani07/thesis>.
+
+### License {-}
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+
+This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+The code used in this document is available under the [MIT license](https://opensource.org/licenses/MIT).
+
+\clearpage\pagenumbering{arabic}\setcounter{page}{0}
+
+<!--chapter:end:Rmd//00-e-preface.Rmd-->
+
+
+# Introduction {#ch:intro}
+
+Placeholder
+
+
+## Visualizing probability distributions across bivariate cyclic temporal granularities {#sec:gravitas}
+## Detecting distributional differences between temporal granularities for exploratory time series analysis {#sec:hakear}
+## Clustering time series based on probability distributions across temporal granularities {#sec:gracsr}
+## Summary
+
+<!--chapter:end:Rmd//01-intro.Rmd-->
+
+
+# Visualizing probability distributions across bivariate cyclic temporal granularities {#ch:gravitas}
+
+Placeholder
+
+
+## Introduction
+## Linear time granularities {#sec:linear-time}
+### Definitions
+### Relativities
+## Cyclic time granularities {#sec:cyclic-gran}
+### Circular granularities {#sec:circular-gran-def}
+### Quasi-circular granularities {#sec:quasi-circular-gran-def}
+### Aperiodic granularities {#sec:aperiodic-gran-def}
+### Relativities {#sec:cyclic-calendar}
+### Computation
+#### Single-to-multiple order-up {-}
+#### Multiple-to-single order-up {-}
+#### Multiple order-up quasi-circular granularities {-}
+## Data structure {#sec:data-structure}
+### Harmonies and clashes {#sec:synergy}
+### Near-clashes {#sec:near-clashes}
+## Visualization {#sec:visualization}
+### Data summarization
+### Display choices for univariate distributions
+### Comparison across sub-groups induced by conditioning {#sec:aesthetics}
+#### Levels {-}
+#### Synergy of cyclic granularities {-}
+#### Conditioning variable {-}
+## Applications {#sec:application}
+### Smart meter data of Australia {#sec:smartmeter}
+#### Cyclic granularities search and computation {-}
+#### Screening and visualizing harmonies {-}
+### T20 cricket data of Indian Premier League {#sec:cricket}
+## Discussion {#sec:discussion}
+## Acknowledgments {-}
+## Supplementary Materials
+
+<!--chapter:end:Rmd//02-gravitas.Rmd-->
+
+
+# Detecting distributional differences between temporal granularities for exploratory time series analysis  {#ch:hakear}
+
+Placeholder
+
+
+## Introduction
+## Proposed distance measure {#sec:computation-wpd}
+### Principle 
+### Notations
+### Computation
+#### Data transformation
+#### Characterising distributions
+#### Distance between distributions
+#### Within-facet and between-facet distances
+#### Tuning parameter
+#### Raw distance measure
+#### Adjusting for the number of comparisons {#sec:norm-wpd}
+## Ranking and selection of cyclic granularities {#sec:rank-wpd}
+### Selection
+### Ranking
+## Simulations {#sec:simulations}
+### Behavior of raw and adjusted distance measures
+### Choosing threshold
+### Environment
+## Application to residential smart meter dataset {#sec:application-wpd}
+## Discussion
+## Acknowledgments {-}
+## Supplementary Materials
+
+<!--chapter:end:Rmd//03-hakear.Rmd-->
+
+# Data representation, visual and analytical techniques for demystifying temporal missing data {#ch:mists}
+
+
+<!--chapter:end:Rmd//04-gracsr.Rmd-->
+
+
+# Conclusion and future plans {#ch:conclusion}
+
+Placeholder
+
+
+## Software development
+### sugrrants
+### tsibble
+### mists
+## Future work
+### Process for generating missing data in time
+### Visual methods for temporal data of nesting and crossing interactions
+## Final words
+
+<!--chapter:end:Rmd//05-conclusion.Rmd-->
+
+# (APPENDIX) Appendix {-}
+
+# Data dictionary
+
+```{r wdi-data-dict}
+```
+
+(ref:wdi-data-dict) Data dictionary for the World Development Indicators.
+
+<!--chapter:end:Rmd//06-appendix.Rmd-->
+
+`r if (knitr::is_html_output()) '# Bibliography {-}'`
+
+<!--chapter:end:Rmd//99-references.Rmd-->
+
