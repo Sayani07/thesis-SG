@@ -1,0 +1,42 @@
+---
+title: 'Tidy tools for supporting fluent workflow in temporal data analysis'
+author: 'Earo Wang'
+degreetype: 'Doctor of Philosophy'
+site: bookdown::bookdown_site
+degrees: 'B.Comm. (Hons), Monash University'
+bibliography: [bib/calendar.bib, bib/tsibble.bib, bib/mists.bib, bib/thesisrefs.bib]
+link-citations: yes
+---
+
+```{r initial, echo = FALSE, cache = FALSE, results = 'hide'}
+options("knitr.graphics.auto_pdf" = TRUE)
+library(knitr)
+opts_chunk$set(
+  warning = FALSE, message = FALSE, echo = FALSE,
+  fig.path = 'figure/', fig.align = 'center', fig.show = 'hold',
+  cache = TRUE, external = TRUE, comment = "#>", dpi = 300,
+  out.width = ifelse(is_html_output(), "100%", "\\textwidth"),
+  cache.path = ifelse(is_html_output(), 'cache-gitbook/', 'cache-pdfbook/')
+)
+hook_output <-  knit_hooks$get('output')
+knit_hooks$set(output = function(x, options) {
+  # this hook is used only when the linewidth option is not NULL
+  if (!is.null(n <- options$linewidth)) {
+    x = knitr:::split_lines(x)
+    # any lines wider than n should be wrapped
+    if (any(nchar(x) > n)) x = strwrap(x, width = n)
+    x = paste(x, collapse = '\n')
+  }
+  hook_output(x, options)
+})
+```
+
+`r if (knitr::is_latex_output()) '<!--'` 
+
+# Welcome {-}
+
+This is the website for my PhD thesis at Monash University (Australia), titled "Tidy tools for supporting fluent workflow in temporal data analysis".
+
+`r Sys.Date()`
+
+`r if (knitr::is_latex_output()) '-->'`
