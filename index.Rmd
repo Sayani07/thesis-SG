@@ -1,10 +1,14 @@
 ---
-title: 'Tidy tools for supporting fluent workflow in temporal data analysis'
-author: 'Earo Wang'
-degreetype: 'Doctor of Philosophy'
+title: "Visualization and analysis of probability distributions of large temporal data"
+author: "Sayani Gupta"
+degreetype: Doctor of Philosophy
 site: bookdown::bookdown_site
-degrees: 'B.Comm. (Hons), Monash University'
-bibliography: [bib/calendar.bib, bib/tsibble.bib, bib/mists.bib, bib/thesisrefs.bib]
+degrees: M.Stat, B.Sc (Stat Hons)
+bibliography:
+- bib/gravitas.bib
+- bib/hakear.bib
+- bib/gracsr.bib
+- bib/thesisrefs.bib
 link-citations: yes
 ---
 
@@ -35,7 +39,7 @@ knit_hooks$set(output = function(x, options) {
 
 # Welcome {-}
 
-This is the website for my PhD thesis at Monash University (Australia), titled "Tidy tools for supporting fluent workflow in temporal data analysis".
+This is the website for my PhD thesis at Monash University (Australia), titled "Visualization and analysis of probability distributions of large temporal data".
 
 `r Sys.Date()`
 

@@ -1,6 +1,6 @@
 # Conclusion and future plans {#ch:conclusion}
 
-The three papers assembled in this thesis share a common theme of exploratory analysis for temporal data using tidy tools. Chapter \@ref(ch:calendar-vis), "Calendar-based graphics for visualizing people's daily schedules", described a new calendar-based display. Chapter \@ref(ch:tsibble), "A new tidy data structure to support exploration and modeling of temporal data", proposed a new temporal data abstraction. Chapter \@ref(ch:mists), "Data representation, visual and analytical techniques for demystifying temporal missing data", explored missing data in time. These papers are bundled with software. In this conclusion, I will briefly summarize each package and their impact, and discuss the future directions of my research.
+In this thesis, I present a systematic approach for visualizing and analyzing large temporal data distributions. The building blocks of this framework are presented in this thesis. Chapter \@ref(ch:gravitas) includes tools for computing all cyclic granularities as well as a recommendation system for selecting pairs of granularities that may be effectively investigated together. These temporal granularities may be used to generate data visualizations to search for patterns, associations, and anomalies. However, when there are many granularities that can be constructed for a time period, there will also be too many possible displays to decide which might be the more interesting to display. Chapter \@ref(ch:hakear) presents a framework for selecting displays that are interesting, with the greatest differences between the displayed distributions, and ranking them in order of priority for capturing the most variation. Both of these are used for studying patterns in individual time series or comparing a few time series together. In Chapter \@ref(ch:gracsr), it is extended to allow for the exploration of distributions for many time series at the same time by clustering them based on probability distributions across informative cyclic granularities. Through the use of probability distribution, this technique is more comprehensive in recognizing clusters with recurring patterns over many important granularities and more resilient to noisy, patchy, and uneven length time series.
 
 ```{r software-initial, echo = FALSE, cache = FALSE, include = FALSE}
 read_chunk('scripts/software.R')
@@ -11,51 +11,52 @@ read_chunk('scripts/software.R')
 ```{r software-impact}
 ```
 
-A particular emphasis of this thesis is on translating research methodologies in the form of open source R packages: **sugrrants**, **tsibble**, and **mists**. Figure \@ref(fig:software-ghcommits) gives an overview of my Git commits to these repositories, and Figure \@ref(fig:software-downloads) shows the daily downloads of the packages from the RStudio mirror (one of 90 CRAN mirrors) since they were available on CRAN.
+This thesis focuses on integrating research approaches into open source R packages such as **gravitas**, **hakear**, and **gracsr**.
 
-```{r software-ghcommits, fig.cap = "(ref:software-ghcommits-cap)"}
-include_graphics("img/pkg-commits.png")
-```
+<!-- Figure \@ref(fig:software-ghcommits) gives an overview of my Git commits to these repositories, and Figure \@ref(fig:software-downloads) shows the daily downloads of the packages from the RStudio mirror (one of 90 CRAN mirrors) since they were available on CRAN. -->
 
-(ref:software-ghcommits-cap) Patterns of my package development effort during my PhD years based on Git commits to three repositories, sugrrants, tsibble, and mists. Scatter plots of weekly totals are overlaid with a loess smoother. The **sugrrants** package was the first project with much initial energy, followed by small constant maintenance. The **tsibble** package has been a major project with ongoing constant development and bursts of effort in response to users' feedback. The **mists** package has been a recent intense project.
+<!-- ```{r software-ghcommits, fig.cap = "(ref:software-ghcommits-cap)"} -->
+<!-- include_graphics("img/pkg-commits.png") -->
+<!-- ``` -->
 
-```{r software-downloads, fig.height = 3, fig.cap = "(ref:software-downloads-cap)"}
-```
+<!-- (ref:software-ghcommits-cap) Patterns of my package development effort during my PhD years based on Git commits to three repositories, sugrrants, tsibble, and mists. Scatter plots of weekly totals are overlaid with a loess smoother. The **sugrrants** package was the first project with much initial energy, followed by small constant maintenance. The **tsibble** package has been a major project with ongoing constant development and bursts of effort in response to users' feedback. The **mists** package has been a recent intense project. -->
 
-(ref:software-downloads-cap) Impact of these works (sugrrants and tsibble) as measured by daily downloads (on square root scale) from the RStudio mirror since they landed on CRAN. The **tsibble** package has an increasing trend, suggesting the steady adoption of the new data structure.
+<!-- # ```{r software-downloads, fig.height = 3, fig.cap = "(ref:software-downloads-cap)"} -->
+<!-- # ``` -->
+<!-- #  -->
+<!-- # (ref:software-downloads-cap) Impact of these works (sugrrants and tsibble) as measured by daily downloads (on square root scale) from the RStudio mirror since they landed on CRAN. The **tsibble** package has an increasing trend, suggesting the steady adoption of the new data structure. -->
 
-### sugrrants
+### gravitas
 
-The **sugrrants** package implements the idea of displaying data in the familiar calendar style using `frame_calendar()` and `facet_calendar()`. The research article, a shorter version of Chapter \@ref(ch:calendar-vis), has been awarded the best student paper prize from ASA Sections on Statistical Computing and Statistical Graphics and ACEMS Business Analytics in 2018. There has been a grand total of `r format(sum(sugrrants_dl$count), big.mark = ",")` downloads from the RStudio mirror dating from 2017-07-28 to 2019-09-20; and it has been starred 48 times on Github so far. The homepage at <https://pkg.earo.me/sugrrants> contains detailed documentation and a vignette on `frame_calendar()`.
+The **gravitas** package provides very general tools to compute and manipulate cyclic granularities, and to generate plots displaying distributions conditional on those granularities. It can be utilized in non-temporal cases for which a hierarchical structure can be construed similar to time. It is on CRAN. The website (<https://sayani07.github.io/gravitas>) includes full documentation and two vignettes about the package usage.  There has been a grand total of 12K downloads from the RStudio mirror dating from 2020-11-01 to 2021-11-01.
 
-### tsibble
+### hakear 
 
-The **tsibble** package provides a data infrastructure and a domain specific language in R for representing and manipulating tidy temporal data. This package provides the fundamental architecture that other temporal tools will be built upon. For example, a new suite of time series analysis packages, titled ["tidyverts"](https://github.com/tidyverts), have been developed for the new "tsibble" object. The **tsibble** package has won the 2019 John Chambers Statistical Software Award from the ASA Sections on Statistical Computing and Statistical Graphics. It has been downloaded `r format(sum(tsibble_dl$count), big.mark = ",")` times from the RStudio mirror since it landed on CRAN; and it has received 241 stars on Github. These metrics are the indicators of my research impact, the recognition by professionals, and the uptakes by users. The website (<https://tsibble.tidyverts.org>) includes full documentation and three vignettes about the package usage.
+The open-source R package `hakear` is available on Github (https://github.com/Sayani07/hakear) to implement ideas presented in Chapter \@ref(ch:hakear). Given a `tsibble` and context granularities of interest, the function `wpd()` provides support for computing the wpd for each cyclic granularities or pair of granularities and `select_harmonies()` chooses the ones with significant patterns and ranks them from highest to lowest wpd.
 
-### mists
+### gracsr
 
-The **mists** package aims at exploring missing values for temporal data analytically and graphically. It implements a compact abstraction for efficiently indexing missing data in time, along with numerical and visual methods. It also provides new missing data polishing techniques. The Github repository has received 22 stars, but the package is not on CRAN yet. The documentation site is available at <https://pkg.earo.me/mists>.
+The open-source R package `gracsr` is available on Github (https://github.com/Sayani07/gracsr) to implement ideas presented in Chapter \@ref(ch:gracsr). The package provides functions to carry out the entire clustering methodology discussed in the paper. It is still a work in progress and has won the ACEMS Business Analytics Prize 2021 with a prize money of AUD 3000, which would be utilized in polishing this package and preparing it for CRAN.
 
 ## Future work
 
-### Process for generating missing data in time
+### Putting all functionalities on CRAN
 
-Missing values in multivariate data are typically characterized by the overall, row-wise, and column-wise numbers of missings. However, none of these captures the dynamics in temporal data. A well-defined characteristic is need to characterize temporal missingness, and this could possibly shed light on the processes for generating and imputing missing data in time.
+I plan to integrate `hakear` with `gravitas` as one R package to systematically exploring few time series, whereas `gracsr` would provide the clustering framework for exploring many time series together. I plan to run it through https://ropensci.org/software-review/ to develop them further for more visibility and efficient usage.
 
-Generating temporal missingness can be decomposed into two steps: (1) injecting missings at time points to reflect the functional form of time, and (2) generating the corresponding run lengths to reflect the temporal dependency. I plan to expand on Chapter \@ref(ch:mists) to generalize missing data generating processes in temporal contexts. Because of the evolving nature of time, the underpinning mechanisms of missing data may change from one period to another. Applying the new characteristic to the data, on a rolling window basis, could indicate the missing data status and thus lead to appropriate missing data remedies.
 
-### Visual methods for temporal data of nesting and crossing interactions
+### Scaling up the clustering method to incorporate large uncertainty and improved computational efficiency that comes with large data
 
-A collection of time series are often structured in a way that allows nesting and crossing interactions [@fpp]. For example, a manufacturing company can add up every store's sales by region, by state and by country, which gives a strictly hierarchical time series; alternatively, they can gather the sales based on common attributes such as store, brand, price range and so forth, which leads to a crossed configuration. Nesting is a special case of crossing, with parent-children relations involved. Temporal information such as date-times is often also intrinsically hierarchical, seconds nested within minutes, hours, and etc. The new tsibble structure has the neat capability of supporting these structural embeddings.
+With the volume of data projected to grow in the future, potentially leading to increased variability in patterns, research is needed to understand the issues that may arise with the existing methodology and how to adapt our current algorithm. Computational efficiency is also critical when scaling up for analysis of huge data sets, let alone when adding features to existing highly dimensional data structures.
 
-Numerous nesting and crossing combinations can yield unwieldy plots, in many of which an abundance of information is possibly buried. Focus-plus-context visualization with interactivity comes to the rescue. Dual contexts, structurally informative subjects, and time provide the source and visual clues for elegant navigation. Interactions on contextual plots control what is to be visualized in the main plots. Many kinds of visual displays can be generated to progressively build a richer data picture through guided or self explorations.
+### Comparing our clustering method with other benchmark methods
+
+Testing needs to be carried out with non-hierarchy based clustering methods to see whether these distances perform better with other algorithms. Also, to evaluate how much information is lost when aggregating individual level demand versus distributions.
+
+### Check generalizability of our methods
+
+We provide solutions that are realistically applicable to any temporal data observed more than once per year. We could just verify its value in the electricity smart meter context. With numerous open-source benchmark data sets accessible, it is necessary to test how well the approaches operate in various disciplines.
+
 
 ## Final words
 
-Presentations, package development, and writing are the three primary types of activities that shape this thesis. I have developed a habit of using Git and Github to track and synchronize my academic work since I started the PhD program. All commits are grouped by the activity types, with annotations of important milestones, shown in Figure \@ref(fig:phd-ghcommits). It has been a fruitful program.
-
-```{r phd-ghcommits, fig.cap = "(ref:phd-ghcommits-cap)", fig.pos = "ht"}
-include_graphics("img/phd-commits.png")
-```
-
-(ref:phd-ghcommits-cap) Beeswarm plots of my Git commits split by the activity types during my PhD years, labeled with some milestones.
