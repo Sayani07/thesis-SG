@@ -1,4 +1,3 @@
-cache-*/
 .Rproj.user
 .Rhistory
 .RData
@@ -25,4 +24,15 @@ data/hakear/simulations/*.rds
 !data/hakear/simulations/raw/null_design_quantrans/data-agg/all_data_wpd_N01.rds
 !data/hakear/simulations/supplementary/one-gran/raw/null_design_quantrans/data-agg/all_data_wpd_N01.rds
 !data/hakear/simulations/norm/null_design_quantrans_nperm/data-agg/all_data_wpd_N01.rds
+cache-*/
+/figure
+signature.png
+img/*.png
+.DS_Store
+*.log
+*.run.xml
+.Rproj.user
+*.bbl
+thesis\.tex
+report/ExaminerReports.pdf
 

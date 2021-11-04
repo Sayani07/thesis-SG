@@ -1,18 +1,11 @@
 # Acknowledgements {-}
 
-## supervisors
-Rob and Di are phenomenal leaders in their respective fields, who lead by example. I am inspired by their creativity, wisdom, discipline, and dedication to really contribute to the society through their research. Thank you for constantly pushing me to improve as a programmer and researcher, and for regularly sharing best practices for conducting research. Looking back, I am grateful for how my thoughts and work in statistical computing, graphics, and data analytics in general have evolved over the years. I still have a lot to learn, but I am a much more self-reliant and independent researcher than I was when I started. Di has been instrumental in exposing me to the potential benefits of effective data visualization. As a female researcher, I am encouraged by her willingness to pursue unconventional avenues and have frequently noticed her make a conscious decision to question existing  stereotypes and biases. Thank you Di for being a fantastic female role model.
+This thesis would not be possible without many people.
 
-## department and PhD colleagues
+First and foremost, I would like to express my gratitude to my supervisors, Dianne Cook and Rob J Hyndman. They are outstanding supervisors, providing excellent insights on statistical computing and graphics during our weekly supervisory meetings. I'm deeply impressed by their dynamics, enthusiasm, and visions about open source software and data science, all of which have formed the support and encouragement for me to continue with this non-traditional research path.
 
+I thank Heike Hofmann for hosting me at Iowa State University during the summer of 2018. I enjoyed many discussions with Heike, where I received brilliant questions and insightful advice on my research. I thank Stuart Lee and Mitchell O'Hara-Wild for countless conversations on software development, that helped to shape this thesis. I thank David Frazier for being the best pingpong partner, truly boosting the creative thinking process.
 
-## R community
+I thank Emi Tanaka for sending me PRs for proofreading my thesis on Github, unlocking the power of an open-sourced research compendium. I thank Wenjing Wang and Carson Sievert for being so helpful in the early days of my PhD. I thank the R community, the tidyverse team, and all NUMBATs for ongoing inspiration.
 
-
-
-## friends
-
-PhD in Covid has been harder and I would not have been able to make it through this if not for the emotional support of my friends and family. Thank you Puwasala, Sium for being an epitome of kindness and acting as a pillar of support. Thank you Tushar, Samarpita and Nairita for always motivating me and believing in me when I didn't believe in myself. Thank you Ian for always putting things in perspective when I lost sight. Thank you each one of you for being available, listening to me, and not giving up on me at my lowest. Thanks to my housemates Anjali, Surbhi and Dulaji for the fun company and conversations that kept me sane in the covid lockdowns.
-
-## family
-Finally, a big thanks to my family for always being supportive of my choices. Thanks to my mum (Nupur Gupta) and dad (Arun Prasad Gupta), from whom I learnt that no matter where you start from, if you persevere and are sincere in your efforts, you can sail through any difficult situation. They are my constant cheerleaders for all little and big endeavours. Thanks to my brother (Avijit) for always having my back and inspiring me to dream bigger. Thank you, Juhi (sister-in-law) for instilling in me the value of organisation in all aspects of life and the importance of prioritizing my physical health from time to time. Thank you all for your part in supporting me in this journey. I love you. 
+Last but not least, I'd like to thank my mother for her unceasing love.
