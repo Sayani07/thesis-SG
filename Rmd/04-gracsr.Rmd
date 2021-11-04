@@ -1,2 +1,601 @@
-# Data representation, visual and analytical techniques for demystifying temporal missing data {#ch:mists}
+# Clustering time series based on probability distributions across temporal granularities {#ch:gracsr}
+
+With more and more time series data being collected at much finer temporal resolution, for a longer length of time, and for a larger number of individuals/entities, time series clustering research is getting a lot of traction. Long, noisy, patchy, uneven, and asynchronous time series are common in many fields, limiting similarity searches or lowering method efficiency when clustering is based on a distance metric. In this work, we suggest two approaches for obtaining similarity between time series based on probability distributions over cyclic temporal granularities for distance-based clustering approaches. Cyclic granularities like hour-of-the-day, work-day/weekend, month-of-the-year and so on, are useful for finding repeated patterns in the data. Looking at probability distributions across cyclic granularities serves two purposes: (a) "Probability distributions" characterise the inherent temporal data structure of these large unequal-length time series and are robust to missing or noisy data. (b) Using probability distributions over "cyclic granularities" ensures small pockets of similar "repeated" behaviors. Our method is capable of producing useful clusters, as demonstrated by testing on validation data designs and a sample of residential smart meter consumers.
+
+
+
+```{r external3, include = FALSE, cache = FALSE}
+knitr::read_chunk('scripts/gracsr.R')
+```
+
+
+```{r load-lib}
+
+```
+
+
+```{r mytheme-application}
+```
+
+```{r theme_characterisation}
+```
+
+```{r theme-validation}
+
+```
+
+
+## Introduction
+
+<!-- time series clustering and its challenges -->
+Time-series clustering is the process of unsupervised partitioning of $n$ time-series data into $k$ ($k<n$) meaningful groups such that homogeneous time-series are grouped together based on a certain similarity measure. The time-series features, length of time-series, representation technique, and, of course, the purpose of clustering time-series all influence the suitable similarity measure or distance metric to a meaningful level. The three primary methods to time series clustering (@liao2005clustering) are algorithms that operate directly with distances or raw data points in the time or frequency domain (distance-based), with features derived from raw data (feature-based), or indirectly with models constructed from raw data (model-based). The efficacy of distance-based techniques is highly dependent on the distance measure utilized. Defining an appropriate distance measure for the raw time series may be a difficult task since it must take into account noise, variable lengths of time series, asynchronous time series, different scales, and missing data. Commonly used Distance-based similarity measures as suggested by a decade review of time series clustering approaches (@Aghabozorgi2015-ct) are Euclidean, Pearson's correlation coefficient and related distances, Dynamic Time Warping, Autocorrelation, Short time series distance, Piecewise regularization, cross-correlation between time series, or a symmetric version of the Kullback–Liebler distances (@liao2007clustering) but on a vector time series data. Among these alternatives, Euclidean distances have high performance but need the same length of data over the same period, resulting in information loss regardless of whether it is on raw data or a smaller collection of features. DTW works well with time series of different lengths (@corradini2001dynamic), but it is incapable of handling missing observations. Surprisingly, probability distributions, which may reflect the inherent temporal structure of a time series have not been considered in determining time series similarity.
+
+\noindent We consider the problem of clustering a large number of univariate time series of continuous values which are available at fine temporal scales, being motivated by the residential smart meter data. These time series data are long (with more and more data collected at finer resolutions), are asynchronous, with varying time lengths for different houses and missing observations and characterized by noisy and patchy behavior that can quickly become overwhelming and hard to interpret, requiring summarizing the large number of customers into pockets of similar energy behavior. Choosing probability distributions seem to be a natural way to analyze these types of data sets since they are robust to uneven length, missing data, or noise. This paper proposes two approaches for obtaining pairwise similarities based on Jensen-Shannon distances between probability distributions across significant cyclic granularities. Cyclic temporal granularities [@Gupta2021-hakear], which are temporal deconstructions of a time period into units such as hour-of-the-day, work-day/weekend, can be useful for measuring repetitive patterns in large univariate time series data. The resulting clusters are expected to group customers that have similar repetitive behaviors across each of the interesting cyclic granularities. Below are some of the benefits of our method:
+
+- When using probability distributions, data does not have to be the same length or observed during the exact same time period (unless there is a structural pattern);
+
+<!-- (for example, some customers observed only for holidays, others observed over non holidays or year of observation is different which can lead to technological advancement.) -->
+
+- Jensen-Shannon distances evaluate the distance between two distributions rather than raw data, which is less sensitive to missing observations and outliers than other conventional distance methods;
+
+- While most clustering algorithms produce clusters similar across just one temporal granularity, this technique takes a broader approach to the problem, attempting to group observations with similar distributions across all interesting cyclic granularities;
+
+- It is reasonable to define a time series based on its degree of trend and seasonality, and to take these characteristics into account while clustering it. The modification of the data structure by taking into account probability distributions across cyclic granularities assures that there is no trend and that seasonal variations are handled independently. As a result, there is no need to de-trend or de-seasonalize the data before applying the clustering method. For similar reasons, there is no need to exclude holiday or weekend routines.
+
+
+_Background and motivation_
+
+
+Large spatio-temporal data sets, both from open and administrative sources, offer up a world of possibilities for research. One such data sets for Australia is the Smart Grid, Smart City (SGSC) project (2010–2014) available through [Department of the Environment and Energy](https://data.gov.au/data/organization/doee) The project provides half-hourly data of over 13,000 household electricity smart meters distributed unevenly from October 2011 to March 2014. Larger data sets include greater uncertainty about customer behavior due to growing variety of customers. Households vary in size, location, and amenities such as solar panels, central heating, and air conditioning. The behavioral patterns differ amongst customers due to many temporal dependencies. Some households use a dryer, while others dry their clothes on a line. Their weekly profile may reflect this. They may vary monthly, with some customers using more air conditioners or heaters than others, while having equivalent electrical equipment and weather circumstances. Some customers are night owls, while others are morning larks. Day-off energy use varies depending on whether customers stay home or go outside. Age, lifestyle, family composition, building attributes, weather, availability of diverse electrical equipment, among other factors, make the task of properly segmenting customers into comparable energy behavior a fascinating one. This challenge is worsened when all we know about our consumers is their energy use history (@Ushakova2020-rl). To safeguard the customers' privacy, it is probable that such information is not accessible. Also, energy suppliers may not always update client information, such as property features, in a timely manner. Thus, there is a growing need to have research that examines how much energy usage heterogeneity can be found in smart meter data and what are some of the most common power consumption patterns, rather than explaining why consumption differs.
+
+
+_Related work_
+
+A multitude of papers have emerged around smart meter time series clustering for deepening our knowledge of consumption patterns. @Tureczek2017-pb conducted a systematic study of over $2100$ peer-reviewed papers on smart meter data analytics. None of the $34$ articles chosen for their emphasis use Australian smart meter data. The most often used algorithm is K-Means. Using K-Means without considering time series structure or correlation results in inefficient clusters. Principal Component Analysis (PCA) or Self-Organizing Maps (SOM) eliminate correlation patterns and decrease feature space, but lose interpretability. To reduce dimensionality, several studies use principal component analysis or factor analysis to pre-process smart-meter data before clustering (@Ndiaye2011-pf). Other algorithms utilized in the literature include k-means variants, hierarchical approaches, and greedy k-medoids. Time series data, such as smart meter data, are not well-suited to any of the techniques mentioned in @Tureczek2017-pb. Only one study [@ozawa2016determining] identified time series characteristics using Fourier transformation, which converts data from time to frequency and then uses K-Means to cluster by greatest frequency. @Motlagh2019-yj suggests that the time feature extraction is limited by the type of noisy, patchy, and unequal time-series common in residential and addresses model-based clustering by transforming the series into other other objects such as structure or set of parameters which can be more easily characterized and clustered. [@chicco2010renyi] addresses information theory-based clustering such as Shannon or Renyi entropy and its variations. @Melnykov2013-sp discusses how outliers, noisy observations and scattered observations can complicate estimating mixture model parameters and hence the partitions. To our knowledge, none of the methods focus on exploring heterogeneity in repetitive behaviors based on the dynamics of multiple temporal dependencies using probability distributions.
+
+<!-- Given none of the methods use probability distributions across cyclic granularity to explore heterogeneity in different repetitive behaviors, we present a way to do that by presenting similarity through probability distributions across cyclic granularities.  -->
+
+
+The remainder of the paper is organized as follows: Section&nbsp;\ref{sec:methodology} provides the clustering methodology. Section&nbsp;\ref{sec:validation} shows data designs to validate our methods. Section&nbsp;\ref{sec:cases} discusses the application of the method to a subset of the real data. Finally, we summarize our results and discuss possible future directions in Section&nbsp;\ref{sec:conclusion}.
+
+
+
+<!-- A typical clustering technique includes the following steps: (a) establishing distance (dissimilarity) and similarity through feature or model extraction and selection; and (b) selecting the clustering algorithm design. Distance measures could be time-domain based or frequency-domain (fast Fourier transform). -->
+
+
+
+<!-- A model-based clustering works by transforming the series into other other objects such as structure or set of parameters which can be more easily characterized and clustered (@Motlagh2019-yj). [@chicco2010renyi] addresses information theory-based clustering such as Shannon or Renyi entropy and its variations. The essential temporal characteristics of the curves are defined or extracted using feature-based clustering. -->
+
+
+
+
+
+
+<!-- This work -->
+<!-- This is similar to a stochastic approach (@Motlagh2019-yj) to clustering, which proposes interpreting electricity demand as a random process and extracting time-series characteristics, or a model of the series, to enable unsupervised clustering. Unsupervised clustering is only as good as the features that are extracted/selected or the distance metrics that were utilized. Well-designed additional features may collect characteristics that default features cannot. Based on the underlying structure of the temporal data, this article offers new distance metric and features for clustering and applies them to actual smart-meter data. Firstly, the distance metric is based on probability distribution, which in our knowledge is the first attempt to cluster smart meter data using probability distributions. These recorded time series are asynchronous, with varying time lengths for different houses and missing observations. Taking probability distributions helps to deal with such data, while helping with dimension reduction in one hand but not losing too much information due to aggregation. Secondly, we recognise that most clustering algorithms only provide hourly energy profiles during the day, but this approach provides a wider approach to the issue, seeking to group consumers with similar shapes over all important cyclic granularities. Since cyclic granularities are considered instead of linear granularities, clustering would group customers that have similar repetitive behavior across more than one cyclic granularities across which patterns are expected to be significant.  -->
+
+
+<!-- common similarity measures -->
+
+<!-- electricity data structure -->
+
+<!-- common similarity measures used there -->
+
+
+<!-- lit review -->
+
+
+
+
+## Clustering methodology {#sec:methodology}
+
+
+<!-- In contrast to models, a feature-based strategy is used to explicitly define or automatically extract the curves’ key time features, for instance by application of PCA on the daily curves [ --
+
+
+<!-- Most papers discussed in Tureczek2017-pb fail to accept smart meter readings as time series data, a data type which contains a temporal component. The omission of the essential time series features in the analysis leads to the application of methods that are not designed for handling temporal components. K-Means ignores autocorrelation, unless the input data is pre-processed. The clusters identified in the papers are validated by a variety of indices, with the most prevalent -->
+<!-- being the cluster dispersion index (CDI) [22–24], the Davies–Bouldin index (DBI) [25,26] and the mean index adequacy (MIA) [8,13]. -->
+
+
+<!-- The data set solely contains readings from smart meters and no information about the consumers' specific physical, geographical, or behavioral attributes. As a result, no attempt is made to explain why consumption varies. Instead, this work investigates how much energy usage heterogeneity can be found in smart meter data and what some of the most common electricity use patterns are. -->
+
+<!-- Because of this importance, countless approaches to estimate time series similarity have been proposed.  -->
+
+
+The foundation of our method is unsupervised clustering algorithms based exclusively on the time-series data. The proposed methodology aims to leverage the intrinsic data structure hidden within cyclic temporal granularities. The existing work on clustering probability distributions assumes we have an iid sample $f_1(v),\dots,f_n(v)$, where $f_i(v)$ denotes the distribution from observation $i$ over some random variable $v = \{v_t: t = 0, 1, 2, \dots, T-1\}$ observed across $T$ time points. <!--So going back to the smart meter example, $f_i(v)$ is the distribution of customer $i$ and $v$ is electricity demand.--> In this work, instead of considering the probability distributions of the linear time series, we assume it across different categories of any cyclic granularity. We can consider categories of an individual cyclic granularity ($A$) or combination of categories for two interacting granularities ($A*B$) to have a distribution, where $A, B$ are defined as $A = \{a_j: j=1, 2, \dots J\}$ and $B = \{b_k: k = 1, 2, \dots K\}$. For example, let us consider two cyclic granularities $A$ and $B$ representing hour-of-day and day-of-week. Then $A = \{0, 1, 2, \dots, 23\}$ and $B = \{Mon, Tue, Wed, \dots, Sun\}$. In case individual granularities are considered, there are $J = 24$ distributions of the form $f_{i,j}(v)$ or $K = 7$ distributions of the form $f_{i,k}(v)$ for each customer $i$. In case of interaction, $J*K=168$ distributions of the form $f_{i,j, k}(v)$ could be conceived for each customer $i$. Hence clustering these customers is equivalent to clustering these collections of conditional univariate probability distributions. Towards this goal, we need to decide how to measure similarities between collections of univariate probability distributions. There are multiple ways to measure similarities depending on the aim of the analysis. <!--This paper focuses on looking at the (dis) similarity between underlying distributions that may have resulted in different patterns across different cyclic temporal granularities, that eventually have resulted in the (dis) similarity between time series. --> This paper considers a two approaches for finding distances between time series. Both of these approaches may be useful in a practical context and, depending on the data set, may or may not propose the same customer classification. The obtained distances could be fed into a clustering algorithm to break large data sets into subgroups that can then be analyzed separately. <!--These clusters may be commonly associated with real-world data segmentation. However, since the data is unlabeled a priori, more information is required to corroborate this.--> The methodology is explained in the Figure \ref{fig:flowchart} and each element of the pipeline is discussed.
+
+
+```{r flowchart, fig.cap = "Flow chart illustrating the pipeline for methodology", out.width="100%"}
+knitr::include_graphics("img/flowchart.png")
+
+```
+
+- _Find significant granularities or harmonies_
+
+[@Gupta2021-hakear] proposes a method for choosing significant cyclic granularities and harmonies (interacting granularities that can be studied together) [@Gupta2021-gravitas], which is used in this work. We define "significant" granularities as those with significant distributional differences across categories. It is preferable to consider those since it is more probable that there will be some intriguing repeated behavior worth investigating. It should be noted that all of the observations in the study may not have the same set of important granularities. The following is a method for generating a list ($S_c$) of significant granularities for all observations:
+
+ (a) Remove granularities from the comprehensive list that are insignificant for all observations.
+
+ (b) select only the granularities that are significant for the majority of observations.
+
+There will be observations in both cases where one or a few selected granularities are boring. Even in that case, having this group of observations with no interesting patterns at a granularity that regularly discovers patterns may be valuable. If, on the other hand, the granularities under examination are truly important for a group of data, unique patterns may be identified while clustering them.
+
+
+
+- _Data transformation_
+
+Observations often have a somewhat skewed time series distribution and their ranges might vary greatly. Statistical transformations are employed to bring all of them to the same range or normalize each observation. This is important because we are not interested in trivial clusters that vary in magnitudes, but rather in uncovering comparable patterns of distributional differences between categories. For the JS-based approaches, two data transformation techniques are utilized viz, Normal-Quantile Transform (NQT) and Robust scaling. NQT is a built-in transformation for computing $wpd$, which is the foundation of wpd-based distances.
+    
+_Robust scaling_ The normalized $i^{th}$ observation is denoted by $v_{norm} = \frac{v_t - q_{0.5}}{q_{0.75}-q_{0.25}}$, where $v_t$ is the actual value at the $t^{th}$ time point and $q_{0.25}$, $q_{0.5}$ and $q_{0.75}$ are the $25^{th}$, $50^{th}$ and $75^{th}$ percentile of the time series for the $i^{th}$ observation. $v_{norm}$ has zero mean and median, as well as a standard deviation of one, with the outliers having same relative connections to other values.
+
+_Normal-Quantile transform_ The raw data for all observations is individually normal-quantile transformed (NQT) [@Krzysztofowicz1997-bv], so that the transformed data follows a standard normal distribution. NQT will make the skewed distributions bell-shaped. As a result, determining which raw distribution was used is difficult using the modified distribution. Multimodality is also concealed or reversed. As a result, while displaying transformed data using NQT, one must exercise caution. But NQT is a useful transformation that often improves clustering performance.
+
+
+<!-- NQT, however, is an useful transformation which often improves the clustering performance. Since our variables are cyclic granularities which are derived from linear granularities, NQT ensures that the conditional distribution across each variable is also normalised. -->
+
+
+<!-- is not a problem for implementation of this methodology as distributions are characterized by quantiles and the order of the quantiles is reserved under NQT. -->
+
+
+<!-- First, the original data is ranked in ascending order and the probabilities $P(Y<=y(i)) = i/(n+1)$ are attached to $y(i)$, in terms of their ranking order. A NQT based transformation is applied by computing from a standard normal distribution a variable $\eta(i)$, which corresponds to the same probability $P(\eta< \eta(i)) = i/n+1$.By doing this, the new variables $\eta(i)$ will be marginally distributed according to standard Normal, N(0,1). -->
+
+
+
+<!-- It is worth noting that when studying these similarities, a variety of objectives may be pursued. One objective could be to group time series with similar shapes over all relevant cyclic granularities. In this scenario, the variation in customers within each group is in magnitude rather than shape, while the variation between groups is only in shape. There -->
+<!-- are distance measures are used for shape-based clustering [Ding et al. 2008; Wang -->
+<!-- et al. 2013] and many more but none of them look at the probability distributions while computing similarity. Moreover, most distance measures offer similar shape across just one dimension. For example, we often see "similar" daily energy profiles across hours of the day, but we suggest a broader approach to the problem, aiming to group consumers with similar distributional shape across all significant cyclic granularities. Another purpose of clustering could be to group customers that have similar differences in patterns across all major cyclic granularities, capturing similar jumps across categories regardless of the overall shape. For example, in the first goal, similar shapes across hours of the day will be grouped together, resulting in customers with similar behavior across all hours of the day, whereas in the second goal, any similar big-enough jumps across hours of the day will be clubbed together, regardless of which hour of the day it is. Both of these objectives may be useful in a practical context and, depending on the data set, may or may not propose the same customer classification. Depending on the goal of clustering, the distance metric for defining similarity would be different. These distance metrics could be fed into a clustering algorithm to break large data sets into subgroups that can then be analyzed separately. These clusters may be commonly associated with real-world data segmentation. However, since the data is unlabeled a priori, more information is required to corroborate this. This section presents the work flow of the methodology:  -->
+
+- _Data pre-preprocessing_
+
+We start with a "tsibble" (@wang2020tsibble) data structure with an index variable representing inherent ordering from past to present and a key variable that defines observational units over time. The measured variable for an observation is a time-indexed sequence of values. This sequence, however, could be shown in several ways. A shuffle of the raw sequence may represent hourly consumption throughout a day, a week, or a year. Cyclic granularities can be expressed in terms of the index set in the "tsibble" data structure. But the data structure changes while transporting from linear to cyclic scale of time as multiple observations now correspond to each category and induce a probability distribution. Directly computing Jensen-Shannon distances between the entire probability distributions can be very costly. Hence, in this paper, quantiles are chosen to characterize the probability distributions. So, in the final data structure, each category of a cyclic granularity corresponds to a list of numbers which is essentially a few chosen quantiles.
+
+
+- _Distance metrics_
+
+<!-- Considering each individual or combined categories of cyclic granularities to have an underlying distribution lead to a collection of conditional distributions for each customer $i$. -->
+
+
+The total (dis) similarity between each pair of customers is obtained by combining the distances between the collections of conditional distributions. This needs to be done in a way such that the resulting metric is a distance metric, and could be fed into the clustering algorithm. Two types of distance metric is considered:
+
+<!-- The choice of distance measures is a critical step in clustering. It defines how the similarity of two elements (x, y) is calculated. -->
+
+**JS-based distances**
+
+This distance metric considers two time series to be similar if the distributions of each category of an individual cyclic granularity or combination of categories for interacting cyclic granularities are similar. In this study, the distribution for each category is characterized using deciles (can potentially consider any list of quantiles), and the distances between distributions are calculated using the Jensen-Shannon distances (@Menendez1997-in), which are symmetric and thus could be used as a distance measure.
+
+
+\noindent The sum of the distances between two observations $x$ and $y$ in terms of cyclic granularity $A$ is defined as $$S^A_{x,y} = \sum_{j} D_{x,y}(A)$$ (sum of distances between each category $j$ of cyclic granularity $A$) or $$S^{A*B}_{x,y} = \sum_j \sum_k D_{x,y}(A, B)$$ (sum of distances between each combination of categories $(j, k)$ of the harmony $(A, B)$. After determining the distance between two series in terms of one granularity, we must combine them to produce a distance based on all significant granularities. When combining distances from individual $L$ cyclic granularities $C_l$ with $n_l$ levels, $$S_{x, y} = \sum_lS^{C_l}_{x,y}/n_l$$ is employed, which is also a distance metric since it is the sum of JS distances. This approach is expected to yield groups, such that the variation in observations within each group is in magnitude rather than distributional pattern, while the variation between groups is only in distributional pattern across categories.
+
+
+**wpd-based distances**
+
+Compute weighted pairwise distances $wpd$ (@Gupta2021-hakear) for all considered granularities for all observations. $wpd$ is designed to capture the maximum variation in the measured variable explained by an individual cyclic granularity or their interaction and is estimated by the maximum pairwise distances between consecutive categories normalized by appropriate parameters. A higher value of $wpd$ indicates that some interesting pattern is expected, whereas a lower value would indicate otherwise.
+
+\noindent Once we have chosen $wpd$ as a relevant feature for characterizing the distributions across one cyclic granularity, we have to decide how we combine differences between the multiple features (corresponding to multiple granularities) into a single number. The Euclidean distance between them is chosen, with the granularities acting as variables and $wpd$ representing the value under each variable. With this approach, we should expect the observations with similar $wpd$ values to be clustered together. Thus, this approach is useful for grouping observations that have a similar significance of patterns across different granularities. Similar significance does not imply a similar pattern, which is where this technique varies from JS-based distances, which detect differences in patterns across categories.
+
+
+
+
+
+<!-- Consider a harmony table consisting of many harmonies, each of the form $(A, B)$, such that $A = \{ a_j: j = 1, 2, \dots, J\}$ and $B = \{ b_k: k = 1, 2, \dots, K\}$. Each household consists of a $J*K$ distributions one harmony. We compute the distributional difference -->
+<!-- between $(A, B)$ for the $s^{th}$ household using $wpd_{{s}}(A,B)$. -->
+<!-- $wpd_{{s}}(A,B)$ denotes the normalized weighted-pairwise distributional distances between $(A, B)$ and is a feature which measures distributional difference between harmonies. If we have $H_{N_C}$ harmonies in the harmony table, then for each household we have a vector of $wpd_{{s}}$ of $H_{N_C}$ elements with each element corresponding to one harmony. We aim to have pockets of households showing similar periodic behavior by considering $wpd$ values for different harmonies and some time series features. The features should also characterize probability distributions of different household. -->
+
+
+<!-- grouping probability distributions across a harmony. This clustering algorithm is adopted to remove or appropriately adjust for auto correlation and unequal length in the data. The method could be further extended by clustering probability distributions conditional on one or more cyclic granularities. The following are some of the advantages of our proposed method. -->
+
+
+
+
+- _Clustering algorithm_
+
+With a way to obtain pairwise distances, any clustering algorithm can be employed that supports the given distance metric as input. A good comprehensive list of algorithms can be found in @Xu2015-ja based on traditional ways like partition, hierarchy, or more recent approaches like distribution, density, and others. We employ agglomerative hierarchical clustering in conjunction with Ward's linkage. Hierarchical cluster techniques fuse neighboring points sequentially to form bigger clusters, beginning with a full pairwise distance matrix. The distance between clusters is described using a "linkage technique". This agglomerative approach successively merges the pair of clusters with the shortest between-cluster distance using Ward's linkage method.
+
+<!--Hierarchical algorithms are one of the most widely used, can operate with data of any shape, has reasonable scalability, and the number of clusters is not needed as a parameter.-->
+
+
+- _Characterization of clusters_
+
+\noindent Cluster characterization is an important element of cluster analysis. @Cook2007-qe provides several methods for characterizing clusters. _Parallel coordinate plots_ (@wegman1990hyperdimensional), _Scatterplot matrix_, _Displaying cluster statistics_ (@dasu2005grouping), _MDS_ (@borg2005modern), PCA, _t-SNE_(@R-tsne), _Tour_ (@wickham2011tourr) are some of the graphical approaches used in this study. A Parallel Coordinates Plot features parallel axes for each variable and each axis is linked by lines. Changing the axes may reveal patterns or relationships between variables for categorical variables. However, for categories with cyclic temporal granularities, preserving the underlying ordering of time is more desirable. Displaying cluster statistics is useful when we have larger problems and it is difficult to read the parallel coordinate plots due to congestion. All of MDS, PCA and t-SNE use a distance or dissimilarity matrix to construct a reduced-dimension space representation, their goals are diverse. Multidimensional scaling (@borg2005modern) seeks to maintain the distances between pairs of data points, with an emphasis on pairings of distant points in the original space. The t-SNE embedding will compress data points that are close in high-dimensional space. Tour is a collection of interpolated linear projections of multivariate data into lower-dimensional space. The cluster characterization approach varies depending on the distance metric used. Parallel coordinate plots, scatter plot matrices, MDS or PCA are potentially useful ways to characterize clusters using wpd-based distances. For JS-based distances, plotting cluster statistics is beneficial for characterization and variable importance could be displayed through parallel coordinate plots. 
+
+
+
+<!-- CUT IT SHORT -->
+
+<!-- (a) _Parallel coordinate plots_ (@wegman1990hyperdimensional) are often used to visualize high-dimensional and multivariate data, allowing visual grouping and pattern detection. A Parallel Coordinates Plot features parallel axes for each variable. Each axis is linked by lines. Changing the axes may reveal patterns or relationships between variables for categorical variables. However, for categories with cyclic temporal granularities, preserving the underlying ordering of time is more desirable. -->
+
+<!-- (b) _Scatterplot matrix_ contains pairwise scatter plots of the p variables. Pairwise scatter plots are useful for figuring out how variables relate to each other and how factors determine the clustering. -->
+
+<!-- (c) _Displaying cluster statistics_ are useful when we have larger problems and it is difficult to read the Parallel coordinate plots due to congestion. (@dasu2005grouping) -->
+
+<!-- (d) _MDS, PCA and t-SNE_ While all of them use a distance or dissimilarity matrix to construct a reduced-dimension space representation, their goals are diverse. PCA seeks to retain data variance. Multidimensional scaling (@borg2005modern) seeks to maintain the distances between pairs of data points, with an emphasis on pairings of distant points in the original space. t-SNE, on the other hand, is concerned with preserving neighborhood data points. The t-SNE embedding will compress data points which are close in high-dimensional space. -->
+
+<!-- (e) _Tour_ is a collection of interpolated linear projections of multivariate data into lower-dimensional space. As a result, the viewer may observe the high-dimensional data's shadows from a low-dimensional perspective. -->
+
+<!-- The cluster characterization approach varies depending on the distance metric used. Parallel coordinate plots, scatter plot matrices, MDS or PCA are potentially useful ways to characterize clusters using wpd-based distances. For JS-based distances, plotting cluster statistics is beneficial for characterization and variable importance could be displayed through parallel coordinate plots. -->
+
+
+<!-- This part of the work uses R packages `GGally` (@R-GGally), `Rtsne` (@R-tsne), `ggplot2` (Wickham2009pk), `tour` (@wickham2011tourr), `stats` (@R-language). -->
+
+
+<!-- - A random sample of the original data is taken for clustering analysis and includes missing and noisy observations (detailed description in Appendix) -->
+
+<!-- - All harmonies are computed for each customer in the sample. -->
+<!-- Cyclic granularities which are clashes for all customers in the sample are removed. -->
+
+<!-- - It is worth noting that a number of other solutions may be considered at the pre-processing stage of the method. We have considered a) Normal-Quantile Transform and b) Robust transformation. -->
+
+<!-- - Two methods are considered for computing dissimilarity between two customers. The first one involves computing according to one granularity is computed as the sum of the JS distances between distribution of all the categories of the granularity. When we consider more than one granularity, we consider the sum of the average distances for all the granularity so that the combined metric is also a distance. -->
+
+<!-- - Given the scale of dissimilarity among the energy readings, the model chooses optimal number of clusters -->
+
+<!-- - Once clusters have been allocated, the groups are explored visually. -->
+
+<!-- - Results are reported and compared. -->
+
+<!-- Two methods are used for computing distances between subjects and then hierarchical clustering algorithm is used. -->
+
+<!-- The existing work on clustering probability distributions assumes we have an iid sample $f_1(v),\dots,f_n(v)$, where $f_i(v)$ denotes the probability distribution from observation $i$ over some random variable $v = \{v_t: t = 0, 1, 2, \dots, T-1\}$ observed across $T$ time points. In our work, we are using $i$ as denoting a customer and the underlying variable as the electricity demand. So $f_i(v)$ is the distribution of household $i$ and $v$ is electricity demand. -->
+
+<!-- We want to cluster distributions of the form $f_{i,j,k}(v)$, where $i$ and $j$ denote -->
+
+<!-- Consider a harmony table consisting of many harmonies, each of the form $(A, B)$, such that $A = \{ a_j: j = 1, 2, \dots, J\}$ and $B = \{ b_k: k = 1, 2, \dots, K\}$. Each household consists of a $J*K$ distributions one harmony. We compute the distributional difference -->
+<!-- between $(A, B)$ for the $s^{th}$ household using $wpd_{{s}}(A,B)$. -->
+<!-- $wpd_{{s}}(A,B)$ denotes the normalized weighted-pairwise distributional distances between $(A, B)$ and is a feature which measures distributional difference between harmonies. If we have $H_{N_C}$ harmonies in the harmony table, then for each household we have a vector of $wpd_{{s}}$ of $H_{N_C}$ elements with each element corresponding to one harmony. We aim to have pockets of households showing similar periodic behavior by considering $wpd$ values for different harmonies and some time series features. The features should also characterize probability distributions of different household. -->
+
+
+<!-- ### Notations -->
+
+<!-- Consider an iid sample $f_1(v),\dots,f_n(v)$, where $f_i(v)$ denotes the probability distribution from observation $i$ over some random variable $v = \{v_t: t = 0, 1, 2, \dots, T-1\}$ observed across $T$ time points. In our work, we are using $i$ as denoting a household and the underlying variable as the electricity demand. Further consider a cyclic granularity of the form $B = \{ b_k: k = 1, 2, \dots, K\}$. Each customer consists of collection of probability distributions. -->
+
+
+<!-- So $f_i(v)$ is the distribution of household $i$ and $v$ is electricity demand. We want to cluster distributions of the form $f_{i,j,k}(v)$, where $i$ and $j$ denote $i^{th}$ and $j^{th}$ customer respectively. -->
+
+
+
+<!-- a harmony table consisting of many harmonies, each of the form $(A, B)$, such that $A = \{ a_j: j = 1, 2, \dots, J\}$ and $B = \{ b_k: k = 1, 2, \dots, K\}$. -->
+
+
+
+
+<!-- ### A single or pair of granularities together (change names) -->
+
+<!-- The methodology can be summarized in the following steps: -->
+
+<!-- - _Pre-processing step_ -->
+
+<!-- Robust scaling method or NQT used for each customer. -->
+
+
+<!-- - _NQT_ -->
+
+
+<!-- - _Treatment to outliers_ -->
+
+
+
+
+
+
+<!-- ### Many granularities together (change names) -->
+
+<!-- The methodology can be summarized in the following steps: -->
+
+
+<!-- 1. Compute quantiles of distributions across each category of the cyclic granularity -->
+<!-- 2. Compute JS distance between households for each each category of the cyclic granularity -->
+<!-- 3. Total distance between households computed as sum of JS distances for all hours -->
+<!-- 4. Cluster using this distance with hierarchical clustering algorithm (method "Ward.D") -->
+
+<!-- _Pro:_  -->
+<!-- - distance metric makes sense to group different shapes together  -->
+<!-- - simulation results look great on typical designs  -->
+<!-- _Cons:_   -->
+<!-- - Can only take one granularity at once   -->
+<!-- - Clustering a big blob of points together whereas the aim is to groups these big blob into smaller ones   -->
+
+<!-- ### Multiple-granularities -->
+
+<!-- _Description:_   -->
+
+<!-- Choose all significant granularities and compute wpd for all these granularities for all customers. Distance between customers is taken as the euclidean distances between them with the granularities being the variables and wpd being the value under each variable for which Euclidean distance needs to be measured.   -->
+<!-- _Pro:_   -->
+<!-- - Can only take many granularities at once -->
+<!-- - can apply variable selection PCP and other interesting clustering techniques -->
+<!-- - simulation results look great on typical designs -->
+<!-- - splitting the data into similar sized groups   -->
+<!-- _Cons:_   -->
+<!-- - distance metric does not make sense to split the data into similar shaped clusters  -->
+
+## Validation {#sec:validation}
+
+To validate our clustering methods, we spiked many attributes in the data to create different data designs. <!--to see where one method works better than the other and where they might give us the same outcome --or the effect of missing data <!---and trends on the proposed methods.--> Three circular granularities $g1$, $g2$ and $g3$ are considered with categories denoted by $\{g10,g11\}$, $\{g20, g21, g22\}$ and $\{g30, g31, g32, g33, g34\}$ and levels $n_{g_1}=2$, $n_{g_2}=3$ and $n_{g_3}=5$. These categories could be integers or some more meaningful labels. For example, the granularity "day-of-week" could be either represented by $\{0, 1, 2, \dots, 6\}$ or $\{Mon, Tue, \dots, Sun\}$. Here categories of $g1$, $g2$ and $g3$ are represented by $\{0, 1\}$, $\{0, 1, 2\}$ and $\{0, 1, 2, 3, 4\}$ respectively. A continuous measured variable $v$ of length $T$ indexed by $\{0, 1, \dots T-1\}$ is simulated such that it follows the structure across $g1$, $g2$ and $g3$. We constructed independent replications of all data designs $R = \{25, 250, 500\}$ to investigate if our proposed clustering method can discover distinct designs in small, medium, and big number of series. All designs employ $T=\{300, 1000, 5000\}$ sample sizes to evaluate small, medium, and large-sized series. Variations in method performance may be due to different jumps between categories. So a mean difference of $\mu = \{1, 2, 5\}$ between categories is considered. The performance of the approaches varies with the number of granularities which has interesting patterns across its categories. So three scenarios are considered to accommodate that.
+
+
+<!-- The results for $T=300$ and $R=25$ is shown, that means we have $25$ time series each with length $300$. The rest of the results could be found in the supplementary paper. -->
+
+
+### Data generating processes
+
+<!-- An ARMA (p,q) process is used to generate series, where $p$ and $q$ are selected at random such that the series is stationary. The various designs on $g1$, $g2$, and $g3$ are introduced by adding matching designs to this series' innovations. The innovations are considered to have a normal distribution, although they follow the same pattern as the designs. To eliminate the effect of starting values, the first 500 observations in each series are discarded. -->
+
+Each category or combination of categories from $g1$, $g2$ and $g3$ are assumed to come from the same distribution, a subset of them from the same distribution, a subset of them from separate distributions, or all from different distributions, resulting in various data designs. As the methods ignore the linear progression of time, there is little value in adding time dependency to the data generating process. The data type is set to be "continuous," and the setup is assumed to be Gaussian. When the distribution of a granularity is "fixed", it means distributions across categories do not vary and are considered to be from N (0,1). $\mu$ alters in the "varying" designs, leading to varying distributions across categories.
+
+
+<!-- An ARMA (p,q) process is used to generate series, where $p$ and $q$ are selected at random such that the series is stationary. The various designs on $g1$, $g2$, and $g3$ are introduced by adding matching designs to this series' innovations. The innovations are considered to have a normal distribution, although they follow the same pattern as the designs. To eliminate the effect of starting values, the first 500 observations in each series are discarded. -->
+
+<!-- It is often reasonable to construct a time series using properties such as trend, seasonality, and auto-correlation. However, when examining distributions across categories of cyclic granularities, these time series features are lost or addressed independently by considering seasonal fluctuations through cyclic granularities. Because the time span during which an entity is observed in order to ascertain its behavior is not very long, -->
+<!-- the behavior of the entity will not change drastically and hence the time series can be assumed to remain stationary throughout the observation period. If the observation period is very long (for e.g more than 3 years), property, physical or geographical attributes might change leading to a non-stationary time series. But such a scenario is not considered here and the resulting clusters are assumed to be time invariant in the observation period.  -->
+
+
+### Data designs  
+
+#### Individual granularities
+
+_Scenario (a): All significant granularities_
+
+<!-- Consider a case where all the three granularities $g1$, $g2$ and $g3$ would be responsible for making the designs distinct. That would mean, the pattern for each of $g1$, $g2$ and $g3$ will change for at least one design. We consider a situation with all the null cases corresponding to no difference in distribution across categories, that is, all categories follow the same distribution N(0,1). -->
+
+\noindent Consider the instance where $g1$, $g2$, and $g3$ all contribute to design distinction. This means that each granularity will have significantly different patterns at least across one of the designs to be clustered. In Table \ref{tab:tab-dist-design} various distributions across categories are considered (top) which lead to different designs (bottom). Figure \ref{fig:plot-3gran-new} shows the simulated variable's linear (left) and cyclic (right) representations for each of these five designs. The structural difference in the time series variable is impossible to discern from the linear view, with all of them looking very similar. The shift in structure may be seen clearly in the distribution of cyclic granularities. The following scenarios use solely graphical displays across cyclic granularities to highlight distributional differences in categories.
+
+_Scenario (b): Few significant granularities_
+
+\noindent This is the case where one granularity will remain the same across all designs. We consider the case where the distribution of $v$ varies across $g2$ levels for all designs, across $g3$ levels for a few designs, and $g1$ does not vary across designs. The proposed design is shown in Figure \ref{fig:gran2and1-clubbed}(b).
+
+_Scenario (c): One significant granularity_
+
+\noindent Only one granularity is responsible for identifying the designs in this case. This is depicted in Figure \ref{fig:gran2and1-clubbed} (right) where only $g3$ affects the designs significantly.
+
+```{r tab-distribution}
+```
+
+
+```{r tab-design}
+```
+
+
+```{r tab-dist-design}
+```
+
+
+
+```{r generate-D3change}
+
+```
+
+```{r generate-design-3change}
+
+```
+
+
+
+```{r plot-3gran-new, out.width="100%", fig.cap="The linear (left) and cyclic (right) representation of the simulated variable is shown. Each row represents a design in Scenario (a). In this scenario, all of $g1$, $g2$ and $g3$ changes across at least one design. Also, it is not possible to comprehend these differences in patterns just by looking at or considering the linear representation."}
+
+```
+
+
+```{r generate-design-new}
+
+```
+
+
+```{r generate-design-2gran-data}
+
+```
+
+
+```{r generate-design-2gran-plot}
+
+```
+
+
+```{r generate-design-1gran-data}
+
+```
+
+
+```{r generate-design-1gran-plot}
+
+```
+
+
+```{r gran2and1-clubbed, fig.cap=" Plots (b) and (c) correspond to Design (b) and (c) respectively. In (b) $g2$, $g3$ changes across atleast one design but $g1$ remains constant. Only $g3$ changes across different designs in (c)."}
+#gran2_change  + gran1_change + plot_layout(widths = c(1,1))
+#ggpubr::ggarrange(gran1_change, gran2_change, labels = c("a", "b"))
+```
+
+#### Interaction of granularities
+
+The proposed methods could be extended when two granularities of interest interact and we want to group subjects based on the interaction of the two granularities. Consider a group that has a different weekday and weekend behavior in the summer but not in the winter. This type of combined behavior across granularities can be discovered by evaluating the distribution across combinations of categories for different interacting granularities (Weekend/Weekday and month-of-year in this example). As a result, in this scenario, we analyze a combination of categories generated from different distributions. Consider a case in which there are only two interacting granularities of interest, $g1$ and $g2$. In contrast to the previous situation, when we could study distributions across $n_{g_1} + n_{g_2} = 5$ separate categories, with interaction, we must evaluate the distribution of the $n_{g_1}*n_{g_2}=6$ combination of categories. Consider the $4$ designs in Figure \ref{fig:interaction-gran}, where various distributions are assumed for different combinations of categories, resulting in different designs. Design $D1$ exhibits no change in distributions across $g1$ or $g2$, whereas Designs $D2$ and $D3$ alter across only $g1$ and $g2$, respectively. D4 varies across both $g1$ and $g2$ categories. D3 and D4 appear similar based on their relative differences across consecutive categories, but $D4$ also changes across facets, unlike $D3$, which has all facets look the same.
+
+```{r interaction-gran, fig.cap = "Distribution of the simulated variable across $g1$ conditional on $g2$ is shown through boxplots for 4 designs. D1 has no change in distributions across different categories of $g1$ or $g2$, while D2 and D3 change across only $g1$ and $g2$ respectively. D4 changes across categories of both $g1$ and $g2$."}
+
+```
+
+
+<!-- When two granularities of interest interact, the connection between a granularity and the measured variable is determined by the value of the other interacting granularity. This happens when the effects of the two granularities on the measured variable are not additive. For simplicity, consider a case with just two interacting granularities $g1$ and $g2$ of interest. As opposed to the last case, where we could play with the distribution of $5$ individual categories, with interaction we can play with the distribution of $6$ combination of categories. Consider $4$ designs in Figure \ref{fig:} where different distributions are assumed for different designs to get some distinction across designs. For example, in application, think about the scenario when customers need to grouped basis their joint behavior across hour-of-day and month-of-year. -->
+
+<!-- | Granularity type                                                   	| # Significant 	| # Replications 	| -->
+<!-- |--------------------------------------------------------------------	|---------------	|----------------	| -->
+<!-- | **Individual**  <br><br># obs: 300, 500, 2000  <br># clusters: 4/5 	| 1/2/3         	| 25, 100, 200   	| -->
+<!-- | **Interaction**  <br><br># obs: 500, 2000  <br># clusters: 4       	| 2           	| 25, 100, 200   	| -->
+
+
+### Visual exploration of findings
+
+All of the approaches were fitted to each data design and for each combination of the considered parameters. The formed clusters have to match the design, be well separated, and have minimal intra-cluster variation. It is possible to study these desired clustering traits visually in a more comprehensive way than just looking at index values. So we use MDS and parallel coordinate graphs to demonstrate the findings:
+
+- In Figure \ref{fig:mds-plot-validation}, we tried to see how separated our clusters are. We observe that in all scenarios and for different mean differences, clusters are separated. However, the separation increases with an increase in mean differences across scenarios. This is intuitive because, as the difference between categories increases, it gets easier for the methods to correctly distinguish the designs.
+
+- Figure \ref{fig:parcoord-sim} depicts a parallel coordinate plot with the vertical bar showing total inter-cluster distances with regard to granularities $g1$, $g2$, and $g3$ for all simulation settings and scenarios. So one line in the figure shows the inter-cluster distances for one simulation setting and scenarios vary across facets. The lines are not colored by group since the purpose is to highlight the contribution of the factors to categorization rather than class separation. The first plot shows that no variable stands out in the clustering, but the following two designs show that {g1} and {g1, g2} have very low inter cluster distances, meaning that they did not contribute to the clustering. It is worth noting that these facts correspond to our original assumptions when developing the scenarios, which incorporate distributional differences over three (a), two (b), and one (c) significant granularities. Hence, Figure \ref{fig:parcoord-sim} (a), (b), and (c) validate the construction of scenarios (a), (b), and (c) respectively.
+
+ - The js-robust and wpd methods perform worse for $nT=300$, then improve for higher $nT$ evaluated in the study. Although, a complete year of data is the minimum requirement to capture distributional differences in winter and summer profiles, for example. Even if the data is only available for a month, $nT$ with half-hourly data is expected to be at least $1000$. As a result, as long as the performance is promising for higher $nT=300$, this is not a challenge.
+
+- In our study sample, the method js-nqt outperforms the method js-robust for smaller differences between categories. More testing, however, is required to corroborate this.
+
+For more detailed results, please refer to the supplementary paper. The code for creating these data designs and running the methodologies is available at (https://github.com/Sayani07/paper-gracsR/Validation).
+
+
+```{r parcoord-sim, fig.cap = "The parallel coordinate plot illustrates the total inter-cluster distances for granularities $g1$, $g2$, and $g3$. One line in the figure depicts the inter-cluster distances for a single simulation scenario. While the first plot indicates that no variable stands out during clustering, the next two designs demonstrate that {g1} and {g1, g2} have extremely low inter-cluster distances, indicating that they did not contribute to clustering. It is worth emphasising that these facts are consistent with our initial assumptions when designing the scenarios and (a), (b), and (c) correspond to Scenario (a), (b) and (c) respectively."}
+
+```
+
+
+```{r mds-plot-validation, fig.cap = "Relative positions of clusters corresponding to different scenarios (columns) for different values of mean differences between categories (rows) are shown using the first two dimensions of MDS. It can be observed that clusters become more compact and separated for higher mean differences between categories across all designs. Between designs, separation is least prominent corresponding to scenario (c) where only granularity is responsible for the clusters."}
+
+```
+
+
+
+<!-- "Parallel coordinate plots are used to identify key variables for classification. Each line in this figure represents a formed group for a certain set of simulated parameters. (a), (b) and (c) corresponds to Scenarios (a), (b) and (c). The cyclic granularities $g1$, $g2$, and $g3$ are plotted on the x-axis, while total inter-cluster distances are plotted on the y-axis. Each line in this figure represents a group for a certain configuration of the various parameters ($nT$, $diff$, $R$). (c) demonstrates that intercluster distances are only significant for the variable $g3$, meaning that the clusters formed are primarily due to $g3$. This corresponds to our design in Scenario (c), in which distributional differences were implemented solely for g3. (b) demonstrates the role of g2 and g3 in clustering. (a) depicts a heterogeneous pattern of inter-cluster distances across variables, indicating that no single variable is to account for the clusters." -->
+
+<!-- A confusion table can come alive with linked brushing, so that mismatches and agreements between methods can be explored. -->
+
+
+```{r, eval=FALSE}
+# code in append_3gran_change.R
+table <- read_rds("data/append_3gran_change.rds")
+table %>% kable()
+```
+
+
+<!-- starts getting better with increasing difference and get worse with increasing number of replications. Length of series do not show to have any effect on the performance of the methods. It does not depend on if time series is ar or arma. -->
+
+
+<!-- - confusion matrix could be used for showing results if proper labeling is used -->
+
+<!-- - write about features that we have spiked into the data set -->
+<!-- - write about you incorporated noise -->
+<!-- - What is the additional structure you can incorporate that will lead to failing of method1 and method2? -->
+<!-- - And both gives the same result? Basically say when method 1 works better than method 2 and vice versa! -->
+
+<!-- - -->
+
+## Case study {#sec:cases}
+
+The use of our methodology is illustrated on smart meter energy usage for a sample of customers from [SGSC consumer trial data](https://data.gov.au/data/dataset/smart-grid-smart-city-customer-trial-data) which was available through [Department of the Environment and Energy](https://data.gov.au/data/organization/doee) and Data61 CSIRO. It contains half-hourly general supply in KwH for 13,735 customers, resulting in 344,518,791 observations in total. In most cases, electricity data is expected to have multiple seasonal patterns like daily, weekly or annual. We do not learn about these repetitive behaviors from the linear view because too many measurements all squeezed in that representation. Hence we transition into looking at cyclic granularities, that can potentially provide more insight on their repetitive behavior. The raw data for these consumers is of unequal length, with varying start and finish dates. Because our proposed methods evaluate probability distributions rather than raw data, neither of these data features would pose any threat to our methodology unless they contained any structure or systematic patterns. Additionally, there were missing values in the database but further investigation revealed that there is no structure in the missingness (see Supplementary paper for raw data features and missingness). The study begins by subsetting a data set along all dimensions of interest using data filtering and prototyping. By grouping the prototypes using our methods and assessing their meaning, the study hopes to unravel some of the heterogeneities observed in energy usage data. Because our application does not employ additional customer data, we cannot explain why consumption varies, but rather try to identify how it varies.
+
+_Data filtering and variable selection_
+
+- Choose a smaller subset of randomly selected $600$ customers with no implicit missing values for 2013.
+
+- Obtain $wpd$ for all cyclic granularities considered for these customers. It was found that `hod` (hour-of-day), `moy` (month-of-year) and `wkndwday` (weekend/weekday) are coming out to be significant for most customers. We use these three granularities while clustering.
+
+- Remove customers whose data for an entire category of `hod`, `moy` or `wnwd` is empty. For example, a customer who does not have data for an entire month is excluded because their monthly behavior cannot be analyzed.
+
+- Remove customers whose energy consumption is 0 in all deciles. These are the clients whose consumption is likely to remain essentially flat and with no intriguing repeated patterns that we are interested in studying.
+
+
+_Prototype selection_
+
+<!-- Why instance selection -->
+Supervised learning uses a training set of known information to categorize new events through instance selection. Instance selection (@olvera2010review) is a method of rejecting instances that are not helpful for classification. This is analogous to subsampling the population along all dimensions of interest such that the sampled data represents the primary features of the underlying distribution. Instance selection in unsupervised learning has received little attention in the literature, yet it could be a useful tool for evaluating model or method performance. There are several ways to approach prototype selection.
+Following @Fan2021-bq's idea of picking related examples (neighbors) for each instance (anchor), we can first use any dimensionality reduction techniques like MDS or PCA to project the data into a 2D space. Then pick a few "anchor" customers who are far apart in 2D space and pick a few neighbors for each. Unfortunately, this does not ensure that consumers with significant patterns across all variables are chosen. Tours can reveal variable separation that was hidden in a single variable display better than static projections. Hence we perform a linked tour with a t-SNE layout using the R package `liminal` (@R-liminal) to identify customers who are more likely to have distinct patterns across the variables studied. (Refer to Supplementary article for further details). Figure \ref{fig:hod-ind-group} shows the distribution across `hod` (a), `moy`(b) and `wnwd` (c) for the set of chosen $24$ customers that were chosen. Few of these customers have similar distribution across `moy` and some are similar in their `hod` distribution. 
+
+```{r prototype-data-pick}
+
+```
+
+```{r assemble}
+
+```
+
+```{r data-pick}
+```
+
+<!-- - can be done in several ways -->
+
+<!-- - show raw data of moy, hod, wkndwday patterns for them -->
+
+
+```{r hod-moy-wkndwday plots, fig.cap="The distribution across moy, hod and wkndwday for the selected designs. Few are similar in their hod pattern, while others are similar in moy behavior. Some customers have distinct behavior as compared to all other customers.For example, although patterns across wkndwday do not look distinctly different for most households, there is one household for whom weekend behavior is standing out from the rest."}
+```
+
+### Clustering
+
+The $24$ prototypes <!--and the data subset consisting of $353$ customers--> are clustered using the methodology described in Section \ref{sec:methodology} and results are reported below. In the following plots, the median is shown by a line, and the shaded region shows the area between the  $25^{th}$ and $75^{th}$. All customers with the same color represent the same clustered groups. Groups by JS-based distances and wpd-based distances are colored differently as they represent different groupings. The plotting scales are not displayed since we want to emphasize comparable shapes rather than scales. The idea is that a customer in a cluster may have low total energy usage, but their behavior may be quite similar to a customer with high usage with respect to distributional pattern or significance across cyclic granularities.
+
+#### JS-based distances
+
+For clustering based on JS-based distances, we chose the optimal number of clusters using (@Hennig2014-ah) as $5$. The groupings are shown in Figure \ref{fig:hod-ind-group}. Customers with the same color represent the same clustered groups. Our methodology is useful for grouping similar distributions over `hod` and `moy` and they are placed closely for easy comparison. Few groups have mixed patterns across `hod` and `moy`, but few have all customers in the group having a similar profile. Figure \ref{fig:combined-groups-js} shows the summarized distributions across $5$ groups and assists us in characterizing each cluster. It shows Groups $2$ and $4$ have `hod` pattern with a typical morning and evening peak, whereas groups $1$, $3$, and $5$ show a `moy` pattern with higher usage in winter months. Differences in Weekend/Weekday between groups are not discernible, implying that it may not be a relevant variable in distinguishing various clusters unless maybe conditioned by `moy` or `hod`. It may be interesting to compare these two plots to verify if the summarized distributions across groups correctly characterised the groupings. If it has, then the majority of the group's members should share a similar profile.
+
+
+<!--  It appears that the aim of grouping comparable distributions across categories of multiple temporal dependencies has been accomplished to some extent. -->
+
+```{r all-data}
+```
+
+
+```{r clustering}
+
+```
+
+
+```{r opt-clusters}
+```
+
+```{r groups-24}
+```
+
+
+```{r hod-ind-group, fig.cap = "The distribution of selected customers over hod (a), moy (b), and wnwd (c) for the $24$ selected customers is shown. In each case, the same colour denotes the same group using js-based clustering and are placed together to facilitate comparison. Individuals with similar distributional differences across categories of `hod` or `moy` are grouped together, with some exceptions. " }
+```
+
+<!-- It appears that the aim of grouping comparable distributions over considered variables has been accomplished to some extent. -->
+
+
+
+```{r data-heatmap-hod-group}
+```
+
+```{r data-heatmap-moy-group}
+
+```
+
+
+```{r data-heatmap-wkndwday-group}
+
+```
+
+
+```{r combined-groups-js, fig.cap = "The distribution of electricity demand over hod (a), moy (b), and wnwd*hod (c). Groups 2 and 5 appear to have a hod pattern among its members, whereas groups 1, 3, and 5 appear to have a moy pattern. Weekend/weekday differences across groups are not discernible, showing that it is not a critical variable for clustering on its own. It is probable that the distribution over Weekend/Weekday will differ conditional on the categories of hod or moy. (c) demonstrates that the distribution is not different, except for the tails. It is useful to compare the summarised distributions of groups to those of individuals in order to establish that the majority of individuals in the group share the same characteristics."}
+```
+
+
+#### wpd-based distances
+
+We chose the optimal number of clusters using (@Hennig2014-ah) as $3$. A parallel coordinate plot with the three significant cyclic granularities is used to characterise the groups here. The variables are sorted according to their separation across classes (rather than their overall variation between classes). This means that $moy$ is the most important variable in distinguishing the groups followed by $hod$ and $wnwd$. There is only one customer who has significant $wpd$ across $wnwd$ and stands out from the rest of the customers. Group 3 has a higher wpd for hod than moy or wkndwday. Group 2 has the most distinct pattern across moy. Group 1 is a mixed group that has strong patterns on at least one of the three variables. The findings vary from js-based clustering, yet it is a helpful grouping.
+
+
+
+```{r data-pick-wpd}
+```
+
+
+```{r parcoord, fig.cap="Each of the 24 customers is represented by a parallel coordinate plot (a) with three wpd-based groupings. The plot shows that moy is the most important variable in identifying clusters, whereas wkdn-wday is the least significant and has the least fluctuation. One particular customer with high wpd across wknwday stands out in this display. Group 3 has a higher wpd for hod than moy or wkndwday. Group 2 has most discernible pattern across moy. Group 1 is a mixed group with strong patterns on atleast one of the three variables. All of these could be observed from the plot or the table (b) which shows median wpd values for each group.", message=FALSE, warning=FALSE}
+
+```
+
+Things become far more complicated when we consider a larger data set with more uncertainty, as they do with any clustering problem. Summarizing distributions across clusters with varied or outlying customers can result in a shape that does not represent the group. Furthermore, combining heterogeneous customers may result in similar-looking final clusters that are not effective for visually differentiating them. It is also worth noting that the Weekend/Weekday behavior in the given case does not characterize any cluster. This, however, will not be true for all of the customers in the data set. If more extensive prototype selection is used, resulting in more comprehensive prototypes in the data set, this method might be used to classify the entire data set into these prototype behaviors. However, the goal of this section was to have a few customers that have significant patterns over one or more cyclic granularities, apply our methodology to cluster them, and demonstrate that the method produces useful clusters.
+
+## Conclusion and future work {#sec:conclusion}
+
+We offer two approaches for calculating pairwise distances between time series based on probability distributions over multiple cyclic granularities at once. Depending on the goal of the clustering, these distance metrics, when fed into a hierarchical clustering algorithm using Ward's linkage, yield meaningful clusters. Probability distributions provide an intuitive method to characterise noisy, patchy, long, and unequal-length time series data. Distributions over cyclic granularities help to characterise the formed clusters in terms of their repeating behavior over these cyclic granularities. Furthermore, unlike earlier efforts that group customers based on behavior across only one cyclic granularity (such as hour-of-day), our method is more comprehensive in detecting clusters with repeated patterns at all relevant granularities. <!--The JS-based approaches are faster than wpd-based approaches.-->
+
+There are few areas to extend this research. First, larger data sets with more uncertainty complicate matters, as is true for any clustering task. Characterizing clusters with varied or outlying customers can result in a shape that does not represent the group. Moreover, integrating heterogeneous consumers may result in visually identical end clusters, which are potentially not useful. Hence, a way of appropriately scaling it up to many customers such that anomalies are removed before clustering would be useful for bringing forth meaningful, compact and separated clusters. Secondly, we have assumed the time series to be stationary, and hence the distributions are assumed to remain constant for the observation period. In reality, however, it might change. For the smart meter example, the distribution for a customer moving to a different house or changing electrical equipment can change drastically. Our current approach can not detect these dynamic changes. Thirdly, it is possible that for a few customers, data for some categories from the list of considered significant granularities are missing. In our application, we have removed those customers and done the analysis but the metrics used should be able to incorporate those customers in the clustering by handling their missing categories. Finally, $wpd$ is computationally heavy even under parallel computation. Future work can make the computations more efficient so that they are easily scalable to a large number of customers. Moreover, experiments can also be run with non-hierarchy based clustering algorithms to verify if these distances work better with other algorithms.
+
+
+## Acknowledgments {-}
+
+The authors thank the ARC Centre of Excellence for Mathematical and Statistical Frontiers [(ACEMS)](https://acems.org.au/home) for supporting this research. Sayani Gupta was partially funded by [Data61 CSIRO](https://data61.csiro.au/) during her PhD. The Monash eResearch Centre and eSolutions-Study Support Services supported this research in part through the resource usage of the MonARCH HPC Cluster. The Github repository, [github.com/Sayani07/paper-gracsr](https://github.com/Sayani07/paper-gracsr), contains all materials required to reproduce this article and the code is also available online in the supplemental materials. This article was created with R [@R-language], `knitr` [@knitr, @R-knitr] and `rmarkdown` [@rmarkdown, @R-rmarkdown]. Graphics are produced with `ggplot2` [@Wickham2009pk] and GGally [@R-GGally].
+
+## Supplementary Materials
+
+**Data and scripts:** Data sets and R code to reproduce all figures in this article (main.R).
+
+\noindent
+**Supplementary paper:** Additional tables, graphics and and R code to reproduce it (paper-supplementary.pdf, paper-supplementary.Rmd)
+
+\noindent
+**R-package:** To implement the ideas provided in this research, the open-source R package 'gracsr' is available on Github (https://github.com/Sayani07/gracsr).
 
