@@ -1,0 +1,733 @@
+# Detecting distributional differences between temporal granularities for exploratory time series analysis  {#ch:hakear}
+
+ Cyclic temporal granularities, which are temporal deconstructions of a time period into units such as hour-of-the-day, work-day/weekend, can be useful for measuring repetitive patterns in large univariate time series data. The granularities feed new approaches to exploring time series data. One use is to take pairs of granularities, and make plots of response values across the categories induced by the temporal deconstruction. However, when there are many granularities that can be constructed for a time period, there will also be too many possible displays to decide which might be the more interesting to display. This work proposes a new distance metric to screen and rank the possible granularities, and hence choose the most interesting ones to plot. The distance measure is computed for a single or pairs of cyclic granularities can can be compared across different cyclic granularities and also on a collection of time series. The methods are implemented in the open-source R package `hakear`.
+ 
+ 
+ ```{r external-hakear, include = FALSE, cache = FALSE}
+read_chunk("scripts/hakear.R")
+```
+
+```{r load}
+```
+
+
+```{r}
+set.seed(3215)
+```
+
+## Introduction
+
+<!-- <introducing the problem> -->
+<!-- background of the problem -->
+
+<!--Exploratory data analysis, as coined by John W. Tukey [@Tukey1977-jx] involves many iterations of finding structures and patterns that allow the data to be informative.-->
+
+Cyclic temporal granularities [@Bettini1998-ed, @Gupta2021-hd] are <!--theoretical--> temporal deconstructions that define cyclic repetitions in time, e.g. hour-of-day, day-of-month, or regularly scheduled public holidays. These granularities form ordered or unordered categorical variables. An example of an ordered granularity is day-of-week, where Tuesday is always followed by Wednesday, and so on. An unordered granularity example is different week types in a semester, orientation, break, exam or regular classes in an academic calendar. Using granularities to  explore patterns in univariate time series can be considered to be examining the distribution of the measured variable across different categories of the cyclic granularities.
+
+Figure \ref{fig:onegran-new} electricity smart meter data plotted against two granularities (hour-of-day, month-of-year). The data was collected on a single household in Melbourne, Australia, over a six month period, as was used in @wang2020calendar. The categorical variable (granularity) is mapped to the x-axis, and the distribution of response variable is displayed using both side-by-side jittered dotplots and boxplots.  From plot (a) it can be seen that energy consumption is higher during the morning hours (5-8), when members in the household wake up, and again in the evening hours (17-20) possibly when members get back from work. In addition, the largest variation in energy use is in the afternoon hours (12-16), as perceived from sizes of the boxes. From plot (b) the variability in energy usage is higher in Jan and Feb, possibly due to the usage of air conditioners on some days. The median usage is highest in January, dips in February-April and rises again in May-June, although not to the height of January usage. This might imply that this household does not use as much energy for heating as it does for air conditioning. A lot of households in Victoria use gas heating and hence the heater use might not be reflected in the electricity data. Many, many different displays could be constructed using different granularities,  day-of-week, day-of-month, weekday/weekend, etc. However, only a few might be interesting, that is, reveal important patterns in energy usage. Determining which displays which have "significant" distributional differences between categories of the cyclic granularity, and plotting only these, would make for efficient exploration.
+
+```{r calendar-elec, fig.height = 8, fig.cap = "Calendar displays faceted by two households are shown. The calendar displays are rich in information and has several components. For example, it can be observed easily that the level of energy consumption by household 2 is higher than household 4. Also, it gives an overview on when these households are away for holidays and which months consumptions are highest (Jan, Feb). However, when it comes to discerning periodic patterns, analyzing all possible periodic patterns through this display is overwhelming due to combination of linear and cyclic representation of time. For example, there is more going on in terms of peaks and troughs in id 2 compared to id 4, but it is not clear which all periodic patterns are dominant and if it differs between households."}
+
+```
+
+
+```{r onegran-new, fig.cap="A cyclic granularity can be considered to be a categorical variable, and used to break the data into subsets. Here, side-by-side boxplots overlaid on jittered dotplots explore the distribution of of energy use by a household for two different cyclic granularities: (a) hour-of-day and (b) and month-of-year. Daily peaks occur in morning and evening hours, indicating a working household, where members leave for and return from work.  More volatility of usage in summer months (Jan, Feb) is probably due air conditioner use on just some days ."}
+```
+
+<!-- comparing one and two grans for one households -->
+\noindent Exploring the distribution of the measured variable across two cyclic granularities tends to provide more detailed information on its structure. For example, Figure \ref{fig:id2-new2}(a) slice down further by showing the usage distribution across hour-of-day conditional on month-of-year across two households (id 2 and 4). It shows the hourly usage over a day does not remain the same across months. Unlike other months, the 75th and 90th percentile for all hours of the day in January are    high, pretty close, and are not characterized by a morning and evening peak. The household in Figure \ref{fig:id2-new2}(b) has 90th percentile consumption higher in summer months relative to autumn or winter, but the 75th and 90th percentile are far apart in all months, implying that the second household resorts to air conditioning much less regularly than the first one. The differences seem to be more prominent across month-of-year (facets) than hour-of-day (x-axis) for this household, whereas they are prominent for both cyclic granularities for the first household. 
+
+
+<!-- The problem and its dimension -->
+\noindent Are all of these four displays in Figures \ref{fig:onegran-new} and \ref{fig:id2-new2} useful in understanding the distributional difference in energy usage? Which ones are more useful than others? If $N_C$ is the total number of cyclic granularities of interest, the number of displays that could be potentially informative is $N_C$ when considering displays of the form in Figure \ref{fig:onegran-new}. The dimension of the problem, however, increases when considering more than one cyclic granularity. When considering displays of the form in Figure \ref{fig:id2-new2}, 
+there are $^{N_C}P_2$ possible pairwise plots exhaustively, with one of the two cyclic granularities acting as the conditioning variable. 
+This is huge and overwhelming for human consumption even for moderately large $N_C$. It could be immensely useful to make the transition from all potential displays to the ones that are informative across atleast one cyclic granularity.
+
+<!-- Moreover, the volatility in consumption are almost equal and high for all hours in Jan, whereas variability is most in the evening hours for other months. The distribution of consumption across different hours of the day look similar for Apr, May and Jun, characterized by a distinct morning, afternoon and evening peaks and higher variability in evening hours -->
+
+
+
+<!-- months Jan and Feb not only have a high median consumption, but also more variability, possibly due to the usage of air conditioning. The other months shows more consistent behavior with the energy consumption rising in May and June. -->
+
+
+<!-- Scagnostics literature, other literature and why we need more/different --> 
+
+\noindent This problem is similar to Scagnostics (Scatterplot Diagnostics) by @tukey1988computer, which is used to identify meaningful patterns in large collections of scatterplots. Given a set of $v$ variables, there are $v(v-1)/2$ pairs of variables, and thus the same number of possible pairwise scatterplots. Therefore, even for small $v$, the number of scatterplots can be large, and scatterplot matrices (SPLOMs) could easily run out of pixels when presenting high-dimensional data. @Dang2014-tw and @wilkinson2005graph provide potential solutions to this, where few characterizations can be used to locate anomalies in density, shape, trend, and other features in the 2D point scatters. In this paper, we provide a solution to narrowing down the search from $^{N_C}P_2$ plots by introducing a new distance measure that can be used to detect significant distributional differences across cyclic granularities.<!-- harmonies and why it is not enough --> This work is a natural extension of our previous work [@Gupta2021-hd] that narrows down the search from $^{N_C}P_2$ plots by identifying pairs of granularities that can be meaningfully examined together (a "harmony"), or when they cannot (a "clash"). However, even after excluding clashes, the list of harmonies left could be enormous for exhaustive exploration. Hence, there is a need to reduce the search even further by including only those harmonies which are informative enough. @inference and @Majumder2013-hb present methods for statistical significance testing of visual findings using human cognition as the statistical tests. In this paper, the visual discovery of distributional differences is facilitated by choosing a threshold for the proposed numerical distance measure, eventually selecting only those cyclic granularities for which the distributional differences are sufficient to make it an interesting display.
+
+
+<!-- \ref{fig:id2-new2} shows the distribution of energy consumption across hour-of-day conditional on month-of-year. \ref{fig:id2-new2}(a) shows that energy consumption is higher during the morning hours when members in the household wake up and then again higher in the evening hours possibly when members are back from work with them showing maximum variable behavior in the afternoon hours. \ref{fig:id2-new2}(b) shows the months Jan and Feb not only have a high median consumption, but also more variability, possibly due to the usage of air conditioning. The other months shows more consistent behavior with the energy consumption rising in May and June. \ref{fig:id2-new2} adds to this information, by showing that hours in Jan do not necessarily follow the same pattern across the day (due to Holidays, people visiting). Moreover, the volatility in consumption are almost equal and high for all hours in Jan, whereas variability is most in the evening hours for other months. The distribution of consumption across different hours of the day look similar for Apr, May and Jun, characterized by a distinct morning, afternoon and evening peaks and higher variability in evening hours. -->
+
+
+<!-- # interaction for two households, importance could be across one --> 
+
+
+<!-- Even when it is known which all interactions to look at, all of them would not be interesting and that too will vary across different households.  -->
+
+
+<!-- calendar plots -->
+<!-- The authors show how hour-of-the-day interact with weekdays and weekends and then move on to use calendar display to show daily schedules. The calendar display has several components in it, which helps us to look at energy consumption across hour-of-day, day-of-week, week-of-month, and month-of-year at once. Some interaction of these cyclic granularities, for example, how  day-of-week relates to month-of-year, could also be interpreted from this display. This is a great way for having an overview of energy consumption. However, if one wants to understand the repetitiveness in energy behavior and how they interact in greater detail, it is not easy to comprehend the interactions of all cyclic granularities from this display, due to the combination of linear and cyclic representation of time. For example, this display might not be the best to understand how hour-of-the-day or month-of-year varies across week-of-the-month as well as with each other. Furthermore, it is not clear what all interactions of cyclic granularities should be read from this display as there could be many combinations that one can look at. Moreover, there could be non-conventional cyclic granularities, which could potentially become useful depending on the context.  -->
+
+
+
+<!-- context when it could be useful is monitoring heart rates. There are devices that can detect each heartbeat and transfer the data to a receiver such as a watch or phone. These data could be available for a temporal scale as fine as a minute and it could be of interest to see regular patterns across any deconstruction of time coarser than a minute. -->
+
+```{r intro_all}
+
+```
+
+
+
+```{r id2-new2, fig.cap = "Distribution of energy consumption displayed through area quantile plots across two cyclic granularities month-of-year and hour-of-day and two households. The black line is the median, whereas the orange band covers the 25th to 75th percentile and the green band covers the 10th to 90th percentile. Difference between the 90th and 75th quantiles is less for (Jan, Feb) for the first household (a), suggesting that it is a more frequent user of air conditioner than the second household (b). Energy consumption for in (a) changes across both granularities, whereas for (b) daily pattern stays same irrespective of the months."}
+```
+
+```{r id4, fig.cap = "something2", eval = FALSE}
+
+```
+
+
+
+<!-- Again, look at \ref{fig:} c and d, where energy consumption for these two households are plotted against (weekend/weekday, week-of-month). Here, for both households, the pattern of energy consumption vary  across different weeks of the month irrespective of the fact it is a weekday or weekend. In that respect, the harmony pair (month-of-year, hour-of-day) seems to be more informative than (weekend/weekday, week-of-month) for the first household.  -->
+
+
+<!-- Take an example of a data set which are observed at fine temporal scales, like that of NYC bike usage available at https://www.citibikenyc.com/system-data. We use the `nyc_bikes` data set from the R package `tsibbledata` which takes a sample of 10 bikes for the year 2018. The `start_time` and the `stop_time` are recorded to a fineness of seconds. We can look at pair of cyclic granularities (hour_day, wknd_wday) or (week_month, day_week) to see how these periodicities interact. But there could be other pairs that are important too. How to understand which pairs are sufficient to explore given the data set without losing much information about the data. -->
+
+<!-- When we need to understand the interplay of different periodicities in a high frequency temporal datasets, we have many choices to consider. In [@wang2020tsibble] and [@wang2020calendar], periodicities are explored across hour of the day and day of the week or months. But calendar effects are not restricted to conventional day-of-week or month-of-year deconstructions. -->
+
+
+<!-- If we have $n$ periodic linear granularities in the hierarchy table, then $n(n-1)/2$ circular or quasi-circular cyclic granularities could be constructed.  -->
+
+<!-- Our contributions in this paper are: -->
+
+ <!-- * We introduce a new distance measure for detecting periodic interactions. This induces data reduction which allows for identification of patterns, if any, in the time series data. -->
+
+ <!-- * We show that the distance metric could be used to rank the periodic patterns based on how well they capture the variation in the measured variable as they have been normalized for different number of comparisons. -->
+
+ <!-- * We device a framework for choosing a threshold, which will result in detection of only significantly interesting periodic patterns in the time series data. -->
+
+ <!-- *  -->
+
+ <!-- * ; -->
+
+ <!-- * show that the proposed distance metric could be used to rank the interesting patterns across different datasets and temporal granularities since they have been normalized for relevant parameters. -->
+
+\noindent The article is organized as follows. Section \ref{sec:computation-wpd} introduces a distance measure for detecting distributional difference in temporal granularities, which enables identification of patterns in the time series data;
+Section \ref{sec:rank-wpd} devises a selection criterion by choosing a threshold, which results in detection of only significantly interesting patterns. Section \ref{sec:simulations} provides some simulation study on the proposed methodology. Section \ref{sec:application-wpd} presents an application to residential smart meter data in Melbourne to show how the proposed methodology can be used to automatically detect temporal granularities along which distributional differences are significant.
+
+<!-- acts as a way to automatically detect periodic patterns in time series. -->
+
+
+<!-- Also, ranking the remaining harmony pairs based on how well they capture the variation in the measured variable could be potentially useful.   -->
+
+<!-- Talk about Scagnostics: Tukey -->
+
+## Proposed distance measure {#sec:computation-wpd}
+
+We propose a measure called Weighted Pairwise Distances ($wpd$) to detect distributional differences in the measured variable across cyclic granularities. 
+
+
+### Principle 
+
+The principle behind the construction of $wpd$ is explained through a simple example explained in Figure \ref{fig:null4by2}. Each of these figures describes a panel with $2$ x-axis categories and $3$ facet levels, but with different designs. Figure \ref{fig:null4by2}a has all categories drawn from N(0, 1) distribution for each facet. It is not an interesting display particularly, as distributions do not vary across x-axis or facet categories. Figure \ref{fig:null4by2}b has x categories drawn from the same distribution, but across facets the distributions are $3$ standard deviations apart. Figure \ref{fig:null4by2}c exhibits an exact opposite situation where distribution between the x-axis categories
+are $3$ standard deviations apart, but they do not change across facets. Figure \ref{fig:null4by2}d takes a step further by varying the distribution across both facet and x-axis categories by  $3$ standard deviations. If the panels are to be ranked in order of capturing maximum variation in the measured variable from minimum to maximum, then an obvious choice would be placing (a) followed by (b), (c) and then (d). It might be argued that it is not clear if (b) should precede or succeed (c) in the ranking. Gestalt theory suggests items placed at close proximity can be compared more easily, because people assume that they are in the same group and apart from other groups. With this principle in mind, display (b) is considered less informative as compared to display (c) in emphasizing the distributional differences. Considering one cyclic granularity, we would have only two design choices similar to (a) and (c), corresponding to no difference and significant differences between categories of that cyclic granularity only. The proposed measure $wpd$ is constructed in a way so that it could be used to rank panels of different designs as well as test if a design is interesting. This measure is aimed to be an estimate of the maximum variation in the measured variable explained by the panel. A higher value of  $wpd$ would indicate that the panel is interesting to look at, whereas a lower value would indicate otherwise.
+
+
+<!-- To compute the maximum variation of the measured variable within each panel, the distributional differences need to be measured for both within-group and between-group categories. Moreover, a tuning parameter specifying the weightage given to within-facet or between-facet categories can help to choose between designs like \ref{fig:null4by2}b and c. The maximum of all these weighted differences serves as an estimate of the maximum variation in the panel and is taken as the value of $wpd$. -->
+
+
+<!-- Larger differences imply stronger patterns, whereas small difference would imply that the underlying structure is not changing within or between group. -->
+
+
+<!-- A distance measure aimed to capture the structure of the measured variable in designs like \ref{fig:null4by2}, should ideally estimate these within-group and between-group variations. -->
+
+<!-- \noindent Intuitively, while finding a structure or measuring the strength of patterns in Figure \ref{fig:null4by2}, it makes sense to look for within-group and between-group variations. Larger variation would imply stronger patterns, whereas small variation would imply the underlying structure is not changing within or between group. -->
+<!-- Thus, a distance measure aimed to capture this structure should ideally estimate these within-group and between-group variations. One of the potential ways to do this is to measure the distances between distributions of the continuous random variable measured within and between groups, weigh them basis if they are within or between groups and then take the maximum of those distances as an estimate of the maximum variation in the structure. This section starts with possible ways of characterizing distributions and computing distances between them and then describe in details how the measure $wpd$ is defined. -->
+
+
+
+<!-- This is similar to @ieee-irish where the authors compute the Jensen Shannon distance between two density estimates by computing percentiles and stresses the advantages to working with percentiles rather than the raw data directly in case of missing observations. Working with quantiles also ensure that unsynchronized time series could be handled. -->
+
+
+
+<!-- Hence, with reference to the graphical design in @Gupta2021-hd, therefore the idea would be to rate a harmony pair higher if the variation between different levels of the x-axis variable is higher on an average across all levels of the facet variables.  -->
+
+
+
+<!-- To elaborate further, look at the examples in Figure \ref{}, where Figure \ref{}a represents the panel design with distribution of each x categories drawn from N(5, 10) distribution. It could be observed that the graph is not particularly interesting, as there is no significant change in distribution between x-axis levels or facets. Figure \ref{}b represents the same panel design with no difference in distribution of x-axis categories within a facet, but different distribution of x-axis categories for different facets. For example, if there are 4 facet levels and 2 x-axis levels, data is generated in the way as described in Table \ref{}. Figure \ref{}b exhibits an exact opposite situation where the x-axis within facets are different but not across facets. -->
+<!-- Figure \ref{}d takes it further by varying the distribution across both facet and x-axis categories. -->
+
+
+
+```{r null4by2,fig.cap = "An example illustrating the principle of the proposed distance measure, displaying the distribution of a normally distributed variable in four panels each with $2$ x-axis categories and $3$ facet levels, but with different designs. Display (a) is not interesting as the distribution of the variable does not depend on x or facet categories. Display (b) and (c) are more interesting than (a) since there is a change in distribution either across facets (b) or x-axis (c). Display (d) is most interesting in terms of capturing structure in the variable as the distribution of the variable changes across both facet and x-axis variable. The value of our proposed distance measure is presented for each panel, the relative differences between which will be explained later in Section 3.2."}
+```
+
+
+
+<!-- A "significant" cyclic granularity have at least two categories which are significantly different from each other. It does not tell you which categories are statistically significantly different from each other -->
+
+<!-- in the same group would be important to bring out different patterns of the data. -->
+
+### Notations
+
+\noindent Let the number of cyclic granularities considered in the display be $m$. The notations and methodology are described in detail for $m=2$. But it can be easily extended to $m>2$. Consider two cyclic granularities $A$ and $B$, such that $A = \{ a_j: j = 1, 2, \dots, J\}$ and $B = \{ b_k: k = 1, 2, \dots, K\}$ with $A$ placed across x-axis and $B$ across facets. Let $v = \{v_t: t = 0, 1, 2, \dots, T-1\}$ be a continuous variable observed across $T$ time points. This  data structure with $J$ x-axis levels and $K$ facet levels is referred to as a $(J, K)$ panel. For example, a $(2, 3)$ panel will have cyclic granularities with 2 x-axis levels and 3 facet levels. Let the four elementary designs as described in Figure \ref{fig:null4by2} be $D_{null}$ (referred to as "null distribution") where there is no difference in distribution of $v$ for $A$ or $B$, $D_{var_f}$ denotes the set of designs where there is difference in distribution of $v$ for $B$ and not for $A$. Similarly, $D_{var_x}$ denotes the set of designs where difference is observed only across A. Finally, $D_{var_{all}}$ denotes those designs for which difference is observed across both $A$ and $B$. $m = 1$ is a special case of $m = 2$ with $J = 1$.
+
+
+```{r notations}
+
+```
+
+
+
+  <!-- Thus, by CLT, ${\chi^2}_{m} \tilde{} N(m, 2m)$, which would depend on the number of discretization used to approximate the continuous distribution.  -->
+  <!-- Then $b_n = 1-1/n$ quantile of the normal distribution and $a_n = 1/[n*\phi(b_n)]$ where $\phi$ is the normal density function. $n$ is the number of pairwise comparisons being made. -->
+
+<!-- The Jensen-Shanon distance between two probability distribution $p_1$ and $p_2$ is given by $$d = [D(p_1, r) + D(p_2, r)]/2 \quad where \quad r = (p_1 + p_2)/2$$ where, -->
+<!-- $$D(p_1,p_2) = \int^{\infty}_{-\infty}p_1(x)log\frac{p_1(x)}{p_2(x)}\,dx$$ is the Kullback-Leibler divergence between $p_1$ and $p_2$.   -->
+
+<!-- We call this measure of variation as  Median Maximum Pairwise Distances (MMPD). -->
+
+
+
+<!-- #### Distribution of Jensen-Shannon distances -->
+
+<!-- Jensen-Shannon distances (JSD) are distributed as chi-squared with $m$ df where we discretize the continuous distribution with $m$ discrete values. Taking sample percentiles to approximate the integral would mean taking $m = 99$. -->
+<!-- With large $m$, chi-squared is asymptotically normal by the CLT. Thus, by CLT, ${\chi^2}_{m} \tilde{} N(m, 2m)$, which would depend on the number of discretization used to approximate the continuous distribution. Then $b_n = 1-1/n$ quantile of the normal distribution and $a_n = 1/[n*\phi(b_n)]$ where $\phi$ is the normal density function. $n$ is the number of pairwise comparisons being made. -->
+
+
+### Computation
+
+The computation of the distance measure $wpd$ for a panel involves characterizing distributions, computing distances between distributions, choosing a tuning parameter to specify the weightage for different group of distances and summarizing those weighted distances appropriately to estimate maximum variation. Furthermore, the data needs to be appropriately transformed to ensure that the value of $wpd$ emphasizes detection of distributional differences across categories and not across different data generating processes.
+
+<!-- but not when underlying distributions are different -->
+
+<!-- irrespective of the distribution from which the data is generated. -->
+
+
+<!-- is aimed to capture structure and patterns by estimating the maximum variation of the measured variable within a panel.  $wpd$ -->
+
+<!-- the distributional differences need to be measured for both within-group and between-group categories. Moreover, a tuning parameter specifying the weightage given to within-facet or between-facet categories can help to choose between designs like \ref{fig:null4by2}b and c. The maximum of all these weighted differences serves as an estimate of the maximum variation in the panel and is taken as the value of $wpd$.  -->
+
+#### Data transformation
+
+The intended aim of $wpd$ is to capture differences in categories irrespective of the distribution from which the data is generated. Hence, as a pre-processing step, the raw data is normal-quantile transformed (NQT) (@Krzysztofowicz1997-bv), so that the quantiles of the transformed data follows a standard normal distribution. This sort of transformation is common in the fields of geo-statistics to make most asymmetrical distributed real world measured variables more treatable and normal-like (@Bogner2012-az).The empirical NQT involves the following steps:  
+ 1. The sample of measured variable $v$ is sorted from the smallest to the largest observation $v_{(1)},\dots, v_{(i)}, .., v_{(n)}$.  
+ 2. The cumulative probabilities $p_{(1)},\dots, p_{(i)}, .., p_{(n)}$ are estimated using a plotting position like $i/(n + 1)$ such that $p_{(i)} = P(v \leq v_{(i)})$.  
+ 3. Each observation $v_{(i)}$ of $v$ is transformed into observation $v^*(i) = Q^{-1}(p(i))$ of the standard normal variate $v^*$, with $Q$ denoting the standard normal distribution and $Q^{-1}$ its inverse.  
+
+
+
+#### Characterising distributions
+
+Multiple observations of $v$ correspond to the subset  $v_{jk} = \{s: A(s) = j, B(s) = k\}$. The number of observations might vary widely across subsets due to the structure of the calendar, missing observations or uneven locations of events in the time domain. in this paper, quantiles of $v_{jk}$'s are chosen as a way to characterize distributions for the category $(a_j, b_k)$, $\forall j\in \{1, 2, \dots, J\}, k\in \{1, 2, \dots, K\}\}$. The quantile of a distribution with probability $p$ is defined as $Q(p)=F^{-1}(p) = inf\{x: F(x) >p\}$, $0<p< 1$ where $F(x)$ is the distribution function. There are two broad approaches to quantile estimation, viz, parametric and non-parametric. Sample quantiles (@Hyndman1996-ty) are used for estimating population quantiles in a non-parametric setup, which is desirable because of less rigid assumptions made about the nature of the underlying distribution of the data. The default quantile chosen in this paper is percentiles computed for $p = {0.01, 0.02, \dots, 0.99}$, where for example, the $99^{th}$ percentile would be the value corresponding to $p=0.99$ and hence 99% of the observations would lie below that.
+
+<!-- The benefit of using a non-parametric estimator is that there are less rigid assumptions made about the nature of the underlying distribution of the data. Sample quantiles could be used for estimating population quantiles in a non-parametric setup. describes the many ways of defining sample quantiles and recommends the use of median-unbiased estimator because of _desirable properties of a quantile estimator and can be defined independently of the underlying distribution._.  -->
+
+
+<!-- in this paper. -->
+
+<!-- Each $v_{jk}$'s $\forall j\in \{1, 2, \dots, J\}, k\in \{1, 2, \dots, K\}\}$ are assumed to be drawn from a continuous probability distribution and have certain characteristics. Shape, central tendency, and variability are the common characteristics used to describe a distribution. -->
+
+<!-- Mean, median or mode are generally used to describe the center of the distribution, while range, standard deviation, quantiles, standard errors and confidence intervals are used to describe variability. -->
+
+<!-- The quantile of a distribution with probability $p$ is defined as $Q(p)=F^{-1}(p) = inf\{x: F(x) >p\}$, $0<p< 1$ where $F(x)$ is the distribution function. There are two broad approaches to quantile estimation, viz, parametric and non-parametric. The benefit of using a non-parametric estimator is that there are less rigid assumptions made about the nature of the underlying distribution of the data. Sample quantiles could be used for estimating population quantiles in a non-parametric setup. @Hyndman1996-ty describes the many ways of defining sample quantiles and recommends the use of median-unbiased estimator because of _desirable properties of a quantile estimator and can be defined independently of the underlying distribution._. The `stats::quantile()` function in @R-language could be used for practical implementation where type = 8 refers to the algorithm corresponding to the median-unbiased estimator. The default quantile chosen in this paper is percentiles computed for $p = {0.01, 0.02, \dots, 0.99}$, where for example, the $99^{th}$ percentile would be the value corresponding to $p=0.99$ and hence 99% of the observations would lie below that. -->
+
+
+#### Distance between distributions
+
+<!-- One of the most important class of divergence is the f-divergence and includes measures like Kullback-Leibler divergence, Hellinger distance etc. The continuous version of f -divergence is given by -->
+<!-- $$D_f(P||Q) := \int q(x)f(\frac{p(x)}{q(x)})$$, where -->
+<!-- $f : [0,\infty) \rightarrow R \cup \{\infty\}$ is a continuous convex function, and $f(1) = 0$.  -->
+  
+One of the most common ways to measure divergence between distributions is the Kullback-Leibler (KL) divergence [@Kullback1951-jy]. The KL divergence denoted by $D(q_1||q_2)$ is a non-symmetric measure of the difference between two probability distributions $q_1$ and $q_2$ and is interpreted as the amount of information lost when $q_2$ is used to approximate $q_1$. The KL divergence, however, is not symmetric and hence can not be considered as a "distance" measure. The Jensen-Shannon divergence [@Menendez1997-in] based on the Kullback-Leibler divergence is symmetric and has a finite value. Hence, in this paper, the pairwise distances between the distributions of the measured variable are obtained through the square root of the Jensen-Shannon divergence, called Jensen-Shannon distance (JSD) and is defined by,
+
+$$JSD(q_1||q_2) = \frac{1}{2}D(q_1||M) + \frac{1}{2}D(q_2||M)$$
+where $M = \frac{q_1+q_2}{2}$ and 
+$D(q_1||q_2) := \int^\infty_{-\infty} q_1(x)f(\frac{q_1(x)}{q_2(x)})$ is the KL divergence between distributions $q_1$ and $q_2$. Other common measures of distance between distributions are Hellinger distance, total variation distance and Fisher information metric.
+
+<!-- Furthermore, these distances are distributed as chi-squared with $m$ degrees of freedom (@Menendez1997-in), if the continuous distribution is being discretized with $m$ discrete values. Taking sample percentiles to approximate the integral would mean taking $m = 99$. As the degrees of freedom $m$ get larger, the chi-square distribution approaches the normal distribution. -->
+
+
+#### Within-facet and between-facet distances
+
+\noindent Pairwise distances could be within-facets or between-facets for $m \geq 2$. Figure \ref{fig:distance-explain} illustrates how they are defined. Pairwise distances are within-facets when $b_{k} = b_{k'}$, that is, between pairs of the form $(a_{j}b_{k}, a_{j'}b_{k})$ as shown in panel (3) of Figure \ref{fig:distance-explain}. If categories are ordered (like all temporal cyclic granularities), then only distances between pairs where $a_{j'} = (a_{j+1})$ are considered (panel (4)). Pairwise distances are between-facets when they are considered between pairs of the form $(a_{j}b_{k}, a_{j}b_{k'})$. Number of between-facet distances would be $^{K}C_2*J$ and number of within-facet distances are $K*(J-1)$ (ordered) and $^{J}C_2*K$ (un-ordered). 
+
+#### Tuning parameter
+
+A tuning parameter specifying the weightage given to the within-facet or between-facet categories can help to balance weightage between designs like \ref{fig:null4by2}(b) and (c). The tuning parameters should be chosen such that $\sum_{i=1}^m \lambda_i = 1$. When $m=2$, following the principle of Gestalt theory, $\lambda = \frac{2}{3} = 0.67$ is chosen to put a relative weightage of $2:1$ for within-facet and between-facet distances. No human experiment is conducted to justify this ratio, however, typically a tuning parameter $\lambda>0.5$ would tend to upweigh the within-facet distances and that with $<0.5$ would upweigh the between-facet distances (refer to the Supplementary paper for more details). For $m = 1$, there are no conditioning variables or groups, and hence $\lambda = 1$.
+
+#### Raw distance measure
+
+The raw distance measure, denoted by $wpd_{raw}$, is computed after combining all the weighted distance measures appropriately. First, NQT is performed on the measured variable $v_t$ to obtain $v^*_t$ (_data transformation_). Then, for a fixed harmony pair $(A, B)$, percentiles of $v^*_{jk}$ are computed and stored in $q_{jk}$ (_distribution characterization_). This is repeated for all pairs of categories of the form $(a_{j} b_{k}, a_{j'}b_{k'}): \{a_j: j = 1, 2, \dots, J\}, B = \{ b_k: k = 1, 2, \dots, K\}$. The pairwise distances between pairs $(a_{j} b_{k}, a_{j'}b_{k'})$  denoted by $d_{(jk, j'k')} = JSD(q_{jk}, q_{j'k'})$ is computed (_distance between distributions_). The pairwise distances (_Within-facet and between-facet_) are transformed using a suitable _tuning parameter_ ($0<\lambda<1$) depending on if they are within-facet($d_w$) or between-facets($d_b$) as follows:
+\begin{equation}\label{def:raw-wpd}
+d*_{(j,k), (j'k')} =
+\begin{cases}
+\lambda d_{(jk), (j'k')},& \text{if } d = d_w\\
+(1-\lambda)  d_{(jk), (j'k')},              & \text{if } d = d_b\\
+\end{cases}
+\end{equation}
+
+\noindent The $wpd_{raw}$ is then computed as $$wpd = max_{j, j', k, k'}(d*_{(jk), (j'k')}) \forall j, j' \in \{1, 2, \dots, J\}, k, k' \in \{1, 2, \dots, K\}$$
+
+\noindent The statistic "maximum" is chosen to combine the weighted pairwise distances since the distance measure is aimed at capturing the maximum variation of the measured variable within a panel. The statistic "maximum" is, however, affected by the number of comparisons (resulting pairwise distances). For example, for a $(2, 3)$ panel, there are $6$ possible subsets of obervations corresponding to the combinations $(a_1, b_1), (a_1, b_2), (a_1, b_3), (a_2 ,b_1), (a_2 ,b_2), (a_2, b_3)$, whereas for a $(2, 2)$ panel, there are only $4$ possible subsets $(a_1, b_1), (a_1, b_2), (a_2 ,b_1), (a_2 ,b_2)$. Consequently, the measure would have higher values for the panel $(2, 3)$ as compared to $(2, 2)$, since maximum is taken over higher number of pairwise distances.   
+
+#### Adjusting for the number of comparisons {#sec:norm-wpd}
+
+Ideally, it is desired that the proposed distance measure takes a higher value only if there is a significant difference between distributions across categories, and not because the number of categories $J$ or $K$ is high. That is, under designs like $D_{null}$, their distribution should not differ for a different number of categories. Only then the distance measure could be compared across panels with different levels. This calls for an adjusted measure, which normalizes for the different number of comparisons. We denote it by $wpd$. Two approaches for adjusting the number of comparisons are discussed, both of which are substantiated using simulations. The first one defines an adjusted measure $wpd_{perm}$ based on the permutation method to remove the effect of different comparisons. The second approach fits a model to represent the relationship between $wpd_{raw}$ and the number of comparisons and defines the adjusted measure ($wpd_{glm}$) as the residual from the model.
+
+_Permutation approach_    
+
+This method is somewhat similar in spirit to bootstrap or permutation tests, where the goal is to test the hypothesis that the groups under study have identical distributions. This method accomplishes a different goal of finding the null distribution for different groups (panels in our case) and standardizing the raw values using that distribution. The values of $wpd_{raw}$ is computed on many ($nperm$) permuted data sets and stored in $wpd_{perm-data}$. Then $wpd_{perm}$ is computed as follows:
+
+\begin{align*}
+wpd_{perm} = \frac{(wpd_{raw} - \bar{wpd_{perm-data}})}{sd(wpd_{perm-data})}
+\end{align*}
+
+\noindent where $\bar{wpd_{perm-data}}$ and $sd(wpd_{perm-data})$ are the mean and standard deviation of $wpd_{perm-data}$ respectively. Standardizing  $wpd$ in the permutation approach ensures that the distribution of $wpd_{perm}$ under $D_{null}$ has the same $mean = 0$ and $\sigma^2_{perm} = 1$ across all comparisons. While this works successfully to make the location and scale similar across different $nx$ and $nfacet$, it is computationally heavy and time consuming, and hence less user friendly when being actually used in practice. Hence, another approach to adjustment, with potentially less computational time, is proposed.
+
+<!-- for the $l^{th}$ panel and -->
+
+_Modeling approach_    
+
+In this approach, a Gamma generalized linear model (GLM) for $wpd_{raw}$ is fitted with number of comparisons as the explanatory variable. Since, $wpd_{raw}$ is a Jensen-Shannon distance, it follows a Chi-square distribution (@Menendez1997-in), which is a special case of Gamma distribution. Furthermore, the mean response is bounded, since any JSD is bounded by $1$ given that base $2$ logarithm is used (@Lin1991-pt). Hence, by @Faraway2016-uk, an inverse link is used for the model, which is of the  form $y = a+b*log(z) + e$, where $y = wpd_{raw}$, $z = (nx*nfacet)$ is the number of groups and $e$ are idiosyncratic errors. Let $E(y) = \mu$ and $a + b*log(z) = g(\mu)$ where $g$ is the link function. Then $g(\mu)=  1/\mu$ and $\hat \mu  = 1/(\hat a + \hat b log(z))$. The residuals from this model $(y-\hat y) = (y-1/(\hat a + \hat b log(z)))$ would be expected to have no dependency on $z$. Thus, $wpd_{glm}$ is chosen as the residuals from this model and is defined as:
+$$wpd_{glm} = wpd_{raw} - 1/(\hat a + \hat b*log(nx*nfacet))$$
+The distribution of $wpd_{glm}$ under $D_{null}$ will have $mean = 0$, since it is the residuals from the model, and a constant variance $\sigma^2_{glm}$, which might not equal 1.
+
+_Combination approach_     
+
+The simulation results (in Section \ref{sec:simulations}) show that the distribution of $wpd_{glm}$ under null is similar for high $nx$ and $nfacet$ (levels higher than $5$) and not so much for lower $nx$ and $nfacet$. Hence, a combination approach is proposed which chooses permutation approach for categories with smaller levels and modeling approach for categories with higher levels. This ensures that the computational load of the permutation approach is alleviated while maintaining similar null distribution across different categories. This approach, however, requires that the adjusted variables from the two approaches are brought to the same scale. We define $wpd_{glm-scaled} = wpd_{glm}*\sigma^2_{perm}/\sigma^2_{glm}$ as the transformed $wpd_{glm}$ with a similar scale as $wpd_{perm}$. The adjusted measure from the combination approach, denoted by $wpd$ is then defined as follows:
+
+\begin{equation}
+wpd =
+\begin{cases}
+wpd_{perm},& \text{if } J, K <=5\\
+wpd_{glm-scaled}             & \text{otherwise}\\
+\end{cases}
+\end{equation}
+
+<!-- ### Algorithm -->
+
+<!-- The distance measure $wpd$ between two cyclic granularities $A$ and $B$ is aimed to capture the strength of the structure by estimating the maximum within-group and between-group variations. Furthermore,  -->
+
+
+<!-- The steps employed for computing $wpd$ is summarized as follows: -->
+
+<!-- The values of $wpd$ indeed depend upon the underlying distribution. This is also not desirable as the intended aim of $wpd$ is to capture differences in categories irrespective of the distribution from which the data is generated. The steps employed for computing the distance measure is summarized as follows: -->
+
+
+<!-- Hence, differences in distributions of the measured variable are computed between all pairs of categories $(a_{j} b_{k}, a_{j'}b_{k'}): j = 1, 2, \dots, J\}, B = \{ b_k: k = 1, 2, \dots, K\}$. Percentiles of $v_{jk}$ and $v_{j'k'}$ are computed and stored in $q_{jk}$ and $q_{j'k'}$ respectively. Then the pairwise distances between pairs $(a_{j} b_{k}, a_{j'}b_{k'})$ be denoted as $d_{(jk, j'k')} = JSD(q_{jk}, q_{j'k'})$ is computed. Pairwise distances could be within-facets or between-facets. Figure \ref{fig:distance-explain} illustrates how the within-facet or between-facet distances are defined. Pairwise distances are within-facets ($d_{w}$) when $b_{k} = b_{k'}$, that is, between pairs of the form $(a_{j}b_{k}, a_{j'}b_{k})$ as shown in panel (3) of Figure \ref{fig:distance-explain}. If categories are ordered (like all temporal cyclic granularities), then only distances between pairs where $a_{j'} = (a_{j+1})$ are considered (panel (4)). Pairwise distances are between-facets ($d_{b}$) when they are considered between pairs of the form $(a_{j}b_{k}, a_{j}b_{k'})$. Number of between-facet distances would be $^{K}C_2*J$ and number of within-facet distances are $K*(J-1)$ (ordered) and $^{J}C_2*K$ (un-ordered). The pairwise distances $d_{(jk, j'k')}$ are transformed using a suitable tuning parameter ($0<\lambda<1$) depending on if they are $d_{b}$ or $d_{w}$ as follows: -->
+
+```{r distance-explain, fig.cap = "Within and between-facet distances shown for two cyclic granularities A and B, where A is mapped to x-axis and B is mapped to facets. The dotted lines represent the distances between different categories. Panel 1) and 2) show the between-facet distances. Panel 3) and 4) are used to illustrate within-facet distances when categories are un-ordered or ordered respectively. When categories are ordered, distances should only be considered for consecutive x-axis categories. Between-facet distances are distances between different facet levels for the same x-axis category, for example, distances between {($a_1$,$b_1$) and ($a_1$, $b_2$)} or {($a_1$,$b_1$) and ($a_1$, $b_3$)}."}
+
+```
+
+
+<!-- 5. Compute distribution of maximum distance ($M$) by shuffling the data $200$ times and finishing Steps1-4 in each case. Scale $M$ using the mean and sd of the distribution.
+
+5. Use Steps 1-4 to compute maximum distance for $\forall k \in  \{1, 2, \ldots, K\}$.
+
+6. Compute the distance measure MMPD_raw = median $(M_1, M_2, \dots, M_K)$.
+
+<!-- All of these distances are then aggregated by taking the maximum from these distances to obtain $wpd$. -->
+
+
+<!-- _j$ maps index set to a set $\{B_\ell \mid \ell =1,\dots,L\}$. Here, $A_k$ and $B_\ell$ are the levels/categories corresponding to $C_i$ and $C_j$ respectively. Let $S_{k\ell}$ be a subset of the index set such that for all $s \in S_{k\ell}$, $C_i(s) = A_k$ and $C_j(s) = B_\ell$. There are $KL$ such data subsets, one for each combination of levels ($A_k$, $B_\ell$). Moreover, consider that in the graphical space, $C_i$ is mapped to facets and $C_j$ is mapped to x-axis. -->
+
+
+ <!-- old -->
+<!-- Consider two cyclic granularities $C_i$ and $C_j$, such that $C_i$ maps index set to a set $\{A_k \mid k=1,\dots,K\}$ and $C_j$ maps index set to a set $\{B_\ell \mid \ell =1,\dots,L\}$. Here, $A_k$ and $B_\ell$ are the levels/categories corresponding to $C_i$ and $C_j$ respectively. Let $S_{k\ell}$ be a subset of the index set such that for all $s \in S_{k\ell}$, $C_i(s) = A_k$ and $C_j(s) = B_\ell$. There are $KL$ such data subsets, one for each combination of levels ($A_k$, $B_\ell$). Moreover, consider that in the graphical space, $C_i$ is mapped to facets and $C_j$ is mapped to x-axis.  -->
+
+
+<!-- The algorithm employed for computing the distance measure is summarized as follows: -->
+
+<!-- 1. Fix harmony pair $(C_i, C_j)$. -->
+
+<!-- 2. Fix $k$. Then there are $L$ groups corresponding to level $A_k$ of $C_i$. -->
+
+<!-- 3. Compute  $m = \binom{L}{2}$ pairwise distances between distributions of $L$ unordered levels and $m = L-1$ pairwise distances for $L$ ordered categories. -->
+
+<!-- 4. Identify maximum within the $m$ computed distances. -->
+
+<!-- <!-- 5. Compute distribution of maximum distance ($M$) by shuffling the data $200$ times and finishing Steps1-4 in each case. Scale $M$ using the mean and sd of the distribution.  --> 
+
+<!-- 5. Use Steps 1-4 to compute maximum distance for $\forall k \in  \{1, 2, \ldots, K\}$. -->
+
+<!-- 6. Compute the distance measure MMPD_raw = median $(M_1, M_2, \dots, M_K)$. -->
+
+
+<!-- \begin{algorithm}[!thb] -->
+<!-- 	\caption{Calculation for a raw distance measure between two cyclic granularities $A = \{ a_j: j = 1, 2, \dots, J\}$, $B = \{ b_k: k = 1, 2, \dots, K\}$ with $A$ placed across x-axis and $B$ across facets.}\label{alg:scoreopt}. -->
+<!-- 	\begin{algorithmic}[1] -->
+<!-- 		\Procedure{RawMMPD}{$A = \{ a_j: j = 1, 2, \dots, J\}$, $B = \{ b_k: k = 1, 2, \dots, K\}$, $v = \{ v_t: t = 1, 2, \dots, T\}$}. -->
+<!-- 		\For{$k=1:K$, $j=1:J$} -->
+<!-- 		\State Find distances between pairs of all possible combinations of categories $(a_jb_k,a_j'b_k')$ by computing JSD between quantiles of the measured variable $q(v)$ across these combinations. -->
+<!-- 		\State $d \gets JSD(\tilde{q(v)_{a_{j}b_{k}}},\tilde{q(v)_{a_{j}'b_{k}'}})$ -->
+<!-- 		\If {$b_k = b_k'$} -->
+<!-- 		\State $d* \gets \lambda d$  \Comment{upweight within-facet distances} -->
+<!-- 		\Else -->
+<!-- 		\State $d* \gets 1/\lambda d $ \Comment{downweight across-facet distances} -->
+<!-- 		\EndFor -->
+<!-- 		\State Set the raw distance measure as $max(d*)$ where max is taken over all $j, j', k, k'$. -->
+
+<!-- 		\EndProcedure -->
+<!-- 	\end{algorithmic} -->
+<!-- \end{algorithm} -->
+
+<!-- A stronger measure "max" is chosen for aggregating x-axis categories compared to "median" for aggregating facet categories as the measure is intended to put more importance in pointing towards distributional differences between x-axis categories than for facet categories. -->
+
+<!-- ## Properties of $wpd$ -->
+
+<!-- Simulations were carried out to explore the behavior of $wpd$ under the following factors that could potentially impact the values of $wpd$: $nx$, $nfacet$, $\lambda$, $\omega$, $dist$ (normal/non-normal distributions with different location and scale), $ntimes$, and $designs$ and results are presented in two parts. The dependence of $wpd$ on $nx$ and $nfacet$ under $D_{null}$ is presented here, which lays the foundation for the next section. The rest of the results that discuss the relationship of the $wpd$ with other factors is presented in details in the Supplementary section of the paper. They show that the designs $D_{var_f}$ and $D_{var_x}$ intersect at $\lambda = 0.5$ and hence for up-weighing designs of the form $D_{var_x}$, $\lambda = 0.67$ has been considered for computation of $wpd$ in the rest of the paper.  -->
+
+<!-- - $nx$ (number of levels of x-axis) -->
+<!-- - $nfacet$ (number of levels of facets) -->
+<!-- - $\lambda$ (tuning parameter) -->
+<!-- - $\omega$ (increment in each panel design) -->
+<!-- - $dist$ (normal/non-normal distributions with different location and scale) -->
+<!-- - $n$ (sample size for each combination of categories) -->
+<!-- - $designs$ ($D_{null}$, $D_{var_f}$, $D_{var_x}$ and $D_{var_{all}}$) -->
+
+<!-- - $nsim$ (number of simulations) -->
+<!-- - $nperm$ (number of permutations of data)   -->
+
+<!-- ### Simulation design{#sec:sim-study} -->
+
+<!-- Observations are generated from a Gamma(2,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet = \{2, 3, 5, 7, 14, 20, 31, 50\}$ to cover a wide range of levels from very low to moderately high. Each combination is being referred to as a _panel_. That is, data is being generated for each of the panels $\{nx = 2, nfacet = 2\}, \{nx = 2, nfacet = 3\}, \{nx = 2, nfacet = 5\},  \dots, \{nx = 50, nfacet = 31\}, \{nx = 50, nfacet = 50\}$. For each of the $64$ panels, $ntimes = 500$ observations are drawn for each combination of the categories. That is, if we consider the panel $\{nx = 2, nfacet = 2\}$, $500$ observations are generated for each of the combination of categories from the panel, namely, $\{(1, 1), (1, 2), (2, 1), (2, 2)\}$. The values -->
+<!-- of $wpd$ is obtained for each of the panels. This design corresponds to $D_{null}$ as each combination of categories in a panel are drawn from the same distribution. Furthermore, the data is simulated for each of the panels $nsim=200$ times, so that the distribution oaf $wpd$ under $D_{null}$ could be observed. $wpd_{l, s}$ denotes the value of $wpd$ obtained for the $l^{th}$ panel and $s^{th}$ simulation. -->
+
+
+<!-- ### Results -->
+
+<!-- Figure \ref{fig:raw} shows the distribution of $wpd$ plotted across different $nx$ and $nfacet$ categories. Since under $D_{null}$, there is no difference in distributions across different categories, we expect the distance measure $wpd$ to reflect that as well and have the same distribution across categories. But Figure \ref{fig:raw} shows that both the location and scale of the distributions change across panels. This is not desirable under $D_{null}$ as it would mean comparisons of $wpd$ values is not appropriate across different $nx$ and $nfacet$. Figure \ref{fig:quadratic} shows how the median of $wpd$ varies with the total number of distances $nx*nfacet$ for each panel. The median increases abruptly for lower values of $nx*nfacet$ and slowly for higher $nx*nfacet$.  -->
+
+<!-- Furthermore, simulation results also show that the values of $wpd$ indeed depend upon the underlying distribution. This is also not desirable as the intended aim of $wpd$ is to capture differences in categories irrespective of the distribution from which the data is generated. -->
+
+
+
+<!-- last writeup -->
+<!-- In the linear model approach, $wpd\in R$ was assumed, whereas, $wpd$ is a Jensen-Shannon Distance (JSD) and lies between 0 and 1 (@JSD). Furthermore, JSD follows a Chi-square distribution, which is a special case of Gamma distribution. Therefore, a generalized linear model could be fitted instead of a linear model to allow for the response variable to follow a Gamma distribution. The inverse link is used when we know that the mean response is bounded, which is applicable in our case since $0 \leq wpd\leq 1$. -->
+
+<!-- We fit a Gamma generalized linear model with the inverse link which is of the form:   -->
+<!-- $$y_l = a+b*log(z_l) + e_l$$, where $y_l = median_m(wpd_{l, m})$, $z_l$ is the $l^{th}$ panel and $e_l$ are idiosyncratic errors. Let $E(y) = \mu$ and $a + b*log(z) = g(\mu)$ where $g$ is the link function. Then $g(\mu)=  1/\mu$ and $\hat \mu  = 1/(\hat a + \hat b log(z))$. The residuals from this model $(y-\hat y) = (y-1/(\hat a + \hat b log(z)))$ would be expected to have no dependency on $z$. Thus, $wpd_{glm}$ is chosen as the residuals from this model and is defined as: -->
+<!-- $wpd_{glm} = wpd - 1/(\hat a + \hat b*log(nx*nfacet))$. -->
+
+
+
+
+
+
+<!-- which is more approximate than exact but still has the similar accuracy when compared to the permutation approach. -->
+
+
+
+
+
+
+
+
+<!-- use later -->
+<!-- The measure $wpd$ could potentially lead to comparison of the measure across different panels and also help distinguishing the interesting panels from a data set. We discuss two approaches for normalization, both of which are substantiated using simulations. -->
+
+<!-- ## Methodology -->
+
+<!-- The transformed ${wpd}$ which is normalized for the values of $nx$ and $nfacet$ is denoted by $wpd$. Two approaches have been employed - the first one involves a permutation method to make the distribution of the transformed $wpd$ similar for different comparisons and the second one fits a model to represent the relationship between the two variables and defines $wpd$ as the residual of the model. -->
+
+<!-- ### Notations -->
+
+<!-- Let $\{nx_{i}, i = 1, 2, \dots, nx\}$, $\{nfacet_{j}, j = 1, 2, \dots, nfacet\}$ be the set of x-axis and facet categories respectively. Each combination of $nx_{i}$ and $nfacet_{j}$is being referred to as a _panel_. Then the total number of panel is $nx*nfacet$. Let the total number of pairwise distances that could result in each panel be $\{z_k, k = 1, 2 , \dots, nx*nfacet\}$. Here, $\{z_1 = nx_1*nfacet_1\}$, $\{z_2 = nx_2*nfacet_2\}$ and $\{z_k = nx*nfacet\}$. Now, let $\{x_{k,l}, k = 1, 2, \dots, nx*nfacet, l = 1, 2, \dots, nsim\}$ denote the values of $wpd_{raw}$ obtained from the simulation study for $k^{th}$ panel in the $i^{th}$ simulation. Hence, for each of those $k$ panel, we have $nsim$ values of $wpd_{raw}$. -->
+
+
+<!-- use soon -->
+<!-- ## Properties -->
+
+<!-- This section reports the results of a simulation study that was carried out to evaluate the behavior of $wpd$ under different designs and other potential factors. The behavior of $wpd$ is explored in designs where there is in fact difference in distribution between facet categories ($D_{var_f}$) or across x-categories ($D_{var_x}$) or both ($D_{var_{all}}$). Using $\omega =  \{1, 2, \dots, 10\}$ and $\lambda = seq(from  = 0.1, to = 0.9, by = 0.05)$, observations are drawn from a N(0,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet =  \{2, 3, 5, 7, 14, 20, 31, 50\}$. $ntimes = 500$ is assumed for this setup as well. Furthermore, to generate different distributions across different combination of facet and x levels, the following method is deployed - suppose the distribution of the combination of first levels of $x$ and $facet$ category is $N(\mu,\sigma)$ and $\mu_{jk}$ denotes the mean of the combination $(a_jb_k)$, then $\mu_{j.} = \mu + j\omega$ (for design $D_{var_x}$) and $\mu_{.k} = \mu + k\omega$ (for design $D_{var_f}$).  -->
+
+<!-- The tabulated values and graphical representations of the simulation results are provided in the Supplementary paper. The learning from the simulations are as follows: The values of $wpd$ is least for $D_{null}$, followed by -->
+<!-- $D_{var_f}$, $D_{var_x}$ and $D_{var_{all}}$. This is a desirable result since the measure $wpd$ was designed such that this relationship holds. Furthermore, the distribution of the measure $wpd$ does not change for different facet and x categories. The distribution of $wpd$ looks similar with at least the mean and standard of the distributions being uniform across panels. This means $wpd$ could be used to measure differences in distribution across panels. Also, note that since the data is processed using normal-quantile-transform, this measure is independent of the initial distribution of the underlying data and hence is also comparable across different data sets. This is valid for the case when sample size $ntimes$ for each combination of categories is at least 30 and  $nperm$ used for computing $wpd$ is at least 100. More detailed results about the properties of $wpd$ could be found in the Supplementary paper. -->
+
+## Ranking and selection of cyclic granularities {#sec:rank-wpd}
+
+A cyclic granularity is referred to as "significant" if there is a significant distributional difference of the measured variable between different categories of the harmony. In this section, a selection criterion to choose significant harmonies is provided, thereby eliminating all harmonies that exhibit complete randomness in the measured variable. The distance measure $wpd$ is used as a test statistic to test the null hypothesis that no harmony/cyclic granularity is significant. We select only those harmonies/cyclic granularities for which the test fails. They are then ranked basis how well they capture variation in the measured variable. 
+
+<!-- . Randomization tests (permutation tests) generates a random distribution by re-ordering the observed data and allows us to test if the observed data is significantly different from any random distribution.  -->
+<!-- the harmonies are not significant under null hypothesis and then test if our hypotheses are true: -->
+
+<!--   $H_0$: harmonies are not significant -->
+<!--   $H_1$: at least one harmony is significant -->
+
+<!-- we provide a method to select important harmonies by eliminating all harmonies for which patterns are not significant by employing randomization test. Randomization tests (permutation tests) generates a random distribution by re-ordering our observed data and allow to test if the observed data is significantly different from any random distribution. Complete randomness in the measured variable indicates that the process follows a homogeneous underlying distribution over the whole time series, which essentially implies there is no interesting distinction across any different categories of the cyclic granularities.  -->
+
+### Selection
+
+<!-- Under the null hypothesis, the harmonies are not significant. -->
+
+A threshold and consequently a selection criterion is chosen using the notion of Randomization tests (@edgington2007randomization). The data is permuted several times and $wpd$ is computed for each of the permuted data sets to obtain the sampling distribution of $wpd$ under the null hypothesis. If the null hypothesis is true, then $wpd$ obtained from the original data set would be a likely value in the sampling distribution. But in case the null hypothesis is not true, then it is less probable that $wpd$ obtained for the original data will be from the same distribution. This idea is utilized to come up with a threshold for selection, denoted by $wpd_{threshold}$, defined as the $99^{th}$ percentile of the sampling distribution. A harmony is selected if the value of $wpd$ for that harmony is greater than the chosen threshold. The detailed algorithm for choosing a threshold and selection procedure (for two cyclic granularities) is listed as follows:
+
+<!-- The selection criterion is stated as follows: for $(i \in {1, 2, \dots, H_{N_C}})$, select $H_i$ if $wpd_i > wpd_{threshold}$, else reject. -->
+
+- **Input:** All harmonies of the form $\{(A, B), A = \{ a_j: j = 1, 2, \dots, J\}, B = \{ b_k: k = 1, 2, \dots, K\}\}$, $\forall (A, B) \in H_{N_C}$.
+
+- **Output:** Harmony pairs $(A, B)$ for which $wpd$ is significant.
+
+1. Fix harmony pair $(A, B)$.
+
+2. Given the measured variable; $\{v_t: t=0, 1, 2, \dots, T-1\}$, $wpd$ is computed and is represented by $wpd^{A, B}_{obs}$.
+
+3. From the original sequence a random permutation is obtained: $\{v_t^{1}: t=0, 1, 2, \dots, T-1\}$.
+
+4. $wpd$ is computed for the permuted sequence of the data and is represented by $wpd^{A, B}_{1}$.
+
+5.  Steps (3) and (4) are repeated a large number of times $M$ (e.g. $M = 200$).
+
+6. For each permutation, one $wpd^{A, B}_{i}$ is obtained. Define $wpd_{sample} = \{wpd^{A, B}_{1} wpd^{A, B}_{2}, \dots, wpd^{A, B}_{M}\}$.
+
+7. Repeat Steps (1-6) for all harmony pairs $(A, B) \in H_{N_C}$ and stored $wpd^{all}_{sample}$.
+
+8. $99^{th}$ percentiles of $wpd^{all}_{sample}$ is computed and stored in $wpd_{threshold99}$
+
+7. If $wpd^{A, B}_{obs} > wpd_{threshold99}$, harmony pair $(A, B)$ is selected, otherwise rejected.
+
+Similarly, a harmony pair $(A, B)$ could be selected if $wpd^{A, B}_{obs} > wpd_{threshold95}$ and $wpd^{A, B}_{obs} > wpd_{threshold90}$, where  $wpd_{threshold95}$ and $wpd_{threshold90}$ denote the $95^{th}$ and $90^{th}$ percentile of $wpd^{all}_{sample}$ respectively. A harmony selected using $99^{th}$,  $95^{th}$  and  $90^{th}$ threshold are tagged as \*\*\*, \*\*, \* respectively.
+
+### Ranking
+
+The distribution of $wpd$ is expected to be similar for all harmonies under the null hypothesis, since they have been adjusted for different number of categories for the harmonies or underlying distribution of the measured variable. Hence, the values of $wpd$ for different harmonies are comparable and can be used to rank the significant harmonies. A higher value of $wpd$ for a harmony indicates that higher maximum variation in the measured variable is captured through that harmony. Figure \ref{fig:null4by2} presents the results of $wpd$ from the illustrative designs in Section \ref{sec:computation-wpd}. The value of $wpd$ under null design (a) is the least, followed by (b), (c) and (d). This aligns with the principle of $wpd$, which is expected to have lowest value for null designs and highest for designs of the form $D_{var_{all}}$ (d). Moreover, note the relative differences in $wpd$  values between (b) and (c). The value of the tuning parameter $\lambda$ is set to $0.67$, which has resulted in giving more emphasis to differences in x-axis categories. Again consider \ref{fig:onegran-new}(a) and \ref{fig:onegran-new}(b) with a $wpd$ value of 20.5 and 145 respectively. This is because there is more gradual increase across hours of the day than months of the year. If order of the categories is not considered, they result in a $wpd$ value of $97.8$ and $161$ respectively, which follows from the fact that if we consider difference between any hours of the day, the magnitude will be much larger than if we consider difference between consecutive categories. Similarly, \ref{fig:onegran-new}(a) and (b) have $wpd$ values of   $110.79$ and $125.82$ respectively. The ranking implies that the distributional differences are more prominent for the second household, as is also seen from the bigger fluctuations in the $90^{th}$ percentile than the first household.
+ 
+
+<!-- ## Choosing a threshold -->
+
+<!-- A randomization test involves calculating a test statistic, randomly shuffling the data and calculating the test statistic several times to obtain a distribution of the test statistic. But we will use this procedure to obtain a threshold such that harmony pairs with a $wpd$ value higher than this threshold will only be considered significant. The process of choosing a threshold is described as follows: -->
+
+<!-- to test if there is any interesting pattern captured by the harmonies, which essentially implies if $wpd$ is significantly different from zero. The percentages of times the $wpd$ obtained from the permuted data is greater than or equal to the observed $wpd$ is the p-value. The randomization test is described as follows: -->
+
+<!-- <!-- We can remove the harmonies for which no interesting patterns are observed through a randomization permutation method. --> 
+<!-- Essentially, the assumption is that under the null hypothesis, there is no difference in categories between the pair of cyclic granularities in the chosen harmony. This method is based on the generation of randomly chosen reassignments (permutations) of the data across different cyclic granularities and the computation of  -->
+<!-- $wpd$ for each of these reassignments. -->
+
+
+<!-- **Assumption:** random permutation of the data keeping the categories of the cyclic granularities constant. -->
+
+<!-- Complete randomness in the measured variable indicates that the process follows a homogeneous underlying distribution over the whole time series, which essentially implies there is no interesting distinction across any different categories of the cyclic granularities. We can remove the harmonies for which no interesting patterns are observed through a randomization permutation method. Essentially, the assumption is that under the null hypothesis, there is no difference in categories between the pair of cyclic granularities in the chosen harmony. This method is based on the generation of randomly chosen reassignments (permutations) of the data across different cyclic granularities and the computation of  -->
+<!-- $wpd$ for each of these reassignments. The percentages of times the theoretical distribution greater than or equal to the respective observed $wpd$ values are calculated and are used to obtain the P value. The procedure for the permutation test is: -->
+
+<!-- **Assumption:** random permutation of the data keeping the categories of the cyclic granularities constant. -->
+
+
+
+<!-- 14, 20, 31, 50\}$. For each of the $64$ panels, $ntimes = 500$ observations are drawn for each combination of the categories. The values of $wpd$ is obtained for each of the panels for the designs $D_{null}$, $D_{var_x}$, $D_{var_f}$ and $D_{var_{all}}$. $wpd_{threshold}$ is computed from all of these panels together and the number of times a harmony pair $(A, B) \in H_{N_C}$ is selected when in fact it was of the design $D_{null}$ is noted. This entire process is repeated for several null data sets to see the number of times any harmony pair $(A, B) \in H_{N_C}$ is selected under null. -->
+
+
+<!-- ### Results -->
+
+
+
+
+```{r varall-new}
+
+```
+
+
+
+```{r varx-new}
+
+```
+
+
+```{r varf-new}
+```
+
+
+```{r null-new}
+
+```
+
+```{r plot-all-new3, fig.cap = "$wpd$ values for the four illustrative designs are presented here. As expected, the value of $wpd$ under null design is the least (a), followed by (b, c and d). Moreover, the relative difference is interesting as c is closer to d than b, since the differences between x categories are up-weighed by design.", dependson= "null4by2"}
+
+```
+
+
+## Simulations {#sec:simulations}
+
+### Behavior of raw and adjusted distance measures
+
+\noindent _Simulation design_  
+
+$m=1$  
+
+\noindent Observations are generated from a N(0,1) distribution for a wide range of levels from very low to moderately high. $nx = \{2, 3, 5, 7, 9, 14, 17, 20, 24, 31, 42, 50\}$ is considered. $ntimes = 500$ observations are drawn for each combination of the categories, that is, for a panel with $nx=3$, $500$ observations are simulated for each of the categories. This design corresponds to $D_{null}$ as each combination of categories in a panel are drawn from the same distribution. Furthermore, the data is simulated for each of the categories $nsim=200$ times, so that the distribution of $wpd$ under $D_{null}$ could be observed. The values of $wpd$ is obtained for each of the panels. $wpd_{l, s}$ denotes the value of $wpd$ obtained for the $l^{th}$ panel and $s^{th}$ simulation.
+
+$m=2$  
+\noindent Similarly, observations are generated from a N(0,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet = \{2, 3, 5, 7, 14, 20, 31, 50\}$. That is, data is being generated for each of the panels $(2, 2), (2, 3), (2, 5) \dots, (50, 31), (50, 50)$. For each of the $64$ panels, $ntimes = 500$ observations are drawn for each combination of the categories. That is, if we consider a $(2, 2)$ panel, $500$ observations are generated for each of the possible subsets, namely, $\{(1, 1), (1, 2), (2, 1), (2, 2)\}$. 
+
+
+\noindent _Results_ 
+
+Figure \ref{fig:raw} shows that both the location and scale of the distributions change across panels. This is not desirable under $D_{null}$ as it would mean comparisons of $wpd$ values is not appropriate across different $nx$ and $nfacet$. Table \ref{tab:glm-tab} gives the summary of the generalized linear model to capture the relationship between $wpd_{raw}$ and number of comparisons. For example, the model considered for $m = 2$ is $wpd_{l,s} = 23.4 - 0.96*log(nx * nfacet)) + e$. The intercepts and slopes are similar independent of the starting distributions (see supplementary paper for details) and hence the coefficients are shown for the case when observations are drawn from a N(0, 1) distribution. Figure \ref{fig:dist-new-same-scale-link} shows the distribution of $wpd_{perm}$ and $wpd_{glm-scaled}$ in the same scale to show that a combination approach could be used for higher values of levels to alleviate the computational time of permutation approach.
+
+```{r raw, fig.cap = "Distribution of $wpd_{raw}$ is plotted across different $nx$ and $nfacet$ categories under $D_{null}$ through density and rug plots. Both location (blue line) and scale (orange marks) of the distribution shifts for different panels. This is not desirable since under null design, the distribution  is not expected to capture any differences."}
+```
+
+
+```{r glm-tab}
+
+```
+
+
+```{r wpd-glm-dist}
+
+```
+
+
+
+```{r hist-qq-new, eval = FALSE}
+
+```
+
+```{r quadratic, eval=FALSE}
+```
+
+
+```{r norm, eval}
+```
+
+
+```{r dist-new-same-scale-link, fig.cap = "The distribution of $wpd_{perm}$ and $wpd_{glm-scaled}$ are overlaid to compare the location and scale across different $nx$ and $nfacet$. $wpd_{norm}$ takes the value of $wpd_{perm}$ for lower levels, and $wpd_{glm-scaled}$ for higher levels to to alleviate the problem of computational time in permutation approaches. This is possible as the distribution of the adjusted measure looks similar for both appraches for higher levels."}
+```
+
+
+
+### Choosing threshold
+
+\noindent _Simulation design_  
+ 
+Observations are generated from a N(0,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = \{3, 7, 14\}$ and $nfacet = \{2, 9, 10\}$. This would result in 9 panels, viz, $(3, 2), (3, 9), (3, 10), \dots, (14,9), (14, 10)$. Few experiments were conducted. In the first scenario, data for all panels are simulated using the null design  $D_{null}$. In other scenarios, data simulated from the panel $(14, 2)$ and $(3, 10)$ are considered under $D_{vary_{all}}$. Moreover, $\omega = \{0.5, 2, 5\}$ are considered to examine if the proposed test is able to capture subtle differences and non-subtle differences when we shift from the null design. 
+
+<!-- In the last scenario, we consider the panel $(3, 2), (7,9), (14, 10)$ to be under $D_{null}$, the panels $(7, 2), (14, 9)$ to be under $D_{var_f}$. $(14, 2), (3, 10)$ under $D_{var_x}$ and the rest under $D_{var_{null}}$. This is done to check if the consequent ranking procedure leads to designs like $D_{vary_{all}}$ to be chosen first followed by $D_{vary_{all}}$. We generate only one data set each for which these scenarios were simulated and consider this as the original data set. We generate $1000$ repetitions of this experiment with different seeds. -->
+
+\noindent _Results_  
+
+For the first scenario, size of the test is obtained as $0.1$ with $wpd_{threshold99}$ as the threshold. This implies that the proportion of times a panel is rejected when it is under $D_{null}$ is $0.1$. The level of significance for each test is 1% (as a result of choosing $99^{th}$ percentile as the threshold) and we have $9$ multiple tests. Hence, it is reasonable
+that the level of significance of the composite tests would be larger than the individual tests. We also compute the proportion of times a panel is rejected when it actually belongs to a non-null design. These proportions constitute to be the estimated size and power of the test.
+Power can depend on many things like sample size, number of designs that deviate from the null and extent to which from the null. It is found that as we increase from low to high changes from the null distribution, the power increased. <!---The power also increases with increased sample size, as is expected.---> The results and graphics are included in details in the Supplementary paper.
+
+```{r, eval = FALSE}
+all_data <- read_rds("simulations/supplementary/test-hpc/data-agg/all_data.rds")
+
+# computes size for 99 percentile threshold
+data_summary <- all_data %>%
+  mutate(sig = if_else(significance!=99, 0, 99)) %>% 
+  group_by(seed_id) %>% 
+  summarize(sumsig = sum(sig)) %>% 
+  count(sumsig==0) %>% 
+  mutate(p_value = n/sum(n)) %>% 
+  slice(1)
+
+
+# plots
+ggplot() + 
+  geom_histogram(data = all_data, aes(x = wpd))  + 
+  geom_vline(data = data_summary, aes(xintercept = p_value),colour = "red") +
+  facet_grid(x_levels~facet_levels)
+
+```
+
+### Environment
+
+Simulation studies were carried out to study the behavior of $wpd$, build the normalization method as well as compare and evaluate different normalization approaches. R version 4.0.1 (2020-06-06) is used with the platform: x86_64-apple-darwin17.0 (64-bit) running under: macOS Mojave 10.14.6 and MonaRCH, which is a next-generation High Power Computing (HPC) Cluster, addressing the needs of the Monash HPC community.
+
+
+
+## Application to residential smart meter dataset {#sec:application-wpd}
+
+The smart meter data set for eight households in Melbourne has been utilized to see the use of $wpd$ proposed in the paper. The data has been cleaned to be a `tsibble` (@wang2020tsibble) containing half-hourly electricity consumption from Jul-2019 to Dec-2019 for each of the households, which is procured by them by downloading their data from the energy supplier/retailer. 
+No behavioral pattern is likely to be discerned from the line graph of energy usage over the entire period, since the plot will have too many measurements squeezed in a linear representation. When we zoom into the linear representation of this series in Figure \ref{fig:dotplot-8} (b) for September, some patterns are visible in terms of peaks and troughs, but we do not know if they are regular or what is their period.
+Electricity demand, in general, has a daily and weekly periodic pattern. However, it is not apparent from this view if all of these households have those patterns and in case they have if they are significant enough. Also, it is not clear if any other periodic patterns are present in any household which might have been hidden with this view. We start the analysis by choosing few harmonies, ranking them for each of these households, compare households to get more insights into what these rankings imply. Furthermore, the ranking and selection of significant harmonies is validated by analyzing the distribution of energy usage across significant harmonies.
+
+<!-- if we are benefiting by moving from a linear to cyclic representation of time to . -->
+
+```{r linear-scale-8, fig.cap = "Electricity demand for eight households is shown in different facets from Jul-19 to Dec-19 in Fig a and it has been zoomed in for Sep-19 in Fig b, where a week in Sep-19 has been highlighted. From the scales of Fig a, it is apparent that these households vary in consumption levels, but all their periodic patterns have been squeezed with this representation. In fig b, we can see some weekly patterns for the entire period and daily patterns for the highlighted week and there could be some other patterns visible in terms of peaks and troughs, but it is not clear if they are regular or significant.", fig.height=8, eval = FALSE}
+
+```
+
+
+_Choosing cyclic granularities of interest and removing clashes_
+
+Let $v_{i, t}$ denote the electricity demand for $i^{th}$ household for time period $t$. The series $v_{i, t}$ is the linear granularity corresponding to half-hour since the interval of the tsibble is 30 minutes. We consider coarser linear granularities like hour, day, week and month from the commonly used Gregorian calendar. Considering $4$ linear granularities hour, day, week, month, the number of cyclic granularities is $N_C = (4 * 3/2) = 6$. We obtain cyclic granularities namely "hour_day", "hour_week", "hour_month", "day_ week", "day_month" and "week_month", read as "hour of the day", etc. Further, we add cyclic granularity day-type ("wknd wday") to capture weekend and weekday behavior. Thus, $7$ cyclic granularities are considered to be of interest. The set consisting of pairs of cyclic granularities ($C_{N_C}$) will have $7_{P_2}=42$ elements which could be analyzed for detecting possible periodicities. The set of possible harmonies $H_{N_C}$ from $C_{N_C}$ are chosen by removing clashes using procedures described in [@Gupta2021-hd]. Table \ref{tab:tab-rank-8}  shows $14$ harmony pairs that belong to $H_{N_C}$.
+
+ <!-- The paper also shows how the number of harmonies could be identified among  by removing clashes. This section shows how we could refine the search further by only looking at significant harmonies. -->
+
+
+_Selecting and Ranking harmonies for all households_ 
+
+$wpd_{i}$ is computed on $v_{i, t}$ for all harmony pairs $\in H_{N_C}$ and for each households $i \in \{1, 2, \dots, 8\}$. The harmony pairs are then arranged in descending order and highlighted with `***`, `**` and `*` corresponding to the  $99^{th}$,  $95^{th}$ and $90^{th}$ percentile threshold. Table \ref{tab:tab-rank-8} shows the rank of the harmonies for different households. The rankings are different for different households, which is a reflection of their varied behaviors. Most importantly, there are at most $3$ harmonies that are significant for any household. This is a huge reduction in the number of potential harmonies to explore closely, starting from $42$.
+
+_Detecting patterns not apparent from linear display_ 
+
+\noindent Figure \ref{fig:dotplot-8} helps to compare households through the heatmap (a) across harmony pairs with the cyclic granularity mapped to x-axis and facet being plotted on the x-axis and y-axis of the heatmap. Here $dom$, $dow$, $wdwnd$ are abbreviations for day-of-month, day-of-week, weekday/weekend and so on. The colors represent the value of $wpd$. Darker cells correspond to more significant harmony pairs. Also, the ones with `*` corresponds to the ones above $wpd_{threshold95}$. 
+Few observations that emphasizes patterns not discernible through (b) includes - (1) id 7 and 8 have the same significant harmonies despite having very different total energy usage, (2) id 6 and 7 differ in the sense that for id 6, the difference in patterns only during weekday/weekends, whereas for id 7, all or few other days of the week are also important. This might be due to their flexible work routines or different day-off, (3) there are no significant periodic patterns for id 5 when we fix the threshold to $wpd_{threshold95}$. Note that the $wpd$ values are computed over the entire range, but the linear display in (b) is zoomed only for September, with the major and minor x-axis corresponding to weeks and days respectively.
+
+
+<!-- Households id 2 and 3 are similar, in terms of linear display and heatmap, which implies that similar periodic behavior can stem from households with different demographics. -->
+
+
+```{r rank-household-mclapply-8}
+```
+
+
+```{r elec_select_harmony-8}
+```
+
+
+```{r dotplot-8, fig.cap = "An ensemble plot with a heatmap (a), line plot (b), parallel coordinate plot (c) to demonstrate energy behavior of the households in different ways. (b) is the zoomed-in raw demand series for September to highlight the repetitive patterns of energy demand. (a) shows $wpd$ values across harmonies with the x variable of harmony placed across x-axis and facet variable placed across y-axis. The darker the colour in (a), the higher the harmony is ranked. Visualizing harmonies through (a) allows to view the significant cyclic granularities along the x-axis, facet or both for each household. For eg, ids 7 and 8 have significant patterns across (hod, dow) and (dow, hod), which was not apparent through (a). (c) is useful for comparing households across harmonies, for eg, for the harmony (dow-hod), ids 1 and 7 have the least and highest wpd respectively.", fig.height = 7}
+```
+
+
+```{r tab-rank-8}
+```
+
+
+_Comparing households and validating rank of harmonies_
+
+According to Figure \ref{fig:dotplot-8}(c), for the harmony pair (dow-hod), household id 7 has the greatest value of $wpd$, while id 1 has the least. Also, from table \ref{tab:tab-rank-8} it could be seen that the harmony pair $(dow, hod)$ is important for id 7, however it has been labeled as an inconsequential pair for id 1. The distribution of energy demand for both of these households, with $dow$ as the facet and $hod$ on the x-axis, may help explain the choice. Figure \ref{fig:gravitas-plot-8} demonstrates that for id 7, the median (black) and quartile deviation (orange) of energy consumption fluctuates throughout for most hours of the day and day of the week, while for id 1, daily patterns are consistent within weekdays and weekends. As a result, for id 1, it is more appropriate to examine the distributional difference solely across (dow, wdwnd), which has been rated higher in Table \ref{tab:tab-rank-8}.
+
+<!-- Although the differences might seem significant at first, with closer inspection it could be seen that the scale of the demand is lower in this case and hence the differences are not large enough to cross the threshold for significance. -->
+
+
+<!-- Figure \ref{fig:gravitas-plot-8} is used to show -->
+<!-- if this selection and ranking of harmony pairs makes sense for this household. Panel a) of  Figure \ref{fig:gravitas-plot-8} shows the distribution of energy demand with weekday/weekend as the x-axis and hour-of-day as the facets and helps to compare the weekend/weekday patterns for different hours of the day. It could be observed that the difference between weekend and weekday is the highest from 15 to 19 hours of the day. Panel b) shows the distribution of energy demand with the variables swapped and helps to compare the daily patterns within weekday and weekend. It could be observed that the daily pattern is similar for weekdays and weekends with a morning and evening peak. However, the difference between morning and evening peaks are higher for weekends. Since $wpd$ is designed to put more weightage on within-facet differences for $\lambda>0.5$, it makes sense that the pair (hod, wdwnd) has been ranked higher than (wdwnd, hod). Panel c) shows the distribution of energy demand with weekday/weekend as the x-axis and week-of-month as the facets. Although the differences might seem significant at first, with closer inspection it could be seen that the scale of the demand is lower in this case and hence the differences are not large enough to cross the threshold for significance. -->
+
+
+```{r gravitas-plot-8, message = FALSE, warning=FALSE,fig.cap="Comparing distribution of energy demand shown for household id 1 (a) and 7 (b) across hod in x-axis and dow in facets through quantile area plots. The value of $wpd$ in Table 3 suggests that the harmony pair (dow, hod) is significant for household id 7, but not for 1. This implies that distributional differences are captured more by this harmony for id 7, which is apparent from this display with more fluctuations across median and 75th percentile for different hours of the day and day of week. For id 1, patterns look similar within weekdays and weekends. Here, the median is represented by the black line, the orange area corresponds to quartile deviation and the green area corresponds to area between $10^{th}$ and $90^{th}$ quantile."}
+
+
+```
+
+
+
+<!-- From Figure \ref{fig:gravitas-plot-8-id5}, it could further be observed that id5 has only one significant harmony $(hod, dow)$. Apparently, $(hod, wnd/wday)$ which is an important harmony for most households is not important for this one. -->
+
+
+## Discussion
+
+Exploratory data analysis involves many iterations of finding and summarizing patterns. With temporal data available at finer scales, exploring time series has become overwhelming with so many possible granularities to explore. A common solution is to aggregate and look at the patterns across usual granularities like hour-of-day or day-of-week, but there is no way to know the “interesting” granularities a priori. A huge number of displays need to be analyzed or we might end up missing informative granularities. This work refines the search of informative granularities by identifying those for which the differences between the displayed distributions are greatest and rating them in order of importance of capturing maximum variation.
+
+The significant granularities across different datasets (individuals/subjects) do not imply similar patterns across different datasets. They simply mean that maximum distributional differences are being captured across those granularities. A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities.
+
+<!-- patterns are interesting and others are not. The subjects for which behaviors across a group of cyclic granularities are similar, could be grouped together as their periodic behavior is similar.  to group subjects  -->
+
+## Acknowledgments {-}
+
+The Australian authors thank the ARC Centre of Excellence for Mathematical and Statistical Frontiers [(ACEMS)](https://acems.org.au/home) for supporting this research. Sayani Gupta was partially funded by [Data61 CSIRO](https://data61.csiro.au/) during her PhD. The Github repository,  [github.com/Sayani07/paper-hakear](https://github.com/Sayani07/paper-gravitas), contains all materials required to reproduce this article and the code is also available online in the supplemental materials. This article was created with R [@R-language], `knitr` [@knitr2015, @R-knitr] and `rmarkdown` [@rmarkdown2018, @R-rmarkdown]. Graphics are produced with @Wickham2009pk.
+
+
+## Supplementary Materials
+
+**Data and scripts:** Data sets and R code to reproduce all figures in this article (main.R).
+
+\noindent
+**Simulation results and scripts:** All simulation table, graphics and and R code to reproduce it (paper-supplementary.pdf, paper-supplementary.Rmd)
+
+\noindent
+**R-package:** The open-source R [@R-language] package `hakear` is available on Github (https://github.com/Sayani07/hakear) to implement ideas presented in this paper.
+
+
+ 
+
