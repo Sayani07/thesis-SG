@@ -4,11 +4,7 @@ author: "Sayani Gupta"
 degreetype: Doctor of Philosophy
 site: bookdown::bookdown_site
 degrees: M.Stat, B.Sc (Stat Hons)
-bibliography:
-- bib/gravitas.bib
-- bib/hakear.bib
-- bib/gracsr.bib
-- bib/thesisrefs.bib
+bibliography: [bib/gravitas.bib, bib/hakear.bib, bib/gracsr.bib, bib/thesisrefs.bib]
 link-citations: yes
 ---
 
