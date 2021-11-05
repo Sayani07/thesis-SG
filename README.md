@@ -1,6 +1,6 @@
 # PhD thesis
 
-This repo contains source files for my PhD thesis titled, "Tidy tools for supporting fluent workflow in temporal data analysis", at Monash University.
+This repo contains source files for my PhD thesis titled, "Visualization and analysis of probability distributions of large temporal data", at Monash University.
 
 ## Clone with `git-lfs`
 

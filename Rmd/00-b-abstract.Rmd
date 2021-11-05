@@ -1,4 +1,4 @@
-# Abstract {-}
+# Abstract {- #ch:abstract}
 
 The research was motivated by the desire to understand the Australian smart meters data, which was collected half-hourly for two years at the household level. With temporal data available at ever finer scales, exploring periodicity can become overwhelming with so many possible temporal deconstructions to explore. Analysts are expected to comprehensively explore the many ways to view and consider temporal data. However, the plethora of choices and the lack of a systematic approach to do so quickly can make the task overwhelming.
 

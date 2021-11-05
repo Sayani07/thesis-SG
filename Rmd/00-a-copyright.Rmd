@@ -1,6 +1,6 @@
 `r if (knitr::is_html_output()) '<!--'` 
 
-# Copyright notice {-}
+# Copyright notice {- #ch:copyright}
 
 \textcopyright { }Sayani Gupta (\number\the\year). 
 
