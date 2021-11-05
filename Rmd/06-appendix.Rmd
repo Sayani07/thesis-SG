@@ -1,6 +1,6 @@
 # (APPENDIX) Appendix {-}
 
-# Data dictionary
+## Data dictionary
 
 ```{r wdi-data-dict}
 ```

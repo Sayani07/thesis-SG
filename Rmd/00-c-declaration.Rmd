@@ -1,10 +1,6 @@
 `r if (knitr::is_html_output()) '<!--'` 
 
-\newpage
-
 # Declaration {-}
-
-
 
 
 I have not renumbered sections of submitted or published papers in order to generate a consistent presentation within the thesis.
