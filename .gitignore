@@ -6,7 +6,6 @@
 *.log
 *.tex
 *.toc
-*.rds
 *.RData
 *.7z
 *.csv
@@ -35,4 +34,3 @@ img/*.png
 *.bbl
 thesis\.tex
 report/ExaminerReports.pdf
-
