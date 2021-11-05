@@ -267,7 +267,7 @@ A \textbf{single-order-up} is a cyclic granularity which is nested within a sing
 Following the calendar algebra of @Ning_2002 for linear granularities, we can define cyclic calendar algebra to compute cyclic granularities. Cyclic calendar algebra comprises two kinds of operations:
 (1) **single-to-multiple** (the calculation of _multiple-order-up_ cyclic granularities from _single-order-up_ cyclic granularities) and (2) **multiple-to-single** (the reverse).
 
-#### Single-to-multiple order-up {-}
+#### Single-to-multiple order-up {- #s2m}
 
 Methods to obtain multiple-order-up granularity will depend on whether the hierarchy consists of all circular single-order-up granularities or a mix of circular and quasi-circular single-order-up granularities. Circular single-order-up granularities can be used recursively to obtain a multiple-order-up circular granularity using
 \begin{equation} \label{eq:eq7}
@@ -316,7 +316,7 @@ $$
 $$
 where $T_w$ is such that $month(w) = \bigcup_{z \in T_w}day(z)$.
 
-#### Multiple-to-single order-up {-}
+#### Multiple-to-single order-up {- #m2s}
 
 Similar to single-to-multiple operations, multiple-to-single operations involve different approaches for all circular single-order-up granularities and a mix of circular and quasi-circular single-order-up granularities in the hierarchy. For a hierarchy table $H_n: (G, C, K)$ with only circular single-order-up granularities and $\ell_1, \ell_2, m_1, m_2 \in {1, 2, \dots, n}$ and $\ell_2<\ell_1$ and $m_2>m_1$, multiple-order-up granularities can be obtained using Equation \eqref{eq:all-circular-multiple}.
 \begin{equation} \label{eq:all-circular-multiple}
@@ -324,7 +324,7 @@ C_{G_{\ell_1}, G_{m_1}}(z) = \lfloor C_{G_{\ell_2}, G_{m_2}}(z)/P(\ell_2,\ell_1)
 \end{equation}
 For example, in the Mayan Calendar, it is possible to compute the single-order-up granularity tun-of-katun from uinal-of-baktun, since $C_{tun, katun}(z) = \lfloor C_{uinal, baktun}(z)/18\rfloor \mod 20$.
 
-#### Multiple order-up quasi-circular granularities {-}
+#### Multiple order-up quasi-circular granularities {- #quasi}
 
 Single-order-up quasi-circular granularity can be obtained from multiple-order-up quasi-circular granularity and single/multiple-order-up circular granularity using Equations \eqref{eq:multifromsingle-quasi1} and \eqref{eq:multifromsingle-quasi2}.
 
@@ -411,11 +411,11 @@ One of the best approaches in exploratory data analysis is to draw a variety of 
 
 <!-- While it is often beneficial to compare distributions in this way, there are some caveats that we should be kept in mind while exploring these displays, subject to our data structure as follows: -->
 
-#### Levels {-}
+#### Levels {- #levels}
 
 The levels of cyclic granularities affect plotting choices since space and resolution may be problematic with too many levels. A potential approach could be to categorize the number of levels as low/medium/high/very high for each cyclic granularity and define some criteria based on human cognitive power, available display size and the aesthetic mappings. Default values for these categorizations could be chosen based on levels of common temporal granularities like days of the month, days of the fortnight, or days of the week.
 
-#### Synergy of cyclic granularities {-}
+#### Synergy of cyclic granularities {- #synergy-cyclic}
 
 The synergy of the two cyclic granularities will affect plotting choices for exploratory analysis. Cyclic granularities that form clashes (Section \@ref(sec:synergy)) or near-clashes lead to potentially ineffective graphs. Harmonies tend to be more useful for exploring patterns. \autoref{fig:allFig}a shows the distribution of half-hourly electricity consumption through letter value plots across months of the year conditional on quarters of the year. This plot does not work because quarter-of-year clashes with month-of-year, leading to empty subsets. For example, the first quarter never corresponds to December.
 
@@ -428,7 +428,7 @@ The synergy of the two cyclic granularities will affect plotting choices for exp
 <!-- For example, the letter value D for weekdays mostly corresponds to letter value E for weekends, implying there are lower values of energy consumption during weekdays in the second quarter. This is probably because of lower temperatures in the second quarter compared to the first quarter (summer in Australia). **c** switches the granularities mapped to the x-axis and the facets and helps to compare quarters within weekdays and weekends. For example, the lower D and E letter values are most different across different quarters for weekdays and weekends respectively. -->
 <!-- For example, for weekdays the interquartile range of consumption reduces over the year, whereas this pattern is not true for weekends. -->
 
-#### Conditioning variable {-}
+#### Conditioning variable {- #conditioning}
 
 When $C_i$ is mapped to the $x$ position and $C_j$ to facets, then the $A_k$ levels are juxtaposed and each $B_\ell$ represents a group/facet. Gestalt theory suggests that when items are placed in close proximity, people assume that they are in the same group because they are close to one another and apart from other groups. Hence, in this case, the $A_k$'s are compared against each other within each group. With the mapping of $C_i$ and $C_j$ reversed, the emphasis will shift to comparing $B_\ell$ levels rather than $A_k$ levels. For example, \autoref{fig:allFig}b shows the letter value plot across weekday/weekend partitioned by quarters of the year and \autoref{fig:allFig}c shows the same two cyclic granularities with their mapping reversed. \autoref{fig:allFig}b helps us to compare weekday and weekend within each quarter and \autoref{fig:allFig}c helps to compare quarters within weekend and weekday.
 
@@ -439,13 +439,13 @@ When $C_i$ is mapped to the $x$ position and $C_j$ to facets, then the $A_k$ lev
 
 Smart meters provide large quantities of measurements on energy usage for households across Australia. One of the customer trials [@smart-meter] conducted as part of the Smart Grid Smart City project in Newcastle and parts of Sydney provides customer level data on energy consumption for every half hour from February 2012 to March 2014. We can use this data set to visualize the distribution of energy consumption across different cyclic granularities in a systematic way to identify different behavioral patterns.
 
-#### Cyclic granularities search and computation {-}
+#### Cyclic granularities search and computation {- #search}
 
 The tsibble object `smart_meter10` from R package `gravitas` [@R-gravitas] includes the variables `reading_datetime`, `customer_id` and `general_supply_kwh` denoting the index, key and measured variable respectively. The interval of this tsibble is 30 minutes.
 
 To identify the available cyclic time granularities, consider the conventional time deconstructions for a Gregorian calendar that can be formed from the 30-minute time index: half-hour, hour, day, week, month, quarter, half-year, year. In this example, we will consider the granularities hour, day, week and month giving six cyclic granularities "hour_day", "hour_week", "hour_month", "day_week", "day_month" and "week_month", read as "hour of the day", etc. To these, we add day-type ("wknd_wday") to capture weekend and weekday behavior. Now that we have a list of cyclic granularities to look at, we can compute them using the results in Section&nbsp;\ref{sec:cyclic-calendar}.
 
-#### Screening and visualizing harmonies {-}
+#### Screening and visualizing harmonies {- #visualize}
 
 Using these seven cyclic granularities, we want to explore patterns of energy behavior. Each of these seven cyclic granularities can either be mapped to the x-axis or to facets. Choosing $2$ of the possible $7$ granularities, gives $^{7}P_2 = 42$ candidates for visualization. Harmonies can be identified among those $42$ possibilities to narrow the search. \autoref{tab:harmony-tab} shows $16$ harmony pairs after removing clashes and any cyclic granularities with more than $31$ levels, as effective exploration becomes difficult with many levels (Section&nbsp;\ref{sec:aesthetics}).
 
@@ -496,12 +496,12 @@ A missing piece in the package `gravitas` is the computation of cyclic aperiodic
 
 We propose producing plots based on pairs of cyclic granularities that form harmonies rather than clashes or near-clashes. A future direction of work could be to further refine the selection of appropriate pairs of granularities by identifying those for which the differences between the displayed distributions is greatest and rating these selected harmony pairs in order of importance for exploration.
 
-## Acknowledgments {-}
+## Acknowledgments {- #thanksgravitas}
 
 The Australian authors thank the ARC Centre of Excellence for Mathematical and Statistical Frontiers [(ACEMS)](https://acems.org.au/home) for supporting this research. Thanks to [Data61 CSIRO](https://data61.csiro.au/) for partially funding Sayani's research and Dr Peter Toscas for providing useful inputs on improving the analysis of the smart meter application. We would also like to thank Nicholas Spyrison for many useful discussions, sketching figures and feedback on the manuscript. The package `gravitas` was built during the [Google Summer of Code, 2019](https://summerofcode.withgoogle.com/archive/). More details about the package can be found at [sayani07.github.io/gravitas](https://sayani07.github.io/gravitas/). The Github repository,  [github.com/Sayani07/paper-gravitas](https://github.com/Sayani07/paper-gravitas), contains all materials required to reproduce this article and the code is also available online in the supplemental materials. This article was created with `knitr` [@knitr], [@R-knitr] and `rmarkdown` [@rmarkdown], [@R-rmarkdown]. 
 
 
-## Supplementary Materials
+## Supplementary Materials {- #supplement-gravitas}
 
 **Data and scripts:** Data sets and R code to reproduce all figures in this article (main.R).
 

@@ -1,12 +1,12 @@
 # Acknowledgements {-}
 
-supervisors
+
 Rob and Di are phenomenal leaders in their respective fields, who lead by example. I am inspired by their creativity, wisdom, discipline, and dedication to really contribute to the society through their research. Thank you for constantly pushing me to improve as a programmer and researcher, and for regularly sharing best practices for conducting research. Looking back, I am grateful for how my thoughts and work in statistical computing, graphics, and data analytics in general have evolved over the years. I still have a lot to learn, but I am a much more self-reliant and independent researcher than I was when I started. Di has been instrumental in exposing me to the potential benefits of effective data visualization. As a female researcher, I am encouraged by her willingness to pursue unconventional avenues and have frequently noticed her make a conscious decision to question existing  stereotypes and biases. Thank you Di for being a fantastic female role model.
+
 - department and PhD colleagues
 
 
 - R community
-
 
 
 - friends

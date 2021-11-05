@@ -585,12 +585,12 @@ We offer two approaches for calculating pairwise distances between time series b
 There are few areas to extend this research. First, larger data sets with more uncertainty complicate matters, as is true for any clustering task. Characterizing clusters with varied or outlying customers can result in a shape that does not represent the group. Moreover, integrating heterogeneous consumers may result in visually identical end clusters, which are potentially not useful. Hence, a way of appropriately scaling it up to many customers such that anomalies are removed before clustering would be useful for bringing forth meaningful, compact and separated clusters. Secondly, we have assumed the time series to be stationary, and hence the distributions are assumed to remain constant for the observation period. In reality, however, it might change. For the smart meter example, the distribution for a customer moving to a different house or changing electrical equipment can change drastically. Our current approach can not detect these dynamic changes. Thirdly, it is possible that for a few customers, data for some categories from the list of considered significant granularities are missing. In our application, we have removed those customers and done the analysis but the metrics used should be able to incorporate those customers in the clustering by handling their missing categories. Finally, $wpd$ is computationally heavy even under parallel computation. Future work can make the computations more efficient so that they are easily scalable to a large number of customers. Moreover, experiments can also be run with non-hierarchy based clustering algorithms to verify if these distances work better with other algorithms.
 
 
-## Acknowledgments {-}
+## Acknowledgments {- #thanksgracsr}
 
 The authors thank the ARC Centre of Excellence for Mathematical and Statistical Frontiers [(ACEMS)](https://acems.org.au/home) for supporting this research. Sayani Gupta was partially funded by [Data61 CSIRO](https://data61.csiro.au/) during her PhD. The Monash eResearch Centre and eSolutions-Study Support Services supported this research in part through the resource usage of the MonARCH HPC Cluster. The Github repository, [github.com/Sayani07/paper-gracsr](https://github.com/Sayani07/paper-gracsr), contains all materials required to reproduce this article and the code is also available online in the supplemental materials.
-This article was created with R [@R-language], `knitr` [@knitr2015], [@R-knitr] and `rmarkdown` [@rmarkdown2018], [@R-rmarkdown].  Graphics are produced with `ggplot2` [@Wickham2009pk] and GGally [@R-GGally].
+This article was created with R [@R-language], `knitr` [@knitr2015], [@R-knitr] and `rmarkdown` [@rmarkdown], [@R-rmarkdown].  Graphics are produced with `ggplot2` [@Wickham2009pk] and GGally [@R-GGally].
 
-## Supplementary Materials
+## Supplementary Materials {- #supplement-gracsr}
 
 **Data and scripts:** Data sets and R code to reproduce all figures in this article (main.R).
 
