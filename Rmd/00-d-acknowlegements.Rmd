@@ -12,7 +12,7 @@ I want to thank the Department of Econometrics and Business Statistics, Monash B
 
 
  <!-- - PhD friends and R community -->
-Thank you, Stephanie and Nicholas Tierney, for being so warm, kinds and welcoming when I began my PhD. Being a part of such an inclusive environment meant a lot to me as an international student. Thank you, Nicholas Spyrison and Mitchell O'Hara-Wild, for the numerous informative discussions, brainstorming sessions, as well as for generously sharing your wisdom and experience in software development. Thank you to each of you, NUMBATs, and the broader R community for directly and indirectly helping me countless times. You never fail to inspire me.
+Thank you, Stephanie and Nicholas Tierney, for being so warm, kind and welcoming when I began my PhD. Being a part of such an inclusive environment meant a lot to me as an international student. Thank you, Nicholas Spyrison and Mitchell O'Hara-Wild, for the numerous informative discussions, brainstorming sessions, as well as for generously sharing your expertise and experience in software development. Thank you to each of you, NUMBATs, and the broader R community for directly and indirectly helping me countless times. You never fail to inspire me.
 
 <!-- - Friends -->
 
@@ -24,3 +24,6 @@ PhD in Covid has been harder, and I would not have been able to make it through 
 Finally, a big thank you to my family for always being supportive of my choices. Thanks to my mum (Nupur Gupta) and dad (Arun Prasad Gupta), from whom I learnt that no matter where you start from, if you persevere and are sincere in your efforts, you can sail through any difficult situation. They are my constant cheerleaders for all little and big endeavors. Thanks to my brother (Avijit) for always having my back and inspiring me to dream bigger. Thank you, Juhi (sister-in-law), for reminding me of the value of organization in all aspects of life and the importance of prioritizing my physical health from time to time. Thank you all for your part in supporting me in this journey. I love you.
 
 <!-- add people who are helping you with proofreading -->
+<!-- Add Peter -->
+<!-- Although the journey is coming to an end, you wish to take these life learnings forward -->
+<!-- add Earo and Stuart that you followed their model of workflow and templates, using the power of reproducible and accessible  research -->
