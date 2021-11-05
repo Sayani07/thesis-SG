@@ -9,6 +9,8 @@
 *.RData
 *.7z
 *.csv
+!data/gravitas/matches_all.csv
+!data/gravitas/deliveries_all.csv
 *.err
 *.out
 *.aux
