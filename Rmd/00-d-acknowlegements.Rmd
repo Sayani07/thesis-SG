@@ -1,18 +1,29 @@
 # Acknowledgements {-#ch:thanks}
 
+
 <!-- - supervisors -->
 
-<!-- Rob and Di are phenomenal leaders in their respective fields, who lead by example. I am inspired by their creativity, wisdom, discipline, and dedication to really contribute to the society through their research. Thank you for constantly pushing me to improve as a programmer and researcher, and for regularly sharing best practices for conducting research. Looking back, I am grateful for how my thoughts and work in statistical computing, graphics, and data analytics in general have evolved over the years. I still have a lot to learn, but I am a much more self-reliant and independent researcher than I was when I started. Di has been instrumental in exposing me to the potential benefits of effective data visualization. As a female researcher, I am encouraged by her willingness to pursue unconventional avenues and have frequently noticed her make a conscious decision to question existing  stereotypes and biases. Thank you Di for being a fantastic female role model. -->
-
-<!-- - department and PhD colleagues -->
+Rob and Di are phenomenal leaders in their respective fields who lead by example. I am inspired by their creativity, wisdom, discipline, and dedication to contribute to the society through their research. Thank you for constantly pushing me to improve as a programmer and researcher and regularly sharing good practices for conducting research. Looking back, I am grateful for how my thoughts and work in statistical computing, graphics, and data analytics, in general, have evolved over the years. I still have a lot to learn, but I am a much more self-reliant and independent researcher than when I started. Di has been instrumental in exposing me to the potential benefits of effective data visualization. As a female researcher, I am encouraged by her willingness to pursue unconventional avenues and have frequently noticed her make conscious and proactive choices to question existing stereotypes and biases. Thank you, Di, for being a fantastic female role model.
 
 
-<!-- - R community -->
+<!-- - Department and conferences -->
+
+I want to thank the Department of Econometrics and Business Statistics, Monash Business School, ARC Centre of Excellence for Mathematical and Statistical Frontiers (ACEMS), and Data61 CSIRO for their financial support. Thanks to the Department, I attended a few conferences in person (before COVID hit) and had a great time networking and being inspired by many people. A few highlights are UseR! 2018 (Brisbane), Young Statistician's Conference 2019 (Canberra), WOMBATS 2019 (Melbourne), and RopenSci 2019 (Sydney). Thank you to Gael Martin, Farshid Wahid, Klaus Ackermann, and Didier Nibbering from my PhD committee for providing such a supportive environment.
 
 
-<!-- - friends -->
+ <!-- - PhD friends and R community -->
+Thank you, Stephanie and Nicholas Tierney, for being so warm, kind and welcoming when I began my PhD. Being a part of such an inclusive environment meant a lot to me as an international student. Thank you, Nicholas Spyrison and Mitchell O'Hara-Wild, for the numerous informative discussions, brainstorming sessions, as well as for generously sharing your expertise and experience in software development. Thank you to each of you, NUMBATs, and the broader R community for directly and indirectly helping me countless times. You never fail to inspire me.
 
-<!-- PhD in Covid has been harder and I would not have been able to make it through this if not for the emotional support of my friends and family. Thank you Puwasala, Sium for being an epitome of kindness and acting as a pillar of support. Thank you Tushar, Samarpita and Nairita for always motivating me and believing in me when I didn't believe in myself. Thank you Ian for always putting things in perspective when I lost sight. Thank you each one of you for being available, listening to me, and not giving up on me at my lowest. Thanks to my housemates Anjali, Surbhi and Dulaji for the fun company and conversations that kept me sane in the covid lockdowns. -->
+<!-- - Friends -->
 
-<!-- -  family -->
-<!-- Finally, a big thanks to my family for always being supportive of my choices. Thanks to my mum (Nupur Gupta) and dad (Arun Prasad Gupta), from whom I learnt that no matter where you start from, if you persevere and are sincere in your efforts, you can sail through any difficult situation. They are my constant cheerleaders for all little and big endeavours. Thanks to my brother (Avijit) for always having my back and inspiring me to dream bigger. Thank you, Juhi (sister-in-law) for instilling in me the value of organisation in all aspects of life and the importance of prioritizing my physical health from time to time. Thank you all for your part in supporting me in this journey. I love you.  -->
+PhD in Covid has been harder, and I would not have been able to make it through this if not for the emotional support of my friends and family. Thank you Puwasala, Sium, and Ian, for being so kind and acting as a pillar of emotional support, especially during the last leg of my journey. Thank you Tushar, Samarpita and Nairita for always motivating me and believing in me when I did not believe in myself. Thank you to each one of you for being available, listening to me, and putting things in perspective when I lost sight. Thanks to my housemates Anjali, Surbhi, and Dulaji for the fun company and conversations that kept me sane in the covid lockdowns.
+
+
+<!-- - Family -->
+
+Finally, a big thank you to my family for always being supportive of my choices. Thanks to my mum (Nupur Gupta) and dad (Arun Prasad Gupta), from whom I learnt that no matter where you start from, if you persevere and are sincere in your efforts, you can sail through any difficult situation. They are my constant cheerleaders for all little and big endeavors. Thanks to my brother (Avijit) for always having my back and inspiring me to dream bigger. Thank you, Juhi (sister-in-law), for reminding me of the value of organization in all aspects of life and the importance of prioritizing my physical health from time to time. Thank you all for your part in supporting me in this journey. I love you.
+
+<!-- add people who are helping you with proofreading -->
+<!-- Add Peter -->
+<!-- Although the journey is coming to an end, you wish to take these life learnings forward -->
+<!-- add Earo and Stuart that you followed their model of workflow and templates, using the power of reproducible and accessible  research -->
