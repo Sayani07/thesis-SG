@@ -304,8 +304,8 @@ cricket_tsibble %>%
         panel.grid.major.x = element_blank())
 
 
-cricket_all <- read_csv("data-raw/gravitas/deliveries_all.csv")
-matches_all <- read_csv("data-raw/gravitas/matches_all.csv")
+cricket_all <- read_csv(here::here("data-raw/gravitas/deliveries_all.csv"))
+matches_all <- read_csv(here::here("data-raw/gravitas/matches_all.csv"))
 
 cricket_season <- cricket_all %>%
   left_join(matches_all, by = c("match_id" = "id"))
