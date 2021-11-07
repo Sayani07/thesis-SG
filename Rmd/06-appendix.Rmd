@@ -1,8 +1,638 @@
-# (APPENDIX) Appendix {-#ch:appendix}
+# Appendix {-#ch:appendix}
 
-## Data dictionary
 
-```{r wdi-data-dict}
+\appendix
+
+
+This is the supplementary paper corresponding to the paper "Detecting distributional differences between temporal granularities for exploratory time series analysis" 
+
+
+```{r external-hakear-supplementary, include = FALSE, cache = FALSE}
+read_chunk("scripts/hakear.R")
+read_chunk("scripts/hakear-supplementary.R")
 ```
 
-(ref:wdi-data-dict) Data dictionary for the World Development Indicators.
+```{r load}
+```
+
+
+# Recalling notations
+
+Let $v = \{v_t: t = 0, 1, 2, \dots, T-1\}$ be a continuous measured variable observed across $T$ time points. The number of cyclic granularities considered in the display (at once) is $m$. Consider cyclic granularities $A$ and $B$, such that $A = \{ a_j: j = 1, 2, \dots, J\}$ and $B = \{ b_k: k = 1, 2, \dots, K\}$. For $m=1$, only one of $A$ or $B$ is plotted at once and a _panel_ refers to a display of distributions of $v$ across $J$ or $K$ levels on the x-axis. For $m=2$, the distribution display of $v$ with $A$ placed across x-axis and $B$ across facets is referred to as a $(J, K)$ _panel_ ($J$ x-axis levels and $K$ facet levels). The pairwise distances between pairs ($a_jb_k,a_j'b_k'$) could be within-facets or between-facets as seen in Figure 4 of the main paper. The tuning parameter, used to put relative weight-age to the pairwise distances within and between facets is denoted by $\lambda$. Let the four elementary designs be $D_{null}$ where there is no pairwise difference in distribution of $v$ across $A$ or $B$, $D_{var_f}$ denotes the set of designs where there is difference in distribution of $v$ for $B$ and not for $A$. Similarly, $D_{var_x}$ denotes the set of designs where difference is observed only across $A$. Finally, $D_{var_{all}}$ denotes those designs for which difference is observed across both $A$ and $B$. The following method is deployed for generating different distributions across different combinations for non-null designs - suppose the distribution of the combination of first levels of x and facet category is $N(\mu,\sigma)$ and $\mu_{jk}$ denotes the mean of the combination $(a_jb_k)$, then $\mu_{j.} = \mu + j\omega$ (for design $D_{var_x}$) and $\mu_{.k} = \mu + k\omega$ (for design $D_{var_f}$), where $\omega$ denotes the increment in mean. Table \ref{tab:explain-design} shows an example of how designs are defined for a $(2, 3)$ panel using $\omega = 3$. $nx$ and $nfacet$ denotes the number of categories placed on x-axis and facets respectively. $wpd_{raw}$ and $wpd$ denote the raw and normalized weighted pairwise distances.
+
+
+```{r explain-design, fig.pos="ht", eval=FALSE}
+sim_varx_normal = function(nx, nfacet, mean, sd, w)
+{
+  rep(dist_normal((mean + seq(0, nx-1, by  = 1)*w), sd), nfacet)
+}
+
+sim_varf_normal = function(nx, nfacet, mean, sd, w)
+{
+  rep(dist_normal((mean + seq(0, nfacet-1, by  = 1)*w), sd), each = nx)
+}
+  sim_varall_normal = function(nx, nfacet, mean, sd, w)
+  {
+    dist_normal((mean + seq(0, (nx*nfacet - 1), by  = 1)*w), sd)
+  }
+  
+mean = 0
+sd = 1
+w = 3
+nx = 2
+nfacet = 3
+
+
+raw_levels = expand.grid(facet = c("$b_1$", "$b_2$", "$b_3$"),
+                         x = c("$a_1$", "$a_2$"))
+
+facet = rep(c("$b_1$", "$b_2$", "$b_3$"), each = nx)
+x =  rep(c("$a_1$", "$a_2$"), nfacet)
+
+null <-  sim_varall_normal(nx, nfacet, mean, sd, w=0) %>% tibble()
+vary_f <-  sim_varf_normal(nx, nfacet, mean, sd, w) %>% tibble()
+vary_x <-  sim_varx_normal(nx, nfacet, mean, sd, w) %>% tibble()
+vary_all <-  sim_varall_normal(nx, nfacet, mean, sd, w) %>% tibble()
+
+
+raw_table <- bind_cols(x = x, 
+                       facet = facet, 
+                       null = null,
+                       vary_f = vary_f, 
+                       vary_x = vary_x, 
+                       vary_all = vary_all) %>% 
+  tibble() 
+names(raw_table) = c("x levels", "facet levels", "$D_{null}$",  "$D_{var_f}$", "$D_{var_x}$", "$D_{var_{all}}$" )
+raw_table %>% 
+  kable(format = "latex",
+    booktabs = TRUE, 
+    escape = FALSE,
+    caption = "Simulation setup for a panel with 3 facet levels and 2 x-axis levels for different designs starting from an initial distribution N(0, 1) for the combination $(a_1, b_1)$ and $\\omega=3$.") %>% kable_styling()
+```
+
+# Raw weighted pairwise distance
+
+## Tuning parameter
+
+For $m=1$, pairwise distances could be defined only between different categories of the cyclic granularity considered. So no tuning parameter is applicable for this case. For $m=2$, $\lambda$ might impact $wpd_{raw}$ differently depending on the value of $\omega$ and different values of $nx$, $nfacet$ and designs. The following simulation study sees the impact of $\lambda$ for different $\omega$, $nx$, $nfacet$ and designs.    
+
+_Simulation design_
+
+Observations are generated from N(0,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet = \{2, 3, 5, 7\}$ and $wpd_{raw}$ is computed for $\lambda = {0.1, 0.2, \dots, 0.9}$ under two designs $D_{var_x}$ and $D_{var_f}$ for $\omega = \{1, 8\}$  to observe how the value of $wpd_{raw}$ changes for different designs. Moreover, to observe for which value of $\lambda$ the two designs intersect, we generate observations from N(0,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet = \{2, 3, 5, 7, 14, 20\}$ and $\omega = \{1, 2, \dots, 10\}$ under the same two designs.
+
+<!-- and the values of $wpd$ is computed for all these different values of the variables $nx$, $nfacet$, $\lambda$ and $\omega$ under two different designs $D_{var_x}$ and $D_{var_f}$ .  -->
+
+_Results_
+
+Figure \ref{fig:tuning-oneomega} shows how the value of $wpd$ changes for $\lambda = {0.1, 0.2, \dots, 0.9}$ for the two different designs $D_{var_x}$ and $D_{var_f}$ for two values of increment in mean $\omega = {1, 8}$. For a lower value of $\omega$, the two designs intersect at $\lambda > 0.7$ and for a higher $\omega$, the two designs intersect at $\lambda =  0.5$. The value of $wpd$ increases with $\lambda$ for $D_{var_x}$ and decreases with increasing $\lambda$ for $D_{var_f}$. \noindent Figure \ref{fig:tuning-parameter-inter} shows the value of $\lambda$ for which the two designs intersect for different values of $\omega$. It can be observed that as the value of $\omega$ ($\omega > 4$) increase, the value of $\lambda$ at which the two designs intersect converge is $\lambda = 0.5$ and for $\omega$ ($\omega <= 4$), designs interact between $\lambda = [0.6,0.75]$. Hence, $\lambda = 0.67$ is used for the rest of the paper, which is an average of the range of values $\lambda$ can take in order to have equal or more weightage for the within-facet distances.
+
+
+```{r tuning-oneomega, fig.cap = " $wpd_{raw}$ from two designs are plotted for different values of $\\lambda$ $nx$ and $nfacet$. For $\\omega = 1$, the designs intersect for $0.6<\\lambda<=0.75$, whereas for higher omega, design intersects at $\\lambda = 0.5$."}
+knitr::include_graphics(here::here("data/hakear/simulations/tuning_param/figs/fixed_omega.png"))
+```
+
+
+
+```{r tuning-parameter-inter, fig.cap ="The point of intersection of $wpd_{raw}$ values under the designs $D_{var_f}$ and $D_{var_x}$ are plotted across different $\\omega$ and $\\lambda$. For most panels it is observed that a common value of $\\lambda$ for which the designs interact is $0.5$ for $\\omega >= 4$, which implies any value greater than $0.5$ could be chosen to up-weigh the within-facet distances and down-weigh the between-facet distances. The value of $\\lambda$ is higher for  $\\omega<4$ could be anywhere between 0.6 and 0.75."}
+knitr::include_graphics(here::here("data/hakear/simulations/tuning_param/figs/intersection_plot.png"))
+```
+
+## Underlying distributions   
+
+The following simulation study sees the impact of different underlying distributions on $wpd_{raw}$ for different $nx$ and $nfacet$ before and after performing Normal Quantile Transformation.   
+
+_Simulation design_
+
+Observations are generated from N(0,1), N(5, 1), N(0, 5), Gamma(0.5, 1) and Gamma(2, 1) distributions for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet = \{2, 3, 5, 7, 14, 20, 31, 50\}$ and $wpd_{raw}$ is computed with $\lambda = 0.67$ with (scenario 1) and without (scenario 2) NQT.
+
+_Results_
+
+Figure \ref{fig:gamma-diff-wotrans} shows ridge plots of $wpd_{raw}$ for a Gamma(0.5,1), Gamma(2,1) before NQT. It is observed that for the underlying distribution Gamma(2,1), location and scale of the distribution of wpd changes from top-left panel to bottom-right panel. Figure \ref{fig:gamma-diff-quantrans} shows the the distributions of $wpd$ under same underlying distributions after performing NQT. It is observed that within each panel, the distributions of the $wpd$ looks same, however, the distributions change from extreme top-left panel to bottom-right panels. Similar observations could be made in Figure \ref{fig:normal-diff-quantrans} for different underlying normal distributions  N(0,1), N(5,1) and N(0,5). This implies, NQT has atleast been able to make the location and scale of the distribution of $wpd_{raw}$ same for different underlying distributions.
+
+
+<!-- Since the measure $wpd$ is essentially set up to detect "differences" in distributions irrespective of underlying distribution, it would be ideal if it has minimal dependency on the type, location and scale of the initial distribution. To that end, some data pre-processing through the Normal Score Transform (NQT) has been applied in order to make most asymmetrical distributed measured variables more normal-like. -->
+
+```{r gamma-diff-wotrans, fig.cap="Ridge plots of raw wpd is shown for Gamma(0.5,1), Gamma(2,1) distribution without NQT. The densities change across different facet and x levels and also looks different for the two distributions, which implies wpd value is affected by the change in the shape paramter of the gamma distribution."}
+knitr::include_graphics(here::here("data/hakear/simulations/raw/null_design_scale/figs/gamma_ridge_nxbynfacet.png"))
+```
+
+```{r gamma-diff-quantrans, fig.cap="Ridge plots of raw wpd is shown for Gamma(0.5,1), Gamma(2,1) distribution. The densities change across different facet and x levels but look same for the two distributions, which implies wpd value is unaffected by the change in the shape paramter of the gamma distribution"}
+knitr::include_graphics(here::here("data/hakear/simulations/raw/null_design_quantrans/figs/diff_mean3_gamma.png"))
+```
+
+```{r normal-diff-quantrans, fig.cap = "Ridge plots of raw wpd is shown for N(0,1), N(5,1) and N(0,5) distribution. The densities change across different facet and x levels but look same for each panel, which implies wpd value is unaffected by the change in mean and standard deviation of the normal distribution."}
+knitr::include_graphics(here::here("data/hakear/simulations/raw/null_design_quantrans/figs/diff_mean3_normal.png"))
+```
+
+## Number of comparisons 
+
+### Case: m = 1
+
+_Simulation design_
+
+\noindent Observations are generated from a N(0,1) distribution for each $nx = \{2, 3, 5, 7, 9, 14, 17, 20, 24, 31, 42, 50\}$ to cover a wide range of levels from very low to moderately high. $ntimes = 500$ observations are drawn for each combination of the categories, that is, for a panel with $nx=3$, $500$ observations are simulated for each of the categories. This design corresponds to $D_{null}$ as each combination of categories in a panel are drawn from the same distribution. Furthermore, the data is simulated for each of the categories $nsim=200$ times, so that the distribution of $wpd$ under $D_{null}$ could be observed. The values of $wpd$ is obtained for each of the panels. $wpd_{l, s}$ denotes the value of $wpd$ obtained for the $l^{th}$ panel and $s^{th}$ simulation.
+
+
+_Results_
+
+Figure \ref{fig:nxbyfacet-ridge-N01-onegran} shows ridge plots of $wpd_{raw}$ for an underlying N(0,1) distribution. For each panel, it could be seen that the location shifts to the right for increasing x levels. Across each panel, the scale of the distribution seems to change for low/moderately from lower values  to higher values of $nx$ and left tails are longer for lower facet levels.
+
+```{r nxbyfacet-ridge-N01-onegran, fig.cap="Ridge plots of raw wpd is shown for N(0,1) distribution. For each panel, it could be seen that the location shifts to the right for increasing x levels. Across each panel, the scale of the distribution seems to change for low/moderately lower values and higher values of nfacets and left tails are longer for lower facet levels."}
+knitr::include_graphics(here::here("data/hakear/simulations/supplementary/one-gran/raw/null_design_quantrans/figs/nxbyfacet_ridge_wpd_N01.png"))
+```
+
+```{r nfacetbynx-onegran, fig.cap="Ridge plots of raw wpd is shown for N(0,1) distribution. For each panel, it could be seen that the peakedness shifts for increasing x levels."}
+knitr::include_graphics(here::here("data/hakear/simulations/supplementary/one-gran/raw/null_design_quantrans/figs/nfacetbynx_ridge_wpd_N01.png"))
+```
+
+```{r density-raw-onegran, eval = FALSE}
+knitr::include_graphics(here::here("data/hakear/simulations/supplementary/one-gran/raw/null_design_quantrans/figs/nxbyfacet_density_wpd_N01.png"))
+```
+
+### Case: m = 2   
+
+_Simulation design_
+
+\noindent Similarly, observations are generated from a N(0,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet = \{2, 3, 5, 7, 14, 20, 31, 50\}$. That is, data is being generated for each of the panels $(2, 2), (2, 3), (2, 5) \dots, (50, 31), (50, 50)$. For each of the $64$ panels, $ntimes = 500$ observations are drawn for each combination of the categories. That is, if we consider a $(2, 2)$ panel, $500$ observations are generated for each of the possible subsets, namely, $\{(1, 1), (1, 2), (2, 1), (2, 2)\}$. 
+
+<!-- Observations are generated from Gamma(2,1), G(0.5, 1), N(0,1), N(0, 5) and N(5, 1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet = \{2, 3, 5, 7, 14, 20, 31, 50\}$ to cover a wide range of levels from very low to moderately high. Each combination is being referred to as a _panel_. That is, data is being generated for each of the panels $\{nx = 2, nfacet = 2\}, \{nx = 2, nfacet = 3\}, \{nx = 2, nfacet = 5\},  \dots, \{nx = 50, nfacet = 31\}, \{nx = 50, nfacet = 50\}$. For each of the $64$ panels, $ntimes = 500$ observations are drawn for each combination of the categories. That is, if we consider the panel $\{nx = 2, nfacet = 2\}$, $500$ observations are generated for each of the combination of categories from the panel, namely, $\{(1, 1), (1, 2), (2, 1), (2, 2)\}$. The values -->
+<!-- of $wpd$ is obtained for each of the panels. The measurement variable for each combination of categories in a panel are drawn from the same distribution and hence the design corresponds to $D_{null}$ . Furthermore, this entire method is repeated for each panels $nsim=200$ times, so that the distribution of $wpd$ under $D_{null}$ could be observed.    -->
+
+_Results_
+
+Figures \ref{fig:nxbyfacet-ridge-N01}, \ref{fig:nfacetbynx} and  \ref{fig:density-raw} shows the ridge plot of $wpd_{raw}$ with $nx$ as facets, $nfacet$ as facets and the density plot of $wpd_{raw}$ with $nx$ on the x-axis and $nfacet$ on the facets. The right-ward shift in location can be clearly observed from all figures.
+
+```{r nxbyfacet-ridge-N01, fig.cap="Ridge plots of raw wpd is shown for N(0,1) distribution with nfacets as facets. For each panel, it could be seen that the location shifts to the right for increasing nx levels."}
+knitr::include_graphics(here::here("data/hakear/simulations/raw/null_design_quantrans/figs/nxbyfacet_ridge_wpd_N01.png"))
+```
+
+```{r nfacetbynx, fig.cap="Ridge plots of raw wpd is shown for N(0,1) distribution with nx as facets. For each panel, it could be seen that the location shifts to the right for increasing nfacet levels."}
+knitr::include_graphics(here::here("data/hakear/simulations/raw/null_design_quantrans/figs/nfacetbynx_ridge_wpd_N01.png"))
+```
+
+```{r density-raw, fig.cap="Density plot of raw wpd is shown for N(0,1) distribution with nx on x-axis and nfacet on facets. For each panel, it could be seen that the location as well as scale shifts as we move from top-left to bottom-right corner."}
+knitr::include_graphics(here::here("data/hakear/simulations/raw/null_design_quantrans/figs/nxbyfacet_density_wpd_N01.png"))
+```
+
+# Adjusted weighted pairwise distances
+
+_Simulation design_  
+
+This section shows results from the different approaches of adjusting for the number of comparisons. Simulation design is the same as for raw weighted pairwise distances for $m=1$ and $m=2$. In place of $wpd_{raw}$, $wpd_{perm}$, $wpd_{glm}$ and $wpd$ is computed for all panels. 
+
+<!-- \noindent Observations are generated from a N(0,1) distribution for each $nx = \{2, 3, 5, 7, 9, 14, 17, 20, 24, 31, 42, 50\}$ to cover a wide range of levels from very low to moderately high. $ntimes = 500$ observations are drawn for each combination of the categories, that is, for a panel with $nx=3$, $500$ observations are simulated for each of the categories. This design corresponds to $D_{null}$ as each combination of categories in a panel are drawn from the same distribution. Furthermore, the data is simulated for each of the categories $nsim=200$ times, so that the distribution of $wpd$ under $D_{null}$ could be observed. The values of $wpd$ is obtained for each of the panels. $wpd_{l, s}$ denotes the value of $wpd$ obtained for the $l^{th}$ panel and $s^{th}$ simulation. -->
+
+## Permutation approach
+
+Figure \ref{fig:one-gran-nxnyfacet} and \ref{fig:norm} show the normalized ${wpd}$ for $m=1$ and $m=2$ respectively. The location and scale of the distribution of ${wpd}$ is similar for increasing values of $nx$ or $nfacet$. Due to heavy computational load, $wpd_{perm}$ for few panels with very high value of $nx$ or $nfacet$ are not computed.
+
+
+```{r one-gran-nxnyfacet, fig.cap="Distribution of $wpd_{perm}$ are shown for different levels for $m=1$ under the null design. The distribution for different panels have similar location and scale."}
+include_graphics(here("data/hakear/simulations/supplementary/one-gran/norm/null_design_quantrans_nperm/figs/nxbyfacet_ridge_wpd_N01.png"))
+```
+
+
+```{r norm, fig.cap = "Distribution of $wpd_{perm}$ are shown for different levels for $m=2$ under the null design. The distribution for different panels have similar location and scale."}
+G21_norm <- read_rds(here("data/hakear/simulations/norm/null_design_quantrans_nperm/data-agg/all_data_wpd_N01.rds"))
+
+G21_norm %>% 
+  ggplot(aes(x = value)) + 
+  geom_density(fill = "blue") +
+  facet_grid(nx~nfacet,
+             labeller = "label_both") + 
+  scale_x_continuous(breaks = scales::breaks_extended(3)) + 
+  xlab("wpd normalised using permutation approach") +    xlab(TeX("wpd_{perm}")) + theme_bw()
+
+```
+
+## Modeling approach
+
+For for $m=1$, Figure \ref{fig:glm-horizontal-onegran1} shows the scatterplot of $wpd_{raw}$ against different values of $nx$ and also the display of residuals from the model and Figure \ref{fig:glm-density-onegran} shows the distribution of $wpd_{glm}$ for different $nx$. For $m=2$, Figure \ref{fig:glm-horizontal-twogran1} shows the scatter plot of $wpd_{raw}$ against different values of $nx$ and $nfacet$ and also the display of residuals from the model. Figure \ref{fig:wpd-glm-dist-appendix} shows the distribution of $wpd_{glm}$ for different $nx$ and $nfacet$. Tables \ref{tab:tab-modelsm1} and \ref{tab:tab-models} show the GLM results for $m=1$ and $m=2$ respectively. All of these jointly show that the residuals from the model are independent of the number of comparisons. The location and scale of the distribution of $wpd_{glm}$ is similar for higher levels and distinctly different for lower levels.
+
+```{r tab-modelsm1}
+library(here)
+G21_onegran <- read_rds(here("data/hakear/simulations/supplementary/one-gran/raw/null_design_quantrans/data-agg/all_data_wpd_N01.rds"))
+
+G21_median_onegran  <- G21_onegran  %>% 
+  group_by(nx*nfacet) %>% 
+  summarise(actual = median(value))
+
+
+glm_fit_onegran  <- glm(actual ~ log(`nx * nfacet`),
+               family = Gamma(link = "inverse"),
+               data = G21_median_onegran)
+
+bind_cols(distribution = "N(0, 1)", broom::tidy(glm_fit_onegran)) %>% 
+  mutate(estimate = round(estimate, 2),
+         std.error = round(std.error, 3),
+         statistic = round(statistic, 2),
+         p.value = round(p.value, 2)) %>% kable(caption = "Results of generalised linear model to capture the relationship between $wpd_{raw}$ and number of comparisons for $m=1$.")
+
+```
+
+
+
+```{r glm-horizontal-onegran1-raw}
+
+G21 <- read_rds(here("data/hakear/simulations/supplementary/one-gran/raw/null_design_quantrans/data-agg/all_data_wpd_N01.rds"))
+
+G21_median <- G21 %>% 
+  group_by(nx*nfacet) %>% 
+  summarise(actual = median(value))
+
+
+glm_fit <- glm(actual ~ log(`nx * nfacet`),
+               family = Gamma(link = "inverse"),
+               data = G21_median)
+
+intercept <- glm_fit$coefficients[1]
+slope <- glm_fit$coefficients[2]
+G21_sd  = G21 %>% 
+  mutate(wpd_glm =  (value - (1/(intercept + slope*log(nx*nfacet)
+  )
+  )
+  ))
+#scale_fac <- 1/G21_sd$wpd_glm %>% sd()
+
+
+fitted_glm <- fitted(glm_fit, type = "response")
+residuals <- residuals.glm(glm_fit, type = "response")
+
+residual <- G21_median$actual  - fitted_glm
+
+G21_horizontal <- G21 %>% 
+  ggplot(aes(x=log(nx*nfacet),
+             y = (value - (1/(intercept + slope*log(nx*nfacet)
+             )
+             )
+             )
+  )
+  ) +
+  geom_point() + stat_summary(fun=mean, geom="line", aes(group=1), color = "blue", size = 1) + 
+  ylab(TeX("wpd_{glm} = wpd_{raw} - 1/(a  + b*log(nx*nfacet))")) + xlab("log(nx)")
+
+#ggsave("figs/G21_horizontal.png")
+```
+
+```{r glm-horizontal-onegran1, fig.cap = "$wpd_{raw}$ (points) and residuals (blue line) from the model is plotted across different number of comparisons for $m=1$. Residuals seem to be independent of $nx$ and have been defined as $wpd_{glm}$."}
+knitr::include_graphics(here("img/G21_horizontal.png"))
+```
+
+
+```{r glm-density-onegran, fig.cap = "Distribution of $wpd_{glm}$ is plotted across different $nx$ for $m=1$. Both shape and location of the distributions are different for lower $nx$ than for higher $nx$."}
+G21_glm_m1 <- G21 %>% 
+  mutate(wpd_glm =  (value - (1/(intercept + slope*log(nx*nfacet)
+  )
+  )
+  ),
+  wpd_glm_scaled = ((wpd_glm*261)))
+
+mylabels <- G21_glm_m1 %>% 
+  group_by(nx) %>% 
+  summarise(mean = round(mean(wpd_glm), 3), sd = round(sd(wpd_glm), 3)) %>% 
+  mutate(label_glm = paste0("(", mean, ", " ,sd, ")"))
+
+nxbyfacet_ridge <- G21_glm_m1 %>% 
+  ggplot(aes(x = wpd_glm, y = as.factor(nx))) +
+  ggridges::geom_density_ridges() +
+  xlab(TeX("wpd_{glm}")) +
+  ylab("nx") 
+  # geom_label(data = mylabels,
+  #            aes(y = as.factor(nx),
+  #                x = label_glm, 
+  #                label = label_glm))
+
+
+nxbyfacet_ridge
+```
+
+
+
+```{r tab-models}
+G21 <- read_rds(here("data/hakear/simulations/raw/null_design_quantrans/data-agg/all_data_wpd_Gamma21.rds"))
+G01 <- read_rds(here("data/hakear/simulations/raw/null_design_quantrans/data-agg/all_data_wpd_Gamma01.rds"))
+N01 <- read_rds(here("data/hakear/simulations/raw/null_design_quantrans/data-agg/all_data_wpd_N01.rds"))
+N05 <- read_rds(here("data/hakear/simulations/raw/null_design_quantrans/data-agg/all_data_wpd_N05.rds"))
+N51 <- read_rds(here("data/hakear/simulations/raw/null_design_quantrans/data-agg/all_data_wpd_N51.rds"))
+N55 <- read_rds(here("data/hakear/simulations/raw/null_design_quantrans/data-agg/all_data_wpd_N55.rds"))
+
+
+all_data <- bind_rows(G21 = G21, G01 = G01, N01= N01, N05 = N05, N51= N51, N55 = N55, .id = "group")
+
+
+all_median <- all_data %>% 
+  group_by(group, nx*nfacet) %>% 
+    summarise(actual = median(value))
+
+
+glm_model <- function(df) {
+  glm(actual ~ log(`nx * nfacet`), 
+               family = Gamma(link = "inverse"), data = df)
+}
+  
+glm_fit <- all_median %>% 
+  group_by(group) %>% 
+  nest()
+
+models <- map(glm_fit$data, glm_model)
+  
+  
+by_dist <- glm_fit %>% 
+  mutate(model = map(data, glm_model))
+ 
+tidy_obs <- by_dist %>%
+  mutate(tidy = map(model, tidy)) %>%
+  unnest(cols = c(tidy)) %>% 
+  mutate(estimate = round(estimate, 2),
+         std.error = round(std.error, 3),
+         statistic = round(statistic, 2))%>% 
+  mutate(distribution = case_when(
+    group== "G01" ~ "Gamma(0.5, 1)",
+    group== "G21" ~ "Gamma(2, 1)",
+    group== "N01" ~ "N(0, 1)",
+    group== "N05" ~ "N(0, 5)",
+    group== "N51" ~ "N(5, 1)",
+    group== "N55" ~ "N(5, 5)",
+    TRUE~ as.character(group)
+    )) %>% ungroup() %>% 
+  select(-data, -model, - group) %>% 
+     select(distribution, everything())  
+
+tidy_obs %>% kable(caption = "Results of generalised linear model to capture the relationship between $wpd_{raw}$ and number of comparisons for different underlying distribution.")
+```
+
+<!-- # ```{r} -->
+<!-- #  -->
+<!-- # G21_median <- N01 %>% -->
+<!-- #   group_by(nx*nfacet) %>% -->
+<!-- #   summarise(actual = median(value)) -->
+<!-- #  -->
+<!-- #  -->
+<!-- # glm_fit <- glm(actual ~ log(`nx * nfacet`), -->
+<!-- #                family = Gamma(link = "inverse"), -->
+<!-- #                data = G21_median) -->
+<!-- # # tidy(glm_fit) -->
+<!-- #  -->
+<!-- # ``` -->
+
+```{r glm-horizontal-twogran, fig.cap = "Residuals from the model is plotted across different $nx$ and $nfacet$. Residuals seem to be independent of $log(nx*nfacet)$ and have been defined as $wpd_{glm}$ in the paper."}
+
+G21 <- read_rds(here("data/hakear/simulations/raw/null_design_quantrans/data-agg/all_data_wpd_N01.rds"))
+
+G21_median <- G21 %>% 
+  group_by(nx*nfacet) %>% 
+  summarise(actual = median(value))
+
+glm_fit <- glm(actual ~ log(`nx * nfacet`),
+               family = Gamma(link = "inverse"),
+               data = G21_median)
+
+intercept <- glm_fit$coefficients[1]
+slope <- glm_fit$coefficients[2]
+G21_sd  = G21 %>% 
+  mutate(wpd_glm =  (value - (1/(intercept + slope*log(nx*nfacet)
+  )
+  )
+  ))
+#scale_fac <- 1/G21_sd$wpd_glm %>% sd()
+# checking the fit of the residuals from glm fit
+# fitted_glm <- fitted(glm_fit, type = "response")
+# residuals <- residuals.glm(glm_fit, type = "response")
+# hist(residuals)
+#h = augment(glm_fit)
+# ggplot(h) +
+#   geom_histogram(aes(x = .resid))
+# residual <- G21_median$actual  - fitted_glm
+# 
+# hist(residual)
+G21_horizontal <- G21 %>%
+  ggplot(aes(x=log(nx*nfacet),
+             y = (value - (1/(intercept + slope*log(nx*nfacet)
+             )
+             )
+             )
+  )
+  ) +
+  geom_point() + 
+  stat_summary(fun=mean,
+               geom="line",
+               aes(group=1),
+               color = "blue",
+               size = 1) +
+  ylab(TeX("wpd_{glm} = wpd_{raw} - 1/(a  + b*log(nx*nfacet))"))
+
+# broom::tidy(glm_fit) %>% kable(caption = "Results of generalised linear model to capture the relationship between $wpd_{raw}$ and number of comparisons.")
+
+#ggsave("figs/G21_horizontal_m2.png")
+```
+
+```{r glm-horizontal-twogran1, fig.cap = "$wpd_{raw}$ (points) and residuals (blue line) from the model is plotted across different number of comparisons for $m=2$. Residuals seem to be independent of $nx$ and have been defined as $wpd_{glm}$."}
+knitr::include_graphics(here("img/G21_horizontal_m2.png"))
+```
+
+```{r wpd-glm-dist-appendix, fig.cap = "Distribution of $wpd_{glm}$ is plotted across different $nx$ for $m=2$. Both shape and scale of the distributions are different for lower $nx$ than for higher $nx$."}
+G21_glm <- G21 %>% 
+  mutate(wpd_glm =  (value - (1/(intercept + slope*log(nx*nfacet)
+  )
+  )
+  ),
+  wpd_glm_scaled = ((wpd_glm*320)))
+
+#G21_glm$wpd_glm_scaled %>% sd()
+
+G21_glm %>%
+  ggplot() +
+  geom_density(aes(x = wpd_glm),
+               fill = "blue") +
+  facet_grid(nx~nfacet,
+             labeller = "label_both") +
+  theme(legend.position = "bottom")
+
+```
+
+## Combination approach
+
+Figure \ref{fig:dist-same-scale-onegran} and \ref{fig:dist-new-same-scale-link} show the distribution of $wpd_{perm}$ and $wpd_{glm-scaled}$ overlaid on each other for $m=1$ and $m=2$ respectively. $wpd$ takes the value of $wpd_{perm}$ for lower levels 
+$(<=5)$, and $wpd_{glm-scaled}$ for higher levels so that we have similar location and scale across panels with different levels.
+
+
+```{r dist-same-scale-onegran, fig.cap = "The distribution of $wpd_{perm}$ and $wpd_{glm-scaled}$ are overlaid to compare the location and scale across different $nx$ for $m=1$. The distribution of the adjusted measure looks similar for both approaches for higher levels, but for $nx=2$ both location and scale differs."}
+G21_permutation <- read_rds(here("data/hakear/simulations/supplementary/one-gran/norm/null_design_quantrans_nperm/data-agg/all_data_wpd_N01.rds")) %>%
+  rename("wpd_permutation" = "value")
+
+
+
+G21_all_data <- G21_permutation %>% 
+  # left_join(G21_lm, by = c("nx", "nfacet", "perm_id")) %>% 
+  left_join(G21_glm_m1, by = c("nx", "nfacet", "perm_id")) %>% 
+  pivot_longer(cols = c(3, 7),
+               names_to = "type_estimate",
+               values_to = "value_estimate")
+G21_all_data$type_estimate = factor(G21_all_data$type_estimate , levels = c( "wpd_permutation", "wpd_glm_scaled"))
+
+
+summary_data <- G21_all_data %>% 
+  group_by(nx, nfacet, type_estimate) %>% 
+  summarise(mean = mean(value_estimate)) %>% ungroup()
+
+
+G21_all_data %>% 
+  filter(type_estimate %in% c("wpd_glm_scaled", "wpd_permutation")) %>% 
+  ggplot(aes(x = value_estimate)) +
+  geom_density(aes(fill = type_estimate), alpha = 0.5, size = .5) +
+  geom_vline(data = summary_data, aes(xintercept = mean, color = type_estimate)) + 
+  geom_rug(aes(color = type_estimate), length = unit(0.09,"cm"), alpha = 0.5) +
+  #coord_cartesian(clip = "off") + 
+  facet_wrap(~nx,
+             labeller = "label_both") +
+  theme_bw() + 
+  theme(legend.position = "bottom") +
+  scale_fill_manual(values = c( "#D55E00", "#0072B2")) +
+  scale_color_manual(values = c( "#D55E00", "#0072B2")) +
+  xlab("adjusted values of wpd") 
+```
+
+```{r dist-new-same-scale-link, fig.cap = "The distribution of $wpd_{perm}$ and $wpd_{glm-scaled}$ are overlaid to compare the location and scale across different $nx$ and $nfacet$ for $m=2$. $wpd$ takes the value of $wpd_{perm}$ for lower levels, and $wpd_{glm-scaled}$ for higher levels. "}
+
+G21 <- read_rds(here("data/hakear/simulations/raw/null_design_quantrans/data-agg/all_data_wpd_N01.rds"))
+G21_median <- G21 %>% 
+  group_by(nx*nfacet) %>% 
+  summarise(actual = median(value))
+glm_fit <- glm(actual ~ log(`nx * nfacet`),
+               family = Gamma(link = "inverse"),
+               data = G21_median)
+intercept <- glm_fit$coefficients[1]
+slope <- glm_fit$coefficients[2]
+
+G21_glm <- G21_glm <- G21 %>% 
+  mutate(wpd_glm =  (value - (1/(intercept + slope*log(nx*nfacet)
+  )
+  )
+  ),
+  wpd_glm_scaled = ((wpd_glm*320)))
+
+
+G21_permutation <- read_rds(here("data/hakear/simulations/norm/null_design_quantrans_nperm/data-agg/all_data_wpd_N01.rds")) %>%
+  rename("wpd_permutation" = "value")
+
+
+# G21_model_data <- G21 %>%
+#   mutate(model =
+#            ((1/value)
+#                   - intercept -
+#                     slope*log(nx*nfacet))/slope) %>%
+#   mutate(model_trans =
+#            (model - mean(model))/sd(model))
+
+# G21_model_data$model %>% summary()
+
+G21_all_data <- G21_permutation %>% 
+  # left_join(G21_lm, by = c("nx", "nfacet", "perm_id")) %>% 
+  left_join(G21_glm, by = c("nx", "nfacet", "perm_id")) %>% 
+  pivot_longer(cols = c(3, 7),
+               names_to = "type_estimate",
+               values_to = "value_estimate")
+G21_all_data$type_estimate = factor(G21_all_data$type_estimate , levels = c( "wpd_permutation", "wpd_glm_scaled"))
+
+
+summary_data <- G21_all_data %>% 
+  group_by(nx, nfacet, type_estimate) %>% 
+  summarise(mean = mean(value_estimate)) %>% ungroup()
+
+
+G21_all_data %>% 
+  filter(type_estimate %in% c("wpd_glm_scaled", "wpd_permutation")) %>% 
+  ggplot(aes(x = value_estimate)) +
+  geom_density(aes(fill = type_estimate), alpha = 0.5, size = .5) +
+  geom_vline(data = summary_data, aes(xintercept = mean, color = type_estimate)) + 
+  geom_rug(aes(color = type_estimate), length = unit(0.09,"cm"), alpha = 0.5) +
+  #coord_cartesian(clip = "off") + 
+  facet_grid(nx~nfacet,
+             labeller = "label_both") +
+  theme_bw() + 
+  theme(legend.position = "bottom") +
+  scale_fill_manual(values = c( "#D55E00", "#0072B2")) +
+  scale_color_manual(values = c( "#D55E00", "#0072B2")) +
+  xlab("adjusted values of wpd") +
+  scale_x_continuous(breaks = c(-5, -3, 0, 3, 5)) 
+
+```
+
+
+
+# Ranking and selecting harmonies
+
+\noindent _Simulation design_  
+ 
+Observations are generated from a N(0,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = \{3, 7, 14\}$ and $nfacet = \{2, 9, 10\}$. This would result in 9 panels, viz, $(3, 2), (3, 9), (3, 10), \dots, (14,9), (14, 10)$. Few experiments were conducted. In the first scenario, data for all panels are simulated using the null design $D_{null}$. In other scenarios, data simulated from the panel $(14, 2)$ and $(3, 10)$ are under $D_{vary_{all}}$. Moreover, $\omega = \{0.5, 2, 5\}$ are considered to examine if the proposed test is able to capture subtle differences and non-subtle differences when we shift from the null design. In the last scenario, we consider the panel $(3, 2), (7,9), (14, 10)$ to be under $D_{null}$, the panels $(7, 2), (14, 9)$ to be under $D_{var_f}$. $(14, 2), (3, 10)$ under $D_{var_x}$ and the rest under $D_{var_{null}}$. This is done to check if the consequent ranking procedure leads to designs like $D_{vary_{f}}$ rank below $D_{vary_{all}}$. We generate only one data set each for which these scenarios were simulated and consider this as the original data set. We generate $1000$ repetitions of this experiment with different seeds.
+
+\noindent _Results_  
+
+Figure \ref{fig:foo} shows the distribution of $wpd$ for the simulated $9$ null designs of different levels with each harmony being rejected if the corresponding $wpd$ value is higher than $wpd_{threshold99}$. Although the level of significance for each test is 1%, the level of significance for multiple tests together is 10% as displayed through the red line. This means that 10% of the times the null designs will be tagged as interesting even when there is actually nothing interesting going on.
+
+```{r}
+all_data <- read_rds("data/hakear/simulations/supplementary/test-hpc/data-agg/all_data.rds")
+
+
+# computes size for 99 percentile threshold
+all_data <- all_data %>%
+  filter(!is.na(x_levels), !is.na(facet_levels))
+
+
+
+data_summary <- all_data%>% 
+  mutate(sig = if_else(significance!=99, 0, 99)) %>% 
+  group_by(seed_id) %>% 
+  summarize(sumsig = sum(sig)) %>% 
+  count(sumsig==0) %>% 
+  mutate(p_value = n/sum(n)) %>% 
+  slice(1)
+
+data_summary_lowlev <- all_data%>% 
+  filter(x_levels==3, facet_levels ==2) %>% 
+  mutate(sig = if_else(significance!=99, 0, 99)) %>% 
+  group_by(seed_id) %>% 
+  summarize(sumsig = sum(sig)) %>% 
+  count(sumsig==0) %>% 
+  mutate(p_value = n/sum(n)) %>% 
+  slice(1)
+
+# plots
+
+global_threshold <-  tibble(threshold = "89.4", value = quantile(all_data$wpd, 0.894, na.rm = TRUE))
+```
+
+<!-- $wpd_{threshold99}$ is obtained as `r round(global_threshold$value, 2)` for this experiment, which leads to a p-value of `r round(data_summary$p_value, 3)`. Figure \ref{fig:global-size} shows the distribution of $wpd$ obtained from this experiment with the red line denoting $wpd_{threshold99}$. If we split the display of distribution between $nx$ and $nfacet$, then Figure \ref{fig:local-size} shows that the probability of rejecting the null when it is actually true is higher for smaller levels, however, it is still within limits (around `r round(data_summary_lowlev$p_value, 3)`). -->
+
+(ref:foo) The distribution of $wpd$ for 9 null designs of different levels with each harmony being rejected if the corresponding $wpd$ value is higher than $wpd_{threshold99}$. Although the level of significance for each test is 1%, the level of significance for multiple tests together is 10% as displayed through the red line. This means 10% of the times the null designs will be tagged as interesting even when there is actually nothing interesting going on.
+
+```{r foo, fig.cap='(ref:foo)'}
+
+ggplot() + 
+  geom_histogram(data = all_data, aes(x = wpd))  + 
+  geom_vline(data = global_threshold, aes(xintercept =  value),colour = "red", size = 1.5) 
+```
+
+
+```{r local-size, fig.cap = "something", eval = FALSE}
+ggplot() + 
+  geom_histogram(data = all_data, aes(x = wpd))  + 
+  geom_vline(data = global_threshold, aes(xintercept =  value),colour = "red", size = 1.5) +
+  facet_grid(x_levels~facet_levels)
+```
+
+```{r hist-qq-new-appendix, fig.cap = "In panel a, the histogram of $wpd_{glm-scaled}$ is plotted. In part b, the QQ plot is shown with the theoretical quantiles on the x-axis and $wpd_{glm-scaled}$ quantiles on the y-axis. The distribution looks symmetric and looks like normal except in the tails.", eval = FALSE}
+
+```  
+
+```{r quadratic, fig.cap = "$wpd$ is plotted against $nx*nfacet$ (the maximum number of pairwise comparisons) and the blue line represents the median of the multiple values for each $nx*nfacet$. The median increases abruptly for lower values of $nx*nfacet$ and slowly for higher $nx*nfacet$. Thus, the measure will have higher values for higher levels in $nx$ or $nfacet$.", eval = FALSE}
+```
+
+# Raw time series plot
+
+\noindent To get a sense of how the raw time series data looks, we plot the energy usage for $50$ sampled households is plotted along the y-axis versus time from past to future in Figure ref\{fig:raw-data-50}. Each of these series is associated with a single customer. Energy consumption for each customer is given at fine temporal resolution (every 30 minutes) for a period of 2-3 years.
+
+```{r raw-data-50, out.width = "100%", fig.cap="The raw data for 50 households are shown. It looks like there is a lot of missing values and unequal length of time series along with asynchronous periods for which data is observed. No insightful behavioral pattern could be discerned from this view other than when the customer is not at home."}
+
+knitr::include_graphics("img/raw_plot_cust.png") # look at smart-meter.R for the code
+```

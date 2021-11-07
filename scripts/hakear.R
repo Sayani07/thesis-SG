@@ -20,6 +20,8 @@ library(GGally)
 library(viridis)
 #remotes::install_github("Sayani07/hakear", force = TRUE)
 library(hakear)
+library(latex2exp)
+library(broom)
 
 #library(tidyquant)
 
