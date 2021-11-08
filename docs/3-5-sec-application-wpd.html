@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.5 Application to residential smart meter dataset | Visualization and analysis of probability distributions of large temporal data</title>
+  <meta name="description" content="3.5 Application to residential smart meter dataset | Visualization and analysis of probability distributions of large temporal data" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.5 Application to residential smart meter dataset | Visualization and analysis of probability distributions of large temporal data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.5 Application to residential smart meter dataset | Visualization and analysis of probability distributions of large temporal data" />
+  
+  
+  
+
+<meta name="author" content="Sayani Gupta" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3-4-sec-simulations.html"/>
+<link rel="next" href="3-6-discussion.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"> </a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="ch-abstract.html"><a href="ch-abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="ch-thanks.html"><a href="ch-thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="ch-preface.html"><a href="ch-preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-sec-gravitas.html"><a href="1-1-sec-gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-sec-hakear.html"><a href="1-2-sec-hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-sec-gracsr.html"><a href="1-3-sec-gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-summary.html"><a href="1-4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch-gravitas.html"><a href="2-ch-gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-introduction.html"><a href="2-1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-sec-linear-time.html"><a href="2-2-sec-linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-sec-cyclic-gran.html"><a href="2-3-sec-cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-sec-data-structure.html"><a href="2-4-sec-data-structure.html"><i class="fa fa-check"></i><b>2.4</b> Data structure</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-sec-visualization.html"><a href="2-5-sec-visualization.html"><i class="fa fa-check"></i><b>2.5</b> Visualization</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-sec-application.html"><a href="2-6-sec-application.html"><i class="fa fa-check"></i><b>2.6</b> Applications</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-sec-discussion.html"><a href="2-7-sec-discussion.html"><i class="fa fa-check"></i><b>2.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-hakear.html"><a href="3-ch-hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction-1.html"><a href="3-1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-sec-computation-wpd.html"><a href="3-2-sec-computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-sec-rank-wpd.html"><a href="3-3-sec-rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-sec-simulations.html"><a href="3-4-sec-simulations.html"><i class="fa fa-check"></i><b>3.4</b> Simulations</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-sec-application-wpd.html"><a href="3-5-sec-application-wpd.html"><i class="fa fa-check"></i><b>3.5</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-discussion.html"><a href="3-6-discussion.html"><i class="fa fa-check"></i><b>3.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thankshakear.html"><a href="thankshakear.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-hakear.html"><a href="supplement-hakear.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-gracsr.html"><a href="4-ch-gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-introduction-2.html"><a href="4-1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-sec-methodology.html"><a href="4-2-sec-methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-sec-validation.html"><a href="4-3-sec-validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
+<li class="chapter" data-level="4.4" data-path="4-4-sec-cases.html"><a href="4-4-sec-cases.html"><i class="fa fa-check"></i><b>4.4</b> Case study</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-sec-conclusion.html"><a href="4-5-sec-conclusion.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion and future work</a></li>
+<li class="chapter" data-level="" data-path="thanksgracsr.html"><a href="thanksgracsr.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gracsr.html"><a href="supplement-gracsr.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch-conclusion.html"><a href="5-ch-conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion and future plans</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-software-development.html"><a href="5-1-software-development.html"><i class="fa fa-check"></i><b>5.1</b> Software development</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-future-work.html"><a href="5-2-future-work.html"><i class="fa fa-check"></i><b>5.2</b> Future work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-appendix.html"><a href="ch-appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="chapter" data-level="6" data-path="6-recalling-notations.html"><a href="6-recalling-notations.html"><i class="fa fa-check"></i><b>6</b> Recalling notations</a></li>
+<li class="chapter" data-level="7" data-path="7-raw-weighted-pairwise-distance.html"><a href="7-raw-weighted-pairwise-distance.html"><i class="fa fa-check"></i><b>7</b> Raw weighted pairwise distance</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-tuning-parameter-1.html"><a href="7-1-tuning-parameter-1.html"><i class="fa fa-check"></i><b>7.1</b> Tuning parameter</a></li>
+<li class="chapter" data-level="7.2" data-path="7-2-underlying-distributions.html"><a href="7-2-underlying-distributions.html"><i class="fa fa-check"></i><b>7.2</b> Underlying distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="7-3-number-of-comparisons.html"><a href="7-3-number-of-comparisons.html"><i class="fa fa-check"></i><b>7.3</b> Number of comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-adjusted-weighted-pairwise-distances.html"><a href="8-adjusted-weighted-pairwise-distances.html"><i class="fa fa-check"></i><b>8</b> Adjusted weighted pairwise distances</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-permutation-approach.html"><a href="8-1-permutation-approach.html"><i class="fa fa-check"></i><b>8.1</b> Permutation approach</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-modeling-approach.html"><a href="8-2-modeling-approach.html"><i class="fa fa-check"></i><b>8.2</b> Modeling approach</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-combination-approach.html"><a href="8-3-combination-approach.html"><i class="fa fa-check"></i><b>8.3</b> Combination approach</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-ranking-and-selecting-harmonies.html"><a href="9-ranking-and-selecting-harmonies.html"><i class="fa fa-check"></i><b>9</b> Ranking and selecting harmonies</a></li>
+<li class="chapter" data-level="10" data-path="10-raw-time-series-plot.html"><a href="10-raw-time-series-plot.html"><i class="fa fa-check"></i><b>10</b> Raw time series plot</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization and analysis of probability distributions of large temporal data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:application-wpd" class="section level2">
+<h2><span class="header-section-number">3.5</span> Application to residential smart meter dataset</h2>
+<p>The smart meter data set for eight households in Melbourne has been utilized to see the use of <span class="math inline">\(wpd\)</span> proposed in the paper. The data has been cleaned to be a <code>tsibble</code> (<span class="citation">E. Wang, Cook, and Hyndman (<a href="bibliography.html#ref-wang2020tsibble" role="doc-biblioref">2020</a><a href="bibliography.html#ref-wang2020tsibble" role="doc-biblioref">a</a>)</span>) containing half-hourly electricity consumption from Jul-2019 to Dec-2019 for each of the households, which is procured by them by downloading their data from the energy supplier/retailer.
+No behavioral pattern is likely to be discerned from the line graph of energy usage over the entire period, since the plot will have too many measurements squeezed in a linear representation. When we zoom into the linear representation of this series in Figure  (b) for September, some patterns are visible in terms of peaks and troughs, but we do not know if they are regular or what is their period.
+Electricity demand, in general, has a daily and weekly periodic pattern. However, it is not apparent from this view if all of these households have those patterns and in case they have if they are significant enough. Also, it is not clear if any other periodic patterns are present in any household which might have been hidden with this view. We start the analysis by choosing few harmonies, ranking them for each of these households, compare households to get more insights into what these rankings imply. Furthermore, the ranking and selection of significant harmonies is validated by analyzing the distribution of energy usage across significant harmonies.</p>
+<!-- if we are benefiting by moving from a linear to cyclic representation of time to . -->
+<p><em>Choosing cyclic granularities of interest and removing clashes</em></p>
+<p>Let <span class="math inline">\(v_{i, t}\)</span> denote the electricity demand for <span class="math inline">\(i^{th}\)</span> household for time period <span class="math inline">\(t\)</span>. The series <span class="math inline">\(v_{i, t}\)</span> is the linear granularity corresponding to half-hour since the interval of the tsibble is 30 minutes. We consider coarser linear granularities like hour, day, week and month from the commonly used Gregorian calendar. Considering <span class="math inline">\(4\)</span> linear granularities hour, day, week, month, the number of cyclic granularities is <span class="math inline">\(N_C = (4 * 3/2) = 6\)</span>. We obtain cyclic granularities namely “hour_day”, “hour_week”, “hour_month”, “day_ week”, “day_month” and “week_month”, read as “hour of the day”, etc. Further, we add cyclic granularity day-type (“wknd wday”) to capture weekend and weekday behavior. Thus, <span class="math inline">\(7\)</span> cyclic granularities are considered to be of interest. The set consisting of pairs of cyclic granularities (<span class="math inline">\(C_{N_C}\)</span>) will have <span class="math inline">\(7_{P_2}=42\)</span> elements which could be analyzed for detecting possible periodicities. The set of possible harmonies <span class="math inline">\(H_{N_C}\)</span> from <span class="math inline">\(C_{N_C}\)</span> are chosen by removing clashes using procedures described in <span class="citation">(Gupta et al. <a href="bibliography.html#ref-Gupta2021-gravitas" role="doc-biblioref">2021</a>)</span>. Table  shows <span class="math inline">\(14\)</span> harmony pairs that belong to <span class="math inline">\(H_{N_C}\)</span>.</p>
+<!-- The paper also shows how the number of harmonies could be identified among  by removing clashes. This section shows how we could refine the search further by only looking at significant harmonies. -->
+<p><em>Selecting and Ranking harmonies for all households</em></p>
+<p><span class="math inline">\(wpd_{i}\)</span> is computed on <span class="math inline">\(v_{i, t}\)</span> for all harmony pairs <span class="math inline">\(\in H_{N_C}\)</span> and for each households <span class="math inline">\(i \in \{1, 2, \dots, 8\}\)</span>. The harmony pairs are then arranged in descending order and highlighted with <code>***</code>, <code>**</code> and <code>*</code> corresponding to the <span class="math inline">\(99^{th}\)</span>, <span class="math inline">\(95^{th}\)</span> and <span class="math inline">\(90^{th}\)</span> percentile threshold. Table  shows the rank of the harmonies for different households. The rankings are different for different households, which is a reflection of their varied behaviors. Most importantly, there are at most <span class="math inline">\(3\)</span> harmonies that are significant for any household. This is a huge reduction in the number of potential harmonies to explore closely, starting from <span class="math inline">\(42\)</span>.</p>
+<p><em>Detecting patterns not apparent from linear display</em></p>
+<p>Figure  helps to compare households through the heatmap (a) across harmony pairs with the cyclic granularity mapped to x-axis and facet being plotted on the x-axis and y-axis of the heatmap. Here <span class="math inline">\(dom\)</span>, <span class="math inline">\(dow\)</span>, <span class="math inline">\(wdwnd\)</span> are abbreviations for day-of-month, day-of-week, weekday/weekend and so on. The colors represent the value of <span class="math inline">\(wpd\)</span>. Darker cells correspond to more significant harmony pairs. Also, the ones with <code>*</code> corresponds to the ones above <span class="math inline">\(wpd_{threshold95}\)</span>.
+Few observations that emphasizes patterns not discernible through (b) includes - (1) id 7 and 8 have the same significant harmonies despite having very different total energy usage, (2) id 6 and 7 differ in the sense that for id 6, the difference in patterns only during weekday/weekends, whereas for id 7, all or few other days of the week are also important. This might be due to their flexible work routines or different day-off, (3) there are no significant periodic patterns for id 5 when we fix the threshold to <span class="math inline">\(wpd_{threshold95}\)</span>. Note that the <span class="math inline">\(wpd\)</span> values are computed over the entire range, but the linear display in (b) is zoomed only for September, with the major and minor x-axis corresponding to weeks and days respectively.</p>
+<!-- Households id 2 and 3 are similar, in terms of linear display and heatmap, which implies that similar periodic behavior can stem from households with different demographics. -->
+<div class="figure" style="text-align: center"><span id="fig:dotplot-8"></span>
+<img src="figure/dotplot-8-1.png" alt="An ensemble plot with a heatmap (a), line plot (b), parallel coordinate plot (c) to demonstrate energy behavior of the households in different ways. (b) is the zoomed-in raw demand series for September to highlight the repetitive patterns of energy demand. (a) shows $wpd$ values across harmonies with the x variable of harmony placed across x-axis and facet variable placed across y-axis. The darker the colour in (a), the higher the harmony is ranked. Visualizing harmonies through (a) allows to view the significant cyclic granularities along the x-axis, facet or both for each household. For eg, ids 7 and 8 have significant patterns across (hod, dow) and (dow, hod), which was not apparent through (a). (c) is useful for comparing households across harmonies, for eg, for the harmony (dow-hod), ids 1 and 7 have the least and highest wpd respectively." width="100%" />
+<p class="caption">
+Figure 3.7: An ensemble plot with a heatmap (a), line plot (b), parallel coordinate plot (c) to demonstrate energy behavior of the households in different ways. (b) is the zoomed-in raw demand series for September to highlight the repetitive patterns of energy demand. (a) shows <span class="math inline">\(wpd\)</span> values across harmonies with the x variable of harmony placed across x-axis and facet variable placed across y-axis. The darker the colour in (a), the higher the harmony is ranked. Visualizing harmonies through (a) allows to view the significant cyclic granularities along the x-axis, facet or both for each household. For eg, ids 7 and 8 have significant patterns across (hod, dow) and (dow, hod), which was not apparent through (a). (c) is useful for comparing households across harmonies, for eg, for the harmony (dow-hod), ids 1 and 7 have the least and highest wpd respectively.
+</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">facet variable</th>
+<th align="left">x variable</th>
+<th align="left">id 1</th>
+<th align="left">id 2</th>
+<th align="left">id 3</th>
+<th align="left">id 4</th>
+<th align="left">id 5</th>
+<th align="left">id 6</th>
+<th align="left">id 7</th>
+<th align="left">id 8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">hod</td>
+<td align="left">wdwnd</td>
+<td align="left">1 ***</td>
+<td align="left">2 *</td>
+<td align="left">1 **</td>
+<td align="left">2 **</td>
+<td align="left">3</td>
+<td align="left">1 **</td>
+<td align="left">3</td>
+<td align="left">3 *</td>
+</tr>
+<tr class="even">
+<td align="left">dom</td>
+<td align="left">hod</td>
+<td align="left">2 ***</td>
+<td align="left">4</td>
+<td align="left">3 **</td>
+<td align="left">3 **</td>
+<td align="left">4</td>
+<td align="left">3 *</td>
+<td align="left">4</td>
+<td align="left">6</td>
+</tr>
+<tr class="odd">
+<td align="left">wdwnd</td>
+<td align="left">hod</td>
+<td align="left">3 **</td>
+<td align="left">10</td>
+<td align="left">7</td>
+<td align="left">7</td>
+<td align="left">6</td>
+<td align="left">8</td>
+<td align="left">8</td>
+<td align="left">10</td>
+</tr>
+<tr class="even">
+<td align="left">hod</td>
+<td align="left">wom</td>
+<td align="left">4</td>
+<td align="left">9</td>
+<td align="left">6</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">wom</td>
+<td align="left">wdwnd</td>
+<td align="left">5</td>
+<td align="left">14</td>
+<td align="left">14</td>
+<td align="left">10</td>
+<td align="left">12</td>
+<td align="left">9</td>
+<td align="left">12</td>
+<td align="left">13</td>
+</tr>
+<tr class="even">
+<td align="left">hod</td>
+<td align="left">dow</td>
+<td align="left">6</td>
+<td align="left">1 ***</td>
+<td align="left">2 **</td>
+<td align="left">1 ***</td>
+<td align="left">1 *</td>
+<td align="left">2 **</td>
+<td align="left">2 **</td>
+<td align="left">1 **</td>
+</tr>
+<tr class="odd">
+<td align="left">wdwnd</td>
+<td align="left">wom</td>
+<td align="left">7</td>
+<td align="left">12</td>
+<td align="left">13</td>
+<td align="left">8</td>
+<td align="left">7</td>
+<td align="left">7</td>
+<td align="left">10</td>
+<td align="left">12</td>
+</tr>
+<tr class="even">
+<td align="left">dow</td>
+<td align="left">hod</td>
+<td align="left">8</td>
+<td align="left">3</td>
+<td align="left">4 **</td>
+<td align="left">4 **</td>
+<td align="left">2</td>
+<td align="left">4 *</td>
+<td align="left">1 ***</td>
+<td align="left">2 **</td>
+</tr>
+<tr class="odd">
+<td align="left">hod</td>
+<td align="left">dom</td>
+<td align="left">9</td>
+<td align="left">7</td>
+<td align="left">10</td>
+<td align="left">13</td>
+<td align="left">10</td>
+<td align="left">10</td>
+<td align="left">9</td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left">wom</td>
+<td align="left">dow</td>
+<td align="left">10</td>
+<td align="left">6</td>
+<td align="left">8</td>
+<td align="left">9</td>
+<td align="left">8</td>
+<td align="left">6</td>
+<td align="left">7</td>
+<td align="left">9</td>
+</tr>
+<tr class="odd">
+<td align="left">dow</td>
+<td align="left">wom</td>
+<td align="left">11</td>
+<td align="left">5</td>
+<td align="left">9</td>
+<td align="left">11</td>
+<td align="left">11</td>
+<td align="left">12</td>
+<td align="left">6</td>
+<td align="left">7</td>
+</tr>
+<tr class="even">
+<td align="left">wom</td>
+<td align="left">hod</td>
+<td align="left">12</td>
+<td align="left">8</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">9</td>
+<td align="left">11</td>
+<td align="left">11</td>
+<td align="left">8</td>
+</tr>
+<tr class="odd">
+<td align="left">dom</td>
+<td align="left">wdwnd</td>
+<td align="left">13</td>
+<td align="left">13</td>
+<td align="left">11</td>
+<td align="left">12</td>
+<td align="left">14</td>
+<td align="left">14</td>
+<td align="left">14</td>
+<td align="left">14</td>
+</tr>
+<tr class="even">
+<td align="left">wdwnd</td>
+<td align="left">dom</td>
+<td align="left">14</td>
+<td align="left">11</td>
+<td align="left">12</td>
+<td align="left">14</td>
+<td align="left">13</td>
+<td align="left">13</td>
+<td align="left">13</td>
+<td align="left">11</td>
+</tr>
+</tbody>
+</table>
+<p><em>Comparing households and validating rank of harmonies</em></p>
+<p>According to Figure (c), for the harmony pair (dow-hod), household id 7 has the greatest value of <span class="math inline">\(wpd\)</span>, while id 1 has the least. Also, from table  it could be seen that the harmony pair <span class="math inline">\((dow, hod)\)</span> is important for id 7, however it has been labeled as an inconsequential pair for id 1. The distribution of energy demand for both of these households, with <span class="math inline">\(dow\)</span> as the facet and <span class="math inline">\(hod\)</span> on the x-axis, may help explain the choice. Figure  demonstrates that for id 7, the median (black) and quartile deviation (orange) of energy consumption fluctuates throughout for most hours of the day and day of the week, while for id 1, daily patterns are consistent within weekdays and weekends. As a result, for id 1, it is more appropriate to examine the distributional difference solely across (dow, wdwnd), which has been rated higher in Table .</p>
+<!-- Although the differences might seem significant at first, with closer inspection it could be seen that the scale of the demand is lower in this case and hence the differences are not large enough to cross the threshold for significance. -->
+<!-- Figure \ref{fig:gravitas-plot-8} is used to show -->
+<!-- if this selection and ranking of harmony pairs makes sense for this household. Panel a) of  Figure \ref{fig:gravitas-plot-8} shows the distribution of energy demand with weekday/weekend as the x-axis and hour-of-day as the facets and helps to compare the weekend/weekday patterns for different hours of the day. It could be observed that the difference between weekend and weekday is the highest from 15 to 19 hours of the day. Panel b) shows the distribution of energy demand with the variables swapped and helps to compare the daily patterns within weekday and weekend. It could be observed that the daily pattern is similar for weekdays and weekends with a morning and evening peak. However, the difference between morning and evening peaks are higher for weekends. Since $wpd$ is designed to put more weightage on within-facet differences for $\lambda>0.5$, it makes sense that the pair (hod, wdwnd) has been ranked higher than (wdwnd, hod). Panel c) shows the distribution of energy demand with weekday/weekend as the x-axis and week-of-month as the facets. Although the differences might seem significant at first, with closer inspection it could be seen that the scale of the demand is lower in this case and hence the differences are not large enough to cross the threshold for significance. -->
+<div class="figure" style="text-align: center"><span id="fig:gravitas-plot-8"></span>
+<img src="figure/gravitas-plot-8-1.png" alt="Comparing distribution of energy demand shown for household id 1 (a) and 7 (b) across hod in x-axis and dow in facets through quantile area plots. The value of $wpd$ in Table 3 suggests that the harmony pair (dow, hod) is significant for household id 7, but not for 1. This implies that distributional differences are captured more by this harmony for id 7, which is apparent from this display with more fluctuations across median and 75th percentile for different hours of the day and day of week. For id 1, patterns look similar within weekdays and weekends. Here, the median is represented by the black line, the orange area corresponds to quartile deviation and the green area corresponds to area between $10^{th}$ and $90^{th}$ quantile." width="100%" />
+<p class="caption">
+Figure 3.8: Comparing distribution of energy demand shown for household id 1 (a) and 7 (b) across hod in x-axis and dow in facets through quantile area plots. The value of <span class="math inline">\(wpd\)</span> in Table 3 suggests that the harmony pair (dow, hod) is significant for household id 7, but not for 1. This implies that distributional differences are captured more by this harmony for id 7, which is apparent from this display with more fluctuations across median and 75th percentile for different hours of the day and day of week. For id 1, patterns look similar within weekdays and weekends. Here, the median is represented by the black line, the orange area corresponds to quartile deviation and the green area corresponds to area between <span class="math inline">\(10^{th}\)</span> and <span class="math inline">\(90^{th}\)</span> quantile.
+</p>
+</div>
+<!-- From Figure \ref{fig:gravitas-plot-8-id5}, it could further be observed that id5 has only one significant harmony $(hod, dow)$. Apparently, $(hod, wnd/wday)$ which is an important harmony for most households is not important for this one. -->
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-4-sec-simulations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-6-discussion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/earowang/thesis/edit/master/Rmd//03-hakear.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

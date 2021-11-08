@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.3 Cyclic time granularities | Visualization and analysis of probability distributions of large temporal data</title>
+  <meta name="description" content="2.3 Cyclic time granularities | Visualization and analysis of probability distributions of large temporal data" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.3 Cyclic time granularities | Visualization and analysis of probability distributions of large temporal data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.3 Cyclic time granularities | Visualization and analysis of probability distributions of large temporal data" />
+  
+  
+  
+
+<meta name="author" content="Sayani Gupta" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-2-sec-linear-time.html"/>
+<link rel="next" href="2-4-sec-data-structure.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"> </a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="ch-abstract.html"><a href="ch-abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="ch-thanks.html"><a href="ch-thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="ch-preface.html"><a href="ch-preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-sec-gravitas.html"><a href="1-1-sec-gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-sec-hakear.html"><a href="1-2-sec-hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-sec-gracsr.html"><a href="1-3-sec-gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-summary.html"><a href="1-4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch-gravitas.html"><a href="2-ch-gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-introduction.html"><a href="2-1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-sec-linear-time.html"><a href="2-2-sec-linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-sec-cyclic-gran.html"><a href="2-3-sec-cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-sec-data-structure.html"><a href="2-4-sec-data-structure.html"><i class="fa fa-check"></i><b>2.4</b> Data structure</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-sec-visualization.html"><a href="2-5-sec-visualization.html"><i class="fa fa-check"></i><b>2.5</b> Visualization</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-sec-application.html"><a href="2-6-sec-application.html"><i class="fa fa-check"></i><b>2.6</b> Applications</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-sec-discussion.html"><a href="2-7-sec-discussion.html"><i class="fa fa-check"></i><b>2.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-hakear.html"><a href="3-ch-hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction-1.html"><a href="3-1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-sec-computation-wpd.html"><a href="3-2-sec-computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-sec-rank-wpd.html"><a href="3-3-sec-rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-sec-simulations.html"><a href="3-4-sec-simulations.html"><i class="fa fa-check"></i><b>3.4</b> Simulations</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-sec-application-wpd.html"><a href="3-5-sec-application-wpd.html"><i class="fa fa-check"></i><b>3.5</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-discussion.html"><a href="3-6-discussion.html"><i class="fa fa-check"></i><b>3.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thankshakear.html"><a href="thankshakear.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-hakear.html"><a href="supplement-hakear.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-gracsr.html"><a href="4-ch-gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-introduction-2.html"><a href="4-1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-sec-methodology.html"><a href="4-2-sec-methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-sec-validation.html"><a href="4-3-sec-validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
+<li class="chapter" data-level="4.4" data-path="4-4-sec-cases.html"><a href="4-4-sec-cases.html"><i class="fa fa-check"></i><b>4.4</b> Case study</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-sec-conclusion.html"><a href="4-5-sec-conclusion.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion and future work</a></li>
+<li class="chapter" data-level="" data-path="thanksgracsr.html"><a href="thanksgracsr.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gracsr.html"><a href="supplement-gracsr.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch-conclusion.html"><a href="5-ch-conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion and future plans</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-software-development.html"><a href="5-1-software-development.html"><i class="fa fa-check"></i><b>5.1</b> Software development</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-future-work.html"><a href="5-2-future-work.html"><i class="fa fa-check"></i><b>5.2</b> Future work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-appendix.html"><a href="ch-appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="chapter" data-level="6" data-path="6-recalling-notations.html"><a href="6-recalling-notations.html"><i class="fa fa-check"></i><b>6</b> Recalling notations</a></li>
+<li class="chapter" data-level="7" data-path="7-raw-weighted-pairwise-distance.html"><a href="7-raw-weighted-pairwise-distance.html"><i class="fa fa-check"></i><b>7</b> Raw weighted pairwise distance</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-tuning-parameter-1.html"><a href="7-1-tuning-parameter-1.html"><i class="fa fa-check"></i><b>7.1</b> Tuning parameter</a></li>
+<li class="chapter" data-level="7.2" data-path="7-2-underlying-distributions.html"><a href="7-2-underlying-distributions.html"><i class="fa fa-check"></i><b>7.2</b> Underlying distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="7-3-number-of-comparisons.html"><a href="7-3-number-of-comparisons.html"><i class="fa fa-check"></i><b>7.3</b> Number of comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-adjusted-weighted-pairwise-distances.html"><a href="8-adjusted-weighted-pairwise-distances.html"><i class="fa fa-check"></i><b>8</b> Adjusted weighted pairwise distances</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-permutation-approach.html"><a href="8-1-permutation-approach.html"><i class="fa fa-check"></i><b>8.1</b> Permutation approach</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-modeling-approach.html"><a href="8-2-modeling-approach.html"><i class="fa fa-check"></i><b>8.2</b> Modeling approach</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-combination-approach.html"><a href="8-3-combination-approach.html"><i class="fa fa-check"></i><b>8.3</b> Combination approach</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-ranking-and-selecting-harmonies.html"><a href="9-ranking-and-selecting-harmonies.html"><i class="fa fa-check"></i><b>9</b> Ranking and selecting harmonies</a></li>
+<li class="chapter" data-level="10" data-path="10-raw-time-series-plot.html"><a href="10-raw-time-series-plot.html"><i class="fa fa-check"></i><b>10</b> Raw time series plot</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization and analysis of probability distributions of large temporal data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:cyclic-gran" class="section level2">
+<h2><span class="header-section-number">2.3</span> Cyclic time granularities</h2>
+<p>Cyclic granularities represent cyclical repetitions in time. They can be thought of as additional categorizations of time that are not linear. Cyclic granularities can be constructed from two linear granularities, that relate periodically; the resulting cycles can be either <em>regular</em> (<strong>circular</strong>), or <em>irregular</em> (<strong>quasi-circular</strong>).</p>
+<div id="sec:circular-gran-def" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Circular granularities</h3>
+
+<div class="figure" style="text-align: center"><span id="fig:circular-dow"></span>
+<img src="img/circular-ex.png" alt="Index sets for some linear and circular granularities (a). Circular granularities can be constructed by slicing the linear granularity into pieces and stacking them (b)." width="100%" />
+<p class="caption">
+Figure 2.2: Index sets for some linear and circular granularities (a). Circular granularities can be constructed by slicing the linear granularity into pieces and stacking them (b).
+</p>
+</div>
+
+<p> illustrates some linear and cyclical granularities. Cyclical granularities are constructed by cutting the linear granularity into pieces, and stacking them to match the cycles (as shown in b). <span class="math inline">\(B, G, H\)</span> (day, week, fortnight, respectively) are linear granularities. The circular granularity <span class="math inline">\(C_{B, G}\)</span> (day-of-week) is constructed from <span class="math inline">\(B\)</span> and <span class="math inline">\(G\)</span>, while circular granularity <span class="math inline">\(C_{B, H}\)</span> (day-of-fortnight) is constructed from <span class="math inline">\(B\)</span> and <span class="math inline">\(H\)</span>. These overlapping cyclical granularities share elements from the linear granularity. Each of <span class="math inline">\(C_{B , G}\)</span> and <span class="math inline">\(C_{B , H}\)</span> consist of repeated patterns <span class="math inline">\(\{0, 1, \dots, 6\}\)</span> and <span class="math inline">\(\{0, 1, \dots, 13\}\)</span> with <span class="math inline">\(P=7\)</span> and <span class="math inline">\(P=14\)</span> respectively.</p>
+<p>Suppose <span class="math inline">\({L}\)</span> is a label mapping that defines a unique label for each index <span class="math inline">\(\ell \in \{ 0,1,\dots, (P-1)\}\)</span>. For example, the label mapping <span class="math inline">\(L\)</span> for <span class="math inline">\(C_{B, G}\)</span> can be defined as
+<span class="math display">\[
+  L: \{0,1, \dots, 6\} \longmapsto\ \{\text{Sunday}, \text{Monday}, \dots, \text{Saturday}\}.
+\]</span></p>
+<p>In general, any circular granularity relating two linear granularities can be expressed as
+<span class="math display">\[
+  C_{G, H}(z) = \lfloor z/P(B,G) \rfloor\mod P(G,H),
+\]</span>
+where <span class="math inline">\(H\)</span> is periodic with respect to <span class="math inline">\(G\)</span> with regular mapping and period <span class="math inline">\(P(G,H)\)</span>. Table  shows several circular granularities constructed using minutes as the bottom granularity.</p>
+
+</div>
+<div id="sec:quasi-circular-gran-def" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Quasi-circular granularities</h3>
+<p>A <strong>quasi-circular</strong> granularity cannot be defined using modular arithmetic because of the irregular mapping. However, they are still formed with linear granularities, one of which groups periodically into the other.  shows some examples of quasi-circular granularities.</p>
+
+
+<p>For example, day-of-year is quasi-periodic with either 365 or 366 granules of <span class="math inline">\(B\)</span> (days) within each granule of <span class="math inline">\(G&#39;\)</span> (years). The pattern repeats every <span class="math inline">\(4\)</span> years (ignoring leap seconds). Hence <span class="math inline">\(R&#39;= 4\)</span>. <span class="math inline">\(Q_{B, G&#39;}\)</span> is a repetitive categorization of time, similar to circular granularities, except that the number of granules of <span class="math inline">\(B\)</span> is not the same across different granules of <span class="math inline">\(G&#39;\)</span>.</p>
+</div>
+<div id="sec:aperiodic-gran-def" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Aperiodic granularities</h3>
+<p>Aperiodic linear granularities are those that cannot be specified as a periodic repetition of a pattern of granules as described in Definition . Aperiodic cyclic granularities capture repetitions of these aperiodic linear granularities.
+Examples include public holidays which repeat every year, but there is no reasonably small span of time within which their behavior remains constant. A classic example is Easter (in the western tradition) whose dates repeat only after 5.7 million years <span class="citation">(Reingold and Dershowitz <a href="bibliography.html#ref-Reingold2001-kf" role="doc-biblioref">2018</a>)</span>. In Australia, if a standard public holiday falls on a weekend, a substitute public holiday will sometimes be observed on the first non-weekend day (usually Monday) after the weekend. Examples of aperiodic granularity may also include school holidays or a scheduled event. All of these are recurring events, but with non-periodic patterns. Consequently, <span class="math inline">\(P_i\)</span> (as given in ) are essentially infinite for aperiodic granularities.</p>
+
+<div class="figure" style="text-align: center"><span id="fig:aperiodic-example"></span>
+<img src="img/aperiodic-ex.png" alt="(ref:aperiodic-example)" width="100%" />
+<p class="caption">
+Figure 2.3: (ref:aperiodic-example)
+</p>
+</div>
+<p>(ref:aperiodic-example) Quasi-circular and aperiodic cyclic granularities illustrated by linear (a) and
+stacked-displays (b) progression of time. The linear display shows the granularities days (<span class="math inline">\(B\)</span>), weeks (<span class="math inline">\(G\)</span>), semester days (<span class="math inline">\(B&#39;\)</span>), and stages of a semester (<span class="math inline">\(M\)</span>) indexed over a linear representation of time. The granules of <span class="math inline">\(B&#39;\)</span> is only defined for days when the semester is running. Here a semester spans 18 weeks and 2 days, and consists of 6 stages. It starts with a week of orientation, followed by an in-session period (6 weeks), a break (1 week), the second half of semester (7 weeks), a 1-week study break before final exams, which spans the next 16 days. This distribution of semester days remains relatively similar for every semester. <span class="math inline">\(Q_{B&#39;,M}\)</span> with P = 128 is a quasi-circular granularity with repeating patterns, while <span class="math inline">\(A_{B,M}\)</span> is an aperiodic cyclic granularity as the placement of the semester within a year varies from year to year with no fixed start and end dates.</p>
+<p>For example, consider the school semester shown in . Let the linear granularities <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> denote the teaching and non-teaching stages of the semester respectively. Both <span class="math inline">\(M_1\)</span>, <span class="math inline">\(M_2\)</span> and <span class="math inline">\(M = M_{1}\bigcup M_{2}\)</span> denoting the “stages” of the semester are aperiodic with respect to days (<span class="math inline">\(B\)</span>) or weeks (<span class="math inline">\(G\)</span>). Hence <span class="math inline">\(A_{B, M}\)</span> denoting day-of-the-stage would be an aperiodic cyclic granularity because the placement of the semester within a year would vary across years. Here, <span class="math inline">\(Q_{B&#39;, M}\)</span> denoting semester-day-of-the-stage would be a quasi-circular granularity
+since the distribution of semester days within a semester is assumed to remain constant over years. Here semester-day is denoted by “sem day” (<span class="math inline">\(B&#39;\)</span>) and its granules are only defined for the span of the semesters.</p>
+</div>
+<div id="sec:cyclic-calendar" class="section level3">
+<h3><span class="header-section-number">2.3.4</span> Relativities</h3>
+<p>The hierarchical structure of time creates a natural nested ordering which can be used in the computation of relative pairs of granularities.</p>
+
+<p>For example,  shows the hierarchy table for the Mayan calendar. In the Mayan calendar, one day was referred to as a kin and the calendar was structured such that 1 kin = 1 day; 1 uinal = 20 kin; 1 tun = 18 uinal (about a year); 1 katun = 20 tun (20 years) and 1 baktun = 20 katun.</p>
+
+<p>Like most calendars, the Mayan calendar used the day as the basic unit of time <span class="citation">(Reingold and Dershowitz <a href="bibliography.html#ref-Reingold2001-kf" role="doc-biblioref">2018</a>)</span>. The structuring of larger units, weeks, months, years and cycle of years, though, varies substantially between calendars. For example, the French revolutionary calendar divided each day into 10 “hours”, each “hour” into 100 “minutes” and each “minute” into 100 “seconds”, the duration of which is 0.864 common seconds. Nevertheless, for any calendar, a hierarchy table can be defined. Note that it is not always possible to organize an aperiodic linear granularity in a hierarchy table. Hence, we assume that the hierarchy table consists of periodic linear granularities only, and that the cyclic granularity <span class="math inline">\(C_{G(\ell),G(m)}\)</span> is either circular or quasi-circular.</p>
+
+<p>In the Mayan calendar (Table <a href="#tab:tab-mayan"><strong>??</strong></a>), kin-of-tun or kin-of-baktun are examples of multiple-order-up granularities and single-order-up granularities are kin-of-uinal, uinal-of-tun etc.</p>
+</div>
+<div id="computation" class="section level3">
+<h3><span class="header-section-number">2.3.5</span> Computation</h3>
+<p>Following the calendar algebra of <span class="citation">Ning, Wang, and Jajodia (<a href="bibliography.html#ref-Ning_2002" role="doc-biblioref">2002</a>)</span> for linear granularities, we can define cyclic calendar algebra to compute cyclic granularities. Cyclic calendar algebra comprises two kinds of operations:
+(1) <strong>single-to-multiple</strong> (the calculation of <em>multiple-order-up</em> cyclic granularities from <em>single-order-up</em> cyclic granularities) and (2) <strong>multiple-to-single</strong> (the reverse).</p>
+<div id="s2m" class="section level4 unnumbered">
+<h4>Single-to-multiple order-up</h4>
+<p>Methods to obtain multiple-order-up granularity will depend on whether the hierarchy consists of all circular single-order-up granularities or a mix of circular and quasi-circular single-order-up granularities. Circular single-order-up granularities can be used recursively to obtain a multiple-order-up circular granularity using
+<span class="math display">\[\begin{equation} \label{eq:eq7}
+C_{G_\ell,G_m}(z)
+  = \sum_{i=0}^{m - \ell - 1} P(\ell, \ell+i)C_{G_{\ell+i},G_{\ell+i+1}}(z),
+\end{equation}\]</span>
+where <span class="math inline">\(\ell &lt; m - 1\)</span> and <span class="math inline">\(P(i, i) = 1\)</span> for <span class="math inline">\(i=0,1,\dots,m-\ell-1\)</span>, and
+<span class="math inline">\(C_{B, G}(z) = z\mod P(B, G)\)</span> as per Equation .</p>
+<p>For example, the multiple-order-up granularity <span class="math inline">\(C_{\text{uinal},\text{katun}}\)</span> for the Mayan calendar could be obtained using
+<span class="math display">\[\begin{align*}
+C_{\text{uinal}, \text{baktun}}(z)  &amp;=  C_{\text{uinal}, \text{tun}}(z) + P(\text{uinal}, \text{tun})C_{\text{tun},\text{katun}}(z) + P(\text{uinal},\text{katun})C_{\text{katun}, \text{baktun}}(z) \\
+         &amp;=  C_{\text{uinal}, \text{tun}}(z) + 18 \times{ C_{\text{tun},\text{katun}}(z)} + 18 \times 20 \times{C_{\text{katun}, \text{baktun}}(z)}
+\end{align*}\]</span></p>
+<p>, where <span class="math inline">\(z\)</span> is the index of the bottom granularity <span class="math inline">\(kin\)</span>.</p>
+<!--                &=  \lfloor \frac{z}{20}\rfloor \mod 18 + 18\lfloor  \frac{z}{20 \times18} \rfloor \mod 20 -->
+<!--                 + 18 \times20 \lfloor \frac{z}{(20\times18\times20} \rfloor \mod 20 -->
+<p>Now consider the case where there is one quasi-circular single order-up granularity in the hierarchy table while computing a multiple-order-up quasi-circular granularity. Any multiple-order-up quasi-circular granularity <span class="math inline">\(C_{\ell, m}(z)\)</span> could then be obtained as a discrete combination of circular and quasi-circular granularities.</p>
+<p>Depending on the order of the combination, two different approaches need to be employed leading to the following cases:</p>
+<ul>
+<li><p><span class="math inline">\(C_{G_{\ell},G_{m&#39;}}\)</span> is circular and <span class="math inline">\(C_{G_{m&#39;},G_{m}}\)</span> is quasi-circular
+<span class="math display">\[\begin{equation} \label{eq:multifromsingle-quasi1}
+C_{G_\ell,G_{m}}(z) = C_{G_{\ell},G_{m&#39;}}(z) + P(\ell, m&#39;)C_{G_{m&#39;},G_{m}}(z)
+\end{equation}\]</span></p></li>
+<li><p><span class="math inline">\(C_{G_{\ell},G_{m&#39;}}\)</span> is quasi-circular and <span class="math inline">\(C_{G_{m&#39;},G_{m}}\)</span> is circular
+<span class="math display">\[\begin{equation} \label{eq:multifromsingle-quasi2}
+C_{G_\ell,G_{m}}(z)  = C_{G_{\ell},G_{m&#39;}}(z) + \sum_{w=0}^{C_{G_{m&#39;},G_{m}}(z) -1}(\vert T_{w} \vert)
+\end{equation}\]</span>
+where, <span class="math inline">\(T_w\)</span> is such that <span class="math inline">\(G_{m&#39;}(w) = \bigcup_{z \in T_w}G_{\ell}\)</span> and <span class="math inline">\(\vert T_w \vert\)</span> is the cardinality of set <span class="math inline">\(T_w\)</span>.</p></li>
+</ul>
+
+<p>For example, the Gregorian calendar () has day-of-month as a single-order-up quasi-circular granularity, with the other granularities being circular. Using Equations  and , we then have:
+<span class="math display">\[
+  C_{hour, month}(z) = C_{hour, day}(z) + P(hour, day)*C_{day, month}(z)
+\]</span>
+<span class="math display">\[
+  C_{day, year}(z) = C_{day,month}(z) + \sum_{w=0}^{C_{month, year}(z)-1}(\vert T_{w} \vert),
+\]</span>
+where <span class="math inline">\(T_w\)</span> is such that <span class="math inline">\(month(w) = \bigcup_{z \in T_w}day(z)\)</span>.</p>
+</div>
+<div id="m2s" class="section level4 unnumbered">
+<h4>Multiple-to-single order-up</h4>
+<p>Similar to single-to-multiple operations, multiple-to-single operations involve different approaches for all circular single-order-up granularities and a mix of circular and quasi-circular single-order-up granularities in the hierarchy. For a hierarchy table <span class="math inline">\(H_n: (G, C, K)\)</span> with only circular single-order-up granularities and <span class="math inline">\(\ell_1, \ell_2, m_1, m_2 \in {1, 2, \dots, n}\)</span> and <span class="math inline">\(\ell_2&lt;\ell_1\)</span> and <span class="math inline">\(m_2&gt;m_1\)</span>, multiple-order-up granularities can be obtained using Equation .
+<span class="math display">\[\begin{equation} \label{eq:all-circular-multiple}
+C_{G_{\ell_1}, G_{m_1}}(z) = \lfloor C_{G_{\ell_2}, G_{m_2}}(z)/P(\ell_2,\ell_1) \rfloor \mod P(\ell_1, m_1)
+\end{equation}\]</span>
+For example, in the Mayan Calendar, it is possible to compute the single-order-up granularity tun-of-katun from uinal-of-baktun, since <span class="math inline">\(C_{tun, katun}(z) = \lfloor C_{uinal, baktun}(z)/18\rfloor \mod 20\)</span>.</p>
+</div>
+<div id="quasi" class="section level4 unnumbered">
+<h4>Multiple order-up quasi-circular granularities</h4>
+<p>Single-order-up quasi-circular granularity can be obtained from multiple-order-up quasi-circular granularity and single/multiple-order-up circular granularity using Equations  and .</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-2-sec-linear-time.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-4-sec-data-structure.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/earowang/thesis/edit/master/Rmd//02-gravitas.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

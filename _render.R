@@ -40,6 +40,6 @@ if (length(formats) == 0) {
 for (fmt in formats)
   bookdown::render_book("index.Rmd", fmt, quiet = FALSE)
 
-gif_file <- list.files("figure", "*.gif", full.names = TRUE)
-invisible(file.copy(gif_file, "_thesis/figure/animate.gif"))
+# gif_file <- list.files("figure", "*.gif", full.names = TRUE)
+# invisible(file.copy(gif_file, "_thesis/figure/animate.gif"))
 cli_alert_success("You Rock!")

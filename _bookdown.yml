@@ -3,6 +3,6 @@ language:
   ui:
     chapter_name: "Chapter "
 rmd_subdir: ["Rmd/"]
-output_dir: _thesis
+output_dir: docs
 delete_merged_file: true
 clean: [thesisrefs.bib.bbl, thesisrefs.bib.blg, thesis.run.xml]

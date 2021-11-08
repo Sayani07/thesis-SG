@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.3 Validation | Visualization and analysis of probability distributions of large temporal data</title>
+  <meta name="description" content="4.3 Validation | Visualization and analysis of probability distributions of large temporal data" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.3 Validation | Visualization and analysis of probability distributions of large temporal data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.3 Validation | Visualization and analysis of probability distributions of large temporal data" />
+  
+  
+  
+
+<meta name="author" content="Sayani Gupta" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="4-2-sec-methodology.html"/>
+<link rel="next" href="4-4-sec-cases.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"> </a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="ch-abstract.html"><a href="ch-abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="ch-thanks.html"><a href="ch-thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="ch-preface.html"><a href="ch-preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-sec-gravitas.html"><a href="1-1-sec-gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-sec-hakear.html"><a href="1-2-sec-hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-sec-gracsr.html"><a href="1-3-sec-gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-summary.html"><a href="1-4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch-gravitas.html"><a href="2-ch-gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-introduction.html"><a href="2-1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-sec-linear-time.html"><a href="2-2-sec-linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-sec-cyclic-gran.html"><a href="2-3-sec-cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-sec-data-structure.html"><a href="2-4-sec-data-structure.html"><i class="fa fa-check"></i><b>2.4</b> Data structure</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-sec-visualization.html"><a href="2-5-sec-visualization.html"><i class="fa fa-check"></i><b>2.5</b> Visualization</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-sec-application.html"><a href="2-6-sec-application.html"><i class="fa fa-check"></i><b>2.6</b> Applications</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-sec-discussion.html"><a href="2-7-sec-discussion.html"><i class="fa fa-check"></i><b>2.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-hakear.html"><a href="3-ch-hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction-1.html"><a href="3-1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-sec-computation-wpd.html"><a href="3-2-sec-computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-sec-rank-wpd.html"><a href="3-3-sec-rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-sec-simulations.html"><a href="3-4-sec-simulations.html"><i class="fa fa-check"></i><b>3.4</b> Simulations</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-sec-application-wpd.html"><a href="3-5-sec-application-wpd.html"><i class="fa fa-check"></i><b>3.5</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-discussion.html"><a href="3-6-discussion.html"><i class="fa fa-check"></i><b>3.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thankshakear.html"><a href="thankshakear.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-hakear.html"><a href="supplement-hakear.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-gracsr.html"><a href="4-ch-gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-introduction-2.html"><a href="4-1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-sec-methodology.html"><a href="4-2-sec-methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-sec-validation.html"><a href="4-3-sec-validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
+<li class="chapter" data-level="4.4" data-path="4-4-sec-cases.html"><a href="4-4-sec-cases.html"><i class="fa fa-check"></i><b>4.4</b> Case study</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-sec-conclusion.html"><a href="4-5-sec-conclusion.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion and future work</a></li>
+<li class="chapter" data-level="" data-path="thanksgracsr.html"><a href="thanksgracsr.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gracsr.html"><a href="supplement-gracsr.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch-conclusion.html"><a href="5-ch-conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion and future plans</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-software-development.html"><a href="5-1-software-development.html"><i class="fa fa-check"></i><b>5.1</b> Software development</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-future-work.html"><a href="5-2-future-work.html"><i class="fa fa-check"></i><b>5.2</b> Future work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch-appendix.html"><a href="ch-appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="chapter" data-level="6" data-path="6-recalling-notations.html"><a href="6-recalling-notations.html"><i class="fa fa-check"></i><b>6</b> Recalling notations</a></li>
+<li class="chapter" data-level="7" data-path="7-raw-weighted-pairwise-distance.html"><a href="7-raw-weighted-pairwise-distance.html"><i class="fa fa-check"></i><b>7</b> Raw weighted pairwise distance</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-tuning-parameter-1.html"><a href="7-1-tuning-parameter-1.html"><i class="fa fa-check"></i><b>7.1</b> Tuning parameter</a></li>
+<li class="chapter" data-level="7.2" data-path="7-2-underlying-distributions.html"><a href="7-2-underlying-distributions.html"><i class="fa fa-check"></i><b>7.2</b> Underlying distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="7-3-number-of-comparisons.html"><a href="7-3-number-of-comparisons.html"><i class="fa fa-check"></i><b>7.3</b> Number of comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-adjusted-weighted-pairwise-distances.html"><a href="8-adjusted-weighted-pairwise-distances.html"><i class="fa fa-check"></i><b>8</b> Adjusted weighted pairwise distances</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-permutation-approach.html"><a href="8-1-permutation-approach.html"><i class="fa fa-check"></i><b>8.1</b> Permutation approach</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-modeling-approach.html"><a href="8-2-modeling-approach.html"><i class="fa fa-check"></i><b>8.2</b> Modeling approach</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-combination-approach.html"><a href="8-3-combination-approach.html"><i class="fa fa-check"></i><b>8.3</b> Combination approach</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-ranking-and-selecting-harmonies.html"><a href="9-ranking-and-selecting-harmonies.html"><i class="fa fa-check"></i><b>9</b> Ranking and selecting harmonies</a></li>
+<li class="chapter" data-level="10" data-path="10-raw-time-series-plot.html"><a href="10-raw-time-series-plot.html"><i class="fa fa-check"></i><b>10</b> Raw time series plot</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization and analysis of probability distributions of large temporal data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:validation" class="section level2">
+<h2><span class="header-section-number">4.3</span> Validation</h2>
+<p>To validate our clustering methods, we spiked many attributes in the data to create different data designs. <!--to see where one method works better than the other and where they might give us the same outcome --or the effect of missing data <!---and trends on the proposed methods.--> Three circular granularities <span class="math inline">\(g1\)</span>, <span class="math inline">\(g2\)</span> and <span class="math inline">\(g3\)</span> are considered with categories denoted by <span class="math inline">\(\{g10,g11\}\)</span>, <span class="math inline">\(\{g20, g21, g22\}\)</span> and <span class="math inline">\(\{g30, g31, g32, g33, g34\}\)</span> and levels <span class="math inline">\(n_{g_1}=2\)</span>, <span class="math inline">\(n_{g_2}=3\)</span> and <span class="math inline">\(n_{g_3}=5\)</span>. These categories could be integers or some more meaningful labels. For example, the granularity “day-of-week” could be either represented by <span class="math inline">\(\{0, 1, 2, \dots, 6\}\)</span> or <span class="math inline">\(\{Mon, Tue, \dots, Sun\}\)</span>. Here categories of <span class="math inline">\(g1\)</span>, <span class="math inline">\(g2\)</span> and <span class="math inline">\(g3\)</span> are represented by <span class="math inline">\(\{0, 1\}\)</span>, <span class="math inline">\(\{0, 1, 2\}\)</span> and <span class="math inline">\(\{0, 1, 2, 3, 4\}\)</span> respectively. A continuous measured variable <span class="math inline">\(v\)</span> of length <span class="math inline">\(T\)</span> indexed by <span class="math inline">\(\{0, 1, \dots T-1\}\)</span> is simulated such that it follows the structure across <span class="math inline">\(g1\)</span>, <span class="math inline">\(g2\)</span> and <span class="math inline">\(g3\)</span>. We constructed independent replications of all data designs <span class="math inline">\(R = \{25, 250, 500\}\)</span> to investigate if our proposed clustering method can discover distinct designs in small, medium, and big number of series. All designs employ <span class="math inline">\(T=\{300, 1000, 5000\}\)</span> sample sizes to evaluate small, medium, and large-sized series. Variations in method performance may be due to different jumps between categories. So a mean difference of <span class="math inline">\(\mu = \{1, 2, 5\}\)</span> between categories is considered. The performance of the approaches varies with the number of granularities which has interesting patterns across its categories. So three scenarios are considered to accommodate that.</p>
+<!-- The results for $T=300$ and $R=25$ is shown, that means we have $25$ time series each with length $300$. The rest of the results could be found in the supplementary paper. -->
+<div id="data-generating-processes" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Data generating processes</h3>
+<!-- An ARMA (p,q) process is used to generate series, where $p$ and $q$ are selected at random such that the series is stationary. The various designs on $g1$, $g2$, and $g3$ are introduced by adding matching designs to this series' innovations. The innovations are considered to have a normal distribution, although they follow the same pattern as the designs. To eliminate the effect of starting values, the first 500 observations in each series are discarded. -->
+<p>Each category or combination of categories from <span class="math inline">\(g1\)</span>, <span class="math inline">\(g2\)</span> and <span class="math inline">\(g3\)</span> are assumed to come from the same distribution, a subset of them from the same distribution, a subset of them from separate distributions, or all from different distributions, resulting in various data designs. As the methods ignore the linear progression of time, there is little value in adding time dependency to the data generating process. The data type is set to be “continuous,” and the setup is assumed to be Gaussian. When the distribution of a granularity is “fixed”, it means distributions across categories do not vary and are considered to be from N (0,1). <span class="math inline">\(\mu\)</span> alters in the “varying” designs, leading to varying distributions across categories.</p>
+<!-- An ARMA (p,q) process is used to generate series, where $p$ and $q$ are selected at random such that the series is stationary. The various designs on $g1$, $g2$, and $g3$ are introduced by adding matching designs to this series' innovations. The innovations are considered to have a normal distribution, although they follow the same pattern as the designs. To eliminate the effect of starting values, the first 500 observations in each series are discarded. -->
+<!-- It is often reasonable to construct a time series using properties such as trend, seasonality, and auto-correlation. However, when examining distributions across categories of cyclic granularities, these time series features are lost or addressed independently by considering seasonal fluctuations through cyclic granularities. Because the time span during which an entity is observed in order to ascertain its behavior is not very long, -->
+<!-- the behavior of the entity will not change drastically and hence the time series can be assumed to remain stationary throughout the observation period. If the observation period is very long (for e.g more than 3 years), property, physical or geographical attributes might change leading to a non-stationary time series. But such a scenario is not considered here and the resulting clusters are assumed to be time invariant in the observation period.  -->
+</div>
+<div id="data-designs" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Data designs</h3>
+<div id="individual-granularities" class="section level4">
+<h4><span class="header-section-number">4.3.2.1</span> Individual granularities</h4>
+<p><em>Scenario (a): All significant granularities</em></p>
+<!-- Consider a case where all the three granularities $g1$, $g2$ and $g3$ would be responsible for making the designs distinct. That would mean, the pattern for each of $g1$, $g2$ and $g3$ will change for at least one design. We consider a situation with all the null cases corresponding to no difference in distribution across categories, that is, all categories follow the same distribution N(0,1). -->
+<p>Consider the instance where <span class="math inline">\(g1\)</span>, <span class="math inline">\(g2\)</span>, and <span class="math inline">\(g3\)</span> all contribute to design distinction. This means that each granularity will have significantly different patterns at least across one of the designs to be clustered. In Table  various distributions across categories are considered (top) which lead to different designs (bottom). Figure  shows the simulated variable’s linear (left) and cyclic (right) representations for each of these five designs. The structural difference in the time series variable is impossible to discern from the linear view, with all of them looking very similar. The shift in structure may be seen clearly in the distribution of cyclic granularities. The following scenarios use solely graphical displays across cyclic granularities to highlight distributional differences in categories.</p>
+<p><em>Scenario (b): Few significant granularities</em></p>
+<p>This is the case where one granularity will remain the same across all designs. We consider the case where the distribution of <span class="math inline">\(v\)</span> varies across <span class="math inline">\(g2\)</span> levels for all designs, across <span class="math inline">\(g3\)</span> levels for a few designs, and <span class="math inline">\(g1\)</span> does not vary across designs. The proposed design is shown in Figure (b).</p>
+<p><em>Scenario (c): One significant granularity</em></p>
+<p>Only one granularity is responsible for identifying the designs in this case. This is depicted in Figure  (right) where only <span class="math inline">\(g3\)</span> affects the designs significantly.</p>
+<table class="kable_wrapper">
+<caption>
+<span id="tab:tab-dist-design">Table 4.1: </span>For Scenario (a), distributions of different categories when they vary (top). If distributions are fixed, they are set to N(0, 1). 5 designs resulting from different distributions across categories (below)
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+granularity
+</th>
+<th style="text-align:left;">
+Varying distributions
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+g1
+</td>
+<td style="text-align:left;">
+g10 ~ N(0, 1), g11 ~ N(2, 1)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+g2
+</td>
+<td style="text-align:left;">
+g21 ~ N(2, 1), g22 ~ N(1, 1), g23 ~ N(0, 1)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+g3
+</td>
+<td style="text-align:left;">
+g31 ~ N(0, 1), g32 ~ N(1, 1), g33 ~ N(2, 1), g34 ~ N(1, 1), g35 ~ N(0, 1)
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+design
+</th>
+<th style="text-align:left;">
+g1
+</th>
+<th style="text-align:left;">
+g2
+</th>
+<th style="text-align:left;">
+g3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+design-1
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+design-2
+</td>
+<td style="text-align:left;">
+vary
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+design-3
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+vary
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+design-4
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+fixed
+</td>
+<td style="text-align:left;">
+vary
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+design-5
+</td>
+<td style="text-align:left;">
+vary
+</td>
+<td style="text-align:left;">
+vary
+</td>
+<td style="text-align:left;">
+vary
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:plot-3gran-new"></span>
+<img src="figure/plot-3gran-new-1.png" alt="The linear (left) and cyclic (right) representation of the simulated variable is shown. Each row represents a design in Scenario (a). In this scenario, all of $g1$, $g2$ and $g3$ changes across at least one design. Also, it is not possible to comprehend these differences in patterns just by looking at or considering the linear representation." width="100%" />
+<p class="caption">
+Figure 4.2: The linear (left) and cyclic (right) representation of the simulated variable is shown. Each row represents a design in Scenario (a). In this scenario, all of <span class="math inline">\(g1\)</span>, <span class="math inline">\(g2\)</span> and <span class="math inline">\(g3\)</span> changes across at least one design. Also, it is not possible to comprehend these differences in patterns just by looking at or considering the linear representation.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:gran2and1-clubbed"></span>
+<img src="figure/gran2and1-clubbed-1.png" alt=" Plots (b) and (c) correspond to Design (b) and (c) respectively. In (b) $g2$, $g3$ changes across atleast one design but $g1$ remains constant. Only $g3$ changes across different designs in (c)." width="100%" />
+<p class="caption">
+Figure 4.3:  Plots (b) and (c) correspond to Design (b) and (c) respectively. In (b) <span class="math inline">\(g2\)</span>, <span class="math inline">\(g3\)</span> changes across atleast one design but <span class="math inline">\(g1\)</span> remains constant. Only <span class="math inline">\(g3\)</span> changes across different designs in (c).
+</p>
+</div>
+</div>
+<div id="interaction-of-granularities" class="section level4">
+<h4><span class="header-section-number">4.3.2.2</span> Interaction of granularities</h4>
+<p>The proposed methods could be extended when two granularities of interest interact and we want to group subjects based on the interaction of the two granularities. Consider a group that has a different weekday and weekend behavior in the summer but not in the winter. This type of combined behavior across granularities can be discovered by evaluating the distribution across combinations of categories for different interacting granularities (Weekend/Weekday and month-of-year in this example). As a result, in this scenario, we analyze a combination of categories generated from different distributions. Consider a case in which there are only two interacting granularities of interest, <span class="math inline">\(g1\)</span> and <span class="math inline">\(g2\)</span>. In contrast to the previous situation, when we could study distributions across <span class="math inline">\(n_{g_1} + n_{g_2} = 5\)</span> separate categories, with interaction, we must evaluate the distribution of the <span class="math inline">\(n_{g_1}*n_{g_2}=6\)</span> combination of categories. Consider the <span class="math inline">\(4\)</span> designs in Figure , where various distributions are assumed for different combinations of categories, resulting in different designs. Design <span class="math inline">\(D1\)</span> exhibits no change in distributions across <span class="math inline">\(g1\)</span> or <span class="math inline">\(g2\)</span>, whereas Designs <span class="math inline">\(D2\)</span> and <span class="math inline">\(D3\)</span> alter across only <span class="math inline">\(g1\)</span> and <span class="math inline">\(g2\)</span>, respectively. D4 varies across both <span class="math inline">\(g1\)</span> and <span class="math inline">\(g2\)</span> categories. D3 and D4 appear similar based on their relative differences across consecutive categories, but <span class="math inline">\(D4\)</span> also changes across facets, unlike <span class="math inline">\(D3\)</span>, which has all facets look the same.</p>
+<div class="figure" style="text-align: center"><span id="fig:interaction-gran"></span>
+<img src="figure/interaction-gran-1.png" alt="Distribution of the simulated variable across $g1$ conditional on $g2$ is shown through boxplots for 4 designs. D1 has no change in distributions across different categories of $g1$ or $g2$, while D2 and D3 change across only $g1$ and $g2$ respectively. D4 changes across categories of both $g1$ and $g2$." width="100%" />
+<p class="caption">
+Figure 4.4: Distribution of the simulated variable across <span class="math inline">\(g1\)</span> conditional on <span class="math inline">\(g2\)</span> is shown through boxplots for 4 designs. D1 has no change in distributions across different categories of <span class="math inline">\(g1\)</span> or <span class="math inline">\(g2\)</span>, while D2 and D3 change across only <span class="math inline">\(g1\)</span> and <span class="math inline">\(g2\)</span> respectively. D4 changes across categories of both <span class="math inline">\(g1\)</span> and <span class="math inline">\(g2\)</span>.
+</p>
+</div>
+<!-- When two granularities of interest interact, the connection between a granularity and the measured variable is determined by the value of the other interacting granularity. This happens when the effects of the two granularities on the measured variable are not additive. For simplicity, consider a case with just two interacting granularities $g1$ and $g2$ of interest. As opposed to the last case, where we could play with the distribution of $5$ individual categories, with interaction we can play with the distribution of $6$ combination of categories. Consider $4$ designs in Figure \ref{fig:} where different distributions are assumed for different designs to get some distinction across designs. For example, in application, think about the scenario when customers need to grouped basis their joint behavior across hour-of-day and month-of-year. -->
+<!-- | Granularity type                                                     | # Significant     | # Replications    | -->
+<!-- |--------------------------------------------------------------------  |---------------    |----------------   | -->
+<!-- | **Individual**  <br><br># obs: 300, 500, 2000  <br># clusters: 4/5   | 1/2/3             | 25, 100, 200      | -->
+<!-- | **Interaction**  <br><br># obs: 500, 2000  <br># clusters: 4         | 2             | 25, 100, 200      | -->
+</div>
+</div>
+<div id="visual-exploration-of-findings" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Visual exploration of findings</h3>
+<p>All of the approaches were fitted to each data design and for each combination of the considered parameters. The formed clusters have to match the design, be well separated, and have minimal intra-cluster variation. It is possible to study these desired clustering traits visually in a more comprehensive way than just looking at index values. So we use MDS and parallel coordinate graphs to demonstrate the findings:</p>
+<ul>
+<li><p>In Figure , we tried to see how separated our clusters are. We observe that in all scenarios and for different mean differences, clusters are separated. However, the separation increases with an increase in mean differences across scenarios. This is intuitive because, as the difference between categories increases, it gets easier for the methods to correctly distinguish the designs.</p></li>
+<li><p>Figure  depicts a parallel coordinate plot with the vertical bar showing total inter-cluster distances with regard to granularities <span class="math inline">\(g1\)</span>, <span class="math inline">\(g2\)</span>, and <span class="math inline">\(g3\)</span> for all simulation settings and scenarios. So one line in the figure shows the inter-cluster distances for one simulation setting and scenarios vary across facets. The lines are not colored by group since the purpose is to highlight the contribution of the factors to categorization rather than class separation. The first plot shows that no variable stands out in the clustering, but the following two designs show that {g1} and {g1, g2} have very low inter cluster distances, meaning that they did not contribute to the clustering. It is worth noting that these facts correspond to our original assumptions when developing the scenarios, which incorporate distributional differences over three (a), two (b), and one (c) significant granularities. Hence, Figure  (a), (b), and (c) validate the construction of scenarios (a), (b), and (c) respectively.</p></li>
+<li><p>The js-robust and wpd methods perform worse for <span class="math inline">\(nT=300\)</span>, then improve for higher <span class="math inline">\(nT\)</span> evaluated in the study. Although, a complete year of data is the minimum requirement to capture distributional differences in winter and summer profiles, for example. Even if the data is only available for a month, <span class="math inline">\(nT\)</span> with half-hourly data is expected to be at least <span class="math inline">\(1000\)</span>. As a result, as long as the performance is promising for higher <span class="math inline">\(nT=300\)</span>, this is not a challenge.</p></li>
+<li><p>In our study sample, the method js-nqt outperforms the method js-robust for smaller differences between categories. More testing, however, is required to corroborate this.</p></li>
+</ul>
+<p>For more detailed results, please refer to the supplementary paper. The code for creating these data designs and running the methodologies is available at (<a href="https://github.com/Sayani07/paper-gracsR/Validation" class="uri">https://github.com/Sayani07/paper-gracsR/Validation</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:parcoord-sim"></span>
+<img src="figure/parcoord-sim-1.png" alt="The parallel coordinate plot illustrates the total inter-cluster distances for granularities $g1$, $g2$, and $g3$. One line in the figure depicts the inter-cluster distances for a single simulation scenario. While the first plot indicates that no variable stands out during clustering, the next two designs demonstrate that {g1} and {g1, g2} have extremely low inter-cluster distances, indicating that they did not contribute to clustering. It is worth emphasising that these facts are consistent with our initial assumptions when designing the scenarios and (a), (b), and (c) correspond to Scenario (a), (b) and (c) respectively." width="100%" />
+<p class="caption">
+Figure 4.5: The parallel coordinate plot illustrates the total inter-cluster distances for granularities <span class="math inline">\(g1\)</span>, <span class="math inline">\(g2\)</span>, and <span class="math inline">\(g3\)</span>. One line in the figure depicts the inter-cluster distances for a single simulation scenario. While the first plot indicates that no variable stands out during clustering, the next two designs demonstrate that {g1} and {g1, g2} have extremely low inter-cluster distances, indicating that they did not contribute to clustering. It is worth emphasising that these facts are consistent with our initial assumptions when designing the scenarios and (a), (b), and (c) correspond to Scenario (a), (b) and (c) respectively.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:mds-plot-validation"></span>
+<img src="figure/mds-plot-validation-1.png" alt="Relative positions of clusters corresponding to different scenarios (columns) for different values of mean differences between categories (rows) are shown using the first two dimensions of MDS. It can be observed that clusters become more compact and separated for higher mean differences between categories across all designs. Between designs, separation is least prominent corresponding to scenario (c) where only granularity is responsible for the clusters." width="100%" />
+<p class="caption">
+Figure 4.6: Relative positions of clusters corresponding to different scenarios (columns) for different values of mean differences between categories (rows) are shown using the first two dimensions of MDS. It can be observed that clusters become more compact and separated for higher mean differences between categories across all designs. Between designs, separation is least prominent corresponding to scenario (c) where only granularity is responsible for the clusters.
+</p>
+</div>
+<!-- "Parallel coordinate plots are used to identify key variables for classification. Each line in this figure represents a formed group for a certain set of simulated parameters. (a), (b) and (c) corresponds to Scenarios (a), (b) and (c). The cyclic granularities $g1$, $g2$, and $g3$ are plotted on the x-axis, while total inter-cluster distances are plotted on the y-axis. Each line in this figure represents a group for a certain configuration of the various parameters ($nT$, $diff$, $R$). (c) demonstrates that intercluster distances are only significant for the variable $g3$, meaning that the clusters formed are primarily due to $g3$. This corresponds to our design in Scenario (c), in which distributional differences were implemented solely for g3. (b) demonstrates the role of g2 and g3 in clustering. (a) depicts a heterogeneous pattern of inter-cluster distances across variables, indicating that no single variable is to account for the clusters." -->
+<!-- A confusion table can come alive with linked brushing, so that mismatches and agreements between methods can be explored. -->
+<!-- starts getting better with increasing difference and get worse with increasing number of replications. Length of series do not show to have any effect on the performance of the methods. It does not depend on if time series is ar or arma. -->
+<!-- - confusion matrix could be used for showing results if proper labeling is used -->
+<!-- - write about features that we have spiked into the data set -->
+<!-- - write about you incorporated noise -->
+<!-- - What is the additional structure you can incorporate that will lead to failing of method1 and method2? -->
+<!-- - And both gives the same result? Basically say when method 1 works better than method 2 and vice versa! -->
+<!-- - -->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-2-sec-methodology.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-4-sec-cases.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/earowang/thesis/edit/master/Rmd//04-gracsr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
