@@ -4,7 +4,7 @@ Chapter \@ref(ch:gravitas) has been accepted by the *Journal of Computational an
 
 ### Open and reproducible research {-}
 
-This thesis is written in R Markdown [@rmarkdown] with **bookdown** [@bookdown], using **renv** [@renv] to create reproducible environments. The online version of this thesis is hosted at <https://sayani.netlify.app/>, powered by [Netlify](http://netlify.com). All materials (including the data sets and source files) required to reproduce this document can be found at the Github repository <https://github.com/Sayani07/thesis>.
+This thesis is written in R Markdown [@rmarkdown] with **bookdown** [@bookdown], using **renv** [@renv] to create reproducible environments. The online version of this thesis is hosted at <https://sayani07.github.io/thesis-sg>. All materials (including the data sets and source files) required to reproduce this document can be found at the Github repository <https://github.com/Sayani07/thesis-SG>.
 
 ### License {-}
 
