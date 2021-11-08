@@ -33,3 +33,5 @@ pals
 fpc
 cluster
 cranlogs
+latex2exp
+broom
