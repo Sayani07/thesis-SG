@@ -8,7 +8,7 @@ This repo contains source files for my PhD thesis titled, "Visualization and ana
 
 ## Clone with `git-lfs`
 
-Since this repo contains two large data files (>= 50MB), you need to first download and install a git plugin called [`git-lfs`](https://git-lfs.github.com) for versioning large files, and set up Git LFS using command `git lfs install` in console, in order to fully clone this repo.
+Since this repo contains large data files (>= 50MB), you need to first download and install a git plugin called [`git-lfs`](https://git-lfs.github.com) for versioning large files, and set up Git LFS using command `git lfs install` in Terminal, in order to fully clone this repo.
 
 ## Reproducibility
 
