@@ -27,7 +27,6 @@ data/hakear/simulations/*.rds
 cache-*/
 /figure
 signature.png
-img/*.png
 .DS_Store
 *.log
 *.run.xml
