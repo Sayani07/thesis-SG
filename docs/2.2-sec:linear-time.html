@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.2 Linear time granularities | Visualization and analysis of probability distributions of large temporal data</title>
+  <meta name="description" content="2.2 Linear time granularities | Visualization and analysis of probability distributions of large temporal data" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.2 Linear time granularities | Visualization and analysis of probability distributions of large temporal data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.2 Linear time granularities | Visualization and analysis of probability distributions of large temporal data" />
+  
+  
+  
+
+<meta name="author" content="Sayani Gupta" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2.1-introduction.html"/>
+<link rel="next" href="2.3-sec:cyclic-gran.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"> </a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="ch:abstract.html"><a href="ch:abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="ch:thanks.html"><a href="ch:thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="ch:preface.html"><a href="ch:preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch:intro.html"><a href="1-ch:intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1.1-sec:gravitas.html"><a href="1.1-sec:gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-sec:hakear.html"><a href="1.2-sec:hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-sec:gracsr.html"><a href="1.3-sec:gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-summary.html"><a href="1.4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch:gravitas.html"><a href="2-ch:gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a><ul>
+<li class="chapter" data-level="2.1" data-path="2.1-introduction.html"><a href="2.1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2.2-sec:linear-time.html"><a href="2.2-sec:linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-sec:cyclic-gran.html"><a href="2.3-sec:cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-sec:data-structure.html"><a href="2.4-sec:data-structure.html"><i class="fa fa-check"></i><b>2.4</b> Data structure</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-sec:visualization.html"><a href="2.5-sec:visualization.html"><i class="fa fa-check"></i><b>2.5</b> Visualization</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-sec:application.html"><a href="2.6-sec:application.html"><i class="fa fa-check"></i><b>2.6</b> Applications</a></li>
+<li class="chapter" data-level="2.7" data-path="2.7-sec:discussion.html"><a href="2.7-sec:discussion.html"><i class="fa fa-check"></i><b>2.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch:hakear.html"><a href="3-ch:hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="3.1-introduction-1.html"><a href="3.1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:computation-wpd.html"><a href="3.2-sec:computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-sec:rank-wpd.html"><a href="3.3-sec:rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:simulations.html"><a href="3.4-sec:simulations.html"><i class="fa fa-check"></i><b>3.4</b> Simulations</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-sec:application-wpd.html"><a href="3.5-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.5</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-discussion.html"><a href="3.6-discussion.html"><i class="fa fa-check"></i><b>3.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thankshakear.html"><a href="thankshakear.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-hakear.html"><a href="supplement-hakear.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch:gracsr.html"><a href="4-ch:gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
+<li class="chapter" data-level="4.1" data-path="4.1-introduction-2.html"><a href="4.1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4.2-sec:methodology.html"><a href="4.2-sec:methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
+<li class="chapter" data-level="4.3" data-path="4.3-sec:validation.html"><a href="4.3-sec:validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
+<li class="chapter" data-level="4.4" data-path="4.4-sec:cases.html"><a href="4.4-sec:cases.html"><i class="fa fa-check"></i><b>4.4</b> Case study</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-sec:conclusion.html"><a href="4.5-sec:conclusion.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion and future work</a></li>
+<li class="chapter" data-level="" data-path="thanksgracsr.html"><a href="thanksgracsr.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gracsr.html"><a href="supplement-gracsr.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch:conclusion.html"><a href="5-ch:conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion and future plans</a><ul>
+<li class="chapter" data-level="5.1" data-path="5.1-software-development.html"><a href="5.1-software-development.html"><i class="fa fa-check"></i><b>5.1</b> Software development</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-future-work.html"><a href="5.2-future-work.html"><i class="fa fa-check"></i><b>5.2</b> Future work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch:appendix.html"><a href="ch:appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="chapter" data-level="6" data-path="6-recalling-notations.html"><a href="6-recalling-notations.html"><i class="fa fa-check"></i><b>6</b> Recalling notations</a></li>
+<li class="chapter" data-level="7" data-path="7-raw-weighted-pairwise-distance.html"><a href="7-raw-weighted-pairwise-distance.html"><i class="fa fa-check"></i><b>7</b> Raw weighted pairwise distance</a><ul>
+<li class="chapter" data-level="7.1" data-path="7.1-tuning-parameter-1.html"><a href="7.1-tuning-parameter-1.html"><i class="fa fa-check"></i><b>7.1</b> Tuning parameter</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-underlying-distributions.html"><a href="7.2-underlying-distributions.html"><i class="fa fa-check"></i><b>7.2</b> Underlying distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="7.3-number-of-comparisons.html"><a href="7.3-number-of-comparisons.html"><i class="fa fa-check"></i><b>7.3</b> Number of comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-adjusted-weighted-pairwise-distances.html"><a href="8-adjusted-weighted-pairwise-distances.html"><i class="fa fa-check"></i><b>8</b> Adjusted weighted pairwise distances</a><ul>
+<li class="chapter" data-level="8.1" data-path="8.1-permutation-approach.html"><a href="8.1-permutation-approach.html"><i class="fa fa-check"></i><b>8.1</b> Permutation approach</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-modeling-approach.html"><a href="8.2-modeling-approach.html"><i class="fa fa-check"></i><b>8.2</b> Modeling approach</a></li>
+<li class="chapter" data-level="8.3" data-path="8.3-combination-approach.html"><a href="8.3-combination-approach.html"><i class="fa fa-check"></i><b>8.3</b> Combination approach</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-ranking-and-selecting-harmonies.html"><a href="9-ranking-and-selecting-harmonies.html"><i class="fa fa-check"></i><b>9</b> Ranking and selecting harmonies</a></li>
+<li class="chapter" data-level="10" data-path="10-raw-time-series-plot.html"><a href="10-raw-time-series-plot.html"><i class="fa fa-check"></i><b>10</b> Raw time series plot</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization and analysis of probability distributions of large temporal data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:linear-time" class="section level2">
+<h2><span class="header-section-number">2.2</span> Linear time granularities</h2>
+<p>Discrete abstractions of time such as weeks, months or holidays can be thought of as “time granularities”. Time granularities are <strong>linear</strong> if they respect the linear progression of time. There have been several attempts to provide a framework for formally characterizing time granularities, including <span class="citation">Bettini et al. (<a href="bibliography.html#ref-Bettini1998-ed" role="doc-biblioref">1998</a>)</span> which forms the basis of the work described here.</p>
+<div id="definitions" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Definitions</h3>
+
+<p>The time domain is assumed to be <em>discrete</em>, and there is unique predecessor and successor for every element in the time domain except for the first and last.</p>
+
+
+<p>This implies that the granules in a linear granularity are non-overlapping, continuous and ordered. The indexing for each granule can also be associated with a textual representation, called the label. A discrete time model often uses a fixed smallest linear granularity named by <span class="citation">Bettini et al. (<a href="bibliography.html#ref-Bettini1998-ed" role="doc-biblioref">1998</a>)</span> <strong>bottom granularity</strong>.  illustrates some common linear time granularities. Here, “hour” is the bottom granularity and “day”, “week”, “month” and “year” are linear granularities formed by mapping the index set to subsets of the hourly time domain. If we have “hour” running from <span class="math inline">\(\{0, 1, \dots,t\}\)</span>, we will have “day” running from <span class="math inline">\(\{0, 1, \dots, \lfloor t/24\rfloor\}\)</span>. These linear granularities are uni-directional and non-repeating.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:linear-time"></span>
+<img src="img/linear-ex.png" alt="Illustration of time domain, linear granularities and index set. Hour, day, week, month and year are linear granularities and can also be considered to be time domains. These are ordered with ordering guided by integers and hence is unidirectional and non-repeating. Hours could also be considered the index set, and a bottom granularity." width="100%" />
+<p class="caption">
+Figure 2.1: Illustration of time domain, linear granularities and index set. Hour, day, week, month and year are linear granularities and can also be considered to be time domains. These are ordered with ordering guided by integers and hence is unidirectional and non-repeating. Hours could also be considered the index set, and a bottom granularity.
+</p>
+</div>
+
+</div>
+<div id="relativities" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Relativities</h3>
+<p>Properties of pairs of granularities fall into various categories.</p>
+
+
+<p>For example, both <span class="math inline">\(day \trianglelefteq week\)</span> and <span class="math inline">\(day \preceq week\)</span> hold, since every granule of <span class="math inline">\(week\)</span> is the union of some set of granules of day and each day is a subset of a <span class="math inline">\(week\)</span>. These definitions are not equivalent. Consider another example, where <span class="math inline">\(G_1\)</span> denotes “weekend” and <span class="math inline">\(H_1\)</span> denotes “week”. Then, <span class="math inline">\(G_1 \preceq H_1\)</span>, but <span class="math inline">\(G_1 \ntrianglelefteq H_1\)</span>. Further, with <span class="math inline">\(G_2\)</span> denoting “days” and <span class="math inline">\(H_2\)</span> denoting “business-week”, <span class="math inline">\(G_2 \npreceq H_2\)</span>, but <span class="math inline">\(G_2 \trianglelefteq H_2\)</span>, since each business-week can be expressed as an union of some days, but Saturdays and Sundays are not subset of any business-week.
+Moreover, with <span class="math inline">\(H_3\)</span> denoting “public holidays”, <span class="math inline">\(G_1 \npreceq H_3\)</span> and <span class="math inline">\(G_1 \ntrianglelefteq H_3\)</span>.</p>
+<!-- # talk about period after definition 6 after you have explained period -->
+<!-- The relationship has period 7. -->
+<!-- The relationship $day \trianglelefteq month$ has a more complicated period. If leap years are ignored, each month is a grouping of the same number of days over years, hence the period of the grouping $(day, month)$ is one year. With the inclusion of leap years, the grouping period is 400 years. -->
+
+<p>If <span class="math inline">\(G\)</span> groups into <span class="math inline">\(H\)</span>, it would imply that any granule <span class="math inline">\(H(i)\)</span> is the union of some granules of <span class="math inline">\(G\)</span>, for example, <span class="math inline">\(G(a_1), G(a_2), \dots, G(a_k)\)</span>. Condition (2) in Definition  implies that if <span class="math inline">\(H(i + R) \neq \emptyset\)</span>, then <span class="math inline">\(H(i + R) = \bigcup (G(a_1 + P), G(a_2 + P), \dots, G(a_k + P))\)</span>, resulting in a “periodic” pattern of the composition of <span class="math inline">\(H\)</span> using granules of <span class="math inline">\(G\)</span>. In this pattern, each granule of <span class="math inline">\(H\)</span> is shifted by <span class="math inline">\(P\)</span> granules of <span class="math inline">\(G\)</span>. <span class="math inline">\(P\)</span> is called the  (<span class="citation">Bettini, Jajodia, and Wang (<a href="bibliography.html#ref-Bettini2000-qk" role="doc-biblioref">2000</a>)</span>).</p>
+<p>For example, day is periodic with respect to week with <span class="math inline">\(R=1\)</span> and <span class="math inline">\(P=7\)</span>, while (if we ignore leap years) day is periodic with respect to month with <span class="math inline">\(R=12\)</span> and <span class="math inline">\(P=365\)</span> as any month would consist of the same number of days across years.
+Since the idea of period involves a pair of granularities, we say that the pair <span class="math inline">\((day, week)\)</span> has period 7, while the pair <span class="math inline">\((day, month)\)</span> has a period 365 (ignoring leap years).</p>
+<p>Granularities can also be periodic with respect to other granularities, <em>“except for a finite number of spans of time where they behave in an anomalous way”</em>; these are called <strong>quasi-periodic</strong> relationships <span class="citation">(Bettini and De Sibi <a href="bibliography.html#ref-Bettini2000-vy" role="doc-biblioref">2000</a>)</span>. In a Gregorian calendar with leap years, day groups quasi-periodically into month with the exceptions of the time domain corresponding to <span class="math inline">\(29^{\text{th}}\)</span> February of any year.</p>
+
+<p>With two linear granularities <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span>, if <span class="math inline">\(G\)</span> <em>groups into</em> or <em>finer than</em> <span class="math inline">\(H\)</span> then <span class="math inline">\(G\)</span> is of lower order than <span class="math inline">\(H\)</span>. For example, if the bottom granularity is hour, then granularity <span class="math inline">\(day\)</span> will have lower order than <span class="math inline">\(week\)</span> since each day consist of fewer hours than each week.</p>
+<p>Granules in any granularity may be aggregated to form a coarser granularity. A system of multiple granularities in lattice structures is referred to as a <strong>calendar</strong> by <span class="citation">Dyreson et al. (<a href="bibliography.html#ref-Dyreson_2000" role="doc-biblioref">2000</a>)</span>. Linear time granularities are computed through “calendar algebra” operations <span class="citation">(Ning, Wang, and Jajodia <a href="bibliography.html#ref-Ning_2002" role="doc-biblioref">2002</a>)</span> designed to generate new granularities recursively from the bottom granularity. For example, due to the constant length of day and week, we can derive them from hour using
+<span class="math display">\[
+  D(j) = \lfloor H(i)/24\rfloor, \qquad W(k) = \lfloor H(i)/(24*7)\rfloor,
+\]</span>
+where <span class="math inline">\(H\)</span>, <span class="math inline">\(D\)</span> and <span class="math inline">\(W\)</span> denote hours, days and weeks respectively.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2.1-introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2.3-sec:cyclic-gran.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/earowang/thesis/edit/master/Rmd//02-gravitas.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

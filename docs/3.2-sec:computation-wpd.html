@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.2 Proposed distance measure | Visualization and analysis of probability distributions of large temporal data</title>
+  <meta name="description" content="3.2 Proposed distance measure | Visualization and analysis of probability distributions of large temporal data" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.2 Proposed distance measure | Visualization and analysis of probability distributions of large temporal data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.2 Proposed distance measure | Visualization and analysis of probability distributions of large temporal data" />
+  
+  
+  
+
+<meta name="author" content="Sayani Gupta" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3.1-introduction-1.html"/>
+<link rel="next" href="3.3-sec:rank-wpd.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"> </a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="ch:abstract.html"><a href="ch:abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="ch:thanks.html"><a href="ch:thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="ch:preface.html"><a href="ch:preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch:intro.html"><a href="1-ch:intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1.1-sec:gravitas.html"><a href="1.1-sec:gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-sec:hakear.html"><a href="1.2-sec:hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-sec:gracsr.html"><a href="1.3-sec:gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-summary.html"><a href="1.4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch:gravitas.html"><a href="2-ch:gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a><ul>
+<li class="chapter" data-level="2.1" data-path="2.1-introduction.html"><a href="2.1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2.2-sec:linear-time.html"><a href="2.2-sec:linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-sec:cyclic-gran.html"><a href="2.3-sec:cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-sec:data-structure.html"><a href="2.4-sec:data-structure.html"><i class="fa fa-check"></i><b>2.4</b> Data structure</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-sec:visualization.html"><a href="2.5-sec:visualization.html"><i class="fa fa-check"></i><b>2.5</b> Visualization</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-sec:application.html"><a href="2.6-sec:application.html"><i class="fa fa-check"></i><b>2.6</b> Applications</a></li>
+<li class="chapter" data-level="2.7" data-path="2.7-sec:discussion.html"><a href="2.7-sec:discussion.html"><i class="fa fa-check"></i><b>2.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch:hakear.html"><a href="3-ch:hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="3.1-introduction-1.html"><a href="3.1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:computation-wpd.html"><a href="3.2-sec:computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-sec:rank-wpd.html"><a href="3.3-sec:rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:simulations.html"><a href="3.4-sec:simulations.html"><i class="fa fa-check"></i><b>3.4</b> Simulations</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-sec:application-wpd.html"><a href="3.5-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.5</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-discussion.html"><a href="3.6-discussion.html"><i class="fa fa-check"></i><b>3.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thankshakear.html"><a href="thankshakear.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-hakear.html"><a href="supplement-hakear.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch:gracsr.html"><a href="4-ch:gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
+<li class="chapter" data-level="4.1" data-path="4.1-introduction-2.html"><a href="4.1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4.2-sec:methodology.html"><a href="4.2-sec:methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
+<li class="chapter" data-level="4.3" data-path="4.3-sec:validation.html"><a href="4.3-sec:validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
+<li class="chapter" data-level="4.4" data-path="4.4-sec:cases.html"><a href="4.4-sec:cases.html"><i class="fa fa-check"></i><b>4.4</b> Case study</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-sec:conclusion.html"><a href="4.5-sec:conclusion.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion and future work</a></li>
+<li class="chapter" data-level="" data-path="thanksgracsr.html"><a href="thanksgracsr.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gracsr.html"><a href="supplement-gracsr.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch:conclusion.html"><a href="5-ch:conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion and future plans</a><ul>
+<li class="chapter" data-level="5.1" data-path="5.1-software-development.html"><a href="5.1-software-development.html"><i class="fa fa-check"></i><b>5.1</b> Software development</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-future-work.html"><a href="5.2-future-work.html"><i class="fa fa-check"></i><b>5.2</b> Future work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch:appendix.html"><a href="ch:appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="chapter" data-level="6" data-path="6-recalling-notations.html"><a href="6-recalling-notations.html"><i class="fa fa-check"></i><b>6</b> Recalling notations</a></li>
+<li class="chapter" data-level="7" data-path="7-raw-weighted-pairwise-distance.html"><a href="7-raw-weighted-pairwise-distance.html"><i class="fa fa-check"></i><b>7</b> Raw weighted pairwise distance</a><ul>
+<li class="chapter" data-level="7.1" data-path="7.1-tuning-parameter-1.html"><a href="7.1-tuning-parameter-1.html"><i class="fa fa-check"></i><b>7.1</b> Tuning parameter</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-underlying-distributions.html"><a href="7.2-underlying-distributions.html"><i class="fa fa-check"></i><b>7.2</b> Underlying distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="7.3-number-of-comparisons.html"><a href="7.3-number-of-comparisons.html"><i class="fa fa-check"></i><b>7.3</b> Number of comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-adjusted-weighted-pairwise-distances.html"><a href="8-adjusted-weighted-pairwise-distances.html"><i class="fa fa-check"></i><b>8</b> Adjusted weighted pairwise distances</a><ul>
+<li class="chapter" data-level="8.1" data-path="8.1-permutation-approach.html"><a href="8.1-permutation-approach.html"><i class="fa fa-check"></i><b>8.1</b> Permutation approach</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-modeling-approach.html"><a href="8.2-modeling-approach.html"><i class="fa fa-check"></i><b>8.2</b> Modeling approach</a></li>
+<li class="chapter" data-level="8.3" data-path="8.3-combination-approach.html"><a href="8.3-combination-approach.html"><i class="fa fa-check"></i><b>8.3</b> Combination approach</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-ranking-and-selecting-harmonies.html"><a href="9-ranking-and-selecting-harmonies.html"><i class="fa fa-check"></i><b>9</b> Ranking and selecting harmonies</a></li>
+<li class="chapter" data-level="10" data-path="10-raw-time-series-plot.html"><a href="10-raw-time-series-plot.html"><i class="fa fa-check"></i><b>10</b> Raw time series plot</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization and analysis of probability distributions of large temporal data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:computation-wpd" class="section level2">
+<h2><span class="header-section-number">3.2</span> Proposed distance measure</h2>
+<p>We propose a measure called Weighted Pairwise Distances (<span class="math inline">\(wpd\)</span>) to detect distributional differences in the measured variable across cyclic granularities.</p>
+<div id="principle" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Principle</h3>
+<p>The principle behind the construction of <span class="math inline">\(wpd\)</span> is explained through a simple example explained in Figure . Each of these figures describes a panel with <span class="math inline">\(2\)</span> x-axis categories and <span class="math inline">\(3\)</span> facet levels, but with different designs. Figure a has all categories drawn from N(0, 1) distribution for each facet. It is not an interesting display particularly, as distributions do not vary across x-axis or facet categories. Figure b has x categories drawn from the same distribution, but across facets the distributions are <span class="math inline">\(3\)</span> standard deviations apart. Figure c exhibits an exact opposite situation where distribution between the x-axis categories
+are <span class="math inline">\(3\)</span> standard deviations apart, but they do not change across facets. Figure d takes a step further by varying the distribution across both facet and x-axis categories by <span class="math inline">\(3\)</span> standard deviations. If the panels are to be ranked in order of capturing maximum variation in the measured variable from minimum to maximum, then an obvious choice would be placing (a) followed by (b), (c) and then (d). It might be argued that it is not clear if (b) should precede or succeed (c) in the ranking. Gestalt theory suggests items placed at close proximity can be compared more easily, because people assume that they are in the same group and apart from other groups. With this principle in mind, display (b) is considered less informative as compared to display (c) in emphasizing the distributional differences. Considering one cyclic granularity, we would have only two design choices similar to (a) and (c), corresponding to no difference and significant differences between categories of that cyclic granularity only. The proposed measure <span class="math inline">\(wpd\)</span> is constructed in a way so that it could be used to rank panels of different designs as well as test if a design is interesting. This measure is aimed to be an estimate of the maximum variation in the measured variable explained by the panel. A higher value of <span class="math inline">\(wpd\)</span> would indicate that the panel is interesting to look at, whereas a lower value would indicate otherwise.</p>
+<!-- To compute the maximum variation of the measured variable within each panel, the distributional differences need to be measured for both within-group and between-group categories. Moreover, a tuning parameter specifying the weightage given to within-facet or between-facet categories can help to choose between designs like \ref{fig:null4by2}b and c. The maximum of all these weighted differences serves as an estimate of the maximum variation in the panel and is taken as the value of $wpd$. -->
+<!-- Larger differences imply stronger patterns, whereas small difference would imply that the underlying structure is not changing within or between group. -->
+<!-- A distance measure aimed to capture the structure of the measured variable in designs like \ref{fig:null4by2}, should ideally estimate these within-group and between-group variations. -->
+<!-- \noindent Intuitively, while finding a structure or measuring the strength of patterns in Figure \ref{fig:null4by2}, it makes sense to look for within-group and between-group variations. Larger variation would imply stronger patterns, whereas small variation would imply the underlying structure is not changing within or between group. -->
+<!-- Thus, a distance measure aimed to capture this structure should ideally estimate these within-group and between-group variations. One of the potential ways to do this is to measure the distances between distributions of the continuous random variable measured within and between groups, weigh them basis if they are within or between groups and then take the maximum of those distances as an estimate of the maximum variation in the structure. This section starts with possible ways of characterizing distributions and computing distances between them and then describe in details how the measure $wpd$ is defined. -->
+<!-- This is similar to @ieee-irish where the authors compute the Jensen Shannon distance between two density estimates by computing percentiles and stresses the advantages to working with percentiles rather than the raw data directly in case of missing observations. Working with quantiles also ensure that unsynchronized time series could be handled. -->
+<!-- Hence, with reference to the graphical design in @Gupta2021-gravitas, therefore the idea would be to rate a harmony pair higher if the variation between different levels of the x-axis variable is higher on an average across all levels of the facet variables.  -->
+<!-- To elaborate further, look at the examples in Figure \ref{}, where Figure \ref{}a represents the panel design with distribution of each x categories drawn from N(5, 10) distribution. It could be observed that the graph is not particularly interesting, as there is no significant change in distribution between x-axis levels or facets. Figure \ref{}b represents the same panel design with no difference in distribution of x-axis categories within a facet, but different distribution of x-axis categories for different facets. For example, if there are 4 facet levels and 2 x-axis levels, data is generated in the way as described in Table \ref{}. Figure \ref{}b exhibits an exact opposite situation where the x-axis within facets are different but not across facets. -->
+<!-- Figure \ref{}d takes it further by varying the distribution across both facet and x-axis categories. -->
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:null4by2"></span>
+<img src="figure/null4by2-1.png" alt="An example illustrating the principle of the proposed distance measure, displaying the distribution of a normally distributed variable in four panels each with $2$ x-axis categories and $3$ facet levels, but with different designs. Display (a) is not interesting as the distribution of the variable does not depend on x or facet categories. Display (b) and (c) are more interesting than (a) since there is a change in distribution either across facets (b) or x-axis (c). Display (d) is most interesting in terms of capturing structure in the variable as the distribution of the variable changes across both facet and x-axis variable. The value of our proposed distance measure is presented for each panel, the relative differences between which will be explained later in Section 3.2." width="100%" />
+<p class="caption">
+Figure 3.3: An example illustrating the principle of the proposed distance measure, displaying the distribution of a normally distributed variable in four panels each with <span class="math inline">\(2\)</span> x-axis categories and <span class="math inline">\(3\)</span> facet levels, but with different designs. Display (a) is not interesting as the distribution of the variable does not depend on x or facet categories. Display (b) and (c) are more interesting than (a) since there is a change in distribution either across facets (b) or x-axis (c). Display (d) is most interesting in terms of capturing structure in the variable as the distribution of the variable changes across both facet and x-axis variable. The value of our proposed distance measure is presented for each panel, the relative differences between which will be explained later in Section 3.2.
+</p>
+</div>
+<!-- A "significant" cyclic granularity have at least two categories which are significantly different from each other. It does not tell you which categories are statistically significantly different from each other -->
+<!-- in the same group would be important to bring out different patterns of the data. -->
+</div>
+<div id="notations" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Notations</h3>
+<p>Let the number of cyclic granularities considered in the display be <span class="math inline">\(m\)</span>. The notations and methodology are described in detail for <span class="math inline">\(m=2\)</span>. But it can be easily extended to <span class="math inline">\(m&gt;2\)</span>. Consider two cyclic granularities <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, such that <span class="math inline">\(A = \{ a_j: j = 1, 2, \dots, J\}\)</span> and <span class="math inline">\(B = \{ b_k: k = 1, 2, \dots, K\}\)</span> with <span class="math inline">\(A\)</span> placed across x-axis and <span class="math inline">\(B\)</span> across facets. Let <span class="math inline">\(v = \{v_t: t = 0, 1, 2, \dots, T-1\}\)</span> be a continuous variable observed across <span class="math inline">\(T\)</span> time points. This data structure with <span class="math inline">\(J\)</span> x-axis levels and <span class="math inline">\(K\)</span> facet levels is referred to as a <span class="math inline">\((J, K)\)</span> panel. For example, a <span class="math inline">\((2, 3)\)</span> panel will have cyclic granularities with 2 x-axis levels and 3 facet levels. Let the four elementary designs as described in Figure  be <span class="math inline">\(D_{null}\)</span> (referred to as “null distribution”) where there is no difference in distribution of <span class="math inline">\(v\)</span> for <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>, <span class="math inline">\(D_{var_f}\)</span> denotes the set of designs where there is difference in distribution of <span class="math inline">\(v\)</span> for <span class="math inline">\(B\)</span> and not for <span class="math inline">\(A\)</span>. Similarly, <span class="math inline">\(D_{var_x}\)</span> denotes the set of designs where difference is observed only across A. Finally, <span class="math inline">\(D_{var_{all}}\)</span> denotes those designs for which difference is observed across both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. <span class="math inline">\(m = 1\)</span> is a special case of <span class="math inline">\(m = 2\)</span> with <span class="math inline">\(J = 1\)</span>.</p>
+<table>
+<caption><span id="tab:notations">Table 3.1: </span>Nomenclature table</caption>
+<colgroup>
+<col width="20%" />
+<col width="79%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">variable</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(N_C\)</span></td>
+<td align="left">number of cyclic granularities</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(H_{N_C}\)</span></td>
+<td align="left">set of harmonies</td>
+</tr>
+<tr class="odd">
+<td align="left">nx</td>
+<td align="left">number of x-axis categories</td>
+</tr>
+<tr class="even">
+<td align="left">nfacet</td>
+<td align="left">number of facet categories</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\lambda\)</span></td>
+<td align="left">tuning parameter</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\omega\)</span></td>
+<td align="left">increment (mean or sd)</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(wpd\)</span></td>
+<td align="left">raw weighted pairwise distance</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(wpd_{norm}\)</span></td>
+<td align="left">normalized weighted pairwise distance</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(nperm\)</span></td>
+<td align="left">number of permutations for threshold/normalization</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(nsim\)</span></td>
+<td align="left">number of simulations</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(wpd_{threshold}\)</span></td>
+<td align="left">threshold for significance</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(D_{null}\)</span></td>
+<td align="left">null design with no distributional difference across categories</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(D_{var_f}\)</span></td>
+<td align="left">design with distributional difference only across facets categories</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(D_{var_x}\)</span></td>
+<td align="left">design with distributional difference only across x-axis categories</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(D_{var_{all}}\)</span></td>
+<td align="left">design with distributional difference across both facet and x-axis</td>
+</tr>
+</tbody>
+</table>
+<p><!-- Thus, by CLT, ${\chi^2}_{m} \tilde{} N(m, 2m)$, which would depend on the number of discretization used to approximate the continuous distribution.  -->
+<!-- Then $b_n = 1-1/n$ quantile of the normal distribution and $a_n = 1/[n*\phi(b_n)]$ where $\phi$ is the normal density function. $n$ is the number of pairwise comparisons being made. --></p>
+<!-- The Jensen-Shanon distance between two probability distribution $p_1$ and $p_2$ is given by $$d = [D(p_1, r) + D(p_2, r)]/2 \quad where \quad r = (p_1 + p_2)/2$$ where, -->
+<!-- $$D(p_1,p_2) = \int^{\infty}_{-\infty}p_1(x)log\frac{p_1(x)}{p_2(x)}\,dx$$ is the Kullback-Leibler divergence between $p_1$ and $p_2$.   -->
+<!-- We call this measure of variation as  Median Maximum Pairwise Distances (MMPD). -->
+<!-- #### Distribution of Jensen-Shannon distances -->
+<!-- Jensen-Shannon distances (JSD) are distributed as chi-squared with $m$ df where we discretize the continuous distribution with $m$ discrete values. Taking sample percentiles to approximate the integral would mean taking $m = 99$. -->
+<!-- With large $m$, chi-squared is asymptotically normal by the CLT. Thus, by CLT, ${\chi^2}_{m} \tilde{} N(m, 2m)$, which would depend on the number of discretization used to approximate the continuous distribution. Then $b_n = 1-1/n$ quantile of the normal distribution and $a_n = 1/[n*\phi(b_n)]$ where $\phi$ is the normal density function. $n$ is the number of pairwise comparisons being made. -->
+</div>
+<div id="computation-1" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Computation</h3>
+<p>The computation of the distance measure <span class="math inline">\(wpd\)</span> for a panel involves characterizing distributions, computing distances between distributions, choosing a tuning parameter to specify the weightage for different group of distances and summarizing those weighted distances appropriately to estimate maximum variation. Furthermore, the data needs to be appropriately transformed to ensure that the value of <span class="math inline">\(wpd\)</span> emphasizes detection of distributional differences across categories and not across different data generating processes.</p>
+<!-- but not when underlying distributions are different -->
+<!-- irrespective of the distribution from which the data is generated. -->
+<!-- is aimed to capture structure and patterns by estimating the maximum variation of the measured variable within a panel.  $wpd$ -->
+<!-- the distributional differences need to be measured for both within-group and between-group categories. Moreover, a tuning parameter specifying the weightage given to within-facet or between-facet categories can help to choose between designs like \ref{fig:null4by2}b and c. The maximum of all these weighted differences serves as an estimate of the maximum variation in the panel and is taken as the value of $wpd$.  -->
+<div id="data-transformation" class="section level4">
+<h4><span class="header-section-number">3.2.3.1</span> Data transformation</h4>
+<p>The intended aim of <span class="math inline">\(wpd\)</span> is to capture differences in categories irrespective of the distribution from which the data is generated. Hence, as a pre-processing step, the raw data is normal-quantile transformed (NQT) (<span class="citation">Krzysztofowicz (<a href="bibliography.html#ref-Krzysztofowicz1997-bv" role="doc-biblioref">1997</a>)</span>), so that the quantiles of the transformed data follows a standard normal distribution. This sort of transformation is common in the fields of geo-statistics to make most asymmetrical distributed real world measured variables more treatable and normal-like (<span class="citation">Bogner, Pappenberger, and Cloke (<a href="bibliography.html#ref-Bogner2012-az" role="doc-biblioref">2012</a>)</span>).The empirical NQT involves the following steps:<br />
+1. The sample of measured variable <span class="math inline">\(v\)</span> is sorted from the smallest to the largest observation <span class="math inline">\(v_{(1)},\dots, v_{(i)}, .., v_{(n)}\)</span>.<br />
+2. The cumulative probabilities <span class="math inline">\(p_{(1)},\dots, p_{(i)}, .., p_{(n)}\)</span> are estimated using a plotting position like <span class="math inline">\(i/(n + 1)\)</span> such that <span class="math inline">\(p_{(i)} = P(v \leq v_{(i)})\)</span>.<br />
+3. Each observation <span class="math inline">\(v_{(i)}\)</span> of <span class="math inline">\(v\)</span> is transformed into observation <span class="math inline">\(v^*(i) = Q^{-1}(p(i))\)</span> of the standard normal variate <span class="math inline">\(v^*\)</span>, with <span class="math inline">\(Q\)</span> denoting the standard normal distribution and <span class="math inline">\(Q^{-1}\)</span> its inverse.</p>
+</div>
+<div id="characterising-distributions" class="section level4">
+<h4><span class="header-section-number">3.2.3.2</span> Characterising distributions</h4>
+<p>Multiple observations of <span class="math inline">\(v\)</span> correspond to the subset <span class="math inline">\(v_{jk} = \{s: A(s) = j, B(s) = k\}\)</span>. The number of observations might vary widely across subsets due to the structure of the calendar, missing observations or uneven locations of events in the time domain. in this paper, quantiles of <span class="math inline">\(v_{jk}\)</span>’s are chosen as a way to characterize distributions for the category <span class="math inline">\((a_j, b_k)\)</span>, <span class="math inline">\(\forall j\in \{1, 2, \dots, J\}, k\in \{1, 2, \dots, K\}\}\)</span>. The quantile of a distribution with probability <span class="math inline">\(p\)</span> is defined as <span class="math inline">\(Q(p)=F^{-1}(p) = inf\{x: F(x) &gt;p\}\)</span>, <span class="math inline">\(0&lt;p&lt; 1\)</span> where <span class="math inline">\(F(x)\)</span> is the distribution function. There are two broad approaches to quantile estimation, viz, parametric and non-parametric. Sample quantiles (<span class="citation">Hyndman and Fan (<a href="bibliography.html#ref-Hyndman1996-ty" role="doc-biblioref">1996</a>)</span>) are used for estimating population quantiles in a non-parametric setup, which is desirable because of less rigid assumptions made about the nature of the underlying distribution of the data. The default quantile chosen in this paper is percentiles computed for <span class="math inline">\(p = {0.01, 0.02, \dots, 0.99}\)</span>, where for example, the <span class="math inline">\(99^{th}\)</span> percentile would be the value corresponding to <span class="math inline">\(p=0.99\)</span> and hence 99% of the observations would lie below that.</p>
+<!-- The benefit of using a non-parametric estimator is that there are less rigid assumptions made about the nature of the underlying distribution of the data. Sample quantiles could be used for estimating population quantiles in a non-parametric setup. describes the many ways of defining sample quantiles and recommends the use of median-unbiased estimator because of _desirable properties of a quantile estimator and can be defined independently of the underlying distribution._.  -->
+<!-- in this paper. -->
+<!-- Each $v_{jk}$'s $\forall j\in \{1, 2, \dots, J\}, k\in \{1, 2, \dots, K\}\}$ are assumed to be drawn from a continuous probability distribution and have certain characteristics. Shape, central tendency, and variability are the common characteristics used to describe a distribution. -->
+<!-- Mean, median or mode are generally used to describe the center of the distribution, while range, standard deviation, quantiles, standard errors and confidence intervals are used to describe variability. -->
+<!-- The quantile of a distribution with probability $p$ is defined as $Q(p)=F^{-1}(p) = inf\{x: F(x) >p\}$, $0<p< 1$ where $F(x)$ is the distribution function. There are two broad approaches to quantile estimation, viz, parametric and non-parametric. The benefit of using a non-parametric estimator is that there are less rigid assumptions made about the nature of the underlying distribution of the data. Sample quantiles could be used for estimating population quantiles in a non-parametric setup. @Hyndman1996-ty describes the many ways of defining sample quantiles and recommends the use of median-unbiased estimator because of _desirable properties of a quantile estimator and can be defined independently of the underlying distribution._. The `stats::quantile()` function in @R-language could be used for practical implementation where type = 8 refers to the algorithm corresponding to the median-unbiased estimator. The default quantile chosen in this paper is percentiles computed for $p = {0.01, 0.02, \dots, 0.99}$, where for example, the $99^{th}$ percentile would be the value corresponding to $p=0.99$ and hence 99% of the observations would lie below that. -->
+</div>
+<div id="distance-between-distributions" class="section level4">
+<h4><span class="header-section-number">3.2.3.3</span> Distance between distributions</h4>
+<!-- One of the most important class of divergence is the f-divergence and includes measures like Kullback-Leibler divergence, Hellinger distance etc. The continuous version of f -divergence is given by -->
+<!-- $$D_f(P||Q) := \int q(x)f(\frac{p(x)}{q(x)})$$, where -->
+<!-- $f : [0,\infty) \rightarrow R \cup \{\infty\}$ is a continuous convex function, and $f(1) = 0$.  -->
+<p>One of the most common ways to measure divergence between distributions is the Kullback-Leibler (KL) divergence <span class="citation">(Kullback and Leibler <a href="bibliography.html#ref-Kullback1951-jy" role="doc-biblioref">1951</a>)</span>. The KL divergence denoted by <span class="math inline">\(D(q_1||q_2)\)</span> is a non-symmetric measure of the difference between two probability distributions <span class="math inline">\(q_1\)</span> and <span class="math inline">\(q_2\)</span> and is interpreted as the amount of information lost when <span class="math inline">\(q_2\)</span> is used to approximate <span class="math inline">\(q_1\)</span>. The KL divergence, however, is not symmetric and hence can not be considered as a “distance” measure. The Jensen-Shannon divergence <span class="citation">(Men’endez et al. <a href="bibliography.html#ref-Menendez1997-in" role="doc-biblioref">1997</a>)</span> based on the Kullback-Leibler divergence is symmetric and has a finite value. Hence, in this paper, the pairwise distances between the distributions of the measured variable are obtained through the square root of the Jensen-Shannon divergence, called Jensen-Shannon distance (JSD) and is defined by,</p>
+<p><span class="math display">\[JSD(q_1||q_2) = \frac{1}{2}D(q_1||M) + \frac{1}{2}D(q_2||M)\]</span>
+where <span class="math inline">\(M = \frac{q_1+q_2}{2}\)</span> and
+<span class="math inline">\(D(q_1||q_2) := \int^\infty_{-\infty} q_1(x)f(\frac{q_1(x)}{q_2(x)})\)</span> is the KL divergence between distributions <span class="math inline">\(q_1\)</span> and <span class="math inline">\(q_2\)</span>. Other common measures of distance between distributions are Hellinger distance, total variation distance and Fisher information metric.</p>
+<!-- Furthermore, these distances are distributed as chi-squared with $m$ degrees of freedom (@Menendez1997-in), if the continuous distribution is being discretized with $m$ discrete values. Taking sample percentiles to approximate the integral would mean taking $m = 99$. As the degrees of freedom $m$ get larger, the chi-square distribution approaches the normal distribution. -->
+</div>
+<div id="within-facet-and-between-facet-distances" class="section level4">
+<h4><span class="header-section-number">3.2.3.4</span> Within-facet and between-facet distances</h4>
+<p>Pairwise distances could be within-facets or between-facets for <span class="math inline">\(m \geq 2\)</span>. Figure  illustrates how they are defined. Pairwise distances are within-facets when <span class="math inline">\(b_{k} = b_{k&#39;}\)</span>, that is, between pairs of the form <span class="math inline">\((a_{j}b_{k}, a_{j&#39;}b_{k})\)</span> as shown in panel (3) of Figure . If categories are ordered (like all temporal cyclic granularities), then only distances between pairs where <span class="math inline">\(a_{j&#39;} = (a_{j+1})\)</span> are considered (panel (4)). Pairwise distances are between-facets when they are considered between pairs of the form <span class="math inline">\((a_{j}b_{k}, a_{j}b_{k&#39;})\)</span>. Number of between-facet distances would be <span class="math inline">\(^{K}C_2*J\)</span> and number of within-facet distances are <span class="math inline">\(K*(J-1)\)</span> (ordered) and <span class="math inline">\(^{J}C_2*K\)</span> (un-ordered).</p>
+</div>
+<div id="tuning-parameter" class="section level4">
+<h4><span class="header-section-number">3.2.3.5</span> Tuning parameter</h4>
+<p>A tuning parameter specifying the weightage given to the within-facet or between-facet categories can help to balance weightage between designs like (b) and (c). The tuning parameters should be chosen such that <span class="math inline">\(\sum_{i=1}^m \lambda_i = 1\)</span>. When <span class="math inline">\(m=2\)</span>, following the principle of Gestalt theory, <span class="math inline">\(\lambda = \frac{2}{3} = 0.67\)</span> is chosen to put a relative weightage of <span class="math inline">\(2:1\)</span> for within-facet and between-facet distances. No human experiment is conducted to justify this ratio, however, typically a tuning parameter <span class="math inline">\(\lambda&gt;0.5\)</span> would tend to upweigh the within-facet distances and that with <span class="math inline">\(&lt;0.5\)</span> would upweigh the between-facet distances (refer to the Supplementary paper for more details). For <span class="math inline">\(m = 1\)</span>, there are no conditioning variables or groups, and hence <span class="math inline">\(\lambda = 1\)</span>.</p>
+</div>
+<div id="raw-distance-measure" class="section level4">
+<h4><span class="header-section-number">3.2.3.6</span> Raw distance measure</h4>
+<p>The raw distance measure, denoted by <span class="math inline">\(wpd_{raw}\)</span>, is computed after combining all the weighted distance measures appropriately. First, NQT is performed on the measured variable <span class="math inline">\(v_t\)</span> to obtain <span class="math inline">\(v^*_t\)</span> (<em>data transformation</em>). Then, for a fixed harmony pair <span class="math inline">\((A, B)\)</span>, percentiles of <span class="math inline">\(v^*_{jk}\)</span> are computed and stored in <span class="math inline">\(q_{jk}\)</span> (<em>distribution characterization</em>). This is repeated for all pairs of categories of the form <span class="math inline">\((a_{j} b_{k}, a_{j&#39;}b_{k&#39;}): \{a_j: j = 1, 2, \dots, J\}, B = \{ b_k: k = 1, 2, \dots, K\}\)</span>. The pairwise distances between pairs <span class="math inline">\((a_{j} b_{k}, a_{j&#39;}b_{k&#39;})\)</span> denoted by <span class="math inline">\(d_{(jk, j&#39;k&#39;)} = JSD(q_{jk}, q_{j&#39;k&#39;})\)</span> is computed (<em>distance between distributions</em>). The pairwise distances (<em>Within-facet and between-facet</em>) are transformed using a suitable <em>tuning parameter</em> (<span class="math inline">\(0&lt;\lambda&lt;1\)</span>) depending on if they are within-facet(<span class="math inline">\(d_w\)</span>) or between-facets(<span class="math inline">\(d_b\)</span>) as follows:
+<span class="math display">\[\begin{equation}\label{def:raw-wpd}
+d*_{(j,k), (j&#39;k&#39;)} =
+\begin{cases}
+\lambda d_{(jk), (j&#39;k&#39;)},&amp; \text{if } d = d_w\\
+(1-\lambda)  d_{(jk), (j&#39;k&#39;)},              &amp; \text{if } d = d_b\\
+\end{cases}
+\end{equation}\]</span></p>
+<p>The <span class="math inline">\(wpd_{raw}\)</span> is then computed as <span class="math display">\[wpd = max_{j, j&#39;, k, k&#39;}(d*_{(jk), (j&#39;k&#39;)}) \forall j, j&#39; \in \{1, 2, \dots, J\}, k, k&#39; \in \{1, 2, \dots, K\}\]</span></p>
+<p>The statistic “maximum” is chosen to combine the weighted pairwise distances since the distance measure is aimed at capturing the maximum variation of the measured variable within a panel. The statistic “maximum” is, however, affected by the number of comparisons (resulting pairwise distances). For example, for a <span class="math inline">\((2, 3)\)</span> panel, there are <span class="math inline">\(6\)</span> possible subsets of obervations corresponding to the combinations <span class="math inline">\((a_1, b_1), (a_1, b_2), (a_1, b_3), (a_2 ,b_1), (a_2 ,b_2), (a_2, b_3)\)</span>, whereas for a <span class="math inline">\((2, 2)\)</span> panel, there are only <span class="math inline">\(4\)</span> possible subsets <span class="math inline">\((a_1, b_1), (a_1, b_2), (a_2 ,b_1), (a_2 ,b_2)\)</span>. Consequently, the measure would have higher values for the panel <span class="math inline">\((2, 3)\)</span> as compared to <span class="math inline">\((2, 2)\)</span>, since maximum is taken over higher number of pairwise distances.</p>
+</div>
+<div id="sec:norm-wpd" class="section level4">
+<h4><span class="header-section-number">3.2.3.7</span> Adjusting for the number of comparisons</h4>
+<p>Ideally, it is desired that the proposed distance measure takes a higher value only if there is a significant difference between distributions across categories, and not because the number of categories <span class="math inline">\(J\)</span> or <span class="math inline">\(K\)</span> is high. That is, under designs like <span class="math inline">\(D_{null}\)</span>, their distribution should not differ for a different number of categories. Only then the distance measure could be compared across panels with different levels. This calls for an adjusted measure, which normalizes for the different number of comparisons. We denote it by <span class="math inline">\(wpd\)</span>. Two approaches for adjusting the number of comparisons are discussed, both of which are substantiated using simulations. The first one defines an adjusted measure <span class="math inline">\(wpd_{perm}\)</span> based on the permutation method to remove the effect of different comparisons. The second approach fits a model to represent the relationship between <span class="math inline">\(wpd_{raw}\)</span> and the number of comparisons and defines the adjusted measure (<span class="math inline">\(wpd_{glm}\)</span>) as the residual from the model.</p>
+<p><em>Permutation approach</em></p>
+<p>This method is somewhat similar in spirit to bootstrap or permutation tests, where the goal is to test the hypothesis that the groups under study have identical distributions. This method accomplishes a different goal of finding the null distribution for different groups (panels in our case) and standardizing the raw values using that distribution. The values of <span class="math inline">\(wpd_{raw}\)</span> is computed on many (<span class="math inline">\(nperm\)</span>) permuted data sets and stored in <span class="math inline">\(wpd_{perm-data}\)</span>. Then <span class="math inline">\(wpd_{perm}\)</span> is computed as follows:</p>
+<p><span class="math display">\[\begin{align*}
+wpd_{perm} = \frac{(wpd_{raw} - \bar{wpd_{perm-data}})}{sd(wpd_{perm-data})}
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(\bar{wpd_{perm-data}}\)</span> and <span class="math inline">\(sd(wpd_{perm-data})\)</span> are the mean and standard deviation of <span class="math inline">\(wpd_{perm-data}\)</span> respectively. Standardizing <span class="math inline">\(wpd\)</span> in the permutation approach ensures that the distribution of <span class="math inline">\(wpd_{perm}\)</span> under <span class="math inline">\(D_{null}\)</span> has the same <span class="math inline">\(mean = 0\)</span> and <span class="math inline">\(\sigma^2_{perm} = 1\)</span> across all comparisons. While this works successfully to make the location and scale similar across different <span class="math inline">\(nx\)</span> and <span class="math inline">\(nfacet\)</span>, it is computationally heavy and time consuming, and hence less user friendly when being actually used in practice. Hence, another approach to adjustment, with potentially less computational time, is proposed.</p>
+<!-- for the $l^{th}$ panel and -->
+<p><em>Modeling approach</em></p>
+<p>In this approach, a Gamma generalized linear model (GLM) for <span class="math inline">\(wpd_{raw}\)</span> is fitted with number of comparisons as the explanatory variable. Since, <span class="math inline">\(wpd_{raw}\)</span> is a Jensen-Shannon distance, it follows a Chi-square distribution (<span class="citation">Men’endez et al. (<a href="bibliography.html#ref-Menendez1997-in" role="doc-biblioref">1997</a>)</span>), which is a special case of Gamma distribution. Furthermore, the mean response is bounded, since any JSD is bounded by <span class="math inline">\(1\)</span> given that base <span class="math inline">\(2\)</span> logarithm is used (<span class="citation">Lin (<a href="bibliography.html#ref-Lin1991-pt" role="doc-biblioref">1991</a>)</span>). Hence, by <span class="citation">Faraway (<a href="bibliography.html#ref-Faraway2016-uk" role="doc-biblioref">2016</a>)</span>, an inverse link is used for the model, which is of the form <span class="math inline">\(y = a+b*log(z) + e\)</span>, where <span class="math inline">\(y = wpd_{raw}\)</span>, <span class="math inline">\(z = (nx*nfacet)\)</span> is the number of groups and <span class="math inline">\(e\)</span> are idiosyncratic errors. Let <span class="math inline">\(E(y) = \mu\)</span> and <span class="math inline">\(a + b*log(z) = g(\mu)\)</span> where <span class="math inline">\(g\)</span> is the link function. Then <span class="math inline">\(g(\mu)= 1/\mu\)</span> and <span class="math inline">\(\hat \mu = 1/(\hat a + \hat b log(z))\)</span>. The residuals from this model <span class="math inline">\((y-\hat y) = (y-1/(\hat a + \hat b log(z)))\)</span> would be expected to have no dependency on <span class="math inline">\(z\)</span>. Thus, <span class="math inline">\(wpd_{glm}\)</span> is chosen as the residuals from this model and is defined as:
+<span class="math display">\[wpd_{glm} = wpd_{raw} - 1/(\hat a + \hat b*log(nx*nfacet))\]</span>
+The distribution of <span class="math inline">\(wpd_{glm}\)</span> under <span class="math inline">\(D_{null}\)</span> will have <span class="math inline">\(mean = 0\)</span>, since it is the residuals from the model, and a constant variance <span class="math inline">\(\sigma^2_{glm}\)</span>, which might not equal 1.</p>
+<p><em>Combination approach</em></p>
+<p>The simulation results (in Section ) show that the distribution of <span class="math inline">\(wpd_{glm}\)</span> under null is similar for high <span class="math inline">\(nx\)</span> and <span class="math inline">\(nfacet\)</span> (levels higher than <span class="math inline">\(5\)</span>) and not so much for lower <span class="math inline">\(nx\)</span> and <span class="math inline">\(nfacet\)</span>. Hence, a combination approach is proposed which chooses permutation approach for categories with smaller levels and modeling approach for categories with higher levels. This ensures that the computational load of the permutation approach is alleviated while maintaining similar null distribution across different categories. This approach, however, requires that the adjusted variables from the two approaches are brought to the same scale. We define <span class="math inline">\(wpd_{glm-scaled} = wpd_{glm}*\sigma^2_{perm}/\sigma^2_{glm}\)</span> as the transformed <span class="math inline">\(wpd_{glm}\)</span> with a similar scale as <span class="math inline">\(wpd_{perm}\)</span>. The adjusted measure from the combination approach, denoted by <span class="math inline">\(wpd\)</span> is then defined as follows:</p>
+<p><span class="math display">\[\begin{equation}
+wpd =
+\begin{cases}
+wpd_{perm},&amp; \text{if } J, K &lt;=5\\
+wpd_{glm-scaled}             &amp; \text{otherwise}\\
+\end{cases}
+\end{equation}\]</span></p>
+<!-- ### Algorithm -->
+<!-- The distance measure $wpd$ between two cyclic granularities $A$ and $B$ is aimed to capture the strength of the structure by estimating the maximum within-group and between-group variations. Furthermore,  -->
+<!-- The steps employed for computing $wpd$ is summarized as follows: -->
+<!-- The values of $wpd$ indeed depend upon the underlying distribution. This is also not desirable as the intended aim of $wpd$ is to capture differences in categories irrespective of the distribution from which the data is generated. The steps employed for computing the distance measure is summarized as follows: -->
+<!-- Hence, differences in distributions of the measured variable are computed between all pairs of categories $(a_{j} b_{k}, a_{j'}b_{k'}): j = 1, 2, \dots, J\}, B = \{ b_k: k = 1, 2, \dots, K\}$. Percentiles of $v_{jk}$ and $v_{j'k'}$ are computed and stored in $q_{jk}$ and $q_{j'k'}$ respectively. Then the pairwise distances between pairs $(a_{j} b_{k}, a_{j'}b_{k'})$ be denoted as $d_{(jk, j'k')} = JSD(q_{jk}, q_{j'k'})$ is computed. Pairwise distances could be within-facets or between-facets. Figure \ref{fig:distance-explain} illustrates how the within-facet or between-facet distances are defined. Pairwise distances are within-facets ($d_{w}$) when $b_{k} = b_{k'}$, that is, between pairs of the form $(a_{j}b_{k}, a_{j'}b_{k})$ as shown in panel (3) of Figure \ref{fig:distance-explain}. If categories are ordered (like all temporal cyclic granularities), then only distances between pairs where $a_{j'} = (a_{j+1})$ are considered (panel (4)). Pairwise distances are between-facets ($d_{b}$) when they are considered between pairs of the form $(a_{j}b_{k}, a_{j}b_{k'})$. Number of between-facet distances would be $^{K}C_2*J$ and number of within-facet distances are $K*(J-1)$ (ordered) and $^{J}C_2*K$ (un-ordered). The pairwise distances $d_{(jk, j'k')}$ are transformed using a suitable tuning parameter ($0<\lambda<1$) depending on if they are $d_{b}$ or $d_{w}$ as follows: -->
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:distance-explain"></span>
+<img src="img/dist_explain.png" alt="Within and between-facet distances shown for two cyclic granularities A and B, where A is mapped to x-axis and B is mapped to facets. The dotted lines represent the distances between different categories. Panel 1) and 2) show the between-facet distances. Panel 3) and 4) are used to illustrate within-facet distances when categories are un-ordered or ordered respectively. When categories are ordered, distances should only be considered for consecutive x-axis categories. Between-facet distances are distances between different facet levels for the same x-axis category, for example, distances between {($a_1$,$b_1$) and ($a_1$, $b_2$)} or {($a_1$,$b_1$) and ($a_1$, $b_3$)}." width="100%" />
+<p class="caption">
+Figure 3.4: Within and between-facet distances shown for two cyclic granularities A and B, where A is mapped to x-axis and B is mapped to facets. The dotted lines represent the distances between different categories. Panel 1) and 2) show the between-facet distances. Panel 3) and 4) are used to illustrate within-facet distances when categories are un-ordered or ordered respectively. When categories are ordered, distances should only be considered for consecutive x-axis categories. Between-facet distances are distances between different facet levels for the same x-axis category, for example, distances between {(<span class="math inline">\(a_1\)</span>,<span class="math inline">\(b_1\)</span>) and (<span class="math inline">\(a_1\)</span>, <span class="math inline">\(b_2\)</span>)} or {(<span class="math inline">\(a_1\)</span>,<span class="math inline">\(b_1\)</span>) and (<span class="math inline">\(a_1\)</span>, <span class="math inline">\(b_3\)</span>)}.
+</p>
+</div>
+<!-- 5. Compute distribution of maximum distance ($M$) by shuffling the data $200$ times and finishing Steps1-4 in each case. Scale $M$ using the mean and sd of the distribution.
+
+5. Use Steps 1-4 to compute maximum distance for $\forall k \in  \{1, 2, \ldots, K\}$.
+
+6. Compute the distance measure MMPD_raw = median $(M_1, M_2, \dots, M_K)$.
+
+<!-- All of these distances are then aggregated by taking the maximum from these distances to obtain $wpd$. -->
+<!-- _j$ maps index set to a set $\{B_\ell \mid \ell =1,\dots,L\}$. Here, $A_k$ and $B_\ell$ are the levels/categories corresponding to $C_i$ and $C_j$ respectively. Let $S_{k\ell}$ be a subset of the index set such that for all $s \in S_{k\ell}$, $C_i(s) = A_k$ and $C_j(s) = B_\ell$. There are $KL$ such data subsets, one for each combination of levels ($A_k$, $B_\ell$). Moreover, consider that in the graphical space, $C_i$ is mapped to facets and $C_j$ is mapped to x-axis. -->
+<p><!-- old -->
+<!-- Consider two cyclic granularities $C_i$ and $C_j$, such that $C_i$ maps index set to a set $\{A_k \mid k=1,\dots,K\}$ and $C_j$ maps index set to a set $\{B_\ell \mid \ell =1,\dots,L\}$. Here, $A_k$ and $B_\ell$ are the levels/categories corresponding to $C_i$ and $C_j$ respectively. Let $S_{k\ell}$ be a subset of the index set such that for all $s \in S_{k\ell}$, $C_i(s) = A_k$ and $C_j(s) = B_\ell$. There are $KL$ such data subsets, one for each combination of levels ($A_k$, $B_\ell$). Moreover, consider that in the graphical space, $C_i$ is mapped to facets and $C_j$ is mapped to x-axis.  --></p>
+<!-- The algorithm employed for computing the distance measure is summarized as follows: -->
+<!-- 1. Fix harmony pair $(C_i, C_j)$. -->
+<!-- 2. Fix $k$. Then there are $L$ groups corresponding to level $A_k$ of $C_i$. -->
+<!-- 3. Compute  $m = \binom{L}{2}$ pairwise distances between distributions of $L$ unordered levels and $m = L-1$ pairwise distances for $L$ ordered categories. -->
+<!-- 4. Identify maximum within the $m$ computed distances. -->
+<!-- <!-- 5. Compute distribution of maximum distance ($M$) by shuffling the data $200$ times and finishing Steps1-4 in each case. Scale $M$ using the mean and sd of the distribution.  -->
+<!-- 5. Use Steps 1-4 to compute maximum distance for $\forall k \in  \{1, 2, \ldots, K\}$. -->
+<!-- 6. Compute the distance measure MMPD_raw = median $(M_1, M_2, \dots, M_K)$. -->
+<!-- \begin{algorithm}[!thb] -->
+<!--    \caption{Calculation for a raw distance measure between two cyclic granularities $A = \{ a_j: j = 1, 2, \dots, J\}$, $B = \{ b_k: k = 1, 2, \dots, K\}$ with $A$ placed across x-axis and $B$ across facets.}\label{alg:scoreopt}. -->
+<!--    \begin{algorithmic}[1] -->
+<!--        \Procedure{RawMMPD}{$A = \{ a_j: j = 1, 2, \dots, J\}$, $B = \{ b_k: k = 1, 2, \dots, K\}$, $v = \{ v_t: t = 1, 2, \dots, T\}$}. -->
+<!--        \For{$k=1:K$, $j=1:J$} -->
+<!--        \State Find distances between pairs of all possible combinations of categories $(a_jb_k,a_j'b_k')$ by computing JSD between quantiles of the measured variable $q(v)$ across these combinations. -->
+<!--        \State $d \gets JSD(\tilde{q(v)_{a_{j}b_{k}}},\tilde{q(v)_{a_{j}'b_{k}'}})$ -->
+<!--        \If {$b_k = b_k'$} -->
+<!--        \State $d* \gets \lambda d$  \Comment{upweight within-facet distances} -->
+<!--        \Else -->
+<!--        \State $d* \gets 1/\lambda d $ \Comment{downweight across-facet distances} -->
+<!--        \EndFor -->
+<!--        \State Set the raw distance measure as $max(d*)$ where max is taken over all $j, j', k, k'$. -->
+<!--        \EndProcedure -->
+<!--    \end{algorithmic} -->
+<!-- \end{algorithm} -->
+<!-- A stronger measure "max" is chosen for aggregating x-axis categories compared to "median" for aggregating facet categories as the measure is intended to put more importance in pointing towards distributional differences between x-axis categories than for facet categories. -->
+<!-- ## Properties of $wpd$ -->
+<!-- Simulations were carried out to explore the behavior of $wpd$ under the following factors that could potentially impact the values of $wpd$: $nx$, $nfacet$, $\lambda$, $\omega$, $dist$ (normal/non-normal distributions with different location and scale), $ntimes$, and $designs$ and results are presented in two parts. The dependence of $wpd$ on $nx$ and $nfacet$ under $D_{null}$ is presented here, which lays the foundation for the next section. The rest of the results that discuss the relationship of the $wpd$ with other factors is presented in details in the Supplementary section of the paper. They show that the designs $D_{var_f}$ and $D_{var_x}$ intersect at $\lambda = 0.5$ and hence for up-weighing designs of the form $D_{var_x}$, $\lambda = 0.67$ has been considered for computation of $wpd$ in the rest of the paper.  -->
+<!-- - $nx$ (number of levels of x-axis) -->
+<!-- - $nfacet$ (number of levels of facets) -->
+<!-- - $\lambda$ (tuning parameter) -->
+<!-- - $\omega$ (increment in each panel design) -->
+<!-- - $dist$ (normal/non-normal distributions with different location and scale) -->
+<!-- - $n$ (sample size for each combination of categories) -->
+<!-- - $designs$ ($D_{null}$, $D_{var_f}$, $D_{var_x}$ and $D_{var_{all}}$) -->
+<!-- - $nsim$ (number of simulations) -->
+<!-- - $nperm$ (number of permutations of data)   -->
+<!-- ### Simulation design{#sec:sim-study} -->
+<!-- Observations are generated from a Gamma(2,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet = \{2, 3, 5, 7, 14, 20, 31, 50\}$ to cover a wide range of levels from very low to moderately high. Each combination is being referred to as a _panel_. That is, data is being generated for each of the panels $\{nx = 2, nfacet = 2\}, \{nx = 2, nfacet = 3\}, \{nx = 2, nfacet = 5\},  \dots, \{nx = 50, nfacet = 31\}, \{nx = 50, nfacet = 50\}$. For each of the $64$ panels, $ntimes = 500$ observations are drawn for each combination of the categories. That is, if we consider the panel $\{nx = 2, nfacet = 2\}$, $500$ observations are generated for each of the combination of categories from the panel, namely, $\{(1, 1), (1, 2), (2, 1), (2, 2)\}$. The values -->
+<!-- of $wpd$ is obtained for each of the panels. This design corresponds to $D_{null}$ as each combination of categories in a panel are drawn from the same distribution. Furthermore, the data is simulated for each of the panels $nsim=200$ times, so that the distribution oaf $wpd$ under $D_{null}$ could be observed. $wpd_{l, s}$ denotes the value of $wpd$ obtained for the $l^{th}$ panel and $s^{th}$ simulation. -->
+<!-- ### Results -->
+<!-- Figure \ref{fig:raw} shows the distribution of $wpd$ plotted across different $nx$ and $nfacet$ categories. Since under $D_{null}$, there is no difference in distributions across different categories, we expect the distance measure $wpd$ to reflect that as well and have the same distribution across categories. But Figure \ref{fig:raw} shows that both the location and scale of the distributions change across panels. This is not desirable under $D_{null}$ as it would mean comparisons of $wpd$ values is not appropriate across different $nx$ and $nfacet$. Figure \ref{fig:quadratic} shows how the median of $wpd$ varies with the total number of distances $nx*nfacet$ for each panel. The median increases abruptly for lower values of $nx*nfacet$ and slowly for higher $nx*nfacet$.  -->
+<!-- Furthermore, simulation results also show that the values of $wpd$ indeed depend upon the underlying distribution. This is also not desirable as the intended aim of $wpd$ is to capture differences in categories irrespective of the distribution from which the data is generated. -->
+<!-- last writeup -->
+<!-- In the linear model approach, $wpd\in R$ was assumed, whereas, $wpd$ is a Jensen-Shannon Distance (JSD) and lies between 0 and 1 (@JSD). Furthermore, JSD follows a Chi-square distribution, which is a special case of Gamma distribution. Therefore, a generalized linear model could be fitted instead of a linear model to allow for the response variable to follow a Gamma distribution. The inverse link is used when we know that the mean response is bounded, which is applicable in our case since $0 \leq wpd\leq 1$. -->
+<!-- We fit a Gamma generalized linear model with the inverse link which is of the form:   -->
+<!-- $$y_l = a+b*log(z_l) + e_l$$, where $y_l = median_m(wpd_{l, m})$, $z_l$ is the $l^{th}$ panel and $e_l$ are idiosyncratic errors. Let $E(y) = \mu$ and $a + b*log(z) = g(\mu)$ where $g$ is the link function. Then $g(\mu)=  1/\mu$ and $\hat \mu  = 1/(\hat a + \hat b log(z))$. The residuals from this model $(y-\hat y) = (y-1/(\hat a + \hat b log(z)))$ would be expected to have no dependency on $z$. Thus, $wpd_{glm}$ is chosen as the residuals from this model and is defined as: -->
+<!-- $wpd_{glm} = wpd - 1/(\hat a + \hat b*log(nx*nfacet))$. -->
+<!-- which is more approximate than exact but still has the similar accuracy when compared to the permutation approach. -->
+<!-- use later -->
+<!-- The measure $wpd$ could potentially lead to comparison of the measure across different panels and also help distinguishing the interesting panels from a data set. We discuss two approaches for normalization, both of which are substantiated using simulations. -->
+<!-- ## Methodology -->
+<!-- The transformed ${wpd}$ which is normalized for the values of $nx$ and $nfacet$ is denoted by $wpd$. Two approaches have been employed - the first one involves a permutation method to make the distribution of the transformed $wpd$ similar for different comparisons and the second one fits a model to represent the relationship between the two variables and defines $wpd$ as the residual of the model. -->
+<!-- ### Notations -->
+<!-- Let $\{nx_{i}, i = 1, 2, \dots, nx\}$, $\{nfacet_{j}, j = 1, 2, \dots, nfacet\}$ be the set of x-axis and facet categories respectively. Each combination of $nx_{i}$ and $nfacet_{j}$is being referred to as a _panel_. Then the total number of panel is $nx*nfacet$. Let the total number of pairwise distances that could result in each panel be $\{z_k, k = 1, 2 , \dots, nx*nfacet\}$. Here, $\{z_1 = nx_1*nfacet_1\}$, $\{z_2 = nx_2*nfacet_2\}$ and $\{z_k = nx*nfacet\}$. Now, let $\{x_{k,l}, k = 1, 2, \dots, nx*nfacet, l = 1, 2, \dots, nsim\}$ denote the values of $wpd_{raw}$ obtained from the simulation study for $k^{th}$ panel in the $i^{th}$ simulation. Hence, for each of those $k$ panel, we have $nsim$ values of $wpd_{raw}$. -->
+<!-- use soon -->
+<!-- ## Properties -->
+<!-- This section reports the results of a simulation study that was carried out to evaluate the behavior of $wpd$ under different designs and other potential factors. The behavior of $wpd$ is explored in designs where there is in fact difference in distribution between facet categories ($D_{var_f}$) or across x-categories ($D_{var_x}$) or both ($D_{var_{all}}$). Using $\omega =  \{1, 2, \dots, 10\}$ and $\lambda = seq(from  = 0.1, to = 0.9, by = 0.05)$, observations are drawn from a N(0,1) distribution for each combination of $nx$ and $nfacet$ from the following sets: $nx = nfacet =  \{2, 3, 5, 7, 14, 20, 31, 50\}$. $ntimes = 500$ is assumed for this setup as well. Furthermore, to generate different distributions across different combination of facet and x levels, the following method is deployed - suppose the distribution of the combination of first levels of $x$ and $facet$ category is $N(\mu,\sigma)$ and $\mu_{jk}$ denotes the mean of the combination $(a_jb_k)$, then $\mu_{j.} = \mu + j\omega$ (for design $D_{var_x}$) and $\mu_{.k} = \mu + k\omega$ (for design $D_{var_f}$).  -->
+<!-- The tabulated values and graphical representations of the simulation results are provided in the Supplementary paper. The learning from the simulations are as follows: The values of $wpd$ is least for $D_{null}$, followed by -->
+<!-- $D_{var_f}$, $D_{var_x}$ and $D_{var_{all}}$. This is a desirable result since the measure $wpd$ was designed such that this relationship holds. Furthermore, the distribution of the measure $wpd$ does not change for different facet and x categories. The distribution of $wpd$ looks similar with at least the mean and standard of the distributions being uniform across panels. This means $wpd$ could be used to measure differences in distribution across panels. Also, note that since the data is processed using normal-quantile-transform, this measure is independent of the initial distribution of the underlying data and hence is also comparable across different data sets. This is valid for the case when sample size $ntimes$ for each combination of categories is at least 30 and  $nperm$ used for computing $wpd$ is at least 100. More detailed results about the properties of $wpd$ could be found in the Supplementary paper. -->
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3.1-introduction-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3.3-sec:rank-wpd.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/earowang/thesis/edit/master/Rmd//03-hakear.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

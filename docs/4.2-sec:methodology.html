@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.2 Clustering methodology | Visualization and analysis of probability distributions of large temporal data</title>
+  <meta name="description" content="4.2 Clustering methodology | Visualization and analysis of probability distributions of large temporal data" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.2 Clustering methodology | Visualization and analysis of probability distributions of large temporal data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.2 Clustering methodology | Visualization and analysis of probability distributions of large temporal data" />
+  
+  
+  
+
+<meta name="author" content="Sayani Gupta" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="4.1-introduction-2.html"/>
+<link rel="next" href="4.3-sec:validation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"> </a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="ch:abstract.html"><a href="ch:abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="ch:thanks.html"><a href="ch:thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="ch:preface.html"><a href="ch:preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch:intro.html"><a href="1-ch:intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1.1-sec:gravitas.html"><a href="1.1-sec:gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-sec:hakear.html"><a href="1.2-sec:hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-sec:gracsr.html"><a href="1.3-sec:gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-summary.html"><a href="1.4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch:gravitas.html"><a href="2-ch:gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a><ul>
+<li class="chapter" data-level="2.1" data-path="2.1-introduction.html"><a href="2.1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2.2-sec:linear-time.html"><a href="2.2-sec:linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-sec:cyclic-gran.html"><a href="2.3-sec:cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-sec:data-structure.html"><a href="2.4-sec:data-structure.html"><i class="fa fa-check"></i><b>2.4</b> Data structure</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-sec:visualization.html"><a href="2.5-sec:visualization.html"><i class="fa fa-check"></i><b>2.5</b> Visualization</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-sec:application.html"><a href="2.6-sec:application.html"><i class="fa fa-check"></i><b>2.6</b> Applications</a></li>
+<li class="chapter" data-level="2.7" data-path="2.7-sec:discussion.html"><a href="2.7-sec:discussion.html"><i class="fa fa-check"></i><b>2.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch:hakear.html"><a href="3-ch:hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="3.1-introduction-1.html"><a href="3.1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:computation-wpd.html"><a href="3.2-sec:computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-sec:rank-wpd.html"><a href="3.3-sec:rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:simulations.html"><a href="3.4-sec:simulations.html"><i class="fa fa-check"></i><b>3.4</b> Simulations</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-sec:application-wpd.html"><a href="3.5-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.5</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-discussion.html"><a href="3.6-discussion.html"><i class="fa fa-check"></i><b>3.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thankshakear.html"><a href="thankshakear.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-hakear.html"><a href="supplement-hakear.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch:gracsr.html"><a href="4-ch:gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
+<li class="chapter" data-level="4.1" data-path="4.1-introduction-2.html"><a href="4.1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4.2-sec:methodology.html"><a href="4.2-sec:methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
+<li class="chapter" data-level="4.3" data-path="4.3-sec:validation.html"><a href="4.3-sec:validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
+<li class="chapter" data-level="4.4" data-path="4.4-sec:cases.html"><a href="4.4-sec:cases.html"><i class="fa fa-check"></i><b>4.4</b> Case study</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-sec:conclusion.html"><a href="4.5-sec:conclusion.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion and future work</a></li>
+<li class="chapter" data-level="" data-path="thanksgracsr.html"><a href="thanksgracsr.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gracsr.html"><a href="supplement-gracsr.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch:conclusion.html"><a href="5-ch:conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion and future plans</a><ul>
+<li class="chapter" data-level="5.1" data-path="5.1-software-development.html"><a href="5.1-software-development.html"><i class="fa fa-check"></i><b>5.1</b> Software development</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-future-work.html"><a href="5.2-future-work.html"><i class="fa fa-check"></i><b>5.2</b> Future work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch:appendix.html"><a href="ch:appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="chapter" data-level="6" data-path="6-recalling-notations.html"><a href="6-recalling-notations.html"><i class="fa fa-check"></i><b>6</b> Recalling notations</a></li>
+<li class="chapter" data-level="7" data-path="7-raw-weighted-pairwise-distance.html"><a href="7-raw-weighted-pairwise-distance.html"><i class="fa fa-check"></i><b>7</b> Raw weighted pairwise distance</a><ul>
+<li class="chapter" data-level="7.1" data-path="7.1-tuning-parameter-1.html"><a href="7.1-tuning-parameter-1.html"><i class="fa fa-check"></i><b>7.1</b> Tuning parameter</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-underlying-distributions.html"><a href="7.2-underlying-distributions.html"><i class="fa fa-check"></i><b>7.2</b> Underlying distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="7.3-number-of-comparisons.html"><a href="7.3-number-of-comparisons.html"><i class="fa fa-check"></i><b>7.3</b> Number of comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-adjusted-weighted-pairwise-distances.html"><a href="8-adjusted-weighted-pairwise-distances.html"><i class="fa fa-check"></i><b>8</b> Adjusted weighted pairwise distances</a><ul>
+<li class="chapter" data-level="8.1" data-path="8.1-permutation-approach.html"><a href="8.1-permutation-approach.html"><i class="fa fa-check"></i><b>8.1</b> Permutation approach</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-modeling-approach.html"><a href="8.2-modeling-approach.html"><i class="fa fa-check"></i><b>8.2</b> Modeling approach</a></li>
+<li class="chapter" data-level="8.3" data-path="8.3-combination-approach.html"><a href="8.3-combination-approach.html"><i class="fa fa-check"></i><b>8.3</b> Combination approach</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-ranking-and-selecting-harmonies.html"><a href="9-ranking-and-selecting-harmonies.html"><i class="fa fa-check"></i><b>9</b> Ranking and selecting harmonies</a></li>
+<li class="chapter" data-level="10" data-path="10-raw-time-series-plot.html"><a href="10-raw-time-series-plot.html"><i class="fa fa-check"></i><b>10</b> Raw time series plot</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization and analysis of probability distributions of large temporal data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:methodology" class="section level2">
+<h2><span class="header-section-number">4.2</span> Clustering methodology</h2>
+<!-- In contrast to models, a feature-based strategy is used to explicitly define or automatically extract the curves’ key time features, for instance by application of PCA on the daily curves [ --
+
+
+<!-- Most papers discussed in Tureczek2017-pb fail to accept smart meter readings as time series data, a data type which contains a temporal component. The omission of the essential time series features in the analysis leads to the application of methods that are not designed for handling temporal components. K-Means ignores autocorrelation, unless the input data is pre-processed. The clusters identified in the papers are validated by a variety of indices, with the most prevalent -->
+<!-- being the cluster dispersion index (CDI) [22–24], the Davies–Bouldin index (DBI) [25,26] and the mean index adequacy (MIA) [8,13]. -->
+<!-- The data set solely contains readings from smart meters and no information about the consumers' specific physical, geographical, or behavioral attributes. As a result, no attempt is made to explain why consumption varies. Instead, this work investigates how much energy usage heterogeneity can be found in smart meter data and what some of the most common electricity use patterns are. -->
+<!-- Because of this importance, countless approaches to estimate time series similarity have been proposed.  -->
+<p>The foundation of our method is unsupervised clustering algorithms based exclusively on the time-series data. The proposed methodology aims to leverage the intrinsic data structure hidden within cyclic temporal granularities. The existing work on clustering probability distributions assumes we have an iid sample <span class="math inline">\(f_1(v),\dots,f_n(v)\)</span>, where <span class="math inline">\(f_i(v)\)</span> denotes the distribution from observation <span class="math inline">\(i\)</span> over some random variable <span class="math inline">\(v = \{v_t: t = 0, 1, 2, \dots, T-1\}\)</span> observed across <span class="math inline">\(T\)</span> time points. <!--So going back to the smart meter example, $f_i(v)$ is the distribution of customer $i$ and $v$ is electricity demand.--> In this work, instead of considering the probability distributions of the linear time series, we assume it across different categories of any cyclic granularity. We can consider categories of an individual cyclic granularity (<span class="math inline">\(A\)</span>) or combination of categories for two interacting granularities (<span class="math inline">\(A*B\)</span>) to have a distribution, where <span class="math inline">\(A, B\)</span> are defined as <span class="math inline">\(A = \{a_j: j=1, 2, \dots J\}\)</span> and <span class="math inline">\(B = \{b_k: k = 1, 2, \dots K\}\)</span>. For example, let us consider two cyclic granularities <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> representing hour-of-day and day-of-week. Then <span class="math inline">\(A = \{0, 1, 2, \dots, 23\}\)</span> and <span class="math inline">\(B = \{Mon, Tue, Wed, \dots, Sun\}\)</span>. In case individual granularities are considered, there are <span class="math inline">\(J = 24\)</span> distributions of the form <span class="math inline">\(f_{i,j}(v)\)</span> or <span class="math inline">\(K = 7\)</span> distributions of the form <span class="math inline">\(f_{i,k}(v)\)</span> for each customer <span class="math inline">\(i\)</span>. In case of interaction, <span class="math inline">\(J*K=168\)</span> distributions of the form <span class="math inline">\(f_{i,j, k}(v)\)</span> could be conceived for each customer <span class="math inline">\(i\)</span>. Hence clustering these customers is equivalent to clustering these collections of conditional univariate probability distributions. Towards this goal, we need to decide how to measure similarities between collections of univariate probability distributions. There are multiple ways to measure similarities depending on the aim of the analysis. <!--This paper focuses on looking at the (dis) similarity between underlying distributions that may have resulted in different patterns across different cyclic temporal granularities, that eventually have resulted in the (dis) similarity between time series. --> This paper considers a two approaches for finding distances between time series. Both of these approaches may be useful in a practical context and, depending on the data set, may or may not propose the same customer classification. The obtained distances could be fed into a clustering algorithm to break large data sets into subgroups that can then be analyzed separately. <!--These clusters may be commonly associated with real-world data segmentation. However, since the data is unlabeled a priori, more information is required to corroborate this.--> The methodology is explained in the Figure  and each element of the pipeline is discussed.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:flowchart"></span>
+<img src="img/flowchart.png" alt="Flow chart illustrating the pipeline for methodology" width="100%" />
+<p class="caption">
+Figure 4.1: Flow chart illustrating the pipeline for methodology
+</p>
+</div>
+<ul>
+<li><em>Find significant granularities or harmonies</em></li>
+</ul>
+<p><span class="citation">(Gupta, Hyndman, and Cook <a href="bibliography.html#ref-Gupta2021-hakear" role="doc-biblioref">2021</a>)</span> proposes a method for choosing significant cyclic granularities and harmonies (interacting granularities that can be studied together) <span class="citation">(Gupta et al. <a href="bibliography.html#ref-Gupta2021-gravitas" role="doc-biblioref">2021</a>)</span>, which is used in this work. We define “significant” granularities as those with significant distributional differences across categories. It is preferable to consider those since it is more probable that there will be some intriguing repeated behavior worth investigating. It should be noted that all of the observations in the study may not have the same set of important granularities. The following is a method for generating a list (<span class="math inline">\(S_c\)</span>) of significant granularities for all observations:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Remove granularities from the comprehensive list that are insignificant for all observations.</p></li>
+<li><p>select only the granularities that are significant for the majority of observations.</p></li>
+</ol>
+<p>There will be observations in both cases where one or a few selected granularities are boring. Even in that case, having this group of observations with no interesting patterns at a granularity that regularly discovers patterns may be valuable. If, on the other hand, the granularities under examination are truly important for a group of data, unique patterns may be identified while clustering them.</p>
+<ul>
+<li><em>Data transformation</em></li>
+</ul>
+<p>Observations often have a somewhat skewed time series distribution and their ranges might vary greatly. Statistical transformations are employed to bring all of them to the same range or normalize each observation. This is important because we are not interested in trivial clusters that vary in magnitudes, but rather in uncovering comparable patterns of distributional differences between categories. For the JS-based approaches, two data transformation techniques are utilized viz, Normal-Quantile Transform (NQT) and Robust scaling. NQT is a built-in transformation for computing <span class="math inline">\(wpd\)</span>, which is the foundation of wpd-based distances.</p>
+<p><em>Robust scaling</em> The normalized <span class="math inline">\(i^{th}\)</span> observation is denoted by <span class="math inline">\(v_{norm} = \frac{v_t - q_{0.5}}{q_{0.75}-q_{0.25}}\)</span>, where <span class="math inline">\(v_t\)</span> is the actual value at the <span class="math inline">\(t^{th}\)</span> time point and <span class="math inline">\(q_{0.25}\)</span>, <span class="math inline">\(q_{0.5}\)</span> and <span class="math inline">\(q_{0.75}\)</span> are the <span class="math inline">\(25^{th}\)</span>, <span class="math inline">\(50^{th}\)</span> and <span class="math inline">\(75^{th}\)</span> percentile of the time series for the <span class="math inline">\(i^{th}\)</span> observation. <span class="math inline">\(v_{norm}\)</span> has zero mean and median, as well as a standard deviation of one, with the outliers having same relative connections to other values.</p>
+<p><em>Normal-Quantile transform</em> The raw data for all observations is individually normal-quantile transformed (NQT) <span class="citation">(Krzysztofowicz <a href="bibliography.html#ref-Krzysztofowicz1997-bv" role="doc-biblioref">1997</a>)</span>, so that the transformed data follows a standard normal distribution. NQT will make the skewed distributions bell-shaped. As a result, determining which raw distribution was used is difficult using the modified distribution. Multimodality is also concealed or reversed. As a result, while displaying transformed data using NQT, one must exercise caution. But NQT is a useful transformation that often improves clustering performance.</p>
+<!-- NQT, however, is an useful transformation which often improves the clustering performance. Since our variables are cyclic granularities which are derived from linear granularities, NQT ensures that the conditional distribution across each variable is also normalised. -->
+<!-- is not a problem for implementation of this methodology as distributions are characterized by quantiles and the order of the quantiles is reserved under NQT. -->
+<!-- First, the original data is ranked in ascending order and the probabilities $P(Y<=y(i)) = i/(n+1)$ are attached to $y(i)$, in terms of their ranking order. A NQT based transformation is applied by computing from a standard normal distribution a variable $\eta(i)$, which corresponds to the same probability $P(\eta< \eta(i)) = i/n+1$.By doing this, the new variables $\eta(i)$ will be marginally distributed according to standard Normal, N(0,1). -->
+<!-- It is worth noting that when studying these similarities, a variety of objectives may be pursued. One objective could be to group time series with similar shapes over all relevant cyclic granularities. In this scenario, the variation in customers within each group is in magnitude rather than shape, while the variation between groups is only in shape. There -->
+<!-- are distance measures are used for shape-based clustering [Ding et al. 2008; Wang -->
+<!-- et al. 2013] and many more but none of them look at the probability distributions while computing similarity. Moreover, most distance measures offer similar shape across just one dimension. For example, we often see "similar" daily energy profiles across hours of the day, but we suggest a broader approach to the problem, aiming to group consumers with similar distributional shape across all significant cyclic granularities. Another purpose of clustering could be to group customers that have similar differences in patterns across all major cyclic granularities, capturing similar jumps across categories regardless of the overall shape. For example, in the first goal, similar shapes across hours of the day will be grouped together, resulting in customers with similar behavior across all hours of the day, whereas in the second goal, any similar big-enough jumps across hours of the day will be clubbed together, regardless of which hour of the day it is. Both of these objectives may be useful in a practical context and, depending on the data set, may or may not propose the same customer classification. Depending on the goal of clustering, the distance metric for defining similarity would be different. These distance metrics could be fed into a clustering algorithm to break large data sets into subgroups that can then be analyzed separately. These clusters may be commonly associated with real-world data segmentation. However, since the data is unlabeled a priori, more information is required to corroborate this. This section presents the work flow of the methodology:  -->
+<ul>
+<li><em>Data pre-preprocessing</em></li>
+</ul>
+<p>We start with a “tsibble” (<span class="citation">E. Wang, Cook, and Hyndman (<a href="bibliography.html#ref-wang2020tsibble" role="doc-biblioref">2020</a><a href="bibliography.html#ref-wang2020tsibble" role="doc-biblioref">a</a>)</span>) data structure with an index variable representing inherent ordering from past to present and a key variable that defines observational units over time. The measured variable for an observation is a time-indexed sequence of values. This sequence, however, could be shown in several ways. A shuffle of the raw sequence may represent hourly consumption throughout a day, a week, or a year. Cyclic granularities can be expressed in terms of the index set in the “tsibble” data structure. But the data structure changes while transporting from linear to cyclic scale of time as multiple observations now correspond to each category and induce a probability distribution. Directly computing Jensen-Shannon distances between the entire probability distributions can be very costly. Hence, in this paper, quantiles are chosen to characterize the probability distributions. So, in the final data structure, each category of a cyclic granularity corresponds to a list of numbers which is essentially a few chosen quantiles.</p>
+<ul>
+<li><em>Distance metrics</em></li>
+</ul>
+<!-- Considering each individual or combined categories of cyclic granularities to have an underlying distribution lead to a collection of conditional distributions for each customer $i$. -->
+<p>The total (dis) similarity between each pair of customers is obtained by combining the distances between the collections of conditional distributions. This needs to be done in a way such that the resulting metric is a distance metric, and could be fed into the clustering algorithm. Two types of distance metric is considered:</p>
+<!-- The choice of distance measures is a critical step in clustering. It defines how the similarity of two elements (x, y) is calculated. -->
+<p><strong>JS-based distances</strong></p>
+<p>This distance metric considers two time series to be similar if the distributions of each category of an individual cyclic granularity or combination of categories for interacting cyclic granularities are similar. In this study, the distribution for each category is characterized using deciles (can potentially consider any list of quantiles), and the distances between distributions are calculated using the Jensen-Shannon distances (<span class="citation">Men’endez et al. (<a href="bibliography.html#ref-Menendez1997-in" role="doc-biblioref">1997</a>)</span>), which are symmetric and thus could be used as a distance measure.</p>
+<p>The sum of the distances between two observations <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in terms of cyclic granularity <span class="math inline">\(A\)</span> is defined as <span class="math display">\[S^A_{x,y} = \sum_{j} D_{x,y}(A)\]</span> (sum of distances between each category <span class="math inline">\(j\)</span> of cyclic granularity <span class="math inline">\(A\)</span>) or <span class="math display">\[S^{A*B}_{x,y} = \sum_j \sum_k D_{x,y}(A, B)\]</span> (sum of distances between each combination of categories <span class="math inline">\((j, k)\)</span> of the harmony <span class="math inline">\((A, B)\)</span>. After determining the distance between two series in terms of one granularity, we must combine them to produce a distance based on all significant granularities. When combining distances from individual <span class="math inline">\(L\)</span> cyclic granularities <span class="math inline">\(C_l\)</span> with <span class="math inline">\(n_l\)</span> levels, <span class="math display">\[S_{x, y} = \sum_lS^{C_l}_{x,y}/n_l\]</span> is employed, which is also a distance metric since it is the sum of JS distances. This approach is expected to yield groups, such that the variation in observations within each group is in magnitude rather than distributional pattern, while the variation between groups is only in distributional pattern across categories.</p>
+<p><strong>wpd-based distances</strong></p>
+<p>Compute weighted pairwise distances <span class="math inline">\(wpd\)</span> (<span class="citation">Gupta, Hyndman, and Cook (<a href="bibliography.html#ref-Gupta2021-hakear" role="doc-biblioref">2021</a>)</span>) for all considered granularities for all observations. <span class="math inline">\(wpd\)</span> is designed to capture the maximum variation in the measured variable explained by an individual cyclic granularity or their interaction and is estimated by the maximum pairwise distances between consecutive categories normalized by appropriate parameters. A higher value of <span class="math inline">\(wpd\)</span> indicates that some interesting pattern is expected, whereas a lower value would indicate otherwise.</p>
+<p>Once we have chosen <span class="math inline">\(wpd\)</span> as a relevant feature for characterizing the distributions across one cyclic granularity, we have to decide how we combine differences between the multiple features (corresponding to multiple granularities) into a single number. The Euclidean distance between them is chosen, with the granularities acting as variables and <span class="math inline">\(wpd\)</span> representing the value under each variable. With this approach, we should expect the observations with similar <span class="math inline">\(wpd\)</span> values to be clustered together. Thus, this approach is useful for grouping observations that have a similar significance of patterns across different granularities. Similar significance does not imply a similar pattern, which is where this technique varies from JS-based distances, which detect differences in patterns across categories.</p>
+<!-- Consider a harmony table consisting of many harmonies, each of the form $(A, B)$, such that $A = \{ a_j: j = 1, 2, \dots, J\}$ and $B = \{ b_k: k = 1, 2, \dots, K\}$. Each household consists of a $J*K$ distributions one harmony. We compute the distributional difference -->
+<!-- between $(A, B)$ for the $s^{th}$ household using $wpd_{{s}}(A,B)$. -->
+<!-- $wpd_{{s}}(A,B)$ denotes the normalized weighted-pairwise distributional distances between $(A, B)$ and is a feature which measures distributional difference between harmonies. If we have $H_{N_C}$ harmonies in the harmony table, then for each household we have a vector of $wpd_{{s}}$ of $H_{N_C}$ elements with each element corresponding to one harmony. We aim to have pockets of households showing similar periodic behavior by considering $wpd$ values for different harmonies and some time series features. The features should also characterize probability distributions of different household. -->
+<!-- grouping probability distributions across a harmony. This clustering algorithm is adopted to remove or appropriately adjust for auto correlation and unequal length in the data. The method could be further extended by clustering probability distributions conditional on one or more cyclic granularities. The following are some of the advantages of our proposed method. -->
+<ul>
+<li><em>Clustering algorithm</em></li>
+</ul>
+<p>With a way to obtain pairwise distances, any clustering algorithm can be employed that supports the given distance metric as input. A good comprehensive list of algorithms can be found in <span class="citation">Xu and Tian (<a href="bibliography.html#ref-Xu2015-ja" role="doc-biblioref">2015</a>)</span> based on traditional ways like partition, hierarchy, or more recent approaches like distribution, density, and others. We employ agglomerative hierarchical clustering in conjunction with Ward’s linkage. Hierarchical cluster techniques fuse neighboring points sequentially to form bigger clusters, beginning with a full pairwise distance matrix. The distance between clusters is described using a “linkage technique”. This agglomerative approach successively merges the pair of clusters with the shortest between-cluster distance using Ward’s linkage method.</p>
+<!--Hierarchical algorithms are one of the most widely used, can operate with data of any shape, has reasonable scalability, and the number of clusters is not needed as a parameter.-->
+<ul>
+<li><em>Characterization of clusters</em></li>
+</ul>
+<p>Cluster characterization is an important element of cluster analysis. <span class="citation">Cook and Swayne (<a href="bibliography.html#ref-Cook2007-qe" role="doc-biblioref">2007</a>)</span> provides several methods for characterizing clusters. <em>Parallel coordinate plots</em> (<span class="citation">Wegman (<a href="bibliography.html#ref-wegman1990hyperdimensional" role="doc-biblioref">1990</a>)</span>), <em>Scatterplot matrix</em>, <em>Displaying cluster statistics</em> (<span class="citation">Dasu, Swayne, and Poole (<a href="bibliography.html#ref-dasu2005grouping" role="doc-biblioref">2005</a>)</span>), <em>MDS</em> (<span class="citation">Borg and Groenen (<a href="bibliography.html#ref-borg2005modern" role="doc-biblioref">2005</a>)</span>), PCA, <em>t-SNE</em>(<span class="citation">Krijthe (<a href="bibliography.html#ref-R-tsne" role="doc-biblioref">2015</a>)</span>), <em>Tour</em> (<span class="citation">Wickham et al. (<a href="bibliography.html#ref-wickham2011tourr" role="doc-biblioref">2011</a>)</span>) are some of the graphical approaches used in this study. A Parallel Coordinates Plot features parallel axes for each variable and each axis is linked by lines. Changing the axes may reveal patterns or relationships between variables for categorical variables. However, for categories with cyclic temporal granularities, preserving the underlying ordering of time is more desirable. Displaying cluster statistics is useful when we have larger problems and it is difficult to read the parallel coordinate plots due to congestion. All of MDS, PCA and t-SNE use a distance or dissimilarity matrix to construct a reduced-dimension space representation, their goals are diverse. Multidimensional scaling (<span class="citation">Borg and Groenen (<a href="bibliography.html#ref-borg2005modern" role="doc-biblioref">2005</a>)</span>) seeks to maintain the distances between pairs of data points, with an emphasis on pairings of distant points in the original space. The t-SNE embedding will compress data points that are close in high-dimensional space. Tour is a collection of interpolated linear projections of multivariate data into lower-dimensional space. The cluster characterization approach varies depending on the distance metric used. Parallel coordinate plots, scatter plot matrices, MDS or PCA are potentially useful ways to characterize clusters using wpd-based distances. For JS-based distances, plotting cluster statistics is beneficial for characterization and variable importance could be displayed through parallel coordinate plots.</p>
+<!-- CUT IT SHORT -->
+<!-- (a) _Parallel coordinate plots_ (@wegman1990hyperdimensional) are often used to visualize high-dimensional and multivariate data, allowing visual grouping and pattern detection. A Parallel Coordinates Plot features parallel axes for each variable. Each axis is linked by lines. Changing the axes may reveal patterns or relationships between variables for categorical variables. However, for categories with cyclic temporal granularities, preserving the underlying ordering of time is more desirable. -->
+<!-- (b) _Scatterplot matrix_ contains pairwise scatter plots of the p variables. Pairwise scatter plots are useful for figuring out how variables relate to each other and how factors determine the clustering. -->
+<!-- (c) _Displaying cluster statistics_ are useful when we have larger problems and it is difficult to read the Parallel coordinate plots due to congestion. (@dasu2005grouping) -->
+<!-- (d) _MDS, PCA and t-SNE_ While all of them use a distance or dissimilarity matrix to construct a reduced-dimension space representation, their goals are diverse. PCA seeks to retain data variance. Multidimensional scaling (@borg2005modern) seeks to maintain the distances between pairs of data points, with an emphasis on pairings of distant points in the original space. t-SNE, on the other hand, is concerned with preserving neighborhood data points. The t-SNE embedding will compress data points which are close in high-dimensional space. -->
+<!-- (e) _Tour_ is a collection of interpolated linear projections of multivariate data into lower-dimensional space. As a result, the viewer may observe the high-dimensional data's shadows from a low-dimensional perspective. -->
+<!-- The cluster characterization approach varies depending on the distance metric used. Parallel coordinate plots, scatter plot matrices, MDS or PCA are potentially useful ways to characterize clusters using wpd-based distances. For JS-based distances, plotting cluster statistics is beneficial for characterization and variable importance could be displayed through parallel coordinate plots. -->
+<!-- This part of the work uses R packages `GGally` (@R-GGally), `Rtsne` (@R-tsne), `ggplot2` (Wickham2009pk), `tour` (@wickham2011tourr), `stats` (@R-language). -->
+<!-- - A random sample of the original data is taken for clustering analysis and includes missing and noisy observations (detailed description in Appendix) -->
+<!-- - All harmonies are computed for each customer in the sample. -->
+<!-- Cyclic granularities which are clashes for all customers in the sample are removed. -->
+<!-- - It is worth noting that a number of other solutions may be considered at the pre-processing stage of the method. We have considered a) Normal-Quantile Transform and b) Robust transformation. -->
+<!-- - Two methods are considered for computing dissimilarity between two customers. The first one involves computing according to one granularity is computed as the sum of the JS distances between distribution of all the categories of the granularity. When we consider more than one granularity, we consider the sum of the average distances for all the granularity so that the combined metric is also a distance. -->
+<!-- - Given the scale of dissimilarity among the energy readings, the model chooses optimal number of clusters -->
+<!-- - Once clusters have been allocated, the groups are explored visually. -->
+<!-- - Results are reported and compared. -->
+<!-- Two methods are used for computing distances between subjects and then hierarchical clustering algorithm is used. -->
+<!-- The existing work on clustering probability distributions assumes we have an iid sample $f_1(v),\dots,f_n(v)$, where $f_i(v)$ denotes the probability distribution from observation $i$ over some random variable $v = \{v_t: t = 0, 1, 2, \dots, T-1\}$ observed across $T$ time points. In our work, we are using $i$ as denoting a customer and the underlying variable as the electricity demand. So $f_i(v)$ is the distribution of household $i$ and $v$ is electricity demand. -->
+<!-- We want to cluster distributions of the form $f_{i,j,k}(v)$, where $i$ and $j$ denote -->
+<!-- Consider a harmony table consisting of many harmonies, each of the form $(A, B)$, such that $A = \{ a_j: j = 1, 2, \dots, J\}$ and $B = \{ b_k: k = 1, 2, \dots, K\}$. Each household consists of a $J*K$ distributions one harmony. We compute the distributional difference -->
+<!-- between $(A, B)$ for the $s^{th}$ household using $wpd_{{s}}(A,B)$. -->
+<!-- $wpd_{{s}}(A,B)$ denotes the normalized weighted-pairwise distributional distances between $(A, B)$ and is a feature which measures distributional difference between harmonies. If we have $H_{N_C}$ harmonies in the harmony table, then for each household we have a vector of $wpd_{{s}}$ of $H_{N_C}$ elements with each element corresponding to one harmony. We aim to have pockets of households showing similar periodic behavior by considering $wpd$ values for different harmonies and some time series features. The features should also characterize probability distributions of different household. -->
+<!-- ### Notations -->
+<!-- Consider an iid sample $f_1(v),\dots,f_n(v)$, where $f_i(v)$ denotes the probability distribution from observation $i$ over some random variable $v = \{v_t: t = 0, 1, 2, \dots, T-1\}$ observed across $T$ time points. In our work, we are using $i$ as denoting a household and the underlying variable as the electricity demand. Further consider a cyclic granularity of the form $B = \{ b_k: k = 1, 2, \dots, K\}$. Each customer consists of collection of probability distributions. -->
+<!-- So $f_i(v)$ is the distribution of household $i$ and $v$ is electricity demand. We want to cluster distributions of the form $f_{i,j,k}(v)$, where $i$ and $j$ denote $i^{th}$ and $j^{th}$ customer respectively. -->
+<!-- a harmony table consisting of many harmonies, each of the form $(A, B)$, such that $A = \{ a_j: j = 1, 2, \dots, J\}$ and $B = \{ b_k: k = 1, 2, \dots, K\}$. -->
+<!-- ### A single or pair of granularities together (change names) -->
+<!-- The methodology can be summarized in the following steps: -->
+<!-- - _Pre-processing step_ -->
+<!-- Robust scaling method or NQT used for each customer. -->
+<!-- - _NQT_ -->
+<!-- - _Treatment to outliers_ -->
+<!-- ### Many granularities together (change names) -->
+<!-- The methodology can be summarized in the following steps: -->
+<!-- 1. Compute quantiles of distributions across each category of the cyclic granularity -->
+<!-- 2. Compute JS distance between households for each each category of the cyclic granularity -->
+<!-- 3. Total distance between households computed as sum of JS distances for all hours -->
+<!-- 4. Cluster using this distance with hierarchical clustering algorithm (method "Ward.D") -->
+<!-- _Pro:_  -->
+<!-- - distance metric makes sense to group different shapes together  -->
+<!-- - simulation results look great on typical designs  -->
+<!-- _Cons:_   -->
+<!-- - Can only take one granularity at once   -->
+<!-- - Clustering a big blob of points together whereas the aim is to groups these big blob into smaller ones   -->
+<!-- ### Multiple-granularities -->
+<!-- _Description:_   -->
+<!-- Choose all significant granularities and compute wpd for all these granularities for all customers. Distance between customers is taken as the euclidean distances between them with the granularities being the variables and wpd being the value under each variable for which Euclidean distance needs to be measured.   -->
+<!-- _Pro:_   -->
+<!-- - Can only take many granularities at once -->
+<!-- - can apply variable selection PCP and other interesting clustering techniques -->
+<!-- - simulation results look great on typical designs -->
+<!-- - splitting the data into similar sized groups   -->
+<!-- _Cons:_   -->
+<!-- - distance metric does not make sense to split the data into similar shaped clusters  -->
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4.1-introduction-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4.3-sec:validation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/earowang/thesis/edit/master/Rmd//04-gracsr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
