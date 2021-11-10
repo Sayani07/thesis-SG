@@ -1,6 +1,6 @@
 # Conclusion and future plans {#ch:conclusion}
 
-In this thesis, I present a systematic approach for visualizing and analyzing distributions of large temporal data by leveraging time characteristics. The building blocks of this framework are presented in each chapter. Chapter \@ref(ch:gravitas) contains tools for computing all cyclic granularities, as well as a recommendation system for selecting pairs of granularities that can be effectively analyzed together. These temporal granularities can be used to generate data visualizations to look for patterns, associations, and anomalies. But it is difficult to decide which of the various granularities to display when there are many options. Chapter \@ref(ch:hakear) presents a methodology for selecting displays that are interesting, such that differences between displayed distributions are greatest. The methodology also ranks the displays in order of priority for capturing the most variation. Both \@ref(ch:gravitas) and \@ref(ch:hakear) are used for studying patterns in individual time series or comparing a few time series together. This is extended in Chapter \@ref(ch:gracsr) to allow for the exploration of distributions for multiple time series at the same time using unsupervised clustering. The clustering methodology produces small groups of time series with similar distributions over multiple granularities. This technique is more robust to noisy, patchy, and uneven length time series because it makes use of probability distributions.
+In this thesis, I present a systematic approach for visualizing and analyzing distributions of large temporal data by leveraging time characteristics. The building blocks of this framework are presented in each chapter. Chapter \@ref(ch:gravitas) contains tools for computing all cyclic granularities, as well as a recommendation system for selecting pairs of granularities that can be effectively analyzed together. These temporal granularities can be used to generate data visualizations to look for patterns, associations, and anomalies. But it is difficult to decide which of the various granularities to display when there are many options. Chapter \@ref(ch:hakear) presents a methodology for selecting displays that are interesting, such that differences between displayed distributions are greatest. The methodology also ranks the displays in order of priority for capturing the most variation. The ideas in Chpaters \@ref(ch:gravitas) and \@ref(ch:hakear) can be used for studying patterns in individual time series or comparing a few time series together. This is extended in Chapter \@ref(ch:gracsr) to allow for the exploration of distributions for multiple time series at the same time using unsupervised clustering. The clustering methodology produces small groups of time series with similar distributions over multiple granularities. This technique is more robust to noisy, patchy, and uneven length time series because it makes use of probability distributions.
 
 <!-- is more comprehensive in recognizing clusters with recurring patterns over many important granularities and -->
 
@@ -13,7 +13,7 @@ read_chunk('scripts/software.R')
 ```{r software-impact}
 ```
 
-This thesis focuses on integrating research approaches into open source R packages for reproducibility and ease of use in other applications. So a significant amount of work has been devoted to the development of R packages  **gravitas**, **hakear**, and **gracsr**, each of which correspond to a chapter presented in this thesis.
+This thesis focuses on integrating research approaches into open source R packages for reproducibility and ease of use in other applications. So a significant amount of work has been devoted to the development of R packages  `gravitas`, `hakear`, and `gracsr`, each of which corresponds to a chapter presented in this thesis.
 
 <!-- Figure \@ref(fig:software-ghcommits) gives an overview of my Git commits to these repositories, and Figure \@ref(fig:software-downloads) shows the daily downloads of the packages from the RStudio mirror (one of 90 CRAN mirrors) since they were available on CRAN. -->
 
@@ -45,7 +45,7 @@ The open-source R package `gracsr` is available on Github (https://github.com/Sa
 
 ### Putting all functionalities on CRAN
 
-I want to combine 'hakear' and 'gravitas' into a single R package for systematically exploring distributions of a smaller number of time series, whilst 'gracsr' would offer the clustering framework for systematically exploring a large number of time series. I intend to run it via https://ropensci.org/software-review/ to further refine them for more exposure and efficiency.
+I want to combine `hakear` and `gravitas` into a single R package for systematically exploring distributions of a smaller number of time series, whilst `gracsr` would offer the clustering framework for systematically exploring a large number of time series. I intend to run it via https://ropensci.org/software-review/ to further refine them for more exposure and efficiency.
 
 
 ### Scaling up the methods for multivariate time series data
@@ -64,7 +64,7 @@ With the volume of data expected to increase in the future, potentially leading 
 
 ### Develop inferential methods for the clusters
 
-It is crucial to determine whether or not any detected clusters or patterns are statistically significant. In Chapter \@ref(ch:gracsr), we have used the permutation approach to detect if patterns are authentic or not across one or a pair of granularities. A similar method for finding significance across clusters is not appropriate if the observations are assumed to be independent. Most large temporal data sets gathered at fine temporal scales usually include several repetitive patterns. Therefore, the permutations used for comparisons must account that different temporal granularities have distinct conditional distributions.
+It is crucial to determine whether or not any detected clusters or patterns are statistically significant. In Chapter \@ref(ch:gracsr), we have used a permutation approach to detect if patterns are authentic or not across one or a pair of granularities. A similar method for finding significance across clusters is not appropriate if the observations are assumed to be independent. Most large temporal data sets gathered at fine temporal scales usually include several repetitive patterns. Therefore, the permutations used for comparisons must account that different temporal granularities have distinct conditional distributions.
 
 ### Check generalizability of our methods
 
