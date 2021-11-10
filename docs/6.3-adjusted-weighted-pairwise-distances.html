@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.3 Adjusted weighted pairwise distances | Visualization and analysis of probability distributions of large temporal data</title>
+  <meta name="description" content="6.3 Adjusted weighted pairwise distances | Visualization and analysis of probability distributions of large temporal data" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.3 Adjusted weighted pairwise distances | Visualization and analysis of probability distributions of large temporal data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.3 Adjusted weighted pairwise distances | Visualization and analysis of probability distributions of large temporal data" />
+  
+  
+  
+
+<meta name="author" content="Sayani Gupta" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="6.2-raw-weighted-pairwise-distance.html"/>
+<link rel="next" href="6.4-ranking-and-selecting-harmonies.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"> </a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="ch:abstract.html"><a href="ch:abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="ch:thanks.html"><a href="ch:thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="ch:preface.html"><a href="ch:preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch:intro.html"><a href="1-ch:intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1.1-sec:gravitas.html"><a href="1.1-sec:gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-sec:hakear.html"><a href="1.2-sec:hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-sec:gracsr.html"><a href="1.3-sec:gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-summary.html"><a href="1.4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch:gravitas.html"><a href="2-ch:gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a><ul>
+<li class="chapter" data-level="2.1" data-path="2.1-introduction.html"><a href="2.1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2.2-sec:linear-time.html"><a href="2.2-sec:linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-sec:cyclic-gran.html"><a href="2.3-sec:cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-sec:data-structure.html"><a href="2.4-sec:data-structure.html"><i class="fa fa-check"></i><b>2.4</b> Data structure</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-sec:visualization.html"><a href="2.5-sec:visualization.html"><i class="fa fa-check"></i><b>2.5</b> Visualization</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-sec:application.html"><a href="2.6-sec:application.html"><i class="fa fa-check"></i><b>2.6</b> Applications</a></li>
+<li class="chapter" data-level="2.7" data-path="2.7-sec:discussion.html"><a href="2.7-sec:discussion.html"><i class="fa fa-check"></i><b>2.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch:hakear.html"><a href="3-ch:hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="3.1-introduction-1.html"><a href="3.1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:computation-wpd.html"><a href="3.2-sec:computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-sec:rank-wpd.html"><a href="3.3-sec:rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:simulations.html"><a href="3.4-sec:simulations.html"><i class="fa fa-check"></i><b>3.4</b> Simulations</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-sec:application-wpd.html"><a href="3.5-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.5</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-discussion.html"><a href="3.6-discussion.html"><i class="fa fa-check"></i><b>3.6</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thankshakear.html"><a href="thankshakear.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-hakear.html"><a href="supplement-hakear.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch:gracsr.html"><a href="4-ch:gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
+<li class="chapter" data-level="4.1" data-path="4.1-introduction-2.html"><a href="4.1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4.2-sec:methodology.html"><a href="4.2-sec:methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
+<li class="chapter" data-level="4.3" data-path="4.3-sec:validation.html"><a href="4.3-sec:validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
+<li class="chapter" data-level="4.4" data-path="4.4-sec:cases.html"><a href="4.4-sec:cases.html"><i class="fa fa-check"></i><b>4.4</b> Case study</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-sec:conclusion.html"><a href="4.5-sec:conclusion.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion and future work</a></li>
+<li class="chapter" data-level="" data-path="thanksgracsr.html"><a href="thanksgracsr.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gracsr.html"><a href="supplement-gracsr.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch:conclusion.html"><a href="5-ch:conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion and future plans</a><ul>
+<li class="chapter" data-level="5.1" data-path="5.1-software-development.html"><a href="5.1-software-development.html"><i class="fa fa-check"></i><b>5.1</b> Software development</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-future-work.html"><a href="5.2-future-work.html"><i class="fa fa-check"></i><b>5.2</b> Future work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ch:appendix.html"><a href="ch:appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="chapter" data-level="6" data-path="6-supplementary-chapter-3.html"><a href="6-supplementary-chapter-3.html"><i class="fa fa-check"></i><b>6</b> Supplementary: Chapter 3</a><ul>
+<li class="chapter" data-level="6.1" data-path="6.1-recalling-notations.html"><a href="6.1-recalling-notations.html"><i class="fa fa-check"></i><b>6.1</b> Recalling notations</a></li>
+<li class="chapter" data-level="6.2" data-path="6.2-raw-weighted-pairwise-distance.html"><a href="6.2-raw-weighted-pairwise-distance.html"><i class="fa fa-check"></i><b>6.2</b> Raw weighted pairwise distance</a></li>
+<li class="chapter" data-level="6.3" data-path="6.3-adjusted-weighted-pairwise-distances.html"><a href="6.3-adjusted-weighted-pairwise-distances.html"><i class="fa fa-check"></i><b>6.3</b> Adjusted weighted pairwise distances</a></li>
+<li class="chapter" data-level="6.4" data-path="6.4-ranking-and-selecting-harmonies.html"><a href="6.4-ranking-and-selecting-harmonies.html"><i class="fa fa-check"></i><b>6.4</b> Ranking and selecting harmonies</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-supplementary-chapter-4.html"><a href="7-supplementary-chapter-4.html"><i class="fa fa-check"></i><b>7</b> Supplementary: Chapter 4</a><ul>
+<li class="chapter" data-level="7.1" data-path="7.1-raw-data-plot.html"><a href="7.1-raw-data-plot.html"><i class="fa fa-check"></i><b>7.1</b> Raw data plot</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-missing-data-plot.html"><a href="7.2-missing-data-plot.html"><i class="fa fa-check"></i><b>7.2</b> Missing data plot</a></li>
+<li class="chapter" data-level="7.3" data-path="7.3-prototype-selection.html"><a href="7.3-prototype-selection.html"><i class="fa fa-check"></i><b>7.3</b> Prototype selection</a></li>
+<li class="chapter" data-level="7.4" data-path="7.4-interaction-of-granularities-1.html"><a href="7.4-interaction-of-granularities-1.html"><i class="fa fa-check"></i><b>7.4</b> Interaction of granularities</a></li>
+<li class="chapter" data-level="7.5" data-path="7.5-clustering-353-customers.html"><a href="7.5-clustering-353-customers.html"><i class="fa fa-check"></i><b>7.5</b> Clustering 353 customers</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization and analysis of probability distributions of large temporal data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="adjusted-weighted-pairwise-distances" class="section level2">
+<h2><span class="header-section-number">6.3</span> Adjusted weighted pairwise distances</h2>
+<p><em>Simulation design</em></p>
+<p>This section shows results from the different approaches of adjusting for the number of comparisons. Simulation design is the same as for raw weighted pairwise distances for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span>. In place of <span class="math inline">\(wpd_{raw}\)</span>, <span class="math inline">\(wpd_{perm}\)</span>, <span class="math inline">\(wpd_{glm}\)</span> and <span class="math inline">\(wpd\)</span> is computed for all panels.</p>
+<!-- \noindent Observations are generated from a N(0,1) distribution for each $nx = \{2, 3, 5, 7, 9, 14, 17, 20, 24, 31, 42, 50\}$ to cover a wide range of levels from very low to moderately high. $ntimes = 500$ observations are drawn for each combination of the categories, that is, for a panel with $nx=3$, $500$ observations are simulated for each of the categories. This design corresponds to $D_{null}$ as each combination of categories in a panel are drawn from the same distribution. Furthermore, the data is simulated for each of the categories $nsim=200$ times, so that the distribution of $wpd$ under $D_{null}$ could be observed. The values of $wpd$ is obtained for each of the panels. $wpd_{l, s}$ denotes the value of $wpd$ obtained for the $l^{th}$ panel and $s^{th}$ simulation. -->
+<div id="permutation-approach" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Permutation approach</h3>
+<p>Figure  and  show the normalized <span class="math inline">\({wpd}\)</span> for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span> respectively. The location and scale of the distribution of <span class="math inline">\({wpd}\)</span> is similar for increasing values of <span class="math inline">\(nx\)</span> or <span class="math inline">\(nfacet\)</span>. Due to heavy computational load, <span class="math inline">\(wpd_{perm}\)</span> for few panels with very high value of <span class="math inline">\(nx\)</span> or <span class="math inline">\(nfacet\)</span> are not computed.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:one-gran-nxnyfacet"></span>
+<img src="data/hakear/simulations/supplementary/one-gran/norm/null_design_quantrans_nperm/figs/nxbyfacet_ridge_wpd_N01.png" alt="Distribution of $wpd_{perm}$ are shown for different levels for $m=1$ under the null design. The distribution for different panels have similar location and scale." width="100%" />
+<p class="caption">
+Figure 6.11: Distribution of <span class="math inline">\(wpd_{perm}\)</span> are shown for different levels for <span class="math inline">\(m=1\)</span> under the null design. The distribution for different panels have similar location and scale.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:norm"></span>
+<img src="figure/norm-1.png" alt="Distribution of $wpd_{perm}$ are shown for different levels for $m=2$ under the null design. The distribution for different panels have similar location and scale." width="100%" />
+<p class="caption">
+Figure 6.12: Distribution of <span class="math inline">\(wpd_{perm}\)</span> are shown for different levels for <span class="math inline">\(m=2\)</span> under the null design. The distribution for different panels have similar location and scale.
+</p>
+</div>
+</div>
+<div id="modeling-approach" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Modeling approach</h3>
+<p>For for <span class="math inline">\(m=1\)</span>, Figure  shows the scatterplot of <span class="math inline">\(wpd_{raw}\)</span> against different values of <span class="math inline">\(nx\)</span> and also the display of residuals from the model and Figure  shows the distribution of <span class="math inline">\(wpd_{glm}\)</span> for different <span class="math inline">\(nx\)</span>. For <span class="math inline">\(m=2\)</span>, Figure  shows the scatter plot of <span class="math inline">\(wpd_{raw}\)</span> against different values of <span class="math inline">\(nx\)</span> and <span class="math inline">\(nfacet\)</span> and also the display of residuals from the model. Figure  shows the distribution of <span class="math inline">\(wpd_{glm}\)</span> for different <span class="math inline">\(nx\)</span> and <span class="math inline">\(nfacet\)</span>. Tables  and  show the GLM results for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span> respectively. All of these jointly show that the residuals from the model are independent of the number of comparisons. The location and scale of the distribution of <span class="math inline">\(wpd_{glm}\)</span> is similar for higher levels and distinctly different for lower levels.</p>
+<table>
+<caption>
+<span id="tab:tab-modelsm1">Table 6.1: </span>Results of generalised linear model to capture the relationship between <span class="math inline">\(wpd_{raw}\)</span> and number of comparisons for <span class="math inline">\(m=1\)</span>.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+distribution
+</th>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+N(0, 1)
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+26.09
+</td>
+<td style="text-align:right;">
+0.540
+</td>
+<td style="text-align:right;">
+48.33
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N(0, 1)
+</td>
+<td style="text-align:left;">
+log(<code>nx * nfacet</code>)
+</td>
+<td style="text-align:right;">
+-1.87
+</td>
+<td style="text-align:right;">
+0.189
+</td>
+<td style="text-align:right;">
+-9.89
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:glm-horizontal-onegran1"></span>
+<img src="img/G21_horizontal.png" alt="$wpd_{raw}$ (points) and residuals (blue line) from the model is plotted across different number of comparisons for $m=1$. Residuals seem to be independent of $nx$ and have been defined as $wpd_{glm}$." width="100%" />
+<p class="caption">
+Figure 6.13: <span class="math inline">\(wpd_{raw}\)</span> (points) and residuals (blue line) from the model is plotted across different number of comparisons for <span class="math inline">\(m=1\)</span>. Residuals seem to be independent of <span class="math inline">\(nx\)</span> and have been defined as <span class="math inline">\(wpd_{glm}\)</span>.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:glm-density-onegran"></span>
+<img src="figure/glm-density-onegran-1.png" alt="Distribution of $wpd_{glm}$ is plotted across different $nx$ for $m=1$. Both shape and location of the distributions are different for lower $nx$ than for higher $nx$." width="100%" />
+<p class="caption">
+Figure 6.14: Distribution of <span class="math inline">\(wpd_{glm}\)</span> is plotted across different <span class="math inline">\(nx\)</span> for <span class="math inline">\(m=1\)</span>. Both shape and location of the distributions are different for lower <span class="math inline">\(nx\)</span> than for higher <span class="math inline">\(nx\)</span>.
+</p>
+</div>
+<table>
+<caption>
+<span id="tab:tab-models">Table 6.2: </span>Results of generalised linear model to capture the relationship between <span class="math inline">\(wpd_{raw}\)</span> and number of comparisons for different underlying distribution.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+distribution
+</th>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Gamma(0.5, 1)
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+23.67
+</td>
+<td style="text-align:right;">
+0.242
+</td>
+<td style="text-align:right;">
+97.95
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gamma(0.5, 1)
+</td>
+<td style="text-align:left;">
+log(<code>nx * nfacet</code>)
+</td>
+<td style="text-align:right;">
+-1.01
+</td>
+<td style="text-align:right;">
+0.049
+</td>
+<td style="text-align:right;">
+-20.88
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gamma(2, 1)
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+23.69
+</td>
+<td style="text-align:right;">
+0.240
+</td>
+<td style="text-align:right;">
+98.77
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gamma(2, 1)
+</td>
+<td style="text-align:left;">
+log(<code>nx * nfacet</code>)
+</td>
+<td style="text-align:right;">
+-1.02
+</td>
+<td style="text-align:right;">
+0.048
+</td>
+<td style="text-align:right;">
+-21.24
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N(0, 1)
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+23.40
+</td>
+<td style="text-align:right;">
+0.225
+</td>
+<td style="text-align:right;">
+104.14
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N(0, 1)
+</td>
+<td style="text-align:left;">
+log(<code>nx * nfacet</code>)
+</td>
+<td style="text-align:right;">
+-0.96
+</td>
+<td style="text-align:right;">
+0.044
+</td>
+<td style="text-align:right;">
+-21.75
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N(0, 5)
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+23.56
+</td>
+<td style="text-align:right;">
+0.221
+</td>
+<td style="text-align:right;">
+106.71
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N(0, 5)
+</td>
+<td style="text-align:left;">
+log(<code>nx * nfacet</code>)
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+<td style="text-align:right;">
+0.044
+</td>
+<td style="text-align:right;">
+-22.45
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N(5, 1)
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+23.56
+</td>
+<td style="text-align:right;">
+0.221
+</td>
+<td style="text-align:right;">
+106.71
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N(5, 1)
+</td>
+<td style="text-align:left;">
+log(<code>nx * nfacet</code>)
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+<td style="text-align:right;">
+0.044
+</td>
+<td style="text-align:right;">
+-22.45
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N(5, 5)
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+23.56
+</td>
+<td style="text-align:right;">
+0.221
+</td>
+<td style="text-align:right;">
+106.71
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N(5, 5)
+</td>
+<td style="text-align:left;">
+log(<code>nx * nfacet</code>)
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+<td style="text-align:right;">
+0.044
+</td>
+<td style="text-align:right;">
+-22.45
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<!-- # ```{r} -->
+<!-- #  -->
+<!-- # G21_median <- N01 %>% -->
+<!-- #   group_by(nx*nfacet) %>% -->
+<!-- #   summarise(actual = median(value)) -->
+<!-- #  -->
+<!-- #  -->
+<!-- # glm_fit <- glm(actual ~ log(`nx * nfacet`), -->
+<!-- #                family = Gamma(link = "inverse"), -->
+<!-- #                data = G21_median) -->
+<!-- # # tidy(glm_fit) -->
+<!-- #  -->
+<!-- # ``` -->
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:glm-horizontal-twogran1"></span>
+<img src="img/G21_horizontal_m2.png" alt="$wpd_{raw}$ (points) and residuals (blue line) from the model is plotted across different number of comparisons for $m=2$. Residuals seem to be independent of $nx$ and have been defined as $wpd_{glm}$." width="100%" />
+<p class="caption">
+Figure 6.15: <span class="math inline">\(wpd_{raw}\)</span> (points) and residuals (blue line) from the model is plotted across different number of comparisons for <span class="math inline">\(m=2\)</span>. Residuals seem to be independent of <span class="math inline">\(nx\)</span> and have been defined as <span class="math inline">\(wpd_{glm}\)</span>.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:wpd-glm-dist-appendix"></span>
+<img src="figure/wpd-glm-dist-appendix-1.png" alt="Distribution of $wpd_{glm}$ is plotted across different $nx$ for $m=2$. Both shape and scale of the distributions are different for lower $nx$ than for higher $nx$." width="100%" />
+<p class="caption">
+Figure 6.16: Distribution of <span class="math inline">\(wpd_{glm}\)</span> is plotted across different <span class="math inline">\(nx\)</span> for <span class="math inline">\(m=2\)</span>. Both shape and scale of the distributions are different for lower <span class="math inline">\(nx\)</span> than for higher <span class="math inline">\(nx\)</span>.
+</p>
+</div>
+</div>
+<div id="combination-approach" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> Combination approach</h3>
+<p>Figure  and  show the distribution of <span class="math inline">\(wpd_{perm}\)</span> and <span class="math inline">\(wpd_{glm-scaled}\)</span> overlaid on each other for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span> respectively. <span class="math inline">\(wpd\)</span> takes the value of <span class="math inline">\(wpd_{perm}\)</span> for lower levels
+<span class="math inline">\((&lt;=5)\)</span>, and <span class="math inline">\(wpd_{glm-scaled}\)</span> for higher levels so that we have similar location and scale across panels with different levels.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dist-same-scale-onegran"></span>
+<img src="figure/dist-same-scale-onegran-1.png" alt="The distribution of $wpd_{perm}$ and $wpd_{glm-scaled}$ are overlaid to compare the location and scale across different $nx$ for $m=1$. The distribution of the adjusted measure looks similar for both approaches for higher levels, but for $nx=2$ both location and scale differs." width="100%" />
+<p class="caption">
+Figure 6.17: The distribution of <span class="math inline">\(wpd_{perm}\)</span> and <span class="math inline">\(wpd_{glm-scaled}\)</span> are overlaid to compare the location and scale across different <span class="math inline">\(nx\)</span> for <span class="math inline">\(m=1\)</span>. The distribution of the adjusted measure looks similar for both approaches for higher levels, but for <span class="math inline">\(nx=2\)</span> both location and scale differs.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dist-new-same-scale-link"></span>
+<img src="figure/dist-new-same-scale-link-1.png" alt="The distribution of $wpd_{perm}$ and $wpd_{glm-scaled}$ are overlaid to compare the location and scale across different $nx$ and $nfacet$ for $m=2$. $wpd$ takes the value of $wpd_{perm}$ for lower levels, and $wpd_{glm-scaled}$ for higher levels. " width="100%" />
+<p class="caption">
+Figure 3.6: The distribution of <span class="math inline">\(wpd_{perm}\)</span> and <span class="math inline">\(wpd_{glm-scaled}\)</span> are overlaid to compare the location and scale across different <span class="math inline">\(nx\)</span> and <span class="math inline">\(nfacet\)</span> for <span class="math inline">\(m=2\)</span>. <span class="math inline">\(wpd\)</span> takes the value of <span class="math inline">\(wpd_{perm}\)</span> for lower levels, and <span class="math inline">\(wpd_{glm-scaled}\)</span> for higher levels.
+</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="6.2-raw-weighted-pairwise-distance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6.4-ranking-and-selecting-harmonies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/earowang/thesis/edit/master/Rmd//06-appendix.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

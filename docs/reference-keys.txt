@@ -46,6 +46,15 @@ fig:wpd-glm-dist-appendix
 fig:dist-same-scale-onegran
 fig:foo
 fig:raw-data-50
+fig:missing-data
+fig:mds
+fig:hier-clust-few
+fig:mds-plot-interact-few
+fig:hier-clust
+fig:mds-plot-interact
+fig:heatmap-interact
+fig:opt-clust-350
+fig:combined-groups-js-entire-all
 ch:intro
 sec:gravitas
 sec:hakear
@@ -121,6 +130,7 @@ comparing-our-clustering-method-with-other-benchmark-methods
 scaling-up-the-clustering-method-to-incorporate-large-uncertainty-and-improved-computational-efficiency-that-comes-with-large-data
 develop-inferential-methods-for-the-clusters
 check-generalizability-of-our-methods
+supplementary-chapter-3
 recalling-notations
 raw-weighted-pairwise-distance
 tuning-parameter-1
@@ -133,4 +143,9 @@ permutation-approach
 modeling-approach
 combination-approach
 ranking-and-selecting-harmonies
-raw-time-series-plot
+supplementary-chapter-4
+raw-data-plot
+missing-data-plot
+prototype-selection
+interaction-of-granularities-1
+clustering-353-customers

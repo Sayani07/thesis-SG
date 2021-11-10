@@ -22,14 +22,11 @@ code to install the packages used in this thesis:
 renv::restore()
 ```
 
-The thesis can be compiled into both html and pdf format as follows:
+The thesis can be compiled into both html and pdf format. Run the following codes in the terminal:
 
 ```zsh
-# uncomment if cache isn't setup
-# make hub
-# make bfcbam
-# make bfcsnp
-make both
+Rscript --quiet _render.R "bookdown::pdf_book"
+Rscript --quiet _render.R "bookdown::gitbook"
 ```
 
 
