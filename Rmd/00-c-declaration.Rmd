@@ -11,7 +11,7 @@ output:
 
 I hereby declare that this thesis contains no material which has been accepted for the award of any other degree or diploma at any university or equivalent institution and that, to the best of my knowledge and belief, this thesis contains no material previously published or written by another person, except where due reference is made in the text of the thesis. 
 
-Three publications are included in this thesis, one of which has been accepted for publication in the Journal of Computational and Graphical Statistics (@Gupta2021-gravitas). Two others have not yet been submitted. "Exploring probability distributions across cyclic temporal granularities" is the central theme of the thesis. All of the papers in the thesis were conceptualized, developed, and written by myself, the student, while working in the Department of Econometrics and Business Statistics under the supervision of Professor Rob J Hyndman and Professor Dianne Cook. When co-authors are listed, it indicates that the work was produced through active collaboration between researchers and that their contributions to team-based research have been recognized. The following table details the work, including
+Three publications are included in this thesis, one of which has been accepted for publication in the _Journal of Computational and Graphical Statistics_ (@Gupta2021-gravitas). Two others have not yet been submitted. "Exploring probability distributions across cyclic temporal granularities" is the central theme of the thesis. All of the papers in the thesis were conceptualized, developed, and written by myself, the student, while working in the Department of Econometrics and Business Statistics under the supervision of Professor Rob J Hyndman and Professor Dianne Cook. When co-authors are listed, it indicates that the work was produced through active collaboration between researchers and that their contributions to team-based research have been recognized. The following table details the work, including
 my and my fellow co-authors contributions:
 
 \begin{table}
@@ -30,7 +30,7 @@ for exploratory time series analysis & To be submitted & 70\%. Concept and devel
 \end{table}
 
 
-I have not renumbered sections of submitted or published papers in order to generate a consistent presentation within the thesis.
+I have renumbered sections of submitted or published papers in order to generate a consistent presentation within the thesis.
 
 \textbf{Student name:} Sayani Gupta
 
