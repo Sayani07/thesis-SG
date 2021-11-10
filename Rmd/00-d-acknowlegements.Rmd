@@ -8,7 +8,7 @@ I am deeply grateful to my supervisors Rob J Hyndman and Dianne Cook, who are ph
 
 <!-- - Department and conferences -->
 
-I want to thank the Department of Econometrics and Business Statistics, Monash Business School, ARC Centre of Excellence for Mathematical and Statistical Frontiers (ACEMS), and Data61 CSIRO for their financial support. Thanks to the Department, I attended a few conferences in person (before COVID hit) and had a great time networking and being inspired by many people. A few highlights are UseR! 2018 (Brisbane), Young Statistician's Conference 2019 (Canberra), WOMBATS 2019 (Melbourne), and RopenSci 2019 (Sydney). Thank you to Gael Martin, Farshid Wahid, Klaus Ackermann, and Didier Nibbering from my PhD committee for providing such a supportive environment.
+I want to thank the Department of Econometrics and Business Statistics, Monash Business School, ARC Centre of Excellence for Mathematical and Statistical Frontiers (ACEMS), and Data61 CSIRO for their financial support. Thanks to the Department, I attended a few conferences in person (before COVID hit) and had a great time networking and being inspired by many people. A few highlights are UseR! 2018 (Brisbane), Young Statistician's Conference 2019 (Canberra), WOMBAT 2019 (Melbourne), and ROpenSci 2019 (Sydney). Thank you to Gael Martin, Farshid Wahid, Klaus Ackermann, and Didier Nibbering from my PhD committee for providing such a supportive environment.
 
 
  <!-- - PhD friends and R community -->
@@ -16,7 +16,7 @@ Thank you, Stephanie Kobakian and Nicholas Tierney, for being so warm, kind and 
 
 <!-- - Friends -->
 
-PhD in Covid has been harder, and I would not have been able to make it through this if not for the emotional support of my friends and family. Thank you Puwasala, Sium, and Ian, for being so kind and acting as a pillar of emotional support, especially during the last leg of my journey. Thank you Tushar, Samarpita and Nairita for always motivating me and believing in me when I did not believe in myself. Thank you to each one of you for being available, listening to me, and putting things in perspective when I lost sight. Thanks to my housemates Anjali, Surbhi, and Dulaji for the fun company and conversations that kept me sane in the covid lockdowns.
+PhD in Covid has been hard, and I would not have been able to make it through this if not for the emotional support of my friends and family. Thank you Puwasala, Sium, and Ian, for being so kind and acting as a pillar of emotional support, especially during the last leg of my journey. Thank you Tushar, Samarpita and Nairita for always motivating me and believing in me when I did not believe in myself. Thank you to each one of you for being available, listening to me, and putting things in perspective when I lost sight. Thanks to my housemates Anjali, Surbhi, and Dulaji for the fun company and conversations that kept me sane in the COVID lockdowns.
 
 
 <!-- - Family -->
