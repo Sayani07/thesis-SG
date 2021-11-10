@@ -97,11 +97,10 @@
 <li class="chapter" data-level="3.1" data-path="3.1-introduction-1.html"><a href="3.1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
 <li class="chapter" data-level="3.2" data-path="3.2-sec:computation-wpd.html"><a href="3.2-sec:computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
 <li class="chapter" data-level="3.3" data-path="3.3-sec:rank-wpd.html"><a href="3.3-sec:rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
-<li class="chapter" data-level="3.4" data-path="3.4-sec:simulations.html"><a href="3.4-sec:simulations.html"><i class="fa fa-check"></i><b>3.4</b> Simulations</a></li>
-<li class="chapter" data-level="3.5" data-path="3.5-sec:application-wpd.html"><a href="3.5-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.5</b> Application to residential smart meter dataset</a></li>
-<li class="chapter" data-level="3.6" data-path="3.6-discussion.html"><a href="3.6-discussion.html"><i class="fa fa-check"></i><b>3.6</b> Discussion</a></li>
-<li class="chapter" data-level="" data-path="thankshakear.html"><a href="thankshakear.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
-<li class="chapter" data-level="" data-path="supplement-hakear.html"><a href="supplement-hakear.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:application-wpd.html"><a href="3.4-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.4</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-discussion.html"><a href="3.5-discussion.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-supplementary-materials.html"><a href="3.6-supplementary-materials.html"><i class="fa fa-check"></i><b>3.6</b> Supplementary Materials</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-ch:gracsr.html"><a href="4-ch:gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
 <li class="chapter" data-level="4.1" data-path="4.1-introduction-2.html"><a href="4.1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -156,7 +155,7 @@
 <p><em>Simulation design</em></p>
 <p>This section shows results from the different approaches of adjusting for the number of comparisons. Simulation design is the same as for raw weighted pairwise distances for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span>. In place of <span class="math inline">\(wpd_{raw}\)</span>, <span class="math inline">\(wpd_{perm}\)</span>, <span class="math inline">\(wpd_{glm}\)</span> and <span class="math inline">\(wpd\)</span> is computed for all panels.</p>
 <!-- \noindent Observations are generated from a N(0,1) distribution for each $nx = \{2, 3, 5, 7, 9, 14, 17, 20, 24, 31, 42, 50\}$ to cover a wide range of levels from very low to moderately high. $ntimes = 500$ observations are drawn for each combination of the categories, that is, for a panel with $nx=3$, $500$ observations are simulated for each of the categories. This design corresponds to $D_{null}$ as each combination of categories in a panel are drawn from the same distribution. Furthermore, the data is simulated for each of the categories $nsim=200$ times, so that the distribution of $wpd$ under $D_{null}$ could be observed. The values of $wpd$ is obtained for each of the panels. $wpd_{l, s}$ denotes the value of $wpd$ obtained for the $l^{th}$ panel and $s^{th}$ simulation. -->
-<div id="permutation-approach" class="section level3">
+<div id="permutation-approach-1" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> Permutation approach</h3>
 <p>Figure  and  show the normalized <span class="math inline">\({wpd}\)</span> for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span> respectively. The location and scale of the distribution of <span class="math inline">\({wpd}\)</span> is similar for increasing values of <span class="math inline">\(nx\)</span> or <span class="math inline">\(nfacet\)</span>. Due to heavy computational load, <span class="math inline">\(wpd_{perm}\)</span> for few panels with very high value of <span class="math inline">\(nx\)</span> or <span class="math inline">\(nfacet\)</span> are not computed.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:one-gran-nxnyfacet"></span>
@@ -172,7 +171,7 @@ Figure 6.12: Distribution of <span class="math inline">\(wpd_{perm}\)</span> are
 </p>
 </div>
 </div>
-<div id="modeling-approach" class="section level3">
+<div id="modeling-approach-1" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Modeling approach</h3>
 <p>For for <span class="math inline">\(m=1\)</span>, Figure  shows the scatterplot of <span class="math inline">\(wpd_{raw}\)</span> against different values of <span class="math inline">\(nx\)</span> and also the display of residuals from the model and Figure  shows the distribution of <span class="math inline">\(wpd_{glm}\)</span> for different <span class="math inline">\(nx\)</span>. For <span class="math inline">\(m=2\)</span>, Figure  shows the scatter plot of <span class="math inline">\(wpd_{raw}\)</span> against different values of <span class="math inline">\(nx\)</span> and <span class="math inline">\(nfacet\)</span> and also the display of residuals from the model. Figure  shows the distribution of <span class="math inline">\(wpd_{glm}\)</span> for different <span class="math inline">\(nx\)</span> and <span class="math inline">\(nfacet\)</span>. Tables  and  show the GLM results for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span> respectively. All of these jointly show that the residuals from the model are independent of the number of comparisons. The location and scale of the distribution of <span class="math inline">\(wpd_{glm}\)</span> is similar for higher levels and distinctly different for lower levels.</p>
 <table>
@@ -551,7 +550,7 @@ Figure 6.16: Distribution of <span class="math inline">\(wpd_{glm}\)</span> is p
 </p>
 </div>
 </div>
-<div id="combination-approach" class="section level3">
+<div id="combination-approach-1" class="section level3">
 <h3><span class="header-section-number">6.3.3</span> Combination approach</h3>
 <p>Figure  and  show the distribution of <span class="math inline">\(wpd_{perm}\)</span> and <span class="math inline">\(wpd_{glm-scaled}\)</span> overlaid on each other for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span> respectively. <span class="math inline">\(wpd\)</span> takes the value of <span class="math inline">\(wpd_{perm}\)</span> for lower levels
 <span class="math inline">\((&lt;=5)\)</span>, and <span class="math inline">\(wpd_{glm-scaled}\)</span> for higher levels so that we have similar location and scale across panels with different levels.</p>

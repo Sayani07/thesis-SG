@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="3.2-sec:computation-wpd.html"/>
-<link rel="next" href="3.4-sec:simulations.html"/>
+<link rel="next" href="3.4-sec:application-wpd.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -97,11 +97,10 @@
 <li class="chapter" data-level="3.1" data-path="3.1-introduction-1.html"><a href="3.1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
 <li class="chapter" data-level="3.2" data-path="3.2-sec:computation-wpd.html"><a href="3.2-sec:computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
 <li class="chapter" data-level="3.3" data-path="3.3-sec:rank-wpd.html"><a href="3.3-sec:rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
-<li class="chapter" data-level="3.4" data-path="3.4-sec:simulations.html"><a href="3.4-sec:simulations.html"><i class="fa fa-check"></i><b>3.4</b> Simulations</a></li>
-<li class="chapter" data-level="3.5" data-path="3.5-sec:application-wpd.html"><a href="3.5-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.5</b> Application to residential smart meter dataset</a></li>
-<li class="chapter" data-level="3.6" data-path="3.6-discussion.html"><a href="3.6-discussion.html"><i class="fa fa-check"></i><b>3.6</b> Discussion</a></li>
-<li class="chapter" data-level="" data-path="thankshakear.html"><a href="thankshakear.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
-<li class="chapter" data-level="" data-path="supplement-hakear.html"><a href="supplement-hakear.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:application-wpd.html"><a href="3.4-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.4</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-discussion.html"><a href="3.5-discussion.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-supplementary-materials.html"><a href="3.6-supplementary-materials.html"><i class="fa fa-check"></i><b>3.6</b> Supplementary Materials</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-ch:gracsr.html"><a href="4-ch:gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
 <li class="chapter" data-level="4.1" data-path="4.1-introduction-2.html"><a href="4.1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
@@ -153,49 +152,204 @@
             <section class="normal" id="section-">
 <div id="sec:rank-wpd" class="section level2">
 <h2><span class="header-section-number">3.3</span> Ranking and selection of cyclic granularities</h2>
-<p>A cyclic granularity is referred to as “significant” if there is a significant distributional difference of the measured variable between different categories of the harmony. In this section, a selection criterion to choose significant harmonies is provided, thereby eliminating all harmonies that exhibit complete randomness in the measured variable. The distance measure <span class="math inline">\(wpd\)</span> is used as a test statistic to test the null hypothesis that no harmony/cyclic granularity is significant. We select only those harmonies/cyclic granularities for which the test fails. They are then ranked basis how well they capture variation in the measured variable.</p>
-<!-- . Randomization tests (permutation tests) generates a random distribution by re-ordering the observed data and allows us to test if the observed data is significantly different from any random distribution.  -->
+<p>A cyclic granularity is referred to as “significant” if there is a significant distributional difference of the measured variable between different categories of the harmony. In this section, a selection criterion to choose significant harmonies is provided, thereby eliminating all harmonies that exhibit non-significant differences in the measured variable. The distance measure <span class="math inline">\(\wpd\)</span> is used as a test statistic to test the null hypothesis that no harmony/cyclic granularity is significant. We select only those harmonies/cyclic granularities for which the test fails. They are then ranked based on how well they capture variation in the measured variable.</p>
+<!-- . Randomization tests (permutation tests) generates a random distribution by re-ordering the observed data and allows us to test if the observed data is significantly different from any random distribution. -->
 <!-- the harmonies are not significant under null hypothesis and then test if our hypotheses are true: -->
-<!--   $H_0$: harmonies are not significant -->
-<!--   $H_1$: at least one harmony is significant -->
-<!-- we provide a method to select important harmonies by eliminating all harmonies for which patterns are not significant by employing randomization test. Randomization tests (permutation tests) generates a random distribution by re-ordering our observed data and allow to test if the observed data is significantly different from any random distribution. Complete randomness in the measured variable indicates that the process follows a homogeneous underlying distribution over the whole time series, which essentially implies there is no interesting distinction across any different categories of the cyclic granularities.  -->
+<!--  $H_0$: harmonies are not significant -->
+<!--  $H_1$: at least one harmony is significant -->
+<!-- we provide a method to select important harmonies by eliminating all harmonies for which patterns are not significant by employing randomization test. Randomization tests (permutation tests) generates a random distribution by re-ordering our observed data and allow to test if the observed data is significantly different from any random distribution. Complete randomness in the measured variable indicates that the process follows a homogeneous underlying distribution over the whole time series, which essentially implies there is no interesting distinction across any different categories of the cyclic granularities. -->
 <div id="selection" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> Selection</h3>
 <!-- Under the null hypothesis, the harmonies are not significant. -->
-<p>A threshold and consequently a selection criterion is chosen using the notion of Randomization tests (<span class="citation">Edgington and Onghena (<a href="bibliography.html#ref-edgington2007randomization" role="doc-biblioref">2007</a>)</span>). The data is permuted several times and <span class="math inline">\(wpd\)</span> is computed for each of the permuted data sets to obtain the sampling distribution of <span class="math inline">\(wpd\)</span> under the null hypothesis. If the null hypothesis is true, then <span class="math inline">\(wpd\)</span> obtained from the original data set would be a likely value in the sampling distribution. But in case the null hypothesis is not true, then it is less probable that <span class="math inline">\(wpd\)</span> obtained for the original data will be from the same distribution. This idea is utilized to come up with a threshold for selection, denoted by <span class="math inline">\(wpd_{threshold}\)</span>, defined as the <span class="math inline">\(99^{th}\)</span> percentile of the sampling distribution. A harmony is selected if the value of <span class="math inline">\(wpd\)</span> for that harmony is greater than the chosen threshold. The detailed algorithm for choosing a threshold and selection procedure (for two cyclic granularities) is listed as follows:</p>
-<!-- The selection criterion is stated as follows: for $(i \in {1, 2, \dots, H_{N_C}})$, select $H_i$ if $wpd_i > wpd_{threshold}$, else reject. -->
+<p>A threshold (and consequently a selection criterion) is chosen using the notion of randomization tests <span class="citation">(Edgington and Onghena <a href="bibliography.html#ref-edgington2007randomization" role="doc-biblioref">2007</a>)</span>. The data is permuted several times and <span class="math inline">\(\wpd\)</span> is computed for each of the permuted data sets to obtain the sampling distribution of <span class="math inline">\(\wpd\)</span> under the null hypothesis. If the null hypothesis is true, then <span class="math inline">\(\wpd\)</span> obtained from the original data set would be a likely value in the sampling distribution. But in case the null hypothesis is not true, then it is less probable that <span class="math inline">\(\wpd\)</span> obtained for the original data will be from the same distribution. This idea is utilized to come up with a threshold for selection, denoted by <span class="math inline">\(\wpdsub{threshold}\)</span>, defined as the <span class="math inline">\(99^{th}\)</span> percentile of the sampling distribution. A harmony is selected if the value of <span class="math inline">\(\wpd\)</span> for that harmony is greater than the chosen threshold. The detailed algorithm for choosing a threshold and selection procedure (for two cyclic granularities) is listed as follows:</p>
+<!-- The selection criterion is stated as follows: for $(i \in {1, 2, \dots, H_{N_C}})$, select $H_i$ if $wpd_i > \wpdsub{threshold}$, else reject. -->
 <ul>
-<li><p><strong>Input:</strong> All harmonies of the form <span class="math inline">\(\{(A, B), A = \{ a_j: j = 1, 2, \dots, J\}, B = \{ b_k: k = 1, 2, \dots, K\}\}\)</span>, <span class="math inline">\(\forall (A, B) \in H_{N_C}\)</span>.</p></li>
-<li><p><strong>Output:</strong> Harmony pairs <span class="math inline">\((A, B)\)</span> for which <span class="math inline">\(wpd\)</span> is significant.</p></li>
+<li><p><strong>Input:</strong> All harmonies of the form <span class="math inline">\(\{(A, B),~ A = \{ a_j: j = 1, 2, \dots, \nx\},~ B = \{ b_k: k = 1, 2, \dots, \nf\}\}\)</span>, <span class="math inline">\(\forall (A, B) \in H_{N_C}\)</span>.</p></li>
+<li><p><strong>Output:</strong> Harmony pairs <span class="math inline">\((A, B)\)</span> for which <span class="math inline">\(\wpd\)</span> is significant.</p></li>
 </ul>
 <ol style="list-style-type: decimal">
-<li><p>Fix harmony pair <span class="math inline">\((A, B)\)</span>.</p></li>
-<li><p>Given the measured variable; <span class="math inline">\(\{v_t: t=0, 1, 2, \dots, T-1\}\)</span>, <span class="math inline">\(wpd\)</span> is computed and is represented by <span class="math inline">\(wpd^{A, B}_{obs}\)</span>.</p></li>
-<li><p>From the original sequence a random permutation is obtained: <span class="math inline">\(\{v_t^{1}: t=0, 1, 2, \dots, T-1\}\)</span>.</p></li>
-<li><p><span class="math inline">\(wpd\)</span> is computed for the permuted sequence of the data and is represented by <span class="math inline">\(wpd^{A, B}_{1}\)</span>.</p></li>
-<li><p>Steps (3) and (4) are repeated a large number of times <span class="math inline">\(M\)</span> (e.g. <span class="math inline">\(M = 200\)</span>).</p></li>
-<li><p>For each permutation, one <span class="math inline">\(wpd^{A, B}_{i}\)</span> is obtained. Define <span class="math inline">\(wpd_{sample} = \{wpd^{A, B}_{1} wpd^{A, B}_{2}, \dots, wpd^{A, B}_{M}\}\)</span>.</p></li>
-<li><p>Repeat Steps (1-6) for all harmony pairs <span class="math inline">\((A, B) \in H_{N_C}\)</span> and stored <span class="math inline">\(wpd^{all}_{sample}\)</span>.</p></li>
-<li><p><span class="math inline">\(99^{th}\)</span> percentiles of <span class="math inline">\(wpd^{all}_{sample}\)</span> is computed and stored in <span class="math inline">\(wpd_{threshold99}\)</span></p></li>
-<li><p>If <span class="math inline">\(wpd^{A, B}_{obs} &gt; wpd_{threshold99}\)</span>, harmony pair <span class="math inline">\((A, B)\)</span> is selected, otherwise rejected.</p></li>
+<li><p>For each harmony pair <span class="math inline">\((A, B) \in H_{N_C}\)</span>, the following steps are taken.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Given the measured variable; <span class="math inline">\(\{v_t: t=0, 1, 2, \dots, T-1\}\)</span>, <span class="math inline">\(\wpd\)</span> is computed and is represented by <span class="math inline">\(\wpd^{A, B}_{obs}\)</span>.</li>
+<li>For <span class="math inline">\(i=1,\dots,m\)</span>, randomly permute the original time series: <span class="math inline">\(\{v_t^{i}: t=0, 1, 2, \dots, T-1\}\)</span> and compute <span class="math inline">\(\wpd^{A, B}_{i}\)</span> from <span class="math inline">\(\{v_t^{i}\}\)</span>.</li>
+<li>Define <span class="math inline">\(\wpdsub{sample} = \{\wpd^{A, B}_{1}, \dots, \wpd^{A, B}_{M}\}\)</span>.</li>
+</ol></li>
+<li><p>Stack the <span class="math inline">\(\wpdsub{sample}\)</span> vectors as <span class="math inline">\(\wpdsub{sample}^{\text{all}}\)</span> and compute its <span class="math inline">\(p = 100(1-\alpha)\)</span> percentiles as <span class="math inline">\(\wpdsub{threshold\emph{p}}\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\wpd^{A, B}_{obs} &gt; \wpdsub{threshold\emph{p}}\)</span>, harmony pair <span class="math inline">\((A, B)\)</span> is selected at the <span class="math inline">\(1-p/100\)</span> level, otherwise rejected.</p></li>
+<li><p>Harmonies selected using the <span class="math inline">\(99^{th}\)</span>, <span class="math inline">\(95^{th}\)</span> and <span class="math inline">\(90^{th}\)</span> thresholds are tagged as ***, **, * respectively.</p></li>
 </ol>
-<p>Similarly, a harmony pair <span class="math inline">\((A, B)\)</span> could be selected if <span class="math inline">\(wpd^{A, B}_{obs} &gt; wpd_{threshold95}\)</span> and <span class="math inline">\(wpd^{A, B}_{obs} &gt; wpd_{threshold90}\)</span>, where <span class="math inline">\(wpd_{threshold95}\)</span> and <span class="math inline">\(wpd_{threshold90}\)</span> denote the <span class="math inline">\(95^{th}\)</span> and <span class="math inline">\(90^{th}\)</span> percentile of <span class="math inline">\(wpd^{all}_{sample}\)</span> respectively. A harmony selected using <span class="math inline">\(99^{th}\)</span>, <span class="math inline">\(95^{th}\)</span> and <span class="math inline">\(90^{th}\)</span> threshold are tagged as ***, **, * respectively.</p>
 </div>
-<div id="ranking" class="section level3">
+<div id="sec:ranking" class="section level3">
 <h3><span class="header-section-number">3.3.2</span> Ranking</h3>
-<p>The distribution of <span class="math inline">\(wpd\)</span> is expected to be similar for all harmonies under the null hypothesis, since they have been adjusted for different number of categories for the harmonies or underlying distribution of the measured variable. Hence, the values of <span class="math inline">\(wpd\)</span> for different harmonies are comparable and can be used to rank the significant harmonies. A higher value of <span class="math inline">\(wpd\)</span> for a harmony indicates that higher maximum variation in the measured variable is captured through that harmony. Figure  presents the results of <span class="math inline">\(wpd\)</span> from the illustrative designs in Section . The value of <span class="math inline">\(wpd\)</span> under null design (a) is the least, followed by (b), (c) and (d). This aligns with the principle of <span class="math inline">\(wpd\)</span>, which is expected to have lowest value for null designs and highest for designs of the form <span class="math inline">\(D_{var_{all}}\)</span> (d). Moreover, note the relative differences in <span class="math inline">\(wpd\)</span> values between (b) and (c). The value of the tuning parameter <span class="math inline">\(\lambda\)</span> is set to <span class="math inline">\(0.67\)</span>, which has resulted in giving more emphasis to differences in x-axis categories. Again consider (a) and (b) with a <span class="math inline">\(wpd\)</span> value of 20.5 and 145 respectively. This is because there is more gradual increase across hours of the day than months of the year. If order of the categories is not considered, they result in a <span class="math inline">\(wpd\)</span> value of <span class="math inline">\(97.8\)</span> and <span class="math inline">\(161\)</span> respectively, which follows from the fact that if we consider difference between any hours of the day, the magnitude will be much larger than if we consider difference between consecutive categories. Similarly, (a) and (b) have <span class="math inline">\(wpd\)</span> values of <span class="math inline">\(110.79\)</span> and <span class="math inline">\(125.82\)</span> respectively. The ranking implies that the distributional differences are more prominent for the second household, as is also seen from the bigger fluctuations in the <span class="math inline">\(90^{th}\)</span> percentile than the first household.</p>
+<p>The distribution of <span class="math inline">\(\wpd\)</span> is expected to be similar for all harmonies under the null hypothesis, since they have been adjusted for different number of categories for the harmonies or underlying distribution of the measured variable. Hence, the values of <span class="math inline">\(\wpd\)</span> for different harmonies are comparable and can be used to rank the significant harmonies. A higher value of <span class="math inline">\(\wpd\)</span> for a harmony indicates that higher maximum variation in the measured variable is captured through that harmony.</p>
+<p>Figure  also presents the results of <span class="math inline">\(\wpd\)</span> from the illustrative designs in Section . The value of <span class="math inline">\(\wpd\)</span> under null design (a) is the least, followed by (b), (c) and (d). This aligns with the principle of <span class="math inline">\(\wpd\)</span>, which is expected to have lowest value for null designs and highest for designs of the form <span class="math inline">\(\Dfx\)</span> (d). Moreover, note the relative differences in <span class="math inline">\(\wpd\)</span> values between (b) and (c). The value of the tuning parameter <span class="math inline">\(\lambda\)</span> is set to 2/3, which gives greater emphasis to differences in x-axis categories than facets.</p>
+<p>Again consider (a) and (b) with a <span class="math inline">\(\wpd\)</span> value of 20.5 and 145 respectively. This is because there is a more gradual increase across hours of the day than across months of the year. If the order of categories is ignored, the resulting <span class="math inline">\(\wpd\)</span> values are <span class="math inline">\(97.8\)</span> and <span class="math inline">\(161\)</span> respectively, because differences between any hours of the day tend to be larger than differences only between consecutive hours. Similarly, (a) and (b) have <span class="math inline">\(\wpd\)</span> values of <span class="math inline">\(110.79\)</span> and <span class="math inline">\(125.82\)</span> respectively. The ranking implies that the distributional differences are more prominent for the second household, as is also seen from the bigger fluctuations in the <span class="math inline">\(90^{th}\)</span> percentile than for the first household.</p>
 <!-- ## Choosing a threshold -->
-<!-- A randomization test involves calculating a test statistic, randomly shuffling the data and calculating the test statistic several times to obtain a distribution of the test statistic. But we will use this procedure to obtain a threshold such that harmony pairs with a $wpd$ value higher than this threshold will only be considered significant. The process of choosing a threshold is described as follows: -->
-<!-- to test if there is any interesting pattern captured by the harmonies, which essentially implies if $wpd$ is significantly different from zero. The percentages of times the $wpd$ obtained from the permuted data is greater than or equal to the observed $wpd$ is the p-value. The randomization test is described as follows: -->
+<!-- A randomization test involves calculating a test statistic, randomly shuffling the data and calculating the test statistic several times to obtain a distribution of the test statistic. But we will use this procedure to obtain a threshold such that harmony pairs with a $\wpd$ value higher than this threshold will only be considered significant. The process of choosing a threshold is described as follows: -->
+<!-- to test if there is any interesting pattern captured by the harmonies, which essentially implies if $\wpd$ is significantly different from zero. The percentages of times the $\wpd$ obtained from the permuted data is greater than or equal to the observed $\wpd$ is the p-value. The randomization test is described as follows: -->
 <!-- <!-- We can remove the harmonies for which no interesting patterns are observed through a randomization permutation method. -->
-<!-- Essentially, the assumption is that under the null hypothesis, there is no difference in categories between the pair of cyclic granularities in the chosen harmony. This method is based on the generation of randomly chosen reassignments (permutations) of the data across different cyclic granularities and the computation of  -->
-<!-- $wpd$ for each of these reassignments. -->
+<!-- Essentially, the assumption is that under the null hypothesis, there is no difference in categories between the pair of cyclic granularities in the chosen harmony. This method is based on the generation of randomly chosen reassignments (permutations) of the data across different cyclic granularities and the computation of -->
+<!-- $\wpd$ for each of these reassignments. -->
 <!-- **Assumption:** random permutation of the data keeping the categories of the cyclic granularities constant. -->
-<!-- Complete randomness in the measured variable indicates that the process follows a homogeneous underlying distribution over the whole time series, which essentially implies there is no interesting distinction across any different categories of the cyclic granularities. We can remove the harmonies for which no interesting patterns are observed through a randomization permutation method. Essentially, the assumption is that under the null hypothesis, there is no difference in categories between the pair of cyclic granularities in the chosen harmony. This method is based on the generation of randomly chosen reassignments (permutations) of the data across different cyclic granularities and the computation of  -->
-<!-- $wpd$ for each of these reassignments. The percentages of times the theoretical distribution greater than or equal to the respective observed $wpd$ values are calculated and are used to obtain the P value. The procedure for the permutation test is: -->
+<!-- Complete randomness in the measured variable indicates that the process follows a homogeneous underlying distribution over the whole time series, which essentially implies there is no interesting distinction across any different categories of the cyclic granularities. We can remove the harmonies for which no interesting patterns are observed through a randomization permutation method. Essentially, the assumption is that under the null hypothesis, there is no difference in categories between the pair of cyclic granularities in the chosen harmony. This method is based on the generation of randomly chosen reassignments (permutations) of the data across different cyclic granularities and the computation of -->
+<!-- $\wpd$ for each of these reassignments. The percentages of times the theoretical distribution greater than or equal to the respective observed $\wpd$ values are calculated and are used to obtain the P value. The procedure for the permutation test is: -->
 <!-- **Assumption:** random permutation of the data keeping the categories of the cyclic granularities constant. -->
-<!-- 14, 20, 31, 50\}$. For each of the $64$ panels, $ntimes = 500$ observations are drawn for each combination of the categories. The values of $wpd$ is obtained for each of the panels for the designs $D_{null}$, $D_{var_x}$, $D_{var_f}$ and $D_{var_{all}}$. $wpd_{threshold}$ is computed from all of these panels together and the number of times a harmony pair $(A, B) \in H_{N_C}$ is selected when in fact it was of the design $D_{null}$ is noted. This entire process is repeated for several null data sets to see the number of times any harmony pair $(A, B) \in H_{N_C}$ is selected under null. -->
+<!-- 14, 20, 31, 50\}$. For each of the $64$ panels, $ntimes = 500$ observations are drawn for each combination of the categories. The values of $\wpd$ is obtained for each of the panels for the designs $\Dnull$, $D_x$, $\Df$ and $D_{fx}$. $\wpdsub{threshold}$ is computed from all of these panels together and the number of times a harmony pair $(A, B) \in H_{N_C}$ is selected when in fact it was of the design $\Dnull$ is noted. This entire process is repeated for several null data sets to see the number of times any harmony pair $(A, B) \in H_{N_C}$ is selected under null. -->
 <!-- ### Results -->
+</div>
+<div id="sec:simulations" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Simulations</h3>
+<p>Simulations were carried out to explore the behavior of <span class="math inline">\(\wpd\)</span> as <span class="math inline">\(\nx\)</span> and <span class="math inline">\(\nf\)</span> were varied, in order to compare and evaluate different normalization approaches. More detailed simulation results, including an exploration of the size and power of the proposed test, are contained in the supplements.</p>
+<div id="simulation-design" class="section level4 unnumbered">
+<h4>Simulation design</h4>
+<p><span class="math inline">\(m=1\)</span></p>
+<p>Observations were generated from a N(0,1) distribution for <span class="math inline">\(\nx \in \{2, 3, 5, 7, 9, 14, 17, 20, 24, 31, 42, 50\}\)</span>, with <span class="math inline">\(\nsub{times} = 500\)</span> observations drawn for each combination of categories. This design corresponds to <span class="math inline">\(\Dnull\)</span>. For each of the categories, there were <span class="math inline">\(\nsub{sim}=200\)</span> replications, so that the distribution of <span class="math inline">\(\wpd\)</span> under <span class="math inline">\(\Dnull\)</span> could be observed. Let <span class="math inline">\(\wpd_{\ell, s}\)</span> denote the value of <span class="math inline">\(\wpd\)</span> obtained for the <span class="math inline">\(\ell^{th}\)</span> panel and <span class="math inline">\(s^{th}\)</span> simulation.</p>
+<p><span class="math inline">\(m=2\)</span></p>
+<p>Similarly, observations were generated from a N(0,1) distribution for each combination of <span class="math inline">\(\nx\)</span> and <span class="math inline">\(\nf\)</span> from <span class="math inline">\(\{2, 3, 5, 7, 14, 20, 31, 50\}\)</span>, with <span class="math inline">\(\nsub{times} = 500\)</span> observations drawn for each of the <span class="math inline">\(64\)</span> combinations.</p>
+</div>
+<div id="results" class="section level4 unnumbered">
+<h4>Results</h4>
+<p>Figure  shows that both the location and scale of the distributions change across panels. This is not desirable under <span class="math inline">\(\Dnull\)</span> as it would mean comparisons of <span class="math inline">\(\wpd\)</span> values are not appropriate across different <span class="math inline">\(\nx\)</span> and <span class="math inline">\(\nf\)</span> values. Table  gives the summary of a Gamma generalized linear model to capture the relationship between <span class="math inline">\(\wpdsub{raw}\)</span> and the number of comparisons. The intercepts and slopes are similar, independent of the underlying distributions (see supplementary paper for details) and hence the coefficients are shown for the case when observations are drawn from a N(0,1) distribution. Figure  shows the distribution of <span class="math inline">\(\wpdsub{perm}\)</span> and <span class="math inline">\(\wpdsub{glm-scaled}\)</span> on the same scale to show that a combination approach could be used for higher values of <span class="math inline">\(\nx\)</span> and <span class="math inline">\(\nf\)</span> to alleviate the computational time of the permutation approach.</p>
+
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:raw"></span>
+<img src="figure/raw-1.png" alt="Distribution of \(\wpdsub{raw}\) is plotted across different \(\nx\) and \(\nf\) categories under \(\Dnull\) through density and rug plots. Both location (blue line) and scale (orange marks) of the distribution shifts for different panels. This is not desirable since under the null design, the distribution is not expected to capture any differences." width="100%" />
+<p class="caption">
+Figure 3.5: Distribution of <span class="math inline">\(\wpdsub{raw}\)</span> is plotted across different <span class="math inline">\(\nx\)</span> and <span class="math inline">\(\nf\)</span> categories under <span class="math inline">\(\Dnull\)</span> through density and rug plots. Both location (blue line) and scale (orange marks) of the distribution shifts for different panels. This is not desirable since under the null design, the distribution is not expected to capture any differences.
+</p>
+</div>
+<table>
+<caption>
+<span id="tab:glm-tab">Table 3.1: </span>Results of generalised linear model to capture the relationship between <span class="math inline">\(\wpdsub{raw}\)</span> and the number of comparisons.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+<span class="math inline">\(m\)</span>
+</th>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:right;">
+26.09
+</td>
+<td style="text-align:right;">
+0.54
+</td>
+<td style="text-align:right;">
+48.33
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\log(\nx \times \nf)\)</span>
+</td>
+<td style="text-align:right;">
+-1.87
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+<td style="text-align:right;">
+-9.89
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:right;">
+23.40
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+104.14
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\log(\nx \times \nf)\)</span>
+</td>
+<td style="text-align:right;">
+-0.96
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-21.75
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dist-new-same-scale-link"></span>
+<img src="figure/dist-new-same-scale-link-1.png" alt="The distribution of \(\wpdsub{perm}\) and \(\wpdsub{glm-scaled}\) are overlaid to compare the location and scale across different \(\nx\) and \(\nf\). \(\wpdsub{norm}\) takes the value of \(\wpdsub{perm}\) for lower levels, and \(\wpdsub{glm-scaled}\) for higher levels to to alleviate the problem of computational time in permutation approaches. This is possible as the distribution of the adjusted measure looks similar for both approaches for higher levels." width="100%" />
+<p class="caption">
+Figure 3.6: The distribution of <span class="math inline">\(\wpdsub{perm}\)</span> and <span class="math inline">\(\wpdsub{glm-scaled}\)</span> are overlaid to compare the location and scale across different <span class="math inline">\(\nx\)</span> and <span class="math inline">\(\nf\)</span>. <span class="math inline">\(\wpdsub{norm}\)</span> takes the value of <span class="math inline">\(\wpdsub{perm}\)</span> for lower levels, and <span class="math inline">\(\wpdsub{glm-scaled}\)</span> for higher levels to to alleviate the problem of computational time in permutation approaches. This is possible as the distribution of the adjusted measure looks similar for both approaches for higher levels.
+</p>
+</div>
+<p>These results justify our use of the permutation approach when <span class="math inline">\(\nx&lt;5\)</span> and <span class="math inline">\(\nf&lt;5\)</span>, and the use of the GLM otherwise.
+<!--
+## Choosing the threshold
+
+### Simulation design {-}
+ 
+Observations were generated from a N(0,1) distribution for each combination of $\nx$ and $\nf$ from the following sets: $nx \in \{3, 7, 14\}$ and $\nf \in \{2, 9, 10\}$, giving nine possible panels/combinations. In the first scenario, data for all panels were simulated using the null design $\Dnull$. In other scenarios, data simulated from the panel $(14, 2)$ and $(3, 10)$ used $\Dfx$ where the means of the distributions increase by $\omega$ across both x-axis and facets, where $\omega \in \{0.5, 2, 5\}$. This allows us to examine if the proposed test is able to capture subtle differences and obvious differences when we shift from the null design.
+
+In the last scenario, we consider the panel $(3, 2), (7,9), (14, 10)$ to be under $\Dnull$, the panels $(7, 2), (14, 9)$ to be under $\Df$. $(14, 2), (3, 10)$ under $D_x$ and the rest under $\Dvar{{null}}$. This is done to check if the consequent ranking procedure leads to designs like $D_{vary_{all}}$ to be chosen first followed by $D_{vary_{all}}$. We generate only one data set each for which these scenarios were simulated and consider this as the original data set. We generate $1000$ repetitions of this experiment with different seeds.
+
+### Results {-}
+
+For the first scenario, we set $\wpdsub{threshold99}$ so that the probability of rejecting each panel under $\Dnull$ is $0.01$. We have 9 tests, so the size of the tests overall is $1-0.99^9 \approx 0.09$. We also compute the proportion of times a panel is rejected when it belongs to a non-null design to obtain the power of the test. The detailed results and graphics are included in the Supplementary paper.
+
+
+ --></p>
+</div>
 </div>
 </div>
             </section>
@@ -204,7 +358,7 @@
         </div>
       </div>
 <a href="3.2-sec:computation-wpd.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3.4-sec:simulations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="3.4-sec:application-wpd.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
