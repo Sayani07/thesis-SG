@@ -1,4 +1,8 @@
-# Conclusion and future plans {#ch:conclusion}
+# Conclusion {#ch:conclusion}
+
+This chapter summarizes the thesis content, covering original contributions, software development, and future ideas.
+
+## Original contributions
 
 In this thesis, I present a systematic approach for visualizing and analyzing distributions of large temporal data by leveraging time characteristics. The building blocks of this framework are presented in each chapter. Chapter \@ref(ch:gravitas) contains tools for computing all cyclic granularities, as well as a recommendation system for selecting pairs of granularities that can be effectively analyzed together. These temporal granularities can be used to generate data visualizations to look for patterns, associations, and anomalies. But it is difficult to decide which of the various granularities to display when there are many options. Chapter \@ref(ch:hakear) presents a methodology for selecting displays that are interesting, such that differences between displayed distributions are greatest. The methodology also ranks the displays in order of priority for capturing the most variation. The ideas in Chapters \@ref(ch:gravitas) and \@ref(ch:hakear) can be used for studying patterns in individual time series or comparing a few time series together. This is extended in Chapter \@ref(ch:gracsr) to allow for the exploration of distributions for multiple time series at the same time using unsupervised clustering. The clustering methodology produces small groups of time series with similar distributions over multiple granularities. This technique is more robust to noisy, patchy, and uneven length time series because it makes use of probability distributions.
 
@@ -41,20 +45,20 @@ The R package hakear (https://github.com/Sayani07/hakear) implements ideas prese
 The open-source R package `gracsr` is available on Github (https://github.com/Sayani07/gracsr) to implement ideas presented in Chapter \@ref(ch:gracsr). The package contains functions for implementing the complete clustering methodology with choices of scaling and distance metrics discussed in the chapter. It has received a grant (AUD 3000) as part of the ACEMS Business Analytics Prize towards polishing the functions and preparing it for CRAN.
 
 
-## Future work
+## Future ideas
 
-### Putting all functionalities on CRAN
+<!-- ### Putting all functionalities on CRAN -->
 
-I want to combine `hakear` and `gravitas` into a single R package for systematically exploring distributions of a smaller number of time series, whilst `gracsr` would offer the clustering framework for systematically exploring a large number of time series. I intend to run it via https://ropensci.org/software-review/ to further refine them for more exposure and efficiency.
+<!-- I want to combine `hakear` and `gravitas` into a single R package for systematically exploring distributions of a smaller number of time series, whilst `gracsr` would offer the clustering framework for systematically exploring a large number of time series. I intend to run it via https://ropensci.org/software-review/ to further refine them for more exposure and efficiency. -->
 
 
 ### Scaling up the methods for multivariate time series data
 
 With multiple time series available for each observation, the complexity of efficient exploration and visualization grows exponentially. In this case, conditional distributions include not only temporal dependency but also variables and their dependencies. This adds to the already high-dimensional data structures that result from studying distributions. Current research on visualizing multivariate data must account for time's inherent characteristics in order to efficiently explore distributions of multivariate time series data.
 
-### Comparing our clustering method with other benchmark methods
+<!-- ### Comparing our clustering method with other benchmark methods -->
 
-Testing needs to be carried out with non-hierarchy based clustering methods to see whether the proposed distances perform better with other algorithms. It would also be helpful to know how much more value we obtain from considering distributions rather than aggregating time series data. In the case of smart meters, this could be accomplished by comparing the results while validating them against external data such as weather conditions, socioeconomic or other demographic factors of those households.
+<!-- Testing needs to be carried out with non-hierarchy based clustering methods to see whether the proposed distances perform better with other algorithms. It would also be helpful to know how much more value we obtain from considering distributions rather than aggregating time series data. In the case of smart meters, this could be accomplished by comparing the results while validating them against external data such as weather conditions, socioeconomic or other demographic factors of those households. -->
 
 
 ### Scaling up the clustering method to incorporate large uncertainty and improved computational efficiency that comes with large data
@@ -66,7 +70,7 @@ With the volume of data expected to increase in the future, potentially leading 
 
 It is crucial to determine whether or not any detected clusters or patterns are statistically significant. In Chapter \@ref(ch:gracsr), we have used a permutation approach to detect if patterns are authentic or not across one or a pair of granularities. A similar method for finding significance across clusters is not appropriate if the observations are assumed to be independent. Most large temporal data sets gathered at fine temporal scales usually include several repetitive patterns. Therefore, the permutations used for comparisons must account that different temporal granularities have distinct conditional distributions.
 
-### Check generalizability of our methods
+### Extend methods to other fields
 
 We propose solutions that are realistically applicable to any temporal data collected more than once per year and may be implemented in a variety of settings. We could simply verify its utility in the context of smart meter electricity data. With the availability of several open-source benchmark data sets, it is vital to evaluate how well the methodologies perform across a variety of fields.
 
