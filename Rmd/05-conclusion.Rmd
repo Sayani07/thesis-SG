@@ -6,7 +6,9 @@ This thesis presents a framework for visualizing and analyzing distributions of 
 
 <!-- In this thesis, I present a systematic approach for visualizing and analyzing distributions of large temporal data by leveraging time characteristics. The building blocks of this framework are presented in each chapter. Chapter \@ref(ch:gravitas) contains tools for computing all cyclic granularities, as well as a recommendation system for selecting pairs of granularities that can be effectively analyzed together. These temporal granularities can be used to generate data visualizations to look for patterns, associations, and anomalies. But it is difficult to decide which of the various granularities to display when there are many options. Chapter \@ref(ch:hakear) presents a methodology for selecting displays that are interesting, such that differences between displayed distributions are greatest. The methodology also ranks the displays in order of priority for capturing the most variation. The ideas in Chapters \@ref(ch:gravitas) and \@ref(ch:hakear) can be used for studying patterns in individual time series or comparing a few time series together. This is extended in Chapter \@ref(ch:gracsr) to allow for the exploration of distributions for multiple time series at the same time using unsupervised clustering. The clustering methodology produces small groups of time series with similar distributions over multiple granularities. This technique is more robust to noisy, patchy, and uneven length time series because it makes use of probability distributions. -->
 
-Exploratory time series analysis entails numerous iterations of identifying and summarizing temporal dependencies. It is common practice to divide time into years, months, weeks, days, and so on in order to make inferences at both finer and coarser scales. In the literature, the formalization of these temporal deconstructions (granularities) is limited to linear time granularities such as hours, days, weeks, and months that respect the linear progression of time and are non-repeating. Cyclic granularities that are repeating in nature are useful for finding patterns in temporal data. They can be circular, quasi-circular, or aperiodic in nature. Hour of the day and day of the week are examples of circular granularities; the day of the month is an example of a quasi-circular granularity; and public holidays and school holidays are examples of aperiodic granularities. Additionally, time deconstructions can be based on a time hierarchy. Thus, single-order-up granularities such as second of minute or multiple-order-up granularities such as second of hour can be envisioned. The definitions and rules defined in the literature for linear granularities are insufficient for describing various types of cyclic granularities. Chapter \@ref(ch:gravitas) provides a formal characterization of cyclic granularities as well as tools for classifying and computing potential cyclic granularities from an ordered temporal and non-temporal index. It also allows for the manipulation of single- and multiple-order-up time granularities via cyclic calendar algebra. 
+Exploratory time series analysis entails numerous iterations of identifying and summarizing temporal dependencies. It is common practice to divide time into years, months, weeks, days, and so on in order to make inferences at both finer and coarser scales. In the literature, the formalization of these temporal deconstructions (granularities) is limited to linear time granularities such as hours, days, weeks, and months that respect the linear progression of time and are non-repeating. Cyclic granularities that are repeating in nature are useful for finding patterns in temporal data. They can be circular, quasi-circular, or aperiodic in nature. Hour of the day and day of the week are examples of circular granularities; the day of the month is an example of a quasi-circular granularity; and public holidays and school holidays are examples of aperiodic granularities. Additionally, time deconstructions can be based on a time hierarchy. Thus, single-order-up granularities such as second of minute or multiple-order-up granularities such as second of hour can be envisioned. The definitions and rules defined in the literature for linear granularities are insufficient for describing various types of cyclic granularities. Chapter \@ref(ch:gravitas) provides a formal characterization of cyclic granularities as well as tools for classifying and computing potential cyclic granularities from an ordered temporal index. It also allows for the manipulation of single- and multiple-order-up time granularities via cyclic calendar algebra. The approach is generalizable to non-temporal hierarchical granularities with an ordered index.
+
+
 
 Visualizing probability distributions conditional on one or more cyclic granularities is a powerful exploration tool. However, there may be too many cyclic granularities to look at manually for comprehensive exploration, and not all pairs of granularities can be effectively explored together. Chapter \@ref(ch:gravitas) also provides a recommendation on whether a pair of granularities can be meaningfully plotted or analyzed together (a "harmony") or when they cannot (a "clash" or "near-clash").
 
@@ -62,19 +64,32 @@ The open-source R package `gracsr` is available on Github (https://github.com/Sa
 
 <!-- I want to combine `hakear` and `gravitas` into a single R package for systematically exploring distributions of a smaller number of time series, whilst `gracsr` would offer the clustering framework for systematically exploring a large number of time series. I intend to run it via https://ropensci.org/software-review/ to further refine them for more exposure and efficiency. -->
 
+### Computing aperiodic cyclic granularities
+
+Aperiodic cyclic granularities capture repetitions of aperiodic linear granularities. All of these are recurring events, but with non-periodic patterns which can still be visualized to understand repetitive behavior. The computation of cyclic aperiodic granularities requires first computing aperiodic linear granularities. Aperiodic events may be created using R packages such as `almanac`(Vaughan, 2020) and `gs`(Laird-Smith, 2020). The functions in `gravitas` package need to integrate with them to support computation of aperiodic cyclic granularities.
+
+
+### Clustering
+
+
+
+
+Scaling up the clustering method to incorporate large uncertainty and improved computational efficiency that comes with large data
+
+With the volume of data expected to increase in the future, potentially leading to increased variability in patterns, more experiments are needed to understand what sort of problems may arise with our current methodology and how to improve our current algorithm to address those issues. All of this must be done while keeping computational efficiency in mind, as this is critical when scaling up for analysis of large data sets.
+
+
 
 ### Scaling up the methods for multivariate time series data
 
-With multiple time series available for each observation, the complexity of efficient exploration and visualization grows exponentially. In this case, conditional distributions include not only temporal dependency but also variables and their dependencies. This adds to the already high-dimensional data structures that result from studying distributions. Current research on visualizing multivariate data must account for time's inherent characteristics in order to efficiently explore distributions of multivariate time series data.
+With multiple time series available for each observation, the complexity of efficient exploration and visualization grows exponentially. In this case, conditional distributions include not only temporal dependency but also variables and their dependencies. This adds to the already high-dimensional data structures that result from studying distributions. This big problem can be tackled by first incorporating time’s inherent characteristics while visualizing multivariate time series data for one individual. Then a similar approach of unsupervised clustering can be used to group multiple time series over multiple time granularities and multiple variables. This is a similar approach followed in this thesis for handling univariate time series.
+
+
 
 <!-- ### Comparing our clustering method with other benchmark methods -->
 
 <!-- Testing needs to be carried out with non-hierarchy based clustering methods to see whether the proposed distances perform better with other algorithms. It would also be helpful to know how much more value we obtain from considering distributions rather than aggregating time series data. In the case of smart meters, this could be accomplished by comparing the results while validating them against external data such as weather conditions, socioeconomic or other demographic factors of those households. -->
 
-
-### Scaling up the clustering method to incorporate large uncertainty and improved computational efficiency that comes with large data
-
-With the volume of data expected to increase in the future, potentially leading to increased variability in patterns, more experiments are needed to understand what sort of problems may arise with our current methodology and how to improve our current algorithm to address those issues. All of this must be done while keeping computational efficiency in mind, as this is critical when scaling up for analysis of large data sets.
 
 
 ### Develop inferential methods for the clusters
