@@ -6,6 +6,23 @@ This chapter summarizes the thesis content, covering original contributions, sof
 
 In this thesis, I present a systematic approach for visualizing and analyzing distributions of large temporal data by leveraging time characteristics. The building blocks of this framework are presented in each chapter. Chapter \@ref(ch:gravitas) contains tools for computing all cyclic granularities, as well as a recommendation system for selecting pairs of granularities that can be effectively analyzed together. These temporal granularities can be used to generate data visualizations to look for patterns, associations, and anomalies. But it is difficult to decide which of the various granularities to display when there are many options. Chapter \@ref(ch:hakear) presents a methodology for selecting displays that are interesting, such that differences between displayed distributions are greatest. The methodology also ranks the displays in order of priority for capturing the most variation. The ideas in Chapters \@ref(ch:gravitas) and \@ref(ch:hakear) can be used for studying patterns in individual time series or comparing a few time series together. This is extended in Chapter \@ref(ch:gracsr) to allow for the exploration of distributions for multiple time series at the same time using unsupervised clustering. The clustering methodology produces small groups of time series with similar distributions over multiple granularities. This technique is more robust to noisy, patchy, and uneven length time series because it makes use of probability distributions.
 
+
+Chapter \@ref(ch:gravitas)
+
+
+This thesis presents a framework for visualizing and analyzing distributions of large temporal data by leveraging time characteristics. The building blocks of this framework are presented in each chapter. Exploratory time series analysis involves many iterations of finding and summarizing temporal dependencies. It is typical to divide time into years, months, weeks, days and so on to carry out inferences both across finer and coarser scales. The formalization of these temporal deconstructions (granularities) in literature are limited to linear time granularities like hours, days, weeks, and months which respect the linear progression of time and are non-repeating. Cyclic granularities which are repeating in nature are useful for finding patterns in temporal data. They can be circular, quasi-circular, or aperiodic. Examples of circular granularities are hour of the day and day of the week; an example of a quasi-circular granularity is day of the month; examples of aperiodic granularities are public holidays and school holidays. Time deconstructions can also be based on time hierarchy. Thus, single-order-up granularities like second of minute or multiple-order-up granularities like second of hour can be conceived. The definitions and rules defined in the literature for linear granularities are inadequate for describing different categories of cyclic granularities. Chapter \@ref(ch:gravitas) provides a formal characterization of cyclic granularities and provides tools to classify and compute possible cyclic granularities from an ordered (usually temporal) index. It also facilitates manipulation of single- and multiple-order-up time granularities through cyclic calendar algebra.
+
+Visualizing probability distributions conditional on one or more cyclic granularities is an indispensable tool for exploration. However, firstly, there could be too many cyclic granularities to look at manually for comprehensive exploration and secondly, not all pairs of granularities can be effectively explored together. This chapter helps to list down the possible cyclic granularities that can be explored given a considered hierarchy and provides a recommendation whether a pair of granularities can be meaningfully plotted or analyzed together based on the synergy and levels of the cyclic granularities.
+
+
+
+
+
+
+
+
+
+
 <!-- is more comprehensive in recognizing clusters with recurring patterns over many important granularities and -->
 
 ```{r software-initial, echo = FALSE, cache = FALSE, include = FALSE}
