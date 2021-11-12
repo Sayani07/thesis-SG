@@ -30,8 +30,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="7.5-clustering-353-customers.html"/>
+<link rel="prev" href="5.3-future-ideas.html"/>
 
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,12 +50,33 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="template/style.css" type="text/css" />
 </head>
@@ -76,13 +98,15 @@
 <li class="chapter" data-level="" data-path="ch:abstract.html"><a href="ch:abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="ch:thanks.html"><a href="ch:thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="chapter" data-level="" data-path="ch:preface.html"><a href="ch:preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-ch:intro.html"><a href="1-ch:intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="1-ch:intro.html"><a href="1-ch:intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="1.1-sec:gravitas.html"><a href="1.1-sec:gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
 <li class="chapter" data-level="1.2" data-path="1.2-sec:hakear.html"><a href="1.2-sec:hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
 <li class="chapter" data-level="1.3" data-path="1.3-sec:gracsr.html"><a href="1.3-sec:gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
-<li class="chapter" data-level="1.4" data-path="1.4-summary.html"><a href="1.4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-thesis-structure.html"><a href="1.4-thesis-structure.html"><i class="fa fa-check"></i><b>1.4</b> Thesis structure</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-ch:gravitas.html"><a href="2-ch:gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a><ul>
+<li class="chapter" data-level="2" data-path="2-ch:gravitas.html"><a href="2-ch:gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="2.1-introduction.html"><a href="2.1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
 <li class="chapter" data-level="2.2" data-path="2.2-sec:linear-time.html"><a href="2.2-sec:linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
 <li class="chapter" data-level="2.3" data-path="2.3-sec:cyclic-gran.html"><a href="2.3-sec:cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
@@ -93,7 +117,8 @@
 <li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
 <li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-ch:hakear.html"><a href="3-ch:hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a><ul>
+<li class="chapter" data-level="3" data-path="3-ch:hakear.html"><a href="3-ch:hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="3.1-introduction-1.html"><a href="3.1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
 <li class="chapter" data-level="3.2" data-path="3.2-sec:computation-wpd.html"><a href="3.2-sec:computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
 <li class="chapter" data-level="3.3" data-path="3.3-sec:rank-wpd.html"><a href="3.3-sec:rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
@@ -102,7 +127,8 @@
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
 <li class="chapter" data-level="3.6" data-path="3.6-supplementary-materials.html"><a href="3.6-supplementary-materials.html"><i class="fa fa-check"></i><b>3.6</b> Supplementary Materials</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-ch:gracsr.html"><a href="4-ch:gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a><ul>
+<li class="chapter" data-level="4" data-path="4-ch:gracsr.html"><a href="4-ch:gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="4.1-introduction-2.html"><a href="4.1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="4.2-sec:methodology.html"><a href="4.2-sec:methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
 <li class="chapter" data-level="4.3" data-path="4.3-sec:validation.html"><a href="4.3-sec:validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
@@ -111,23 +137,11 @@
 <li class="chapter" data-level="" data-path="thanksgracsr.html"><a href="thanksgracsr.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
 <li class="chapter" data-level="" data-path="supplement-gracsr.html"><a href="supplement-gracsr.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-ch:conclusion.html"><a href="5-ch:conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion and future plans</a><ul>
-<li class="chapter" data-level="5.1" data-path="5.1-software-development.html"><a href="5.1-software-development.html"><i class="fa fa-check"></i><b>5.1</b> Software development</a></li>
-<li class="chapter" data-level="5.2" data-path="5.2-future-work.html"><a href="5.2-future-work.html"><i class="fa fa-check"></i><b>5.2</b> Future work</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="ch:appendix.html"><a href="ch:appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
-<li class="chapter" data-level="6" data-path="6-supplementary-chapter-3.html"><a href="6-supplementary-chapter-3.html"><i class="fa fa-check"></i><b>6</b> Supplementary: Chapter 3</a><ul>
-<li class="chapter" data-level="6.1" data-path="6.1-recalling-notations.html"><a href="6.1-recalling-notations.html"><i class="fa fa-check"></i><b>6.1</b> Recalling notations</a></li>
-<li class="chapter" data-level="6.2" data-path="6.2-raw-weighted-pairwise-distance.html"><a href="6.2-raw-weighted-pairwise-distance.html"><i class="fa fa-check"></i><b>6.2</b> Raw weighted pairwise distance</a></li>
-<li class="chapter" data-level="6.3" data-path="6.3-adjusted-weighted-pairwise-distances.html"><a href="6.3-adjusted-weighted-pairwise-distances.html"><i class="fa fa-check"></i><b>6.3</b> Adjusted weighted pairwise distances</a></li>
-<li class="chapter" data-level="6.4" data-path="6.4-ranking-and-selecting-harmonies.html"><a href="6.4-ranking-and-selecting-harmonies.html"><i class="fa fa-check"></i><b>6.4</b> Ranking and selecting harmonies</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="7-supplementary-chapter-4.html"><a href="7-supplementary-chapter-4.html"><i class="fa fa-check"></i><b>7</b> Supplementary: Chapter 4</a><ul>
-<li class="chapter" data-level="7.1" data-path="7.1-raw-data-plot.html"><a href="7.1-raw-data-plot.html"><i class="fa fa-check"></i><b>7.1</b> Raw data plot</a></li>
-<li class="chapter" data-level="7.2" data-path="7.2-missing-data-plot.html"><a href="7.2-missing-data-plot.html"><i class="fa fa-check"></i><b>7.2</b> Missing data plot</a></li>
-<li class="chapter" data-level="7.3" data-path="7.3-prototype-selection.html"><a href="7.3-prototype-selection.html"><i class="fa fa-check"></i><b>7.3</b> Prototype selection</a></li>
-<li class="chapter" data-level="7.4" data-path="7.4-interaction-of-granularities-1.html"><a href="7.4-interaction-of-granularities-1.html"><i class="fa fa-check"></i><b>7.4</b> Interaction of granularities</a></li>
-<li class="chapter" data-level="7.5" data-path="7.5-clustering-353-customers.html"><a href="7.5-clustering-353-customers.html"><i class="fa fa-check"></i><b>7.5</b> Clustering 353 customers</a></li>
+<li class="chapter" data-level="5" data-path="5-ch:conclusion.html"><a href="5-ch:conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-original-contributions.html"><a href="5.1-original-contributions.html"><i class="fa fa-check"></i><b>5.1</b> Original contributions</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-software-development.html"><a href="5.2-software-development.html"><i class="fa fa-check"></i><b>5.2</b> Software development</a></li>
+<li class="chapter" data-level="5.3" data-path="5.3-future-ideas.html"><a href="5.3-future-ideas.html"><i class="fa fa-check"></i><b>5.3</b> Future ideas</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -153,216 +167,216 @@
 <div id="bibliography" class="section level1 unnumbered">
 <h1>Bibliography</h1>
 
-<div id="refs" class="references">
-<div id="ref-Aghabozorgi2015-ct">
-<p>Aghabozorgi, Saeed, Ali Seyed Shirkhorshidi, and Teh Ying Wah. 2015. “Time-Series Clustering – a Decade Review.” <em>Inf. Syst.</em> 53 (October): 16–38.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Aghabozorgi2015-ct" class="csl-entry">
+Aghabozorgi, Saeed, Ali Seyed Shirkhorshidi, and Teh Ying Wah. 2015. <span>“Time-Series Clustering – a Decade Review.”</span> <em>Inf. Syst.</em> 53 (October): 16–38.
 </div>
-<div id="ref-aigner2011visualization">
-<p>Aigner, Wolfgang, Silvia Miksch, Heidrun Schumann, and Christian Tominski. 2011. <em>Visualization of Time-Oriented Data</em>. Springer Science &amp; Business Media. <a href="https://doi.org/10.1007/978-0-85729-079-3">https://doi.org/10.1007/978-0-85729-079-3</a>.</p>
+<div id="ref-aigner2011visualization" class="csl-entry">
+Aigner, Wolfgang, Silvia Miksch, Heidrun Schumann, and Christian Tominski. 2011. <em>Visualization of Time-Oriented Data</em>. Springer Science &amp; Business Media. <a href="https://doi.org/10.1007/978-0-85729-079-3">https://doi.org/10.1007/978-0-85729-079-3</a>.
 </div>
-<div id="ref-R-rmarkdown">
-<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2020. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a>.</p>
+<div id="ref-R-rmarkdown" class="csl-entry">
+Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2020. <em>Rmarkdown: Dynamic Documents for r</em>. <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a>.
 </div>
-<div id="ref-Bettini2000-vy">
-<p>Bettini, Claudio, and Roberto De Sibi. 2000. “Symbolic Representation of User-Defined Time Granularities.” <em>Ann. Math. Artif. Intell.</em> 30 (1): 53–92.</p>
+<div id="ref-Bettini2000-vy" class="csl-entry">
+Bettini, Claudio, and Roberto De Sibi. 2000. <span>“Symbolic Representation of User-Defined Time Granularities.”</span> <em>Ann. Math. Artif. Intell.</em> 30 (1): 53–92.
 </div>
-<div id="ref-Bettini1998-ed">
-<p>Bettini, Claudio, Curtis E Dyreson, William S Evans, Richard T Snodgrass, and X Sean Wang. 1998. “A Glossary of Time Granularity Concepts.” In <em>Temporal Databases: Research and Practice</em>, edited by Opher Etzion, Sushil Jajodia, and Suryanarayana Sripada, 406–13. Berlin, Heidelberg: Springer Berlin Heidelberg. <a href="https://doi.org/10.1007/BFb0053711">https://doi.org/10.1007/BFb0053711</a>.</p>
+<div id="ref-Bettini1998-ed" class="csl-entry">
+Bettini, Claudio, Curtis E Dyreson, William S Evans, Richard T Snodgrass, and X Sean Wang. 1998. <span>“A Glossary of Time Granularity Concepts.”</span> In <em>Temporal Databases: Research and Practice</em>, edited by Opher Etzion, Sushil Jajodia, and Suryanarayana Sripada, 406–13. Berlin, Heidelberg: Springer Berlin Heidelberg. <a href="https://doi.org/10.1007/BFb0053711">https://doi.org/10.1007/BFb0053711</a>.
 </div>
-<div id="ref-Bettini2000-qk">
-<p>Bettini, Claudio, Sushil Jajodia, and Sean Wang. 2000. <em>Time Granularities in Databases, Data Mining, and Temporal Reasoning</em>. Springer Science &amp; Business Media.</p>
+<div id="ref-Bettini2000-qk" class="csl-entry">
+Bettini, Claudio, Sushil Jajodia, and Sean Wang. 2000. <em>Time Granularities in Databases, Data Mining, and Temporal Reasoning</em>. Springer Science &amp; Business Media.
 </div>
-<div id="ref-borg2005modern">
-<p>Borg, Ingwer, and Patrick JF Groenen. 2005. <em>Modern Multidimensional Scaling: Theory and Applications</em>. Springer Science &amp; Business Media.</p>
+<div id="ref-borg2005modern" class="csl-entry">
+Borg, Ingwer, and Patrick JF Groenen. 2005. <em>Modern Multidimensional Scaling: Theory and Applications</em>. Springer Science &amp; Business Media.
 </div>
-<div id="ref-inference">
-<p>Buja, Andreas, Dianne Cook, Heike Hofmann, Michael Lawrence, Eun-Kyung Lee, Deborah F. Swayne, and Hadley Wickham. 2009. “Statistical Inference for Exploratory Data Analysis and Model Diagnostics.” <em>Royal Society Philosophical Transactions A</em> 367 (1906): 4361–83. <a href="https://doi.org/10.1098/rsta.2009.0120">https://doi.org/10.1098/rsta.2009.0120</a>.</p>
+<div id="ref-inference" class="csl-entry">
+Buja, Andreas, Dianne Cook, Heike Hofmann, Michael Lawrence, Eun-Kyung Lee, Deborah F. Swayne, and Hadley Wickham. 2009. <span>“Statistical Inference for Exploratory Data Analysis and Model Diagnostics.”</span> <em>Royal Society Philosophical Transactions A</em> 367 (1906): 4361–83. <a href="https://doi.org/10.1098/rsta.2009.0120">https://doi.org/10.1098/rsta.2009.0120</a>.
 </div>
-<div id="ref-chicco2010renyi">
-<p>Chicco, G, and J Sumaili Akilimali. 2010. “Renyi Entropy-Based Classification of Daily Electrical Load Patterns.” <em>IET Generation, Transmission &amp; Distribution</em> 4 (6): 736–45.</p>
+<div id="ref-chicco2010renyi" class="csl-entry">
+Chicco, G, and J Sumaili Akilimali. 2010. <span>“Renyi Entropy-Based Classification of Daily Electrical Load Patterns.”</span> <em>IET Generation, Transmission &amp; Distribution</em> 4 (6): 736–45.
 </div>
-<div id="ref-Cook2007-qe">
-<p>Cook, Dianne, and Deborah F Swayne. 2007. <em>Interactive and Dynamic Graphics for Data Analysis: With R and Ggobi</em>. Springer, New York, NY.</p>
+<div id="ref-Cook2007-qe" class="csl-entry">
+Cook, Dianne, and Deborah F Swayne. 2007. <em>Interactive and Dynamic Graphics for Data Analysis: With <span>R</span> and Ggobi</em>. Springer, New York, NY.
 </div>
-<div id="ref-corradini2001dynamic">
-<p>Corradini, Andrea. 2001. “Dynamic Time Warping for Off-Line Recognition of a Small Gesture Vocabulary.” In <em>Proceedings Ieee Iccv Workshop on Recognition, Analysis, and Tracking of Faces and Gestures in Real-Time Systems</em>, 82–89. IEEE.</p>
+<div id="ref-corradini2001dynamic" class="csl-entry">
+Corradini, Andrea. 2001. <span>“Dynamic Time Warping for Off-Line Recognition of a Small Gesture Vocabulary.”</span> In <em>Proceedings IEEE ICCV Workshop on Recognition, Analysis, and Tracking of Faces and Gestures in Real-Time Systems</em>, 82–89. IEEE.
 </div>
-<div id="ref-Dang2014-tw">
-<p>Dang, T N, and L Wilkinson. 2014. “ScagExplorer: Exploring Scatterplots by Their Scagnostics.” In <em>2014 IEEE Pacific Visualization Symposium</em>, 73–80.</p>
+<div id="ref-Dang2014-tw" class="csl-entry">
+Dang, T N, and L Wilkinson. 2014. <span>“<span>ScagExplorer</span>: Exploring Scatterplots by Their Scagnostics.”</span> In <em>2014 <span>IEEE</span> Pacific Visualization Symposium</em>, 73–80.
 </div>
-<div id="ref-dasu2005grouping">
-<p>Dasu, Tamraparni, Deborah F Swayne, and David Poole. 2005. “Grouping Multivariate Time Series: A Case Study.” In <em>Proceedings of the Ieee Workshop on Temporal Data Mining: Algorithms, Theory and Applications, in Conjunction with the Conference on Data Mining, Houston</em>, 25–32. Citeseer.</p>
+<div id="ref-dasu2005grouping" class="csl-entry">
+Dasu, Tamraparni, Deborah F Swayne, and David Poole. 2005. <span>“Grouping Multivariate Time Series: A Case Study.”</span> In <em>Proceedings of the IEEE Workshop on Temporal Data Mining: Algorithms, Theory and Applications, in Conjunction with the Conference on Data Mining, Houston</em>, 25–32. Citeseer.
 </div>
-<div id="ref-smart-meter">
-<p>Department of the Environment and Energy. 2018. <em>Smart-Grid Smart-City Customer Trial Data</em>. Australian Government, Department of the Environment; Energy: Department of the Environment; Energy, Australia. <a href="https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef">https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef</a>.</p>
+<div id="ref-smart-meter" class="csl-entry">
+Department of the Environment and Energy. 2018. <em>Smart-Grid Smart-City Customer Trial Data</em>. Australian Government, Department of the Environment; Energy: Department of the Environment; Energy, Australia. <a href="https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef">https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef</a>.
 </div>
-<div id="ref-Dyreson_2000">
-<p>Dyreson, C. E., W. S. Evans, H. Lin, and R. T. Snodgrass. 2000. “Efficiently Supporting Temporal Granularities.” <em>IEEE Transactions on Knowledge and Data Engineering</em> 12 (4): 568–87. <a href="https://doi.org/10.1109/69.868908">https://doi.org/10.1109/69.868908</a>.</p>
+<div id="ref-Dyreson_2000" class="csl-entry">
+Dyreson, C. E., W. S. Evans, H. Lin, and R. T. Snodgrass. 2000. <span>“Efficiently Supporting Temporal Granularities.”</span> <em><span>IEEE</span> Transactions on Knowledge and Data Engineering</em> 12 (4): 568–87. <a href="https://doi.org/10.1109/69.868908">https://doi.org/10.1109/69.868908</a>.
 </div>
-<div id="ref-edgington2007randomization">
-<p>Edgington, Eugene, and Patrick Onghena. 2007. <em>Randomization Tests</em>. CRC press.</p>
+<div id="ref-edgington2007randomization" class="csl-entry">
+Edgington, Eugene, and Patrick Onghena. 2007. <em>Randomization Tests</em>. CRC press.
 </div>
-<div id="ref-Fan2021-bq">
-<p>Fan, Hehe, Ping Liu, Mingliang Xu, and Yi Yang. 2021. “Unsupervised Visual Representation Learning via Dual-Level Progressive Similar Instance Selection.” <em>IEEE Trans Cybern</em> PP (March).</p>
+<div id="ref-Fan2021-bq" class="csl-entry">
+Fan, Hehe, Ping Liu, Mingliang Xu, and Yi Yang. 2021. <span>“Unsupervised Visual Representation Learning via <span>Dual-Level</span> Progressive Similar Instance Selection.”</span> <em>IEEE Trans Cybern</em> PP (March).
 </div>
-<div id="ref-Faraway2016-uk">
-<p>Faraway, Julian J. 2016. <em>Extending the Linear Model with R : Generalized Linear, Mixed Effects and Nonparametric Regression Models, Second Edition</em>. 2nd Edition. Chapman; Hall/CRC.</p>
+<div id="ref-Faraway2016-uk" class="csl-entry">
+Faraway, Julian J. 2016. <em>Extending the Linear Model with <span>R</span> : Generalized Linear, Mixed Effects and Nonparametric Regression Models, Second Edition</em>. 2nd Edition. Chapman; Hall/CRC.
 </div>
-<div id="ref-Goodwin_2012">
-<p>Goodwin, Sarah, and Jason Dykes. 2012. “Visualising Variations in Household Energy Consumption.” In <em>2012 IEEE Conference on Visual Analytics Science and Technology (VAST)</em>, 217–18. Seattle, WA: IEEE. <a href="https://doi.org/10.1109/vast.2012.6400545">https://doi.org/10.1109/vast.2012.6400545</a>.</p>
+<div id="ref-Goodwin_2012" class="csl-entry">
+Goodwin, Sarah, and Jason Dykes. 2012. <span>“Visualising Variations in Household Energy Consumption.”</span> In <em>2012 <span>IEEE</span> Conference on Visual Analytics Science and Technology (<span>VAST</span>)</em>. <span>IEEE</span>. <a href="https://doi.org/10.1109/vast.2012.6400545">https://doi.org/10.1109/vast.2012.6400545</a>.
 </div>
-<div id="ref-Grolemund2011-vm">
-<p>Grolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://doi.org/10.18637/jss.v040.i03">https://doi.org/10.18637/jss.v040.i03</a>.</p>
+<div id="ref-Grolemund2011-vm" class="csl-entry">
+Grolemund, Garrett, and Hadley Wickham. 2011. <span>“Dates and Times Made Easy with <span class="nocase">lubridate</span>.”</span> <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://doi.org/10.18637/jss.v040.i03">https://doi.org/10.18637/jss.v040.i03</a>.
 </div>
-<div id="ref-R-gravitas">
-<p>Gupta, Sayani, Rob Hyndman, Di Cook, and Antony Unwin. 2020. <em>Gravitas: Explore Probability Distributions for Bivariate Temporal Granularities</em>. <a href="https://github.com/Sayani07/gravitas/">https://github.com/Sayani07/gravitas/</a>.</p>
+<div id="ref-Gupta2021-hakear" class="csl-entry">
+Gupta, Sayani, Rob J Hyndman, and Dianne Cook. 2021. <span>“Detecting Distributional Differences Between Temporal Granularities for Exploratory Time Series Analysis.”</span> <em>Unpublished</em>.
 </div>
-<div id="ref-Gupta2021-hakear">
-<p>Gupta, Sayani, Rob J Hyndman, and Dianne Cook. 2021. “Detecting Distributional Differences Between Temporal Granularities for Exploratory Time Series Analysis.” <em>Unpublished</em>.</p>
+<div id="ref-Gupta2021-gravitas" class="csl-entry">
+Gupta, Sayani, Rob J Hyndman, Dianne Cook, and Antony Unwin. 2021. <span>“Visualizing Probability Distributions Across Bivariate Cyclic Temporal Granularities.”</span> <em>Journal of Computational &amp; Graphical Statistics</em>.
 </div>
-<div id="ref-Gupta2021-gravitas">
-<p>Gupta, Sayani, Rob J Hyndman, Dianne Cook, and Antony Unwin. 2021. “Visualizing Probability Distributions Across Bivariate Cyclic Temporal Granularities.” <em>Journal of Computational &amp; Graphical Statistics</em>.</p>
+<div id="ref-R-gravitas" class="csl-entry">
+Gupta, Sayani, Rob J Hyndman, Di Cook, and Antony Unwin. 2020. <em>Gravitas: Explore Probability Distributions for Bivariate Temporal Granularities</em>. <a href="https://github.com/Sayani07/gravitas/">https://github.com/Sayani07/gravitas/</a>.
 </div>
-<div id="ref-Hennig2014-ah">
-<p>Hennig, Christian. 2014. “How Many Bee Species? A Case Study in Determining the Number of Clusters.” In <em>Data Analysis, Machine Learning and Knowledge Discovery</em>, 41–49. Springer International Publishing.</p>
+<div id="ref-Hennig2014-ah" class="csl-entry">
+Hennig, Christian. 2014. <span>“How Many Bee Species? A Case Study in Determining the Number of Clusters.”</span> In <em>Data Analysis, Machine Learning and Knowledge Discovery</em>, 41–49. Springer International Publishing.
 </div>
-<div id="ref-Hintze1998-zi">
-<p>Hintze, Jerry L, and Ray D Nelson. 1998. “Violin Plots: A Box Plot-Density Trace Synergism.” <em>American Statistician</em> 52 (2): 181–84. <a href="https://doi.org/10.2307/2685478">https://doi.org/10.2307/2685478</a>.</p>
+<div id="ref-Hintze1998-zi" class="csl-entry">
+Hintze, Jerry L, and Ray D Nelson. 1998. <span>“Violin Plots: A Box <span>Plot-Density</span> Trace Synergism.”</span> <em>Am. Stat.</em> 52 (2): 181–84. <a href="https://doi.org/10.2307/2685478">https://doi.org/10.2307/2685478</a>.
 </div>
-<div id="ref-Hofmann2017-sg">
-<p>Hofmann, Heike, Hadley Wickham, and Karen Kafadar. 2017. “Letter-Value Plots: Boxplots for Large Data.” <em>J. Comput. Graph. Stat.</em> 26 (3): 469–77. <a href="https://doi.org/10.1080/10618600.2017.1305277">https://doi.org/10.1080/10618600.2017.1305277</a>.</p>
+<div id="ref-Hofmann2017-sg" class="csl-entry">
+Hofmann, Heike, Hadley Wickham, and Karen Kafadar. 2017. <span>“<span>Letter-Value</span> Plots: Boxplots for Large Data.”</span> <em>J. Comput. Graph. Stat.</em> 26 (3): 469–77. <a href="https://doi.org/10.1080/10618600.2017.1305277">https://doi.org/10.1080/10618600.2017.1305277</a>.
 </div>
-<div id="ref-Hyndman1996-ft">
-<p>Hyndman, Rob J. 1996. “Computing and Graphing Highest Density Regions.” <em>American Statistician</em> 50 (2): 120–26. <a href="https://doi.org/10.2307/2684423">https://doi.org/10.2307/2684423</a>.</p>
+<div id="ref-Hyndman1996-ft" class="csl-entry">
+Hyndman, Rob J. 1996. <span>“Computing and Graphing Highest Density Regions.”</span> <em>Am. Stat.</em> 50 (2): 120–26. <a href="https://doi.org/10.2307/2684423">https://doi.org/10.2307/2684423</a>.
 </div>
-<div id="ref-Hyndman1996-ty">
-<p>Hyndman, Rob J, and Yanan Fan. 1996. “Sample Quantiles in Statistical Packages.” <em>American Statistician</em> 50 (4): 361–65.</p>
+<div id="ref-Hyndman1996-ty" class="csl-entry">
+Hyndman, Rob J, and Yanan Fan. 1996. <span>“Sample Quantiles in Statistical Packages.”</span> <em>Am. Stat.</em> 50 (4): 361–65.
 </div>
-<div id="ref-R-tsne">
-<p>Krijthe, Jesse H. 2015. <em>Rtsne: T-Distributed Stochastic Neighbor Embedding Using Barnes-Hut Implementation</em>. <a href="https://github.com/jkrijthe/Rtsne">https://github.com/jkrijthe/Rtsne</a>.</p>
+<div id="ref-R-tsne" class="csl-entry">
+Krijthe, Jesse H. 2015. <em><span>Rtsne</span>: T-Distributed Stochastic Neighbor Embedding Using Barnes-Hut Implementation</em>. <a href="https://github.com/jkrijthe/Rtsne">https://github.com/jkrijthe/Rtsne</a>.
 </div>
-<div id="ref-Krzysztofowicz1997-bv">
-<p>Krzysztofowicz, Roman. 1997. “Transformation and Normalization of Variates with Specified Distributions.” <em>J. Hydrol.</em> 197 (1-4): 286–92.</p>
+<div id="ref-Krzysztofowicz1997-bv" class="csl-entry">
+Krzysztofowicz, Roman. 1997. <span>“Transformation and Normalization of Variates with Specified Distributions.”</span> <em>J. Hydrol.</em> 197 (1-4): 286–92.
 </div>
-<div id="ref-Kullback1951-jy">
-<p>Kullback, S, and R A Leibler. 1951. “On Information and Sufficiency.” <em>Ann. Math. Stat.</em> 22 (1): 79–86.</p>
+<div id="ref-Kullback1951-jy" class="csl-entry">
+Kullback, S, and R A Leibler. 1951. <span>“On Information and Sufficiency.”</span> <em>Ann. Math. Stat.</em> 22 (1): 79–86.
 </div>
-<div id="ref-R-gs">
-<p>Laird-Smith, James. 2020. <em>Gs: A Grammar of Recurring Calendar Events</em>. <a href="https://github.com/jameslairdsmith/gs">https://github.com/jameslairdsmith/gs</a>.</p>
+<div id="ref-R-gs" class="csl-entry">
+Laird-Smith, James. 2020. <em>Gs: A Grammar of Recurring Calendar Events</em>. <a href="https://github.com/jameslairdsmith/gs">https://github.com/jameslairdsmith/gs</a>.
 </div>
-<div id="ref-R-liminal">
-<p>Lee, Stuart. 2021. <em>Liminal: Multivariate Data Visualization with Tours and Embeddings</em>. <a href="https://CRAN.R-project.org/package=liminal">https://CRAN.R-project.org/package=liminal</a>.</p>
+<div id="ref-R-liminal" class="csl-entry">
+Lee, Stuart. 2021. <em>Liminal: Multivariate Data Visualization with Tours and Embeddings</em>. <a href="https://CRAN.R-project.org/package=liminal">https://CRAN.R-project.org/package=liminal</a>.
 </div>
-<div id="ref-liao2005clustering">
-<p>Liao, T Warren. 2005. “Clustering of Time Series Data—a Survey.” <em>Pattern Recognition</em> 38 (11): 1857–74.</p>
+<div id="ref-liao2005clustering" class="csl-entry">
+Liao, T Warren. 2005. <span>“Clustering of Time Series Data—a Survey.”</span> <em>Pattern Recognition</em> 38 (11): 1857–74.
 </div>
-<div id="ref-liao2007clustering">
-<p>———. 2007. “A Clustering Procedure for Exploratory Mining of Vector Time Series.” <em>Pattern Recognition</em> 40 (9): 2550–62.</p>
+<div id="ref-liao2007clustering" class="csl-entry">
+———. 2007. <span>“A Clustering Procedure for Exploratory Mining of Vector Time Series.”</span> <em>Pattern Recognition</em> 40 (9): 2550–62.
 </div>
-<div id="ref-Lin1991-pt">
-<p>Lin, J. 1991. “Divergence Measures Based on the Shannon Entropy.” <em>IEEE Trans. Inf. Theory</em> 37 (1): 145–51.</p>
+<div id="ref-Lin1991-pt" class="csl-entry">
+Lin, J. 1991. <span>“Divergence Measures Based on the Shannon Entropy.”</span> <em>IEEE Trans. Inf. Theory</em> 37 (1): 145–51.
 </div>
-<div id="ref-Majumder2013-hb">
-<p>Majumder, Mahbubul, Heike Hofmann, and Dianne Cook. 2013. “Validation of Visual Statistical Inference, Applied to Linear Models.” <em>J. Am. Stat. Assoc.</em> 108 (503): 942–56.</p>
+<div id="ref-Majumder2013-hb" class="csl-entry">
+Majumder, Mahbubul, Heike Hofmann, and Dianne Cook. 2013. <span>“Validation of Visual Statistical Inference, Applied to Linear Models.”</span> <em>J. Am. Stat. Assoc.</em> 108 (503): 942–56.
 </div>
-<div id="ref-McGill1978-hg">
-<p>McGill, Robert, John W Tukey, and Wayne A Larsen. 1978. “Variations of Box Plots.” <em>American Statistician</em> 32 (1): 12–16. <a href="https://doi.org/10.1080/00031305.1978.10479236">https://doi.org/10.1080/00031305.1978.10479236</a>.</p>
+<div id="ref-McGill1978-hg" class="csl-entry">
+McGill, Robert, John W Tukey, and Wayne A Larsen. 1978. <span>“Variations of Box Plots.”</span> <em>American Statistician</em> 32 (1): 12–16. <a href="https://doi.org/10.1080/00031305.1978.10479236">https://doi.org/10.1080/00031305.1978.10479236</a>.
 </div>
-<div id="ref-Melnykov2013-sp">
-<p>Melnykov, Volodymyr. 2013. “Challenges in Model-Based Clustering.” <em>Wiley Interdiscip. Rev. Comput. Stat.</em> 5 (2): 135–48.</p>
+<div id="ref-Melnykov2013-sp" class="csl-entry">
+Melnykov, Volodymyr. 2013. <span>“Challenges in Model-Based Clustering.”</span> <em>Wiley Interdiscip. Rev. Comput. Stat.</em> 5 (2): 135–48.
 </div>
-<div id="ref-Menendez1997-in">
-<p>Men’endez, M L, J A Pardo, L Pardo, and M C Pardo. 1997. “The Jensen-Shannon Divergence.” <em>J. Franklin Inst.</em> 334 (2): 307–18.</p>
+<div id="ref-Menendez1997-in" class="csl-entry">
+Men’endez, M L, J A Pardo, L Pardo, and M C Pardo. 1997. <span>“The <span>Jensen-Shannon</span> Divergence.”</span> <em>J. Franklin Inst.</em> 334 (2): 307–18.
 </div>
-<div id="ref-Motlagh2019-yj">
-<p>Motlagh, Omid, Adam Berry, and Lachlan O’Neil. 2019. “Clustering of Residential Electricity Customers Using Load Time Series.” <em>Appl. Energy</em> 237 (March): 11–24.</p>
+<div id="ref-Motlagh2019-yj" class="csl-entry">
+Motlagh, Omid, Adam Berry, and Lachlan O’Neil. 2019. <span>“Clustering of Residential Electricity Customers Using Load Time Series.”</span> <em>Appl. Energy</em> 237 (March): 11–24.
 </div>
-<div id="ref-Ndiaye2011-pf">
-<p>Ndiaye, Demba, and Kamiel Gabriel. 2011. “Principal Component Analysis of the Electricity Consumption in Residential Dwellings.” <em>Energy Build.</em> 43 (2): 446–53.</p>
+<div id="ref-Ndiaye2011-pf" class="csl-entry">
+Ndiaye, Demba, and Kamiel Gabriel. 2011. <span>“Principal Component Analysis of the Electricity Consumption in Residential Dwellings.”</span> <em>Energy Build.</em> 43 (2): 446–53.
 </div>
-<div id="ref-Ning_2002">
-<p>Ning, Peng, Xiaoyang Sean Wang, and Sushil Jajodia. 2002. “An Algebraic Representation of Calendars.” <em>Ann. Math. Artif. Intell.</em> 36 (1): 5–38. <a href="https://doi.org/10.1023/A:1015835418881">https://doi.org/10.1023/A:1015835418881</a>.</p>
+<div id="ref-Ning_2002" class="csl-entry">
+Ning, Peng, Xiaoyang Sean Wang, and Sushil Jajodia. 2002. <span>“An Algebraic Representation of Calendars.”</span> <em>Ann. Math. Artif. Intell.</em> 36 (1): 5–38. <a href="https://doi.org/10.1023/A:1015835418881">https://doi.org/10.1023/A:1015835418881</a>.
 </div>
-<div id="ref-olvera2010review">
-<p>Olvera-L’opez, J Arturo, J Ariel Carrasco-Ochoa, J Francisco Martínez-Trinidad, and Josef Kittler. 2010. “A Review of Instance Selection Methods.” <em>Artificial Intelligence Review</em> 34 (2): 133–43.</p>
+<div id="ref-olvera2010review" class="csl-entry">
+Olvera-L’opez, J Arturo, J Ariel Carrasco-Ochoa, J Francisco Martínez-Trinidad, and Josef Kittler. 2010. <span>“A Review of Instance Selection Methods.”</span> <em>Artificial Intelligence Review</em> 34 (2): 133–43.
 </div>
-<div id="ref-ozawa2016determining">
-<p>Ozawa, Akito, Ryota Furusato, and Yoshikuni Yoshida. 2016. “Determining the Relationship Between a Household’s Lifestyle and Its Electricity Consumption in Japan by Analyzing Measured Electric Load Profiles.” <em>Energy and Buildings</em> 119: 200–210.</p>
+<div id="ref-ozawa2016determining" class="csl-entry">
+Ozawa, Akito, Ryota Furusato, and Yoshikuni Yoshida. 2016. <span>“Determining the Relationship Between a Household’s Lifestyle and Its Electricity Consumption in Japan by Analyzing Measured Electric Load Profiles.”</span> <em>Energy and Buildings</em> 119: 200–210.
 </div>
-<div id="ref-Potter2010-qc">
-<p>Potter, K, J Kniss, R Riesenfeld, and C R Johnson. 2010. “Visualizing Summary Statistics and Uncertainty.” <em>Comput. Graph. Forum</em> 29 (3): 823–32. <a href="https://doi.org/10.1111/j.1467-8659.2009.01677.x">https://doi.org/10.1111/j.1467-8659.2009.01677.x</a>.</p>
+<div id="ref-Potter2010-qc" class="csl-entry">
+Potter, K, J Kniss, R Riesenfeld, and C R Johnson. 2010. <span>“Visualizing Summary Statistics and Uncertainty.”</span> <em>Comput. Graph. Forum</em> 29 (3): 823–32. <a href="https://doi.org/10.1111/j.1467-8659.2009.01677.x">https://doi.org/10.1111/j.1467-8659.2009.01677.x</a>.
 </div>
-<div id="ref-R-language">
-<p>R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+<div id="ref-R-language" class="csl-entry">
+R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
 </div>
-<div id="ref-Reingold2001-kf">
-<p>Reingold, Edward M, and Nachum Dershowitz. 2018. <em>Calendrical Calculations</em>. 4th ed. Cambridge University Press. <a href="https://doi.org/10.1017/9781107415058">https://doi.org/10.1017/9781107415058</a>.</p>
+<div id="ref-Reingold2001-kf" class="csl-entry">
+Reingold, Edward M, and Nachum Dershowitz. 2001. <em>Calendrical Calculations</em>. Millennium Edition. Cambridge University Press. <a href="https://doi.org/10.1017/9781107415058">https://doi.org/10.1017/9781107415058</a>.
 </div>
-<div id="ref-R-GGally">
-<p>Schloerke, Barret, Di Cook, Joseph Larmarange, Francois Briatte, Moritz Marbach, Edwin Thoen, Amos Elberg, and Jason Crowley. 2021. <em>GGally: Extension to ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=GGally">https://CRAN.R-project.org/package=GGally</a>.</p>
+<div id="ref-R-GGally" class="csl-entry">
+Schloerke, Barret, Di Cook, Joseph Larmarange, Francois Briatte, Moritz Marbach, Edwin Thoen, Amos Elberg, and Jason Crowley. 2021. <em>GGally: Extension to ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=GGally">https://CRAN.R-project.org/package=GGally</a>.
 </div>
-<div id="ref-Tukey1977-jx">
-<p>Tukey, John W. 1977. <em>Exploratory Data Analysis</em>. Reading, Mass.: Addison-Wesley.</p>
+<div id="ref-Tukey1977-jx" class="csl-entry">
+Tukey, John W. 1977. <em>Exploratory Data Analysis</em>. Reading, Mass.: Addison-Wesley.
 </div>
-<div id="ref-tukey1988computer">
-<p>Tukey, John W, and Paul A Tukey. 1988. “Computer Graphics and Exploratory Data Analysis: An Introduction.” <em>The Collected Works of John W. Tukey: Graphics: 1965-1985</em> 5: 419.</p>
+<div id="ref-tukey1988computer" class="csl-entry">
+Tukey, John W, and Paul A Tukey. 1988. <span>“Computer Graphics and Exploratory Data Analysis: An Introduction.”</span> <em>The Collected Works of John W. Tukey: Graphics: 1965-1985</em> 5: 419.
 </div>
-<div id="ref-Tureczek2017-pb">
-<p>Tureczek, Alexander Martin, and Per Sieverts Nielsen. 2017. “Structured Literature Review of Electricity Consumption Classification Using Smart Meter Data.” <em>Energies</em> 10 (5): 584.</p>
+<div id="ref-Tureczek2017-pb" class="csl-entry">
+Tureczek, Alexander Martin, and Per Sieverts Nielsen. 2017. <span>“Structured Literature Review of Electricity Consumption Classification Using Smart Meter Data.”</span> <em>Energies</em> 10 (5): 584.
 </div>
-<div id="ref-Ushakova2020-rl">
-<p>Ushakova, Anastasia, and Slava Jankin Mikhaylov. 2020. “Big Data to the Rescue? Challenges in Analysing Granular Household Electricity Consumption in the United Kingdom.” <em>Energy Research &amp; Social Science</em> 64 (June): 101428.</p>
+<div id="ref-Ushakova2020-rl" class="csl-entry">
+Ushakova, Anastasia, and Slava Jankin Mikhaylov. 2020. <span>“Big Data to the Rescue? Challenges in Analysing Granular Household Electricity Consumption in the United Kingdom.”</span> <em>Energy Research &amp; Social Science</em> 64 (June): 101428.
 </div>
-<div id="ref-renv">
-<p>Ushey, Kevin. 2019. <em>Renv: Project Environments</em>. <a href="https://rstudio.github.io/renv">https://rstudio.github.io/renv</a>.</p>
+<div id="ref-renv" class="csl-entry">
+Ushey, Kevin. 2019. <em>Renv: Project Environments</em>. <a href="https://rstudio.github.io/renv">https://rstudio.github.io/renv</a>.
 </div>
-<div id="ref-R-almanac">
-<p>Vaughan, Davis. 2020. <em>Almanac: Tools for Working with Recurrence Rules</em>. <a href="https://CRAN.R-project.org/package=almanac">https://CRAN.R-project.org/package=almanac</a>.</p>
+<div id="ref-R-almanac" class="csl-entry">
+Vaughan, Davis. 2020. <em>Almanac: Tools for Working with Recurrence Rules</em>. <a href="https://CRAN.R-project.org/package=almanac">https://CRAN.R-project.org/package=almanac</a>.
 </div>
-<div id="ref-wang2020tsibble">
-<p>Wang, Earo, Dianne Cook, and Rob J Hyndman. 2020a. “A New Tidy Data Structure to Support Exploration and Modeling of Temporal Data.” <em>Journal of Computational and Graphical Statistics</em> 29 (3): 466–78. <a href="https://doi.org/10.1080/10618600.2019.1695624">https://doi.org/10.1080/10618600.2019.1695624</a>.</p>
+<div id="ref-wang2020tsibble" class="csl-entry">
+Wang, Earo, Dianne Cook, and Rob J Hyndman. 2020a. <span>“A New Tidy Data Structure to Support Exploration and Modeling of Temporal Data.”</span> <em>Journal of Computational &amp; Graphical Statistics</em> 29 (3): 466–78. <a href="https://doi.org/10.1080/10618600.2019.1695624">https://doi.org/10.1080/10618600.2019.1695624</a>.
 </div>
-<div id="ref-wang2020calendar">
-<p>———. 2020b. “Calendar-Based Graphics for Visualizing People’s Daily Schedules.” <em>Journal of Computational and Graphical Statistics</em> 29 (3): 490–502. <a href="https://doi.org/10.1080/10618600.2020.1715226">https://doi.org/10.1080/10618600.2020.1715226</a>.</p>
+<div id="ref-wang2020calendar" class="csl-entry">
+———. 2020b. <span>“Calendar-Based Graphics for Visualizing People’s Daily Schedules.”</span> <em>Journal of Computational &amp; Graphical Statistics</em> 29 (3): 490–502. <a href="https://doi.org/10.1080/10618600.2020.1715226">https://doi.org/10.1080/10618600.2020.1715226</a>.
 </div>
-<div id="ref-wegman1990hyperdimensional">
-<p>Wegman, Edward J. 1990. “Hyperdimensional Data Analysis Using Parallel Coordinates.” <em>Journal of the American Statistical Association</em> 85 (411): 664–75.</p>
+<div id="ref-wegman1990hyperdimensional" class="csl-entry">
+Wegman, Edward J. 1990. <span>“Hyperdimensional Data Analysis Using Parallel Coordinates.”</span> <em>Journal of the American Statistical Association</em> 85 (411): 664–75.
 </div>
-<div id="ref-Wickham2009pk">
-<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://doi.org/10.1007/978-3-319-24277-4">https://doi.org/10.1007/978-3-319-24277-4</a>.</p>
+<div id="ref-Wickham2009pk" class="csl-entry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://doi.org/10.1007/978-3-319-24277-4">https://doi.org/10.1007/978-3-319-24277-4</a>.
 </div>
-<div id="ref-wickham2011tourr">
-<p>Wickham, Hadley, Dianne Cook, Heike Hofmann, Andreas Buja, and others. 2011. “Tourr: An R Package for Exploring Multivariate Data with Projections.” <em>Journal of Statistical Software</em> 40 (2): 1–18.</p>
+<div id="ref-wickham2011tourr" class="csl-entry">
+Wickham, Hadley, Dianne Cook, Heike Hofmann, Andreas Buja, et al. 2011. <span>“Tourr: An r Package for Exploring Multivariate Data with Projections.”</span> <em>Journal of Statistical Software</em> 40 (2): 1–18.
 </div>
-<div id="ref-wickham2016r">
-<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. Sebastopol, California: " O’Reilly Media, Inc.".</p>
+<div id="ref-wickham2016r" class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. Sebastopol, California: " O’Reilly Media, Inc.".
 </div>
-<div id="ref-boxplots">
-<p>Wickham, Hadley, and Lisa Stryjewski. 2012. “40 Years of Boxplots.” had.co.nz. <a href="https://vita.had.co.nz/papers/boxplots.html">https://vita.had.co.nz/papers/boxplots.html</a>.</p>
+<div id="ref-boxplots" class="csl-entry">
+Wickham, Hadley, and Lisa Stryjewski. 2012. <span>“40 Years of Boxplots.”</span> had.co.nz. <a href="https://vita.had.co.nz/papers/boxplots.html">https://vita.had.co.nz/papers/boxplots.html</a>.
 </div>
-<div id="ref-R-ggridges">
-<p>Wilke, Claus O. 2020. <em>Ggridges: Ridgeline Plots in ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggridges">https://CRAN.R-project.org/package=ggridges</a>.</p>
+<div id="ref-R-ggridges" class="csl-entry">
+Wilke, Claus O. 2020. <em>Ggridges: Ridgeline Plots in ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggridges">https://CRAN.R-project.org/package=ggridges</a>.
 </div>
-<div id="ref-Wilkinson1999-nk">
-<p>Wilkinson, Leland. 1999. <em>The Grammar of Graphics</em>. New York: Springer.</p>
+<div id="ref-Wilkinson1999-nk" class="csl-entry">
+Wilkinson, Leland. 1999. <em>The Grammar of Graphics</em>. New York: Springer.
 </div>
-<div id="ref-wilkinson2005graph">
-<p>Wilkinson, Leland, Anushka Anand, and Robert Grossman. 2005. “Graph-Theoretic Scagnostics.” In <em>IEEE Symposium on Information Visualization, 2005. INFOVIS 2005.</em>, 157–64. IEEE.</p>
+<div id="ref-wilkinson2005graph" class="csl-entry">
+Wilkinson, Leland, Anushka Anand, and Robert Grossman. 2005. <span>“Graph-Theoretic Scagnostics.”</span> In <em>IEEE Symposium on Information Visualization, 2005. INFOVIS 2005.</em>, 157–64. IEEE.
 </div>
-<div id="ref-knitr">
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://doi.org/10.1201/b15166">https://doi.org/10.1201/b15166</a>.</p>
+<div id="ref-knitr" class="csl-entry">
+Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://doi.org/10.1201/b15166">https://doi.org/10.1201/b15166</a>.
 </div>
-<div id="ref-bookdown">
-<p>———. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.</p>
+<div id="ref-bookdown" class="csl-entry">
+———. 2016. <em>Bookdown: Authoring Books and Technical Documents with <span>R</span> Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
 </div>
-<div id="ref-R-knitr">
-<p>———. 2020. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.</p>
+<div id="ref-R-knitr" class="csl-entry">
+———. 2020. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in r</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
 </div>
-<div id="ref-rmarkdown">
-<p>Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definitive Guide</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9781138359444">https://doi.org/10.1201/9781138359444</a>.</p>
+<div id="ref-rmarkdown" class="csl-entry">
+Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definitive Guide</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9781138359444">https://doi.org/10.1201/9781138359444</a>.
 </div>
-<div id="ref-Xu2015-ja">
-<p>Xu, Dongkuan, and Yingjie Tian. 2015. “A Comprehensive Survey of Clustering Algorithms.” <em>Annals of Data Science</em> 2 (2): 165–93.</p>
+<div id="ref-Xu2015-ja" class="csl-entry">
+Xu, Dongkuan, and Yingjie Tian. 2015. <span>“A Comprehensive Survey of Clustering Algorithms.”</span> <em>Annals of Data Science</em> 2 (2): 165–93.
 </div>
 </div>
 </div>
@@ -371,7 +385,7 @@
           </div>
         </div>
       </div>
-<a href="7.5-clustering-353-customers.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5.3-future-ideas.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

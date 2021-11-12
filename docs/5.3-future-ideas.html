@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.3 Future ideas | Visualization and analysis of probability distributions of large temporal data</title>
+  <meta name="description" content="5.3 Future ideas | Visualization and analysis of probability distributions of large temporal data" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.3 Future ideas | Visualization and analysis of probability distributions of large temporal data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.3 Future ideas | Visualization and analysis of probability distributions of large temporal data" />
+  
+  
+  
+
+<meta name="author" content="Sayani Gupta" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="5.2-software-development.html"/>
+<link rel="next" href="bibliography.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"> </a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="ch:abstract.html"><a href="ch:abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="ch:thanks.html"><a href="ch:thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="ch:preface.html"><a href="ch:preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch:intro.html"><a href="1-ch:intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-sec:gravitas.html"><a href="1.1-sec:gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-sec:hakear.html"><a href="1.2-sec:hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-sec:gracsr.html"><a href="1.3-sec:gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-thesis-structure.html"><a href="1.4-thesis-structure.html"><i class="fa fa-check"></i><b>1.4</b> Thesis structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch:gravitas.html"><a href="2-ch:gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-introduction.html"><a href="2.1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2.2-sec:linear-time.html"><a href="2.2-sec:linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-sec:cyclic-gran.html"><a href="2.3-sec:cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-sec:data-structure.html"><a href="2.4-sec:data-structure.html"><i class="fa fa-check"></i><b>2.4</b> Data structure</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-sec:visualization.html"><a href="2.5-sec:visualization.html"><i class="fa fa-check"></i><b>2.5</b> Visualization</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-sec:application.html"><a href="2.6-sec:application.html"><i class="fa fa-check"></i><b>2.6</b> Applications</a></li>
+<li class="chapter" data-level="2.7" data-path="2.7-sec:discussion.html"><a href="2.7-sec:discussion.html"><i class="fa fa-check"></i><b>2.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch:hakear.html"><a href="3-ch:hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-introduction-1.html"><a href="3.1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:computation-wpd.html"><a href="3.2-sec:computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-sec:rank-wpd.html"><a href="3.3-sec:rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:application-wpd.html"><a href="3.4-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.4</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-discussion.html"><a href="3.5-discussion.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-supplementary-materials.html"><a href="3.6-supplementary-materials.html"><i class="fa fa-check"></i><b>3.6</b> Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch:gracsr.html"><a href="4-ch:gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-introduction-2.html"><a href="4.1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4.2-sec:methodology.html"><a href="4.2-sec:methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
+<li class="chapter" data-level="4.3" data-path="4.3-sec:validation.html"><a href="4.3-sec:validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
+<li class="chapter" data-level="4.4" data-path="4.4-sec:cases.html"><a href="4.4-sec:cases.html"><i class="fa fa-check"></i><b>4.4</b> Case study</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-sec:conclusion.html"><a href="4.5-sec:conclusion.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion and future work</a></li>
+<li class="chapter" data-level="" data-path="thanksgracsr.html"><a href="thanksgracsr.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gracsr.html"><a href="supplement-gracsr.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch:conclusion.html"><a href="5-ch:conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-original-contributions.html"><a href="5.1-original-contributions.html"><i class="fa fa-check"></i><b>5.1</b> Original contributions</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-software-development.html"><a href="5.2-software-development.html"><i class="fa fa-check"></i><b>5.2</b> Software development</a></li>
+<li class="chapter" data-level="5.3" data-path="5.3-future-ideas.html"><a href="5.3-future-ideas.html"><i class="fa fa-check"></i><b>5.3</b> Future ideas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization and analysis of probability distributions of large temporal data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="future-ideas" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Future ideas</h2>
+<!-- ### Putting all functionalities on CRAN -->
+<!-- I want to combine `hakear` and `gravitas` into a single R package for systematically exploring distributions of a smaller number of time series, whilst `gracsr` would offer the clustering framework for systematically exploring a large number of time series. I intend to run it via https://ropensci.org/software-review/ to further refine them for more exposure and efficiency. -->
+<div id="scaling-up-the-methods-for-multivariate-time-series-data" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Scaling up the methods for multivariate time series data</h3>
+<p>With multiple time series available for each observation, the complexity of efficient exploration and visualization grows exponentially. In this case, conditional distributions include not only temporal dependency but also variables and their dependencies. This adds to the already high-dimensional data structures that result from studying distributions. Current research on visualizing multivariate data must account for time’s inherent characteristics in order to efficiently explore distributions of multivariate time series data.</p>
+<!-- ### Comparing our clustering method with other benchmark methods -->
+<!-- Testing needs to be carried out with non-hierarchy based clustering methods to see whether the proposed distances perform better with other algorithms. It would also be helpful to know how much more value we obtain from considering distributions rather than aggregating time series data. In the case of smart meters, this could be accomplished by comparing the results while validating them against external data such as weather conditions, socioeconomic or other demographic factors of those households. -->
+</div>
+<div id="scaling-up-the-clustering-method-to-incorporate-large-uncertainty-and-improved-computational-efficiency-that-comes-with-large-data" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Scaling up the clustering method to incorporate large uncertainty and improved computational efficiency that comes with large data</h3>
+<p>With the volume of data expected to increase in the future, potentially leading to increased variability in patterns, more experiments are needed to understand what sort of problems may arise with our current methodology and how to improve our current algorithm to address those issues. All of this must be done while keeping computational efficiency in mind, as this is critical when scaling up for analysis of large data sets.</p>
+</div>
+<div id="develop-inferential-methods-for-the-clusters" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Develop inferential methods for the clusters</h3>
+<p>It is crucial to determine whether or not any detected clusters or patterns are statistically significant. In Chapter <a href="4-ch:gracsr.html#ch:gracsr">4</a>, we have used a permutation approach to detect if patterns are authentic or not across one or a pair of granularities. A similar method for finding significance across clusters is not appropriate if the observations are assumed to be independent. Most large temporal data sets gathered at fine temporal scales usually include several repetitive patterns. Therefore, the permutations used for comparisons must account that different temporal granularities have distinct conditional distributions.</p>
+</div>
+<div id="extend-methods-to-other-fields" class="section level3" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Extend methods to other fields</h3>
+<p>We propose solutions that are realistically applicable to any temporal data collected more than once per year and may be implemented in a variety of settings. We could simply verify its utility in the context of smart meter electricity data. With the availability of several open-source benchmark data sets, it is vital to evaluate how well the methodologies perform across a variety of fields.</p>
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="5.2-software-development.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bibliography.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/earowang/thesis/edit/master/Rmd//05-conclusion.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
