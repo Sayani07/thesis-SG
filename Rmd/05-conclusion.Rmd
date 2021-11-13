@@ -64,25 +64,33 @@ The open-source R package `gracsr` is available on Github (https://github.com/Sa
 
 <!-- I want to combine `hakear` and `gravitas` into a single R package for systematically exploring distributions of a smaller number of time series, whilst `gracsr` would offer the clustering framework for systematically exploring a large number of time series. I intend to run it via https://ropensci.org/software-review/ to further refine them for more exposure and efficiency. -->
 
-### Computing aperiodic cyclic granularities
+<!-- ### Computing aperiodic cyclic granularities -->
 
-Aperiodic cyclic granularities capture repetitions of aperiodic linear granularities. All of these are recurring events, but with non-periodic patterns which can still be visualized to understand repetitive behavior. The computation of cyclic aperiodic granularities requires first computing aperiodic linear granularities. Aperiodic events may be created using R packages such as `almanac`(Vaughan, 2020) and `gs`(Laird-Smith, 2020). The functions in `gravitas` package need to integrate with them to support computation of aperiodic cyclic granularities.
+<!-- Aperiodic cyclic granularities capture repetitions of aperiodic linear granularities. All of these are recurring events, but with non-periodic patterns which can still be visualized to understand repetitive behavior. The computation of cyclic aperiodic granularities requires first computing aperiodic linear granularities. Aperiodic events may be created using R packages such as `almanac`(Vaughan, 2020) and `gs`(Laird-Smith, 2020). The functions in `gravitas` package need to integrate with them to support computation of aperiodic cyclic granularities. -->
 
+#### Non-stationary time series
 
-### Clustering
+Because the time series are observed over a short period of time (1-3 years), they are assumed to be stationary. But it is possible that the distributions change over time, even over a short period. For the smart meter example, the distribution for a customer moving to a different house or changing electrical equipment can change drastically. To detect these dynamic changes, non-stationarity in time series has to be incorporated while visualizing distributions and also computing distances for two non-stationary time series or one stationary and another non-stationary time series.
 
+#### Structured missingness
 
+It is possible that data for a whole category of cyclic granularity is unavailable or that there are insufficient observations to compute distributions. For example, a customer does not have data for a particular day of the week or month throughout their observation period. While visualizing probability distributions across categories in Chapters \@ref(ch:gravitas) and \@ref(ch:hakear), this can be indicated by displaying dot plots instead of summarizing distributions. But the distances in Chapter \@ref(ch:gracsr) can not handle missing observations if they are structured like this. The distances have to be designed to incorporate customers with structural missingness and more research is needed to fully comprehend its implications while visually characterizing them.
 
+#### Anomalies
 
-Scaling up the clustering method to incorporate large uncertainty and improved computational efficiency that comes with large data
+Characterizing clusters with varied or outlying customers can result in patterns that do not represent the group. Moreover, integrating heterogeneous consumers may result in visually identical end clusters, which are potentially not useful. An appropriate anomaly detection approach could be applied to filter the anomalies, and then a decision has to be made regarding if the monsters should form a group or be assigned to the closest group through a classification method.
 
-With the volume of data expected to increase in the future, potentially leading to increased variability in patterns, more experiments are needed to understand what sort of problems may arise with our current methodology and how to improve our current algorithm to address those issues. All of this must be done while keeping computational efficiency in mind, as this is critical when scaling up for analysis of large data sets.
+### Develop inferential methods for the clusters
 
+It is important to determine whether or not any detected clusters are statistically significant. In Chapter \@ref(ch:gracsr), we have used a permutation approach to detect if patterns are authentic or not across one or a pair of granularities. A similar approach could be used for finding the significance of clusters, but permutations used for comparisons must adjust for the fact that different temporal granularities have distinct conditional distributions.
 
+#### Scaling up for larger uncertainty and computational efficiency
+
+Larger data sets with more uncertainty complicate matters, with potentially more problems than already stated above. More research is needed to understand what other sorts of problems may arise with the current methodology and possible ways to address them. All of this must be done while keeping computational efficiency in mind, as this is critical when scaling up for the analysis of large data sets.
 
 ### Scaling up the methods for multivariate time series data
 
-With multiple time series available for each observation, the complexity of efficient exploration and visualization grows exponentially. In this case, conditional distributions include not only temporal dependency but also variables and their dependencies. This adds to the already high-dimensional data structures that result from studying distributions. This big problem can be tackled by first incorporating time’s inherent characteristics while visualizing multivariate time series data for one individual. Then a similar approach of unsupervised clustering can be used to group multiple time series over multiple time granularities and multiple variables. This is a similar approach followed in this thesis for handling univariate time series.
+Another possible extension would be to create a similar framework for visualizing and analyzing multivariate time series data. With multiple time series available for each observation, the complexity of efficient exploration and visualization grows exponentially. In this case, conditional distributions include not only temporal dependency but also variables and their dependencies. This adds to the already high-dimensional data structures that result from studying distributions. This big problem can be tackled by first incorporating time’s inherent characteristics while visualizing one or a few multivariate time series data. Then a similar approach of unsupervised clustering can be used to group multiple time series over multiple time granularities and multiple variables. This is a similar approach to that followed in this thesis for handling univariate time series.
 
 
 
@@ -91,14 +99,9 @@ With multiple time series available for each observation, the complexity of effi
 <!-- Testing needs to be carried out with non-hierarchy based clustering methods to see whether the proposed distances perform better with other algorithms. It would also be helpful to know how much more value we obtain from considering distributions rather than aggregating time series data. In the case of smart meters, this could be accomplished by comparing the results while validating them against external data such as weather conditions, socioeconomic or other demographic factors of those households. -->
 
 
+<!-- ### Extend methods to other fields -->
 
-### Develop inferential methods for the clusters
-
-It is crucial to determine whether or not any detected clusters or patterns are statistically significant. In Chapter \@ref(ch:gracsr), we have used a permutation approach to detect if patterns are authentic or not across one or a pair of granularities. A similar method for finding significance across clusters is not appropriate if the observations are assumed to be independent. Most large temporal data sets gathered at fine temporal scales usually include several repetitive patterns. Therefore, the permutations used for comparisons must account that different temporal granularities have distinct conditional distributions.
-
-### Extend methods to other fields
-
-We propose solutions that are realistically applicable to any temporal data collected more than once per year and may be implemented in a variety of settings. We could simply verify its utility in the context of smart meter electricity data. With the availability of several open-source benchmark data sets, it is vital to evaluate how well the methodologies perform across a variety of fields.
+<!-- We propose solutions that are realistically applicable to any temporal data collected more than once per year and may be implemented in a variety of settings. We could simply verify its utility in the context of smart meter electricity data. With the availability of several open-source benchmark data sets, it is vital to evaluate how well the methodologies perform across a variety of fields. -->
 
 
 
