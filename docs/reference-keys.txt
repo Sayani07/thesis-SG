@@ -24,12 +24,12 @@ fig:mds-plot-validation
 fig:hod-ind-group
 fig:combined-groups-js
 fig:parcoord
-ch:intro
+ch-intro
 sec:gravitas
 sec:hakear
 sec:gracsr
 thesis-structure
-ch:gravitas
+ch-gravitas
 introduction
 sec:linear-time
 definitions
@@ -51,7 +51,7 @@ sec:application
 sec:smartmeter
 sec:cricket
 sec:discussion
-ch:hakear
+ch-hakear
 introduction-1
 sec:computation-wpd
 principle
@@ -65,7 +65,7 @@ sec:simulations
 sec:application-wpd
 discussion
 supplementary-materials
-ch:gracsr
+ch-gracsr
 introduction-2
 sec:methodology
 sec:validation
@@ -79,7 +79,7 @@ clustering
 js-based-distances
 wpd-based-distances
 sec:conclusion
-ch:conclusion
+ch-conclusion
 original-contributions
 software-development
 gravitas

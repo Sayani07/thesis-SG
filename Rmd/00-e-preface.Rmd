@@ -1,6 +1,6 @@
-# Preface {-#ch:preface}
+# Preface {-#ch-preface}
 
-Chapter \@ref(ch:gravitas) has been accepted by the *Journal of Computational and Graphical Statistics*. It has won the ACEMS Business Analytics Prize in 2020. The accompanying R package **gravitas** is on CRAN. Chapter \@ref(ch:hakear) and Chapter \@ref(ch:gracsr) are yet to be submitted.
+Chapter \@ref(ch-gravitas) has been accepted by the *Journal of Computational and Graphical Statistics*. It has won the ACEMS Business Analytics Prize in 2020. The accompanying R package **gravitas** is on CRAN. Chapter \@ref(ch-hakear) and Chapter \@ref(ch-gracsr) are yet to be submitted.
 
 ### Open and reproducible research {-}
 

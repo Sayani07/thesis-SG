@@ -1,4 +1,4 @@
-# Acknowledgements {-#ch:thanks}
+# Acknowledgements {-#ch-thanks}
 
 
 <!-- - supervisors -->
