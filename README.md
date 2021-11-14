@@ -1,9 +1,8 @@
 # PhD thesis
 
-This repo contains source files for my PhD thesis titled, "Visualization and analysis of probability distributions of large temporal data", at Monash University.
+This repo contains source files for my PhD thesis titled, "Visualization and analysis of probability distributions of large temporal data", at Monash University. The pdf can be found [here](https://github.com/Sayani07/thesis-SG/blob/master/docs/thesis.pdf) and html can be found [here](sayani07.github.io/thesis-sg/).
 
 # Summary
-
 
 
 ## Clone with `git-lfs`
