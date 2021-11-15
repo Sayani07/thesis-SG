@@ -1067,7 +1067,7 @@ elec_rank <- elec_sig_split %>%
 
 elec_rank %>% 
   kable(format = "markdown", 
-        caption = "Ranking of harmonies for the eight households with significance marked for different thresholds. Rankings are different and at most three harmonies are significant for any household. The number of harmonies to explore are reduced from 42 to 3.")
+        caption = "Ranking of harmonies for the eight households with significance marked for different thresholds. Rankings are different and at most three harmonies are significant for any household. The number of harmonies to explore is reduced from 42 to 3.")
 
 
 
