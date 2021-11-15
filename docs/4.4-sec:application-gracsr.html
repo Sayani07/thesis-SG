@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.4 Application | Visualization and analysis of probability distributions of large temporal data</title>
+  <meta name="description" content="4.4 Application | Visualization and analysis of probability distributions of large temporal data" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.4 Application | Visualization and analysis of probability distributions of large temporal data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.4 Application | Visualization and analysis of probability distributions of large temporal data" />
+  
+  
+  
+
+<meta name="author" content="Sayani Gupta" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="4.3-sec:validation.html"/>
+<link rel="next" href="4.5-sec:discussion-gracsr.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"> </a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="ch-abstract.html"><a href="ch-abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="ch-thanks.html"><a href="ch-thanks.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="ch-preface.html"><a href="ch-preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-sec:gravitas.html"><a href="1.1-sec:gravitas.html"><i class="fa fa-check"></i><b>1.1</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-sec:hakear.html"><a href="1.2-sec:hakear.html"><i class="fa fa-check"></i><b>1.2</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-sec:gracsr.html"><a href="1.3-sec:gracsr.html"><i class="fa fa-check"></i><b>1.3</b> Clustering time series based on probability distributions across temporal granularities</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-thesis-structure.html"><a href="1.4-thesis-structure.html"><i class="fa fa-check"></i><b>1.4</b> Thesis structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch-gravitas.html"><a href="2-ch-gravitas.html"><i class="fa fa-check"></i><b>2</b> Visualizing probability distributions across bivariate cyclic temporal granularities</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-introduction.html"><a href="2.1-introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2.2-sec:linear-time.html"><a href="2.2-sec:linear-time.html"><i class="fa fa-check"></i><b>2.2</b> Linear time granularities</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-sec:cyclic-gran.html"><a href="2.3-sec:cyclic-gran.html"><i class="fa fa-check"></i><b>2.3</b> Cyclic time granularities</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-sec:data-structure.html"><a href="2.4-sec:data-structure.html"><i class="fa fa-check"></i><b>2.4</b> Data structure</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-sec:visualization.html"><a href="2.5-sec:visualization.html"><i class="fa fa-check"></i><b>2.5</b> Visualization</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-sec:application.html"><a href="2.6-sec:application.html"><i class="fa fa-check"></i><b>2.6</b> Applications</a></li>
+<li class="chapter" data-level="2.7" data-path="2.7-sec:discussion.html"><a href="2.7-sec:discussion.html"><i class="fa fa-check"></i><b>2.7</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="thanksgravitas.html"><a href="thanksgravitas.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="supplement-gravitas.html"><a href="supplement-gravitas.html"><i class="fa fa-check"></i>Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-hakear.html"><a href="3-ch-hakear.html"><i class="fa fa-check"></i><b>3</b> Detecting distributional differences between temporal granularities for exploratory time series analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-introduction-1.html"><a href="3.1-introduction-1.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-sec:computation-wpd.html"><a href="3.2-sec:computation-wpd.html"><i class="fa fa-check"></i><b>3.2</b> Proposed distance measure</a></li>
+<li class="chapter" data-level="3.3" data-path="3.3-sec:rank-wpd.html"><a href="3.3-sec:rank-wpd.html"><i class="fa fa-check"></i><b>3.3</b> Ranking and selection of cyclic granularities</a></li>
+<li class="chapter" data-level="3.4" data-path="3.4-sec:application-wpd.html"><a href="3.4-sec:application-wpd.html"><i class="fa fa-check"></i><b>3.4</b> Application to residential smart meter dataset</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-discussion.html"><a href="3.5-discussion.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="3.6" data-path="3.6-supplementary-materials.html"><a href="3.6-supplementary-materials.html"><i class="fa fa-check"></i><b>3.6</b> Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-gracsr.html"><a href="4-ch-gracsr.html"><i class="fa fa-check"></i><b>4</b> Clustering time series based on probability distributions across temporal granularities</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-introduction-2.html"><a href="4.1-introduction-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4.2-sec:methodology.html"><a href="4.2-sec:methodology.html"><i class="fa fa-check"></i><b>4.2</b> Clustering methodology</a></li>
+<li class="chapter" data-level="4.3" data-path="4.3-sec:validation.html"><a href="4.3-sec:validation.html"><i class="fa fa-check"></i><b>4.3</b> Validation</a></li>
+<li class="chapter" data-level="4.4" data-path="4.4-sec:application-gracsr.html"><a href="4.4-sec:application-gracsr.html"><i class="fa fa-check"></i><b>4.4</b> Application</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-sec:discussion-gracsr.html"><a href="4.5-sec:discussion-gracsr.html"><i class="fa fa-check"></i><b>4.5</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments-1.html"><a href="acknowledgments-1.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="4.6" data-path="4.6-supplementary-materials-1.html"><a href="4.6-supplementary-materials-1.html"><i class="fa fa-check"></i><b>4.6</b> Supplementary Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch-conclusion.html"><a href="5-ch-conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-original-contributions.html"><a href="5.1-original-contributions.html"><i class="fa fa-check"></i><b>5.1</b> Original contributions</a></li>
+<li class="chapter" data-level="5.2" data-path="5.2-software-development.html"><a href="5.2-software-development.html"><i class="fa fa-check"></i><b>5.2</b> Software development</a></li>
+<li class="chapter" data-level="5.3" data-path="5.3-future-ideas.html"><a href="5.3-future-ideas.html"><i class="fa fa-check"></i><b>5.3</b> Future ideas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization and analysis of probability distributions of large temporal data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:application-gracsr" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Application</h2>
+<p>The use of our methodology is illustrated on smart meter energy usage for a sample of customers from <a href="https://data.gov.au/data/dataset/smart-grid-smart-city-customer-trial-data">SGSC consumer trial data</a> which was available through <a href="https://data.gov.au/data/organization/doee">Department of the Environment and Energy</a> and Data61 CSIRO. It contains half-hourly general supply in KwH for 13,735 customers, resulting in 344,518,791 observations in total.<!--In most cases, electricity data is expected to have multiple seasonal patterns like daily, weekly or annual. We do not learn about these repetitive behaviors from the linear view because too many measurements all squeezed in that representation. Hence we transition into looking at cyclic granularities, that can potentially provide more insight on their repetitive behavior.--> The raw data for these consumers is of unequal length, with varying start and finish dates. Because our proposed methods evaluate probability distributions rather than raw data, neither of these data features would pose any threat to our methodology unless they contained any structure or systematic patterns. Additionally, there were missing values in the database but further investigation revealed that there is no structure in the missingness (see Supplementary paper for raw data features and missingness).</p>
+<p>Clustering huge data sets presents a slew of difficulties. As a result, we dissect the larger problem and test our solutions on a small sample of prototype customers. To do this, data is first filtered to generate a clean sample, and then significant cyclic granularities (variables) for them are chosen. This is described in Section . The clean set is subsequently subsampled along all dimensions of interest, to ensure that the sampled data reveals some patterns across at least one specified variable, which is described in Section . By grouping the prototypes using our methods in Section  and assessing their meaning, the study hopes to unravel some of the heterogeneities observed in energy usage data. Because our application does not employ additional customer data, we cannot explain why consumption varies, but rather try to identify how it varies.</p>
+<div id="sec:datafilter" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Data filtering and variable selection</h3>
+<ul>
+<li><p>Choose a smaller subset of randomly selected <span class="math inline">\(600\)</span> customers with no implicit missing values for 2013.</p></li>
+<li><p>Obtain <span class="math inline">\(wpd\)</span> for all cyclic granularities considered for these customers. It was found that <code>hod</code> (hour-of-day), <code>moy</code> (month-of-year) and <code>wkndwday</code> (weekend/weekday) are turning out to be significant for most customers. We use these three granularities while clustering.</p></li>
+<li><p>Remove customers whose data for an entire category of <code>hod</code>, <code>moy</code> or <code>wnwd</code> is empty. For example, a customer who does not have data for an entire month is excluded because their monthly behavior cannot be analyzed.</p></li>
+<li><p>Remove customers whose energy consumption is 0 in all deciles. These are the clients whose consumption is likely to remain essentially flat and with no intriguing repeated patterns that we are interested in studying.</p></li>
+</ul>
+</div>
+<div id="sec:prototype" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Prototype selection</h3>
+<!-- Why instance selection -->
+<p>Supervised learning uses a training set of known information to categorize new events through instance selection. Instance selection (<span class="citation"><a href="bibliography.html#ref-olvera2010review" role="doc-biblioref">Olvera-López et al.</a> (<a href="bibliography.html#ref-olvera2010review" role="doc-biblioref">2010</a>)</span>) is a method of rejecting instances that are not helpful for classification. This is analogous to subsampling the population along all dimensions of interest such that the sampled data represents the primary features of the underlying distribution. Instance selection in unsupervised learning has received little attention in the literature. However, it could be a useful tool for evaluating model or method performance. There are several ways to approach prototype selection. Following the idea of <span class="citation"><a href="bibliography.html#ref-Fan2021-bq" role="doc-biblioref">Fan et al.</a> (<a href="bibliography.html#ref-Fan2021-bq" role="doc-biblioref">2021</a>)</span> of picking related examples (neighbors) for each instance (anchor), we can first use any dimensionality reduction techniques like MDS or PCA to project the data into a 2D space. Then pick a few “anchor” customers far apart in 2D space and pick a few neighbors for each. Unfortunately, this does not ensure that consumers with significant patterns across all variables are chosen. Tours can reveal variable separation that gets hidden in a single variable display better than static projections. Hence, we perform a linked tour with a t-SNE layout using the R package <code>liminal</code> (<span class="citation"><a href="bibliography.html#ref-R-liminal" role="doc-biblioref">Lee</a> (<a href="bibliography.html#ref-R-liminal" role="doc-biblioref">2021</a>)</span>) to identify customers who are more likely to have distinct patterns across the variables studied. (Refer to the supplementary article for further details). Figure  shows the distribution across <code>hod</code>, <code>moy</code> and <code>wnwd</code> for the set of chosen <span class="math inline">\(24\)</span> customers that were chosen. The customers are split into batches of <span class="math inline">\(12\)</span> in (a) and (b). Each row in (a) and that in (b) represents the profile of one customer across different variables. <!--Few of these customers have similar distribution across `moy` and some are similar in their `hod` distribution. --></p>
+<!-- - can be done in several ways -->
+<!-- - show raw data of moy, hod, wkndwday patterns for them -->
+<!-- # ```{r hod-moy-wkndwday plots, fig.cap="The distribution across moy, hod and wkndwday for the selected designs. Few are similar in their hod pattern, while others are similar in moy behavior. Some customers have distinct behavior as compared to all other customers.For example, although patterns across wkndwday do not look distinctly different for most households, there is one household for whom weekend behavior is standing out from the rest."} -->
+<!-- # ``` -->
+</div>
+<div id="sec:clustering" class="section level3" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Clustering</h3>
+<p>The <span class="math inline">\(24\)</span> prototypes <!--and the data subset consisting of $353$ customers--> are clustered using the methodology described in Section  and results are reported below. In the following plots, the median is shown by a line, and the shaded region shows the area between the <span class="math inline">\(25^{th}\)</span> and <span class="math inline">\(75^{th}\)</span> percentiles.<!--All customers with the same color represent the same clustered groups. --> Groups are colored differently whenever they represent different groupings. While plotting the clusters, RS-based scaling is applied to each customer, so that no customer dominates the shape of the summarized clusters because of magnitude. The plotting scales are not displayed since we want to emphasize comparable patterns rather than scales. The idea is that a customer in a cluster may have low total energy usage, but their behavior may be quite similar to a customer with high usage with respect to distributional pattern or significance across cyclic granularities.</p>
+<div id="js-based-distances-1" class="section level4" number="4.4.3.1">
+<h4><span class="header-section-number">4.4.3.1</span> JS-based distances</h4>
+<p>The <span class="math inline">\(sindex\)</span> is plotted against the number of clusters for clustering based on JS-based (JS-NQT) distances in Figure . The <span class="math inline">\(sindex\)</span> falls from around <span class="math inline">\(0.56\)</span> when <span class="math inline">\(k=3\)</span> to <span class="math inline">\(0.54\)</span> when <span class="math inline">\(k\)</span> increases. In our study, we use <span class="math inline">\(k=4, 5\)</span>. Figure  depicts the summarized distributions across <span class="math inline">\(4\)</span> and <span class="math inline">\(5\)</span> clusters in (a) and (b) respectively, and assists in characterizing each cluster. A-2, Groups A-3, and A-4 have profiles that correspond to B-2, B-3, and B-5, respectively. B-2 (id: 4-9 in Figure ) and B-5 (id: 21-24) have a <code>hod</code> pattern with a typical morning and evening peak, whereas the other groups have no distinct pattern or high variability throughout the day. A-1 is subdivided into B-1 and B-4, each of which has a distinct shape across <code>moy</code> and <code>wnwd</code>. B-4 (id: 16-20) is distinguished by higher energy consumption in the first few months of the year and greater variability in weekend usage. B-1 (id: 1-3) has higher consumption in the middle of the year (winter months) and a similar weekday-weekend inter-quartile range. When <span class="math inline">\(k = 4\)</span> is used, these two groups merge to form A-1, which has a moy profile of higher usage in both the beginning and middle of the year, which is not representative of the individuals. It may be worthwhile to compare Figures  and  to see if the summarized distributions across groups accurately characterized the groupings. If it has, then the majority of the members of the group should have a similar profile.</p>
+<!-- Our methodology is useful for grouping similar distributions over `hod` and `moy` and they are placed closely for easy comparison. Few groups have mixed patterns across `hod` and `moy`, but few have all customers in the group having a similar profile.  -->
+<!--  It appears that the aim of grouping comparable distributions across categories of multiple temporal dependencies has been accomplished to some extent. -->
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:opt-cluster-tsne-jsd"></span>
+<img src="figure/opt-cluster-tsne-jsd-1.png" alt="(a) shows t-SNE summary of the $24$ selected customers chosen through prototype selection, (b) and (c) shows a plot of sindex for different cluster size for clustering based on JS-based distances and wpd-distances respectively. The plot suggests optimal number of clusters as $4$ and $7$ respectively." width="100%" />
+<p class="caption">
+Figure 4.8: (a) shows t-SNE summary of the <span class="math inline">\(24\)</span> selected customers chosen through prototype selection, (b) and (c) shows a plot of sindex for different cluster size for clustering based on JS-based distances and wpd-distances respectively. The plot suggests optimal number of clusters as <span class="math inline">\(4\)</span> and <span class="math inline">\(7\)</span> respectively.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hod-ind-group-png"></span>
+<img src="img/ind-groups-24.png" alt="The distribution of electricity demand across individual customers over multiple granularities hod, moy, and wnwd are shown for the $24$ selected customers using quantile and box plots. They are split into batches of $12$ in (a) and (b), with each row in (a) or (b) representing a customer. Each customer is identified by their profile across all the granularities. A few of these customers have similar distributions across moy and some are similar in their hod distributions. Distributional differences across categories of wnwd are not discernable except for a couple of customers (id: 16 and 18)." width="100%" />
+<p class="caption">
+Figure 4.9: The distribution of electricity demand across individual customers over multiple granularities hod, moy, and wnwd are shown for the <span class="math inline">\(24\)</span> selected customers using quantile and box plots. They are split into batches of <span class="math inline">\(12\)</span> in (a) and (b), with each row in (a) or (b) representing a customer. Each customer is identified by their profile across all the granularities. A few of these customers have similar distributions across moy and some are similar in their hod distributions. Distributional differences across categories of wnwd are not discernable except for a couple of customers (id: 16 and 18).
+</p>
+</div>
+<!-- It appears that the aim of grouping comparable distributions over considered variables has been accomplished to some extent. -->
+<!-- The widest within-cluster gap (widest_gap) is high till $k=5$ and then have a gradual decrease. Number of -->
+<!-- GroupA and Group B may represent different set of customers as they are groupings based on different number of clusters. -->
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:groups-4and5"></span>
+<img src="figure/groups-4and5-1.png" alt="For $k = 4$ (a) and $k=5$ (b), the distribution of electricity demand across groups over hod, moy, and wnwd is shown. Groups A-2, A-3, and A-4 profiles correspond to Groups B-2, B-3, and B-5, respectively. A-1 is split into B-1 and B-4, each of which has a distinct shape across moy and wnwd. B-4 (id: 16-20) is characterized by higher energy consumption in the first few months of the year and more variation in weekend usage. B-1 (id:1-3) is distinguished by higher consumption in the middle of the year (winter months) and similar weekday-weekend inter-quartile range. When $k = 4$ is used, these two groups merge to form A-1, which has a moy profile of higher usage in both the beginning and middle of the year, which is not representative of the individuals in the group." width="100%" />
+<p class="caption">
+Figure 4.10: For <span class="math inline">\(k = 4\)</span> (a) and <span class="math inline">\(k=5\)</span> (b), the distribution of electricity demand across groups over hod, moy, and wnwd is shown. Groups A-2, A-3, and A-4 profiles correspond to Groups B-2, B-3, and B-5, respectively. A-1 is split into B-1 and B-4, each of which has a distinct shape across moy and wnwd. B-4 (id: 16-20) is characterized by higher energy consumption in the first few months of the year and more variation in weekend usage. B-1 (id:1-3) is distinguished by higher consumption in the middle of the year (winter months) and similar weekday-weekend inter-quartile range. When <span class="math inline">\(k = 4\)</span> is used, these two groups merge to form A-1, which has a moy profile of higher usage in both the beginning and middle of the year, which is not representative of the individuals in the group.
+</p>
+</div>
+</div>
+<div id="wpd-based-distances-1" class="section level4" number="4.4.3.2">
+<h4><span class="header-section-number">4.4.3.2</span> wpd-based distances</h4>
+<p>In Figure , the <span class="math inline">\(sindex\)</span> is plotted against the number of clusters for clustering based on wpd-based distances. The scales are very different from those used in JS-based clustering. The <span class="math inline">\(sindex\)</span> falls from around <span class="math inline">\(20\)</span> when <span class="math inline">\(k=3\)</span> to <span class="math inline">\(19\)</span> when <span class="math inline">\(k=4\)</span> and further decreases to <span class="math inline">\(17.5\)</span> with <span class="math inline">\(k&gt;7\)</span>. Thus, there are few choices available for the number of clusters. The groupings with <span class="math inline">\(k=4\)</span> is shown through a parallel coordinate plot with the three significant cyclic granularities. The variables are sorted according to their separation across classes (rather than their overall variation between classes). This means that <span class="math inline">\(moy\)</span> is the most important variable in distinguishing the groups, followed by <span class="math inline">\(hod\)</span> and <span class="math inline">\(wnwd\)</span>. The two customers (id: 16 and 18) that have significant differences between <span class="math inline">\(wnwd\)</span> categories (in Figure ) stand out from the rest of the customers. Group-4 has a higher <span class="math inline">\(wpd\)</span> for <code>hod</code> than <code>moy</code> or <code>wkndwday</code>. Group-2 and Group-3 have the most distinct patterns across <code>moy</code>. Group-1 is a mixed group that has strong patterns on at least one of the three variables. When <span class="math inline">\(k=3\)</span> is used, Group-2 and Group-3 are merged because their patterns relative to <code>moy</code>, <code>hod</code> and <code>wnwd</code> are the same. The findings vary from JS-based clustering, yet it is a helpful grouping.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:parcoord-application-gracsr"></span>
+<img src="figure/parcoord-application-gracsr-1.png" alt="Each of the $24$ customers is represented by a parallel coordinate plot (a) with four wpd-based groupings. Plot (b) which shows median $wpd$ values for each group. The plot shows that moy is the most important variable in identifying clusters, whereas wnwd is the least significant and has the least fluctuation. Two customers (id: 16 and 18) with high $wpd$ across wnwd stand out in this display. Group-4 has a higher $wpd$ for hod than moy or wnwd. Group-2 and Group-3 have the most discernible pattern across moy. Group-1 is a mixed group with strong patterns across at least one of the three variables. All of these could be observed from the plot or the table (b)." width="100%" />
+<p class="caption">
+Figure 4.11: Each of the <span class="math inline">\(24\)</span> customers is represented by a parallel coordinate plot (a) with four wpd-based groupings. Plot (b) which shows median <span class="math inline">\(wpd\)</span> values for each group. The plot shows that moy is the most important variable in identifying clusters, whereas wnwd is the least significant and has the least fluctuation. Two customers (id: 16 and 18) with high <span class="math inline">\(wpd\)</span> across wnwd stand out in this display. Group-4 has a higher <span class="math inline">\(wpd\)</span> for hod than moy or wnwd. Group-2 and Group-3 have the most discernible pattern across moy. Group-1 is a mixed group with strong patterns across at least one of the three variables. All of these could be observed from the plot or the table (b).
+</p>
+</div>
+<p>Things become far more complicated when we consider a larger data set with more uncertainty, as they do with any clustering problem. Summarizing distributions across clusters with varied or outlying customers can result in a shape that does not represent the group. Furthermore, combining heterogeneous customers may result in similar-looking final clusters that are not effective for visually differentiating them. It is also worth noting that the weekend/weekday behavior in the given case does not characterize most selected customers. This, however, will not be true for all of the customers in the data set. If more extensive prototype selection is used, resulting in more comprehensive prototypes in the data set, this method might be used to classify the entire data set into these prototype behaviors. However, the goal of this section was to have a few customers that have significant patterns over one or more cyclic granularities, apply our methodology to cluster them, and demonstrate that the method produces useful clusters.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4.3-sec:validation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4.5-sec:discussion-gracsr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/earowang/thesis/edit/master/Rmd//04-gracsr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

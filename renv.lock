@@ -114,6 +114,13 @@
       "Repository": "CRAN",
       "Hash": "1d009bc8a51ef9d2ff6a6e2310d0399b"
     },
+    "Rtsne": {
+      "Package": "Rtsne",
+      "Version": "0.15",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f153432c4ca15b937ccfaa40f167c892"
+    },
     "SQUAREM": {
       "Package": "SQUAREM",
       "Version": "2021.1",

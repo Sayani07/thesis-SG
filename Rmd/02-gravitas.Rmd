@@ -260,7 +260,7 @@ The hierarchy table contains \textbf{multiple-order-up} granularities which are 
 A \textbf{single-order-up} is a cyclic granularity which is nested within a single level. It is a special case of multiple-order-up granularity.
 \end{defn}
 
-\noindent In the Mayan calendar (Table \@ref(tab:tab-mayan)), kin-of-tun or kin-of-baktun are examples of multiple-order-up granularities and single-order-up granularities are kin-of-uinal, uinal-of-tun etc.
+\noindent In the Mayan calendar (Table \@ref{tab:tab-mayan}), kin-of-tun or kin-of-baktun are examples of multiple-order-up granularities and single-order-up granularities are kin-of-uinal, uinal-of-tun etc.
 
 ### Computation
 

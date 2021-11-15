@@ -35,3 +35,5 @@ cluster
 cranlogs
 latex2exp
 broom
+Rtsne
+ggrepel
