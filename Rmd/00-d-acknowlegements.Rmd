@@ -12,7 +12,7 @@ I want to thank the Department of Econometrics and Business Statistics, Monash B
 
 
  <!-- - PhD friends and R community -->
-Thank you, Stephanie Kobakian and Nicholas Tierney, for being so warm, kind and welcoming when I began my PhD. Being a part of such an inclusive environment meant a lot to me as an international student. Thank you, Nicholas Spyrison and Mitchell O'Hara-Wild, for the numerous informative discussions, brainstorming sessions, as well as for generously sharing your expertise and experience in software development. Thank you to each of you, NUMBATs, and the broader R community for directly and indirectly helping me countless times. You never fail to inspire me.
+Thank you, Puwasala Gamakumara, Stephanie Kobakian and Nicholas Tierney, for being so warm, kind and welcoming when I began my PhD. Being a part of such an inclusive environment meant a lot to me as an international student. Thank you, Nicholas Spyrison and Mitchell O'Hara-Wild, for the numerous informative discussions, brainstorming sessions, as well as for generously sharing your expertise and experience in software development. Thank you to each of you, NUMBATs, and the broader R community for directly and indirectly helping me countless times. You never fail to inspire me.
 
 <!-- - Friends -->
 
