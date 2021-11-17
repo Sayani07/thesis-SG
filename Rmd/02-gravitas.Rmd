@@ -93,7 +93,7 @@ A granularity $G$ is \textbf{periodic} with respect to a finite granularity $H$ 
 (2) there exist $R$, $P \in \mathbb{Z}_+$, where $R$ is less than the number of granules of $H$, such that for all $i \in \mathbb{Z}_{\ge {0}}$ , if $H(i) = \bigcup_{j \in S}G(j)$ and $H (i + R) \neq \phi$ then $H (i + R) = \bigcup_{j \in S} G(j + P)$.
 \end{defn}
 
-If $G$ groups into $H$, it would imply that any granule $H(i)$ is the union of some granules of $G$; for example, $G(a_1), G(a_2), \dots, G(a_k)$. Condition (2) in Definition \ref{def:periodic} implies that if $H(i + R) \neq \emptyset$, then $H(i + R) = \bigcup (G(a_1 + P), G(a_2 + P), \dots, G(a_k + P))$, resulting in a "periodic" pattern of the composition of $H$ using granules of $G$. In this pattern, each granule of $H$ is shifted by $P$ granules of $G$. $P$ is called the \textbf{period} (@Bettini2000-qk).
+If $G$ groups into $H$, it would imply that any granule $H(i)$ is the union of some granules of $G$; for example, $G(a_1), G(a_2), \dots, G(a_k)$. Condition (2) in Definition \ref{def:periodic} implies that if $H(i + R) \neq \emptyset$, then $H(i + R) = \bigcup (G(a_1 + P), G(a_2 + P), \dots, G(a_k + P))$, resulting in a "periodic" pattern of the composition of $H$ using granules of $G$. In this pattern, each granule of $H$ is shifted by $P$ granules of $G$. $P$ is called the \textbf{period} [@Bettini2000-qk].
 
 For example, day is periodic with respect to week with $R=1$ and $P=7$, while (if we ignore leap years) day is periodic with respect to month with $R=12$ and $P=365$ as any month would consist of the same number of days across years.
 Since the idea of period involves a pair of granularities, we say that the pair $(day, week)$ has period 7, while the pair $(day, month)$ has a period 365 (ignoring leap years). 
@@ -453,7 +453,7 @@ Using these seven cyclic granularities, we want to explore patterns of energy be
 ```{r harmony-tab, echo=FALSE}
 ```
 
-```{r bothcust, fig.cap = "(ref:bothcust)", fig.pos="!p"}
+```{r bothcust, fig.cap = "(ref:bothcust)", fig.pos="!p",fig.height=5}
 ```
 
 (ref:bothcust) Energy consumption of a single customer shown with different distribution displays, and granularity arrangements: hour of the day; and weekday/weekend. **a** The side-by-side boxplots make the comparison between day types easier, and suggest that there is generally lower energy use on the weekend. Interestingly, this is the opposite to what might be expected. Plots **b**, **c** examine the temporal trend of consumption over the course of a day, separately for the type of day. The area quantile emphasizes time, and indicates that median consumption shows prolonged high usage in the morning on weekdays. The violin plot emphasizes subtler distributional differences across hours: morning use is bimodal.

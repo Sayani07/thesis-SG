@@ -234,8 +234,8 @@ cust2_box <- smart_meter10 %>%
   ggtitle("") +
   scale_x_discrete(labels = c("wday", "wend")) +
   scale_y_sqrt() +
-  theme(axis.text.x = element_text(size = 7)) +
   theme_minimal() +
+  theme(axis.text.x = element_text(size = 7, angle=90))  +
   theme(panel.border = element_rect(colour = "#E0E0E0", fill = NA)
   )
 
