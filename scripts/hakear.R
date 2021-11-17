@@ -70,7 +70,7 @@ p1 <- id2_tsibble %>%
   ggtitle("(a)") + theme(
     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0))) + 
   scale_colour_brewer(name = "", palette = "PiYG") + 
-  ylab ("energy consumption (in kwh)")
+  ylab ("energy usage [kWh]")
 
 
 p2 <- id4_tsibble %>%
@@ -82,7 +82,7 @@ p2 <- id4_tsibble %>%
             quantile_prob = c(0.1, 0.25,0.5,0.75, 0.9)) + 
   ggtitle("(b)") + theme(
     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0)))+
-  ylab ("energy consumption (in kwh)")
+  ylab ("energy usage [kWh]")
 
 
 
@@ -157,7 +157,7 @@ id2_tsibble_hd <- elec %>%
   geom_boxplot(width = 0.6, outlier.colour = "black", outlier.alpha = 0.5, fill = "#CC79A7", colour =  "#0072B2") + scale_y_log10() +
   geom_jitter(alpha = 0.04, colour = "#E69F00") +
   ggtitle("(a)")+ 
-  ylab ("energy consumption (in kwh)")
+  ylab ("energy usage [kWh]")
 
 
 
@@ -169,7 +169,7 @@ id2_tsibble_dw <- elec %>%
   geom_boxplot(width = 0.6, outlier.colour = "black", outlier.alpha = 0.5, fill = "#CC79A7", colour =  "#0072B2") + scale_y_log10()+
   geom_jitter(alpha = 0.04, colour = "#E69F00") +
   ggtitle("(b)")+ 
-  ylab ("energy consumption (in kwh)")
+  ylab ("energy usage [kWh]")
 
 
 
@@ -767,7 +767,7 @@ elec_raw <- elec %>%
   ggplot() +
   geom_density(aes(x = kwh)) +
   facet_wrap(~id, scales = "free_y", ncol = 1) +
-  xlab("demand (in kwh)") + ggtitle("a") +
+  xlab("demand [kWh]") + ggtitle("a") +
   theme(
     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0)))
 
@@ -776,7 +776,7 @@ elec_raw <- elec %>%
 #   ggplot() +
 #   geom_density(aes(x = kwh_transformed))+
 #   facet_wrap(~id, scales = "free_y", ncol = 1) +
-#   xlab("NQT demand (in kwh)") + ggtitle("b") + theme(
+#   xlab("NQT demand [kWh]") + ggtitle("b") + theme(
 #     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0)))
 
 # hour_day_raw <- elec %>% 
@@ -994,7 +994,7 @@ elec_zoom <-  elec %>%
              strip.position =  "right") + 
   xlab("Time [30m]") + 
   theme_grey() + 
-  ylab("Energy demand (in Kwh)") + ggtitle("(b)") +
+  ylab("Energy demand [kWh]") + ggtitle("(b)") +
   theme(panel.grid.major.x = element_blank()) +
   scale_x_datetime("Date", date_labels = "%b %d",
                    breaks = "1 week",
@@ -1091,7 +1091,7 @@ elec_rank %>%
 #   #scale_colour_brewer(name = "", palette = "Set2") +
 #   theme(legend.position = "none",
 #         strip.text = element_text(size = 7, margin = margin())) +
-#   ylab("energy consumption (in kwh)")
+#   ylab("energy usage [kWh]")
 # 
 # 
 # p2 <- id5_tsibble %>%
@@ -1105,7 +1105,7 @@ elec_rank %>%
 #   #scale_colour_brewer(name = "", palette = "Set2")   +
 #   theme(legend.position = "none",
 #         strip.text = element_text(size = 7, margin = margin())) +
-#   ylab("energy consumption (in kwh)")
+#   ylab("energy usage [kWh]")
 # 
 # 
 # ggarrange(p1, p2, ncol=2, common.legend = TRUE)
@@ -1125,7 +1125,7 @@ p1 <- id1_tsibble %>%
             quantile_prob = c(0.1, 0.25, 0.5, 0.75, 0.9), nrow = 1) +
   ggtitle("a) hod vs dow (id:1)") + 
   #scale_colour_brewer(name = "", palette = "Set2") 
-  ylab("energy consumption (in kwh)") +
+  ylab("energy usage [kWh]") +
   scale_y_log10() + theme_bw()  +
   theme(legend.position = "none",
         strip.text = element_text(size = 10, margin = margin())) + 
@@ -1140,7 +1140,7 @@ p2 <- id7_tsibble %>%
             quantile_prob = c(0.1, 0.25, 0.5, 0.75, 0.9), nrow = 1) +
   ggtitle("b) hod vs dow (id:7)") +
   #scale_colour_brewer(name = "", palette = "Set2")   +
-  ylab("energy consumption (in kwh)") +
+  ylab("energy usage [kWh]") +
   scale_y_log10() + theme_bw()  +
   theme(legend.position = "none",
         strip.text = element_text(size = 10, margin = margin()))+ 
