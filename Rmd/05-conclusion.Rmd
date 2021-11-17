@@ -65,13 +65,8 @@ Simulation studies were carried out to study the behavior of $wpd$, build the no
 
 ## Future ideas
 
-<!-- ### Putting all functionalities on CRAN -->
+There are a few areas to extend this research. The first two explore catering to time series data, where the design of our framework is limited. Handling non-stationary time series data or data with structured missingness, for example. Second, scaling up for more uncertainty is beneficial since huge data sets with greater uncertainty may have more difficulties than a few time series. It is essential to recognize the difficulties of analyzing clustering results in such a setting. To that end, it would be interesting to investigate how to deal with anomalies or determine the significance of the clusters. A third possibility is to focus on expanding the scope of the framework to include multivariate time series data.
 
-<!-- I want to combine `hakear` and `gravitas` into a single R package for systematically exploring distributions of a smaller number of time series, whilst `gracsr` would offer the clustering framework for systematically exploring a large number of time series. I intend to run it via https://ropensci.org/software-review/ to further refine them for more exposure and efficiency. -->
-
-<!-- ### Computing aperiodic cyclic granularities -->
-
-<!-- Aperiodic cyclic granularities capture repetitions of aperiodic linear granularities. All of these are recurring events, but with non-periodic patterns which can still be visualized to understand repetitive behavior. The computation of cyclic aperiodic granularities requires first computing aperiodic linear granularities. Aperiodic events may be created using R packages such as `almanac`(Vaughan, 2020) and `gs`(Laird-Smith, 2020). The functions in `gravitas` package need to integrate with them to support computation of aperiodic cyclic granularities. -->
 
 **Non-stationary time series**
 
