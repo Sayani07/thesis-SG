@@ -501,7 +501,7 @@ We propose producing plots based on pairs of cyclic granularities that form harm
 The Australian authors thank the ARC Centre of Excellence for Mathematical and Statistical Frontiers [(ACEMS)](https://acems.org.au/home) for supporting this research. Thanks to [Data61 CSIRO](https://data61.csiro.au/) for partially funding Sayani's research and Dr. Peter Toscas for providing useful inputs on improving the analysis of the smart meter application. We would also like to thank Nicholas Spyrison for many useful discussions, sketching figures and feedback on the manuscript. The package `gravitas` was built during the [Google Summer of Code, 2019](https://summerofcode.withgoogle.com/archive/). More details about the package can be found at [sayani07.github.io/gravitas](https://sayani07.github.io/gravitas/). The Github repository,  [github.com/Sayani07/paper-gravitas](https://github.com/Sayani07/paper-gravitas), contains all materials required to reproduce this article and the code is also available online in the supplemental materials. This article was created with `knitr` [@knitr; @R-knitr] and `rmarkdown` [@rmarkdown; @R-rmarkdown]. 
 
 
-## Supplementary Materials {- #supplement-gravitas}
+## Supplementary materials {- #supplement-gravitas}
 
 **Data and scripts:** Data sets and R code to reproduce all figures in this article (main.R).
 

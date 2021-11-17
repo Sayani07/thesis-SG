@@ -704,7 +704,7 @@ There are a few areas to extend this research. First, larger data sets with more
 
 The authors thank the ARC Centre of Excellence for Mathematical and Statistical Frontiers [(ACEMS)](https://acems.org.au/home) for supporting this research. Sayani Gupta was partially funded by [Data61 CSIRO](https://data61.csiro.au/) during her PhD. The Monash eResearch Centre and eSolutions-Study Support Services supported this research in part through the resource usage of the MonARCH HPC Cluster. The Github repository, [github.com/Sayani07/paper-gracsr](https://github.com/Sayani07/paper-gracsr), contains all materials required to reproduce this article and the code is also available online in the supplemental materials. This article was created with R [@R-language], `knitr` [@knitr; @R-knitr] and `rmarkdown` [@rmarkdown; @R-rmarkdown]. Graphics are produced with `ggplot2` [@Wickham2009pk] and `GGally` [@R-GGally].
 
-## Supplementary Materials
+## Supplementary materials
 
 **Data and scripts:** Data sets and R code to reproduce all figures in this article (main.R).
 
