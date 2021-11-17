@@ -1376,51 +1376,15 @@ Granularities},
   publisher={Springer}
 }
 
- @ARTICLE{Fan2021-bq,
-   title    = "Unsupervised Visual Representation Learning via {Dual-Level}
-               Progressive Similar Instance Selection",
-   author   = "Fan, Hehe and Liu, Ping and Xu, Mingliang and Yang, Yi",
-   abstract = "The superiority of deeply learned representations relies on
-               large-scale labeled datasets. However, annotating data are
-               usually expensive or even infeasible in some scenarios. To
-               address this problem, we propose an unsupervised method to
-               leverage instance discrimination and similarity for deep visual
-               representation learning. The method is based on an observation
-               that convolutional neural networks (CNNs) can learn a meaningful
-               visual representation with instancewise classification, in which
-               each instance is treated as an individual class. By this
-               instancewise discriminative learning, instances can reasonably
-               distribute in the representation space, which reveals their
-               similarities. In order to further improve visual representations,
-               we propose a dual-level progressive similar instance selection
-               (DPSIS) method to build a bridge from instance to class by
-               selecting similar instances (neighbors) for each instance
-               (anchor) and treating the anchor and its neighbors as the same
-               class. To be specific, DPSIS adaptively selects two levels of
-               neighbors, that is: 1) an ``absolutely similar level'' and 2) a
-               ``relatively similar level.'' Instances in the absolutely similar
-               level are used as hard labels, while instances in the relatively
-               similar level are used as soft labels. Moreover, during training,
-               DPSIS is able to progressively select more neighbors without
-               human supervision. At the beginning of training, because CNNs are
-               weak, most instances are distributed relatively randomly in the
-               representation space and only a few easy-to-recognize instances
-               are selected as neighbors. As CNN models become stronger, the
-               semantic meaning of each instance grows clearer. Those instances
-               originally distributed in a relatively random manner gradually
-               move to meaningful positions. This consequently facilitates CNN
-               training since the number of reliable samples increases.
-               Experiments on seven benchmarks, including three small-scale and
-               two large-scale coarse-grained image classification datasets, and
-               two fine-grained categorization datasets, demonstrate the
-               effectiveness of our DPSIS. Our codes have been released at
-               https://github.com/hehefan/DPSIS.",
-   journal  = "IEEE Trans Cybern",
-   volume   = "PP",
-   month    =  mar,
-   year     =  2021,
-   language = "en"
- }
+@ARTICLE{Fan2021-bq,
+  author={Fan, Hehe and Liu, Ping and Xu, Mingliang and Yang, Yi},
+  journal={IEEE Transactions on Cybernetics}, 
+  title={Unsupervised Visual Representation Learning via Dual-Level Progressive Similar Instance Selection}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={1-11},
+  doi={10.1109/TCYB.2021.3054978}}
  
 @article{wang2020tsibble,
   author = {Earo Wang and Dianne Cook and Rob J Hyndman},
@@ -1486,14 +1450,14 @@ Granularities},
 }
  
 
-@ARTICLE{Gupta2021-hakear,
-   title     = "Detecting distributional differences between temporal granularities for     exploratory time series analysis ",
-   author    = "Gupta, Sayani and Hyndman, Rob J and Cook, Dianne",
-   journal   = "unpublished",
-   year      =  2021
- }
+@techreport{Gupta2021-hakear,
+	title={Detecting distributional differences between temporal granularities for exploratory time series analysis},
+	author={Gupta, Sayani and Hyndman, Rob J and Cook, Dianne},
+	year={2021},
+	type={Working paper}
+}
  
- @article{wegman1990hyperdimensional,
+@article{wegman1990hyperdimensional,
   title={Hyperdimensional data analysis using parallel coordinates},
   author={Wegman, Edward J},
   journal={Journal of the American Statistical Association},
@@ -1823,9 +1787,8 @@ Implementation},
    pages     = "32--57",
    month     =  jan,
    year      =  1973
- }
+ } 
  
-
 @ARTICLE{Rhodes2014-it,
    title    = "Clustering analysis of residential electricity demand profiles",
    author   = "Rhodes, Joshua D and Cole, Wesley J and Upshaw, Charles R and
