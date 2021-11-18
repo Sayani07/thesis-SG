@@ -19,12 +19,12 @@ my and my fellow co-authors contributions:
 \begin{tabular}{|p{1cm}|p{2cm}|p{1.5cm}|p{3.5cm}|p{3.5cm}|p{1.5cm}|}
 \hline
 \RaggedRight\textbf{Thesis Chapter}  & \RaggedRight\textbf{Publication Title}  & \RaggedRight\textbf{Status (published, in press, accepted or returned for revision)}  & \RaggedRight\textbf{Nature and} {\%} \RaggedRight\textbf{of student contribution} & \RaggedRight\textbf{Co-author name(s) Nature and} {\%} \RaggedRight\textbf{of Co-author’s contribution} & \RaggedRight\textbf{Co-author(s), Monash student Y/N} \\ \hline
-2 & Visualizing probability distributions across bivariate cyclic temporal granularities & Published & 70\%. Concept and developing software and writing first draft & (1) Rob J Hyndman, input into manuscript 15\% (2) Dianne Cook, Concept and input into manuscript 15\% & \multicolumn{1}{c|}{N} \\
+2 & Visualizing probability distributions across bivariate cyclic temporal granularities & Published & 70\%. Concept, methodology development, writing first draft and software development & (1) Rob J Hyndman, Concept, methodology and software development, writing 12\% (2) Dianne Cook, Concept, methodology and software development, writing 12\% (3) Antony Unwin, Concept and software development 6\% & \multicolumn{1}{c|}{N} \\
 \hline
 3 & Detecting distributional differences between temporal granularities
-for exploratory time series analysis & To be submitted & 70\%. Concept and developing software and writing first draft & (1) Rob J Hyndman, Concept and input into manuscript 15\% (2) Dianne Cook, Concept and input into manuscript 15\%  & \multicolumn{1}{c|}{N} \\
+for exploratory time series analysis & Working Paper & 80\%. Concept, methodology development, writing first draft and software development & (1) Rob J Hyndman, Concept, methodology development and writing 10\% (2) Dianne Cook, Concept, methodology development and writing 10\%  & \multicolumn{1}{c|}{N} \\
 \hline
-4 & Clustering time series based on probability distributions across temporal granularities & To be submitted & 70\%. Concept and developing software and writing first draft & (1) Dianne Cook, Concept and input into manuscript 20\% (2) Rob J Hyndman, concept and input into manuscript 10\% & \multicolumn{1}{c|}{N} \\
+4 & Clustering time series based on probability distributions across temporal granularities & To be submitted & 80\%. Concept, methodology development, writing first draft and software development & (1) Dianne Cook, Concept, methodology development and writing 15\% (2) Rob J Hyndman, Concept, methodology development and writing 5\% & \multicolumn{1}{c|}{N} \\
 \hline
 \end{tabular}
 \end{table}
