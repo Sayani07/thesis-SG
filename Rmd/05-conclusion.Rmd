@@ -54,7 +54,7 @@ The R package `hakear` (https://github.com/Sayani07/hakear) provides tools for s
 
 ### gracsr
 
-The R package `gracsr` (https://github.com/Sayani07/gracsr) has functions for exploring a large number of time series using the clustering methodology described in Chapter \@ref(ch-gracsr). The workflow begins with the function `scale gran()`, which may be used to scale individual series using NQT/RS. The distances for the JS and WPD approaches are computed in the second phase of the workflow using `dist gran()`/`dist wpd()`. The distances can then be used to do clustering with `clust gran()`. The package has received a grant (AUD 3000) as part of the ACEMS Business Analytics Prize towards polishing the functions and preparing it for CRAN.
+The R package `gracsr` (https://github.com/Sayani07/gracsr) has functions for exploring a large number of time series using the clustering methodology described in Chapter \@ref(ch-gracsr). The workflow begins with the function `scale_gran()`, which may be used to scale individual series using NQT/RS. The distances for the JS and WPD approaches are computed in the second phase of the workflow using `dist_gran()`/`dist_ wpd()`. The distances can then be used to do clustering with `clust_gran()`. The package has received a grant (AUD 3000) as part of the ACEMS Business Analytics Prize towards polishing the functions and preparing it for CRAN.
 
 
 ### Computational resources
@@ -63,35 +63,40 @@ Simulation studies were carried out to study the behavior of $wpd$, build the no
 <!-- The package contains functions for implementing the complete clustering methodology with choices of scaling and distance metrics discussed in the chapter. It -->
 
 
-## Future ideas
+## Limitations and future ideas
 
-There are a few areas to extend this research. The first two explore catering to time series data, where the design of our framework is limited. Handling non-stationary time series data or data with structured missingness, for example. Second, scaling up for more uncertainty is beneficial since huge data sets with greater uncertainty may have more difficulties than a few time series. It is essential to recognize the difficulties of analyzing clustering results in such a setting. To that end, it would be interesting to investigate how to deal with anomalies or determine the significance of the clusters. A third possibility is to focus on expanding the scope of the framework to include multivariate time series data.
+We address few limitations of the current framework that might serve as natural next steps for this work and some potential short and long-term aims in future ideas.
+
+### Limitations
+
+The time series are observed over a short period of time (1-3 years) in the motivating example of this research. Hence, they are assumed to be stationary. But it is possible that the distributions change over time, even over a short period. For the smart meter example, the distribution for a customer moving to a different house or changing electrical equipment may change drastically. To detect these dynamic changes, non-stationarity in time series has to be incorporated while visualizing distributions and also computing distances for two non-stationary time series or one stationary and another non-stationary time series.
+
+Additionally, it is possible that data for a whole category of cyclic granularity is unavailable or that there are insufficient observations to compute distributions. For example, a customer may not have data for a particular day of the week or month throughout their observation period. While visualizing probability distributions across categories in Chapters \@ref(ch-gravitas) and \@ref(ch-hakear), this can be indicated by displaying dot plots instead of summarizing distributions. But the distances in Chapter \@ref(ch-gracsr) can not handle missing observations if they are structured like this. We would like to be able to think about designing a distance metric that can incorporate customers with structural missingness and also comprehend its implications while visually characterizing them. Another related direction is how to manage the swarm of nuisance variables produced by transforming the time series to cyclic granularities. Because the design of our existing framework treats each level of granularity as a variable, it is important to identify levels of granularity that do not contribute to clustering and remove them from the distance metric in order to improve the performance of the clustering algorithm.
+
+### Future ideas
+
+The standard methodologies provide contradicting recommendations for the optimal number of clusters when there are nuisance variables (no contribution to clustering) or nuisance observations (inlying and outlying observations falling between clusters). As a result, a more realistic short-term goal should be to test the persistence of clustering solutions in the presence of nuisance variables for the chosen number of clusters. This can be done by introducing slightly different samples into the study and observing how the clustering methods handle increased heterogeneity.
+
+Another possible direction is to reduce computational time so that the proposed methods are easily scalable to many customers. The distance measure, $wpd$ is computationally heavy even under parallel computation. Moreover, while computing distances between time series, the proposed methods compute all possible pairwise distances, which acts as a computational barrier. Faster nearest-neighbor search algorithms can be employed here to decrease the computational load.
+
+A longer-term goal would be to create a similar framework for visualizing and analyzing multivariate time series data. With multiple time series available for each observation, the complexity of efficient exploration and visualization grows exponentially. In this case, conditional distributions include not only temporal dependency but also variables and their dependencies. This adds to the already high-dimensional data structures that result from studying distributions. This big problem can be tackled by first incorporating time’s inherent characteristics while visualizing one or a few multivariate time series data. Unsupervised clustering can then be used to group multiple time series across multiple time granularities and variables. This is a method similar to the one used in this thesis for dealing with univariate time series.
 
 
-**Non-stationary time series**
+<!-- There are a few areas to extend this research. The first two explore catering to time series data, where the design of our framework is limited. Handling non-stationary time series data or data with structured missingness, for example. Second, scaling up for more uncertainty is beneficial since huge data sets with greater uncertainty may have more difficulties than a few time series. It is essential to recognize the difficulties of analyzing clustering results in such a setting. To that end, it would be interesting to investigate how to deal with anomalies or determine the significance of the clusters. A third possibility is to focus on expanding the scope of the framework to include multivariate time series data. -->
 
-Because the time series are observed over a short period of time (1-3 years), they are assumed to be stationary. But it is possible that the distributions change over time, even over a short period. For the smart meter example, the distribution for a customer moving to a different house or changing electrical equipment can change drastically. To detect these dynamic changes, non-stationarity in time series has to be incorporated while visualizing distributions and also computing distances for two non-stationary time series or one stationary and another non-stationary time series.
 
-**Structured missingness**
+<!-- **Non-stationary time series** -->
 
-It is possible that data for a whole category of cyclic granularity is unavailable or that there are insufficient observations to compute distributions. For example, a customer may not have data for a particular day of the week or month throughout their observation period. While visualizing probability distributions across categories in Chapters \@ref(ch-gravitas) and \@ref(ch-hakear), this can be indicated by displaying dot plots instead of summarizing distributions. But the distances in Chapter \@ref(ch-gracsr) can not handle missing observations if they are structured like this. More research is needed to design a distance that can incorporate customers with structural missingness and also comprehend its implications while visually characterizing them.
 
-**Anomalies**
+<!-- **Structured missingness** -->
 
-Characterizing clusters with varied or outlying customers can result in patterns that do not represent the group. Moreover, integrating heterogeneous consumers may result in visually identical end clusters, which are potentially not useful. An appropriate anomaly detection approach could be applied to filter the anomalies, and then a decision has to be made whether the anomalies should form a group or be assigned to the closest group through a classification method.
 
-**Develop inferential methods for the clusters**
 
-It is important to determine whether or not any detected clusters are statistically significant. In Chapter \@ref(ch-gracsr), we have used a permutation approach to detect if patterns are authentic or not across one or a pair of granularities. A similar approach could be used for finding the significance of clusters, but permutations used for comparisons must adjust for the fact that different temporal granularities have distinct conditional distributions.
+<!-- **Anomalies** -->
 
-**Scaling up for larger uncertainty and computational efficiency**
+<!-- Characterizing clusters with varied or outlying customers can result in patterns that do not represent the group. Moreover, integrating heterogeneous consumers may result in visually identical end clusters, which are potentially not useful. An appropriate anomaly detection approach could be applied to filter the anomalies, and then a decision has to be made whether the anomalies should form a group or be assigned to the closest group through a classification method. -->
 
-Larger data sets with more uncertainty may complicate matters, with potentially more problems than already stated above. More research is needed to understand what other sorts of problems may arise with the current methodology and possible ways to address them. All of this must be done while keeping computational efficiency in mind, as this is critical when scaling up for the analysis of large data sets.
-
-**Scaling up the methods for multivariate time series data**
-
-Another possible extension would be to create a similar framework for visualizing and analyzing multivariate time series data. With multiple time series available for each observation, the complexity of efficient exploration and visualization grows exponentially. In this case, conditional distributions include not only temporal dependency but also variables and their dependencies. This adds to the already high-dimensional data structures that result from studying distributions. This big problem can be tackled by first incorporating time’s inherent characteristics while visualizing one or a few multivariate time series data. Unsupervised clustering can then be used to group multiple time series across multiple time granularities and variables. This is a method similar to the one used in this thesis for dealing with univariate time series.
-
+s
 
 <!-- ### Comparing our clustering method with other benchmark methods -->
 
