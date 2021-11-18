@@ -8,11 +8,11 @@ I am deeply grateful to my supervisors Rob J Hyndman and Dianne Cook, who are ph
 
 <!-- - Department and conferences -->
 
-I want to thank the Department of Econometrics and Business Statistics, Monash Business School, ARC Centre of Excellence for Mathematical and Statistical Frontiers (ACEMS), and Data61 CSIRO for their financial support. Thanks to the Department, I attended a few conferences in person (before COVID hit) and had a great time networking and being inspired by many people. A few highlights are UseR! 2018 (Brisbane), Young Statistician's Conference 2019 (Canberra), WOMBAT 2019 (Melbourne), and ROpenSci 2019 (Sydney). Thank you to Gael Martin, Farshid Wahid, Klaus Ackermann, and Didier Nibbering from my PhD committee for providing such a supportive environment.
+I want to thank the Department of Econometrics and Business Statistics, Monash Business School, ARC Centre of Excellence for Mathematical and Statistical Frontiers (ACEMS), Data61 CSIRO for their financial support. Thanks to the Department, I attended a few conferences in person (before COVID hit) and had a great time networking and being inspired by many people. A few highlights are UseR! 2018 (Brisbane), Young Statistician's Conference 2019 (Canberra), WOMBAT 2019 (Melbourne), and ROpenSci 2019 (Sydney). Thank you to Gael Martin, Farshid Wahid, Klaus Ackermann, and Didier Nibbering from my PhD committee for providing such a supportive environment.
 
 
  <!-- - PhD friends and R community -->
-Thank you, Puwasala Gamakumara, Stephanie Kobakian and Nicholas Tierney, for being so warm, kind and welcoming when I began my PhD. Being a part of such an inclusive environment meant a lot to me as an international student. Thank you, Nicholas Spyrison and Mitchell O'Hara-Wild, for the numerous informative discussions, brainstorming sessions, as well as for generously sharing your expertise and experience in software development. Thank you to each of you, NUMBATs, and the broader R community for directly and indirectly helping me countless times. You never fail to inspire me.
+Thank you, Puwasala Gamakumara, Stephanie Kobakian and Nicholas Tierney, for being so warm, kind and welcoming when I began my PhD. Being a part of such an inclusive environment meant a lot to me as an international student. Thank you, Nicholas Spyrison and Mitchell O'Hara-Wild, for the numerous informative discussions, brainstorming sessions, as well as for generously sharing your expertise and experience in software development. A special thanks goes to Stephanie, Emi Tanaka, Nicholas Tierney, and Nicholas Spyrison for taking the time out of their busy schedules to proofread parts of my thesis. Thank you to each of you, NUMBATs, and the broader R community for directly and indirectly helping me countless times. You never fail to inspire me.
 
 <!-- - Friends -->
 
@@ -22,8 +22,12 @@ Doing a PhD in COVID has been hard, and I would not have been able to make it th
 <!-- - Family -->
 
 A big thank you to my family for always being supportive of my choices. Thanks to my mum (Nupur Gupta) and dad (Arun Prasad Gupta), from whom I learnt that no matter where you start from, if you persevere and are sincere in your efforts, you can sail through any difficult situation. They are my constant cheerleaders for all little and big endeavors. Thanks to my brother (Avijit) for always having my back and inspiring me to dream bigger. Thank you, Juhi (sister-in-law), for reminding me of the value of organization in all aspects of life and the importance of prioritizing my physical health from time to time.
-Thank you for making me feel at home away from home, Somdatta (cousin). Lastly, thank you to my one-year-old nephew (Rayan) and niece (Mehr) for being the ultimate stress relievers. Thank you all for being a part of this journey with me. I love you.
+Lastly, thank you to my one-year-old nephew (Rayan) and niece (Mehr) for being the ultimate stress relievers. Thank you all for being a part of this journey with me. I love you.
 
+<!-- Thank you for making me feel at home away from home, Somdatta (cousin). -->
 <!-- add people who are helping you with proofreading -->
 <!-- Although the journey is coming to an end, you wish to take these life learnings forward -->
 <!-- add Earo and Stuart that you followed their model of workflow and templates, using the power of reproducible and accessible  research -->
+
+Throughout my PhD candidature, I have had the great privilege of working with and being inspired by my advisers and many other people, which resulted in a great lot of learning in both academics and life. Although the journey is coming to a close, I want to carry these life lessons forward, and I would like to conclude with one of my favorites from Rob. "Be kind; remember you are collaborating with your future self."
+s
