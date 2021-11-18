@@ -35,7 +35,7 @@ data_pick_cust <- bind_rows(
   mutate(customer_id = as.character(customer_id))
 
 ## ----all-data-----------------------------------------------------------------
-data_pick <- read_rds(here::here("data/gracsr/elec_nogap_2013_clean_356cust.rds")) %>%
+data_pick <- readr::read_rds(here::here("data/gracsr/elec_nogap_2013_clean_356cust.rds")) %>%
   mutate(customer_id = as.character(customer_id)) %>%
   dplyr::filter(customer_id %in% data_pick_cust$customer_id) %>%
   gracsr::scale_gran(
@@ -69,7 +69,7 @@ distance_jsd <- as.dist(distance)
 
 ## ----opt-clusters-jsd---------------------------------------------------------
 
-all_index <- map_dfr(2:10, function(x) {
+all_index_nqt <- map_dfr(2:10, function(x) {
   group <- distance_jsd %>%
     hclust(method = "ward.D") %>%
     cutree(k = x)
@@ -78,22 +78,23 @@ all_index <- map_dfr(2:10, function(x) {
     k = x,
     sindex = p$sindex
   )
-})
+})%>% mutate(method = "JS-NQT")
 
-opt_clusters <- all_index %>% ggplot(aes(
-  x = k,
-  y = sindex
-)) +
-  geom_line() +
-  scale_x_continuous(
-    breaks = seq(2, 10, 1),
-    minor_breaks = 1
-  ) +
-  theme_bw() +
-  ylab("sindex") +
-  xlab("number of clusters") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8))
-
+# 
+# opt_clusters <- all_index %>% ggplot(aes(
+#   x = k,
+#   y = sindex
+# )) +
+#   geom_line() +
+#   scale_x_continuous(
+#     breaks = seq(2, 10, 1),
+#     minor_breaks = 1
+#   ) +
+#   theme_bw() +
+#   ylab("sindex") +
+#   xlab("number of clusters") +
+#   theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8))
+# 
 
 
 ## ----groups-24----------------------------------------------------------------
@@ -106,8 +107,14 @@ cluster_result <- suppressMessages(distance_jsd %>%
 cluster_result_id <- cluster_result %>%
   arrange(group) %>%
   mutate(divide_cust = rep(c(1, 2), each = 12)) %>%
-  mutate(id = row_number())
+  mutate(sort_group_id = row_number()) %>% 
+  left_join(data_pick_cust, by = c("customer_id")) %>% 
+  mutate(id = paste(sort_group_id, design, sep = "-"))
 
+
+label_factor <- cluster_result_id$id %>% unique()
+
+cluster_result_id$id = factor(cluster_result_id$id, levels = label_factor)
 
 
 
@@ -190,12 +197,12 @@ hod_ind_group1 <- data_hod %>%
   ) +
   theme_application2() +
   scale_fill_manual(values = c(
-    "#E69F00", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   scale_color_manual(values = c(
-    "#E69F00", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   xlab("hod") +
   scale_x_discrete(breaks = seq(0, 23, 3)) +
@@ -232,12 +239,12 @@ hod_ind_group2 <- data_hod %>%
   ) +
   theme_application2() +
   scale_fill_manual(values = c(
-    "#E69F00", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   scale_color_manual(values = c(
-    "#E69F00", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   xlab("hod") +
   scale_x_discrete(breaks = seq(0, 23, 3)) +
@@ -267,12 +274,12 @@ moy_ind_group1 <- data_moy %>%
   xlab("moy") +
   theme_application2() +
   scale_fill_manual(values = c(
-    "#E69F00", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   scale_color_manual(values = c(
-    "#E69F00", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   theme(legend.position = "bottom") +
   theme(plot.margin = unit(c(0, -1, 0, -1), "cm"))
@@ -296,12 +303,12 @@ moy_ind_group2 <- data_moy %>%
   xlab("moy") +
   theme_application2() +
   scale_fill_manual(values = c(
-    "#E69F00", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   scale_color_manual(values = c(
-    "#E69F00", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   theme(legend.position = "bottom") +
   theme(plot.margin = unit(c(0, -1, 0, -1), "cm"))
@@ -325,8 +332,8 @@ wkndwday_ind_group1 <- data_wkndwday %>%
   ) +
   theme_application2() +
   scale_fill_manual(values = c(
-    "black", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "black", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   theme(legend.position = "none") +
   xlab("wnwd") +
@@ -349,8 +356,8 @@ wkndwday_ind_group2 <- data_wkndwday %>%
   ) +
   theme_application2() +
   scale_fill_manual(values = c(
-    "black", "#009E73", "#0072B2",
-    "#D55E00", "#CC79A7"
+    "black", "#5D7050", "#0072B2",
+    "#125070", "#50A6C2"
   )) +
   theme(legend.position = "none") +
   xlab("wnwd") +
@@ -362,15 +369,14 @@ cust_div2 <- hod_ind_group2 + moy_ind_group2 + wkndwday_ind_group2
 
 
 plot <- ggpubr::ggarrange(cust_div1, cust_div2,
-  ncol = 2,
-  labels = c("a", "b"), hjust = -1
+  ncol = 2, hjust = -1
 )
 
 
 
 ##----hod-ind-group-png----------------------------------------------------
-#ggsave("figs/ind-groups-24.png")
-knitr::include_graphics("img/ind-groups-24.png")
+#ggsave("img/ind-groups-24-design.png")
+knitr::include_graphics("img/ind-groups-24-design.png")
 #plot
 
 
@@ -382,15 +388,22 @@ cluster_result_kopt4 <- suppressMessages(distance_jsd %>%
   rename("customer_id" = "id") %>%
   mutate(group = as.factor(group))
 
+
 cluster_result_id4and5 <- cluster_result_id %>%
   left_join(cluster_result_kopt4, by = "customer_id") %>%
   rename("group4" = "group.y") %>%
   rename("group5" = "group.x")
 
+cluster_result_id4and5$group4 <- fct_recode(cluster_result_id4and5$group4, "1" = "4", "4"="1")
+
+cluster_result_id4and5$group5 <- fct_recode(cluster_result_id4and5$group5, "1" = "5", "5" = "1")
+
+
 # data-heatmap-hod-group-new-4
 
 data_group <- data_pick_robust %>%
   left_join(cluster_result_id4and5, by = c("customer_id"))
+
 
 data_heatmap_hod_group <- quantile_gran(data_group,
   gran1 = "hour_day",
@@ -433,8 +446,14 @@ hod_group <- data_heatmap_hod_group %>%
   theme_bw() +
   scale_x_discrete(breaks = seq(1, 24, 3)) +
   theme_application3() +
-  scale_fill_manual(values = as.vector(tableau20(20))) +
-  scale_color_manual(values = as.vector(tableau20(20))) +
+  scale_fill_manual(values = c(
+    "#A89030", "#5D7050",
+    "#481800",  "#125070"
+  )) +
+  scale_color_manual(values = c(
+    "#A89030", "#5D7050",
+    "#481800",  "#125070"
+  ))+
   theme(legend.position = "bottom")
 
 # data-heatmap-moy-group-new-4
@@ -478,8 +497,14 @@ moy_group <- data_heatmap_moy_group %>%
   ylab("demand (in Kwh)") +
   theme_bw() +
   theme_application3() +
-  scale_fill_manual(values = as.vector(tableau20(20))) +
-  scale_color_manual(values = as.vector(tableau20(20))) +
+  scale_fill_manual(values = c(
+    "#A89030", "#5D7050",
+    "#481800",  "#125070"
+  )) +
+  scale_color_manual(values = c(
+    "#A89030", "#5D7050",
+    "#481800",  "#125070"
+  ))+
   theme(legend.position = "bottom")
 
 # data-heatmap-wkndwday-group-4
@@ -507,8 +532,14 @@ wkndwday_group <- wkndwday_data %>%
     labeller = "label_value"
   ) +
   theme_bw() +
-  scale_fill_manual(values = as.vector(tableau20(10))) +
-  scale_color_manual(values = as.vector(tableau20(10))) +
+  scale_fill_manual(values = c(
+    "#A89030", "#5D7050",
+    "#481800",  "#125070"
+  )) +
+  scale_color_manual(values = c(
+    "#A89030", "#5D7050",
+    "#481800",  "#125070"
+  ))+
   theme(legend.position = "none") +
   theme_application3()
 
@@ -563,12 +594,12 @@ hod_group <- data_heatmap_hod_group %>%
   scale_x_discrete(breaks = seq(1, 24, 3)) +
   theme_application3() +
   scale_fill_manual(values = c(
-    "#E69F00", "#009E73", "#999999",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#481800",
+    "#50A6C2", "#84C0D4"
   )) +
   scale_color_manual(values = c(
-    "#E69F00", "#009E73", "#999999",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#481800",
+    "#50A6C2", "#84C0D4"
   )) +
   theme(legend.position = "bottom")
 
@@ -612,12 +643,12 @@ moy_group <- data_heatmap_moy_group %>%
   theme_bw() +
   theme_application3() +
   scale_fill_manual(values = c(
-    "#E69F00", "#009E73", "#999999",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#481800",
+    "#50A6C2", "#84C0D4"
   )) +
   scale_color_manual(values = c(
-    "#E69F00", "#009E73", "#999999",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#481800",
+    "#50A6C2", "#84C0D4"
   )) +
   theme(legend.position = "bottom")
 
@@ -647,12 +678,12 @@ wkndwday_group <- wkndwday_data %>%
   ) +
   theme_bw() +
   scale_fill_manual(values = c(
-    "#E69F00", "#009E73", "#999999",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#481800",
+    "#50A6C2", "#84C0D4"
   )) +
   scale_color_manual(values = c(
-    "#E69F00", "#009E73", "#999999",
-    "#D55E00", "#CC79A7"
+    "#A89030", "#5D7050", "#481800",
+     "#50A6C2", "#84C0D4"
   )) +
   theme(legend.position = "none") +
   theme_application3()
@@ -679,18 +710,20 @@ elec_pick_wide <- elec_pick %>% pivot_wider(-c(1, 2), names_from = "x_variable",
 
 scaled_var <- elec_pick_wide
 
-distance_wpd <- elec_pick_wide[-1] %>% dist()
+distance_wpd <- elec_pick_wide[-1] %>% scale() %>%  dist()
 
 
-all_index <- map_dfr(2:10, function(x) {
+## ----opt_clusters-wpd------------------------------------------------------------
+all_index_wpd <- map_dfr(2:10, function(x) {
   group <- distance_wpd %>%
     hclust(method = "ward.D") %>%
     cutree(k = x)
   p <- cluster.stats(distance_wpd, clustering = group, silhouette = TRUE)
   index <- c(k = x, sindex = p$sindex)
-})
+})%>% mutate(method = "WPD")
 
-opt_clusters_wpd <- all_index %>% ggplot(aes(x = k, y = sindex)) +
+
+opt_clusters_wpd <- all_index_wpd %>% ggplot(aes(x = k, y = sindex)) +
   geom_line() +
   scale_x_continuous(breaks = seq(2, 10, 1), minor_breaks = 1) +
   theme_bw() +
@@ -698,50 +731,117 @@ opt_clusters_wpd <- all_index %>% ggplot(aes(x = k, y = sindex)) +
   xlab("number of clusters") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8))
 
+## ----summary-group-wpd------------------------------------------------------------
 
-
-## ----wpd-clustering-----------------------------------------------------------
-group <- distance_wpd %>%
+group3 <- distance_wpd %>%
   hclust(method = "ward.D") %>%
-  cutree(k = 4)
+  cutree(k = 3)
 
 
-cluster_result_wpd <- bind_cols(id = elec_pick_wide$customer_id, group = group)
+cluster_result_wpd3 <- bind_cols(id = elec_pick_wide$customer_id, 
+                                 group3 = group3) %>%
+  mutate(group3 = as.factor(group3))
+
+
+group5 <- distance_wpd %>%
+  hclust(method = "ward.D") %>%
+  cutree(k = 5)
+
+
+cluster_result_wpd5 <- bind_cols(id = elec_pick_wide$customer_id,
+                                 group5 = group5)%>%
+  mutate(group5 = as.factor(group5))
+
+
+cluster_result_wpd <- cluster_result_wpd3 %>% left_join(cluster_result_wpd5, by = "id")
+
+cluster_result_wpd$group5 <- fct_recode(cluster_result_wpd$group5, "1" = "5", "5"="1")
+
+cluster_result_wpd$group3 <- fct_recode(cluster_result_wpd$group3, "3" = "1", "1"="3")
 
 data_pcp <- scaled_var %>%
   # bind_cols(customer_id =  elec_pick_wide$customer_id) %>%
   left_join(cluster_result_wpd, by = c("customer_id" = "id")) %>%
-  select(customer_id, group, everything()) %>%
-  mutate(group = as.factor(group)) %>%
+  select(customer_id, group3, everything()) %>%
   mutate(customer_id = as.character(customer_id)) %>%
   rename(
     "moy" = "month_year",
     "hod" = "hour_day",
     "wnwd" = "wknd_wday"
-  )
+  ) %>% 
+  select(customer_id, group3, group5, everything())
 
-data_table <- data_pcp %>%
-  group_by(group) %>%
+data_pcp_plot <- data_pcp
+
+
+## ----summary-table-wpd------------------------------------------------------------
+
+data_pcp$group5 <- paste("Q", data_pcp$group5 ,
+                         sep = "-"
+)
+data_pcp$group3 <- paste("P", data_pcp$group3 ,
+                         sep = "-"
+)
+
+data_table3 <- data_pcp %>%
+  group_by(group3) %>%
   summarise(
     nobs = n(),
-    moy = round(median(moy), 2),
-    hod = round(median(hod), 2),
-    wnwd = round(median(wnwd), 2)
-  ) %>%
-  select(-group)
+    moy = round(median(moy), 1),
+    hod = round(median(hod), 1),
+    wnwd = round(median(wnwd), 1)
+  ) %>% mutate(k = 3) %>% 
+  rename("group" = "group3")
 
-rownames(data_table) <- c("group-1", "group-2", "group-3", "group-4")
+data_table5 <- data_pcp %>%
+  group_by(group5) %>%
+  summarise(
+    nobs = n(),
+    moy = round(median(moy), 1),
+    hod = round(median(hod), 1),
+    wnwd = round(median(wnwd), 1)
+  ) %>% mutate(k = 5)%>% 
+  rename("group" = "group5")
 
+data_pcp_id <- data_pcp %>% left_join(cluster_result_id, by = "customer_id")
 
+p1 <- data_pcp_id %>% filter(group3 =="P-1") %>% pull(sort_group_id) %>% paste(collapse = ", ")
 
-## ----parcoord-application-gracsr-----------------------------------------------------
-parcoord <- GGally::ggparcoord(data_pcp %>% left_join(cluster_result_id, by = "customer_id"),
-  columns = 3:5,
-  groupColumn = "group.x",
-  showPoints = FALSE,
-  alphaLines = 0.8,
-  order = "anyClass",
-  scale = "globalminmax"
+p2 <- data_pcp_id %>% filter(group3 =="P-2") %>% pull(sort_group_id) %>% paste(collapse = ", ")
+
+p3 <- data_pcp_id %>% filter(group3 =="P-3") %>% pull(sort_group_id) %>% paste(collapse = ", ")
+
+q1 <- data_pcp_id %>% filter(group5 =="Q-1") %>% pull(sort_group_id) %>% paste(collapse = ", ")
+
+q2 <- data_pcp_id %>% filter(group5 =="Q-2") %>% pull(sort_group_id) %>% paste(collapse = ", ")
+
+q3 <- data_pcp_id %>% filter(group5 == "Q-3") %>% pull(sort_group_id) %>% paste(collapse = ", ")
+
+q4 <- data_pcp_id %>% filter(group5 == "Q-4") %>% pull(sort_group_id) %>% paste(collapse = ", ")
+
+q5 <- data_pcp_id %>% filter(group5 =="Q-5") %>% pull(sort_group_id) %>% paste(collapse = ", ")
+
+data_table <- bind_rows(data_table3,
+                        data_table5) %>%
+  bind_cols(`customer-prototype id` = c(p1, p2, p3, q1, q2, q3, q4, q5)) %>% 
+  select(k, group, everything()) %>% 
+  bind_cols()
+
+data_table %>% 
+knitr::kable(format = "latex",
+             escape = FALSE,
+             caption = "Summary table from WPD clusters showing median $wpd$ values ($moy$, $hod$, $wnwd$), cluster size ($nobs$) and the list of the customer-prototype id for each cluster with $3$ and $5$ number of clusters ($k$).")%>% 
+  kableExtra::collapse_rows(columns = 1)
+
+## ----summary-plot-wpd------------------------------------------------------------
+
+parcoord5 <- GGally::ggparcoord(data_pcp_plot %>% select(-group3)%>% left_join(cluster_result_id, by = "customer_id"),
+                                columns = 3:5,
+                                groupColumn = "group5",
+                                showPoints = FALSE,
+                                alphaLines = 0.8,
+                                order = "anyClass",
+                                scale = "std"
 ) +
   ggplot2::theme(
     plot.title = ggplot2::element_text(size = 10)
@@ -749,17 +849,43 @@ parcoord <- GGally::ggparcoord(data_pcp %>% left_join(cluster_result_id, by = "c
   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 10)) +
   theme(legend.position = "bottom") +
   xlab("") +
-  ylab("wpd") + scale_fill_viridis_d(direction = 1) +
-  scale_color_viridis_d(direction = 1) + theme_light() +
+  ylab("wpd") +
   labs(colour = "group") +
-  theme(panel.border = element_blank())
+  theme(panel.border = element_blank()) +
+  scale_color_discrete(labels = c(c("Q-1","Q-2", "Q-3", "Q-4", "Q-5")))+
+  scale_color_manual(values = c("#3300FF", "#1B9E77", "#3B3178", "#1D7CF2", "#AE6D1C"), labels = c("Q-5","Q-2", "Q-3", "Q-4", "Q-1"))
 
 
-parcoord + geom_text(aes(label = id)) +
-  inset_element(gridExtra::tableGrob(data_table),
-    left = 0.4, bottom = 0.6,
-    right = 1, top = 1
-  ) & theme(legend.position = "bottom")
+
+parcoord3 <- GGally::ggparcoord(data_pcp_plot %>% select(-group5)%>% left_join(cluster_result_id, by = "customer_id"),
+                                columns = 3:5,
+                                groupColumn = "group3",
+                                showPoints = FALSE,
+                                alphaLines = 1,
+                                order = "anyClass",
+                                scale = "std"
+) +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(size = 10)
+  ) +
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 10)) +
+  theme(legend.position = "bottom") +
+  xlab("") +
+  ylab("wpd") +
+  labs(colour = "group") +
+  theme(panel.border = element_blank()) +
+  scale_color_manual(values = c("#D8367D", "#1B9E77","#AE6D1C"), labels = c("P-3","P-2", "P-1"))
+
+
+parcoord3 <- parcoord3 +geom_text_repel(aes(label = sort_group_id), size = 2) &theme_light()&theme(legend.position = "bottom") 
+
+
+parcoord5 <- parcoord5 +geom_text_repel(aes(label = sort_group_id), size = 2) &theme_light()&theme(legend.position = "bottom") 
+
+(parcoord3 + ylab("") + parcoord5 + ylab("")) + plot_annotation(tag_levels = "a")+ plot_layout(guides = "collect")&theme(legend.position = "bottom")&theme(legend.title=element_blank())
+  
+
+#&theme_application2() + plot_annotation(tag_levels = "a")
 
 
 
@@ -825,7 +951,8 @@ tsne_df <- data.frame(
 ## ----tsne-xy------------------------------------------------------------------
 tsne_xy <- ggplot(tsne_df, aes(x = tsneX, y = tsneY)) +
   geom_point(size = 2, shape = ".") +
-  ggrepel::geom_text_repel(aes(label = id), size = 2, seed = 2935, max.overlaps = 10) +
+geom_text(aes(label = sort_group_id), size = 2)+
+#, seed = 2935, max.overlaps = 10) +
   # scale_color_manual(values = limn_pal_tableau10()) +
   scale_colour_viridis_d(direction = -1) +
   # guides(color = FALSE) +
@@ -834,8 +961,80 @@ tsne_xy <- ggplot(tsne_df, aes(x = tsneX, y = tsneY)) +
   theme(aspect.ratio = 1)
 
 
+## ----all-data-rs-----------------------------------------------------------------
+data_pick_rs <- readr::read_rds(here::here("data/gracsr/elec_nogap_2013_clean_356cust.rds")) %>%
+  mutate(customer_id = as.character(customer_id)) %>%
+  dplyr::filter(customer_id %in% data_pick_cust$customer_id) %>%
+  gracsr::scale_gran(
+    method = "robust",
+    response = "general_supply_kwh"
+  )
+
+
+
+## ----clustering-rs---------------------------------------------------------------
+hod_rs <- suppressMessages(data_pick_rs %>%
+                          dist_gran(
+                            gran1 = "hour_day",
+                            response = "general_supply_kwh"
+                          ))
+
+moy_rs <- suppressMessages(data_pick_rs %>%
+                          dist_gran(
+                            gran1 = "month_year",
+                            response = "general_supply_kwh"
+                          ))
+
+wkndwday_rs <- suppressMessages(data_pick_rs %>%
+                               dist_gran(gran1 = "wknd_wday", response = "general_supply_kwh"))
+
+distance_rs <- wkndwday_rs / 2 + moy_rs / 12 + hod_rs / 24
+
+distance_jsd_rs <- as.dist(distance_rs)
+
+
+
+## ----opt-clusters-jsd-rs---------------------------------------------------------
+
+all_index_rs <- map_dfr(2:10, function(x) {
+  group <- distance_jsd_rs %>%
+    hclust(method = "ward.D") %>%
+    cutree(k = x)
+  p <- cluster.stats(distance_jsd_rs, clustering = group, silhouette = TRUE, wgap = TRUE)
+  index <- c(
+    k = x,
+    sindex = p$sindex
+  )
+}) %>% mutate(method = "JS-RS")
+
+
+
+
+## ----opt-clusters-all---------------------------------------------------------
+
+all_index <- bind_rows(all_index_rs, all_index_nqt, all_index_wpd)
+
+
+opt_clusters <- all_index %>% ggplot(aes(
+  x = k,
+  y = sindex
+)) +
+  geom_line() +
+  scale_x_continuous(
+    breaks = seq(2, 10, 1),
+    minor_breaks = 1
+  ) +
+  facet_wrap(~method, scales = "free_y", ncol = 1)+
+  theme_bw() +
+  ylab("sindex") +
+  xlab("number of clusters") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8))
+
+
+
 
 ## ----opt-cluster-tsne-jsd-----------------------------------------------------
 
-tsne_xy + (opt_clusters / opt_clusters_wpd) +
-  plot_annotation(tag_levels = list(c("", "JS", "wpd")))
+tsne_xy + opt_clusters + plot_annotation(tag_levels = "a")
+  #(opt_clusters / opt_clusters_wpd) +
+  #plot_annotation(tag_levels = list(c("", "JS", "wpd")))

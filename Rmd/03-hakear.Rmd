@@ -635,7 +635,7 @@ The significant granularities across different datasets (individuals/subjects) d
 
 The authors thank the ARC Centre of Excellence for Mathematical and Statistical Frontiers [(ACEMS)](https://acems.org.au/home) for supporting this research. Sayani Gupta was partially funded by [Data61 CSIRO](https://data61.csiro.au/) during her PhD. The Github repository, [github.com/Sayani07/paper-hakear](https://github.com/Sayani07/paper-hakear), contains all materials required to reproduce this article and the code is also available online in the supplemental materials. This article was created with R [@R-language], `knitr` [@knitr; @R-knitr] and `rmarkdown` [@rmarkdown; @R-rmarkdown]. Graphics are produced with `ggplot2` [@Wickham2009pk].
 
-## Supplementary materials
+## Supplementary materials {- #supplement-hakear}
 
 **Data and scripts:** Data sets and R code to reproduce all figures in this article (main.R).
 

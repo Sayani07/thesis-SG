@@ -31,7 +31,8 @@ knitr::kable(
   list(tab_dist, tibble(design, g1, g2, g3)),
   caption = "For S1, distributions of different categories when they vary (displayed on top). If distributions are fixed, they are set to N(0, 1). The various distributions across categories result in five designs (displayed below).",
   booktabs = TRUE, valign = "t"
-)
+) %>%
+  kable_styling(latex_options = "hold_position")
 
 
 
@@ -1022,6 +1023,46 @@ mds_plot_10 <- ggplot(
   scale_color_brewer(palette = "Dark2") +
   ylab("mds1") +
   xlab("mds2") +
+  theme(axis.text = element_text(size = 8))+
   theme(aspect.ratio = 1)
 
 mds_plot_10
+
+
+##----wpd-sindex-validation----------------------------------------
+data1 <- sindex_data(read_rds("validation/wpd/3gran_change_5D/data_validation_25.rds")) %>% mutate(diff = 1, design = "S1")
+data2 <- sindex_data(read_rds("validation/wpd/3gran_change_5D/data_validation_26.rds")) %>% mutate(diff = 2, design = "S1")
+data3 <- sindex_data(read_rds("validation/wpd/3gran_change_5D/data_validation_27.rds")) %>% mutate(diff = 5, design = "S1")
+
+data4 <- sindex_data(read_rds("validation/wpd/2gran_change_4D/data_validation_7.rds")) %>% mutate(diff = 1, design = "S2")
+data5 <- sindex_data(read_rds("validation/wpd/2gran_change_4D/data_validation_17.rds")) %>% mutate(diff = 2, design = "S2")
+data6 <- sindex_data(read_rds("validation/wpd/2gran_change_4D/data_validation_9.rds")) %>% mutate(diff = 5, design = "S2")
+
+
+data7 <- sindex_data(read_rds("validation/wpd/1gran_change_5D/data_validation_16.rds")) %>% mutate(diff = 1, design = "S3")
+data8 <- sindex_data(read_rds("validation/wpd/1gran_change_5D/data_validation_17.rds")) %>% mutate(diff = 2, design = "S3")
+data9 <- sindex_data(read_rds("validation/wpd/1gran_change_5D/data_validation_18.rds")) %>% mutate(diff = 5, design = "S3")
+
+all_data <- bind_rows(data1, data2, data3, data4, data5, data6, data7, data8, data9) %>% rename("Scenario" = "design")
+
+
+
+## ----sindex-plot-validation-wpd-------------------------------------------------------------
+
+sindex_plot <- ggplot(
+  all_data,
+  aes(
+    x = k,
+    y = sindex
+  )
+) +
+  geom_line(size = 1, aes(group = Scenario)) +
+  facet_grid(diff ~ Scenario, labeller = "label_value", scales = "free_y") +
+  theme_bw() +
+  theme(legend.position = "bottom") +
+  scale_color_brewer(palette = "Dark2") +
+  xlab("number of clusters") +
+  ylab("sindex") +
+  scale_x_continuous(breaks = seq(2, 10, 1), minor_breaks = 1)
+
+sindex_plot

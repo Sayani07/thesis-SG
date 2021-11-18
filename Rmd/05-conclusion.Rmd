@@ -65,7 +65,7 @@ Simulation studies were carried out to study the behavior of $wpd$, build the no
 
 ## Limitations and future ideas
 
-We address few limitations of the current framework that might serve as natural next steps for this work and some potential short and long-term aims in future ideas.
+We address few limitations of the current framework that might serve as natural next steps for this work and some potential short- and long-term aims in future ideas.
 
 ### Limitations
 
@@ -96,7 +96,6 @@ A longer-term goal would be to create a similar framework for visualizing and an
 
 <!-- Characterizing clusters with varied or outlying customers can result in patterns that do not represent the group. Moreover, integrating heterogeneous consumers may result in visually identical end clusters, which are potentially not useful. An appropriate anomaly detection approach could be applied to filter the anomalies, and then a decision has to be made whether the anomalies should form a group or be assigned to the closest group through a classification method. -->
 
-s
 
 <!-- ### Comparing our clustering method with other benchmark methods -->
 
