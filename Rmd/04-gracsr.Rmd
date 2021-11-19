@@ -689,9 +689,9 @@ Clustering of the $24$ prototypes <!--and the data subset consisting of $353$ cu
 ```{r hod-ind-group-png, fig.cap = "The distribution of electricity demand across individual customers over three granularities *hod*, *moy*, and *wnwd* are shown for the $24$ selected customers using quantile and box plots. They are split into batches of $12$ in (a) and (b), with each row in (a) or (b) representing a customer. The number indicates a unique customer id and a prototype id."}
 ```
 
+(ref:opt-cluster-tsne-jsd) Clustering summaries: (a) t-SNE computed on the $24$ selected customers, and (b) separation index (*sindex*) for $2$-$10$ clusters using JS-NQT, JS-RS and WPD. Various choices in number of clusters would be recommended. Four clusters are visible in t-SNE, although it might hide a fifth cluster because dimension reduction to 2D may be insufficient to see the difference. JS-NQT suggests $3$, JS-RS suggests $2$ or $5$ and WPD suggests $3$ or $5$.
 
-
-```{r opt-cluster-tsne-jsd, fig.cap = "Clustering summaries: (a) t-SNE computed on the $24$ selected customers, and (b) separation index (*sindex*) for $2$-$10$ clusters using JS-NQT, JS-RS and WPD. Various choices in number of clusters would be recommended. Four clusters are visible in t-SNE, although it might hide a fifth cluster because dimension reduction to 2D may be insufficient to see the difference. JS-NQT suggests $3$, JS-RS suggests $2$ or $5$ and WPD suggests $3$ or $5$."}
+```{r opt-cluster-tsne-jsd, fig.cap = "(ref:opt-cluster-tsne-jsd)"}
 #include_graphics("img/opt_clust_parenthesis.png")
 ```
 
