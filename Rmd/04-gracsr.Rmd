@@ -730,7 +730,7 @@ Clustering of the $24$ prototypes <!--and the data subset consisting of $353$ cu
 
 ```
 
-(ref:summary-plot-wpd) "Summary plots for three (a) and five (b) clusters from WPD approach showing the $\wpd$ values of each customers across *hod*, *moy*, and *wnwd* through a parallel coordinate plot. P-1 and P-2 groups correspond to Q-1 and Q-2, respectively. Cluster P-3 is subdivided into Q-3, Q-4, and Q-5. P-1 (customers 16, 18) is distinguished by high $\wpd$ on *wnwd* values. P-2 has lower $\wpd$ than *moy* and *wnwd* for *hod*. P-3 operates in the opposite way as P-2, with larger $\wpd$ for *hod* in comparison to *moy* and *wnwd*. For the $5$ cluster solution, this group is divided into Q-3, Q-4, Q-5, which are distinct due to their different relative significance of *moy* and *wnwd*."
+(ref:summary-plot-wpd) Summary plots for three (a) and five (b) clusters from WPD approach showing the $\wpd$ values of each customers across *hod*, *moy*, and *wnwd* through a parallel coordinate plot. P-1 and P-2 groups correspond to Q-1 and Q-2, respectively. Cluster P-3 is subdivided into Q-3, Q-4, and Q-5. P-1 (customers 16, 18) is distinguished by high $\wpd$ on *wnwd* values. P-2 has lower $\wpd$ than *moy* and *wnwd* for *hod*. P-3 operates in the opposite way as P-2, with larger $\wpd$ for *hod* in comparison to *moy* and *wnwd*. For the $5$ cluster solution, this group is divided into Q-3, Q-4, Q-5, which are distinct due to their different relative significance of *moy* and *wnwd*.
 
 ```{r summary-plot-wpd, fig.cap = "(ref:summary-plot-wpd)", fig.height=6}
 ```
