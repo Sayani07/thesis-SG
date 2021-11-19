@@ -4,7 +4,7 @@
 <!-- Motivation & Background -->
 <!-- Outline of the thesis -->
 
-<!-- To tame the complexity of time, breaking it into years, months, weeks, days and so on in a hierarchical manner is a common way to relate data to time. Such dicrete human made abstractions of time can be thought of as time granularities.(Aigner et al., 2008). -->
+<!-- To tame the complexity of time, breaking it into years, months, weeks, days and so on in a hierarchical manner is a common way to relate data to time. Such discrete human made abstractions of time can be thought of as time granularities.(Aigner et al., 2008). -->
 
 <!-- outline the intro chapter structure -->
 
