@@ -686,7 +686,9 @@ Clustering of the $24$ prototypes <!--and the data subset consisting of $353$ cu
 ```
 
 
-```{r hod-ind-group-png, fig.cap = "The distribution of electricity demand across individual customers over three granularities *hod*, *moy*, and *wnwd* are shown for the $24$ selected customers using quantile and box plots. They are split into batches of $12$ in (a) and (b), with each row in (a) or (b) representing a customer. The number indicates a unique customer id and a prototype id."}
+(ref:hod-ind-group-png) The distribution of electricity demand across individual customers over three granularities *hod*, *moy*, and *wnwd* are shown for the $24$ selected customers using quantile and box plots. They are split into batches of $12$ in (a) and (b), with each row in (a) or (b) representing a customer. The number indicates a unique customer id and a prototype id.
+
+```{r hod-ind-group-png, fig.cap = "(ref:hod-ind-group-png)"}
 ```
 
 (ref:opt-cluster-tsne-jsd) Clustering summaries: (a) t-SNE computed on the $24$ selected customers, and (b) separation index (*sindex*) for $2$-$10$ clusters using JS-NQT, JS-RS and WPD. Various choices in number of clusters would be recommended. Four clusters are visible in t-SNE, although it might hide a fifth cluster because dimension reduction to 2D may be insufficient to see the difference. JS-NQT suggests $3$, JS-RS suggests $2$ or $5$ and WPD suggests $3$ or $5$.
@@ -726,7 +728,10 @@ Clustering of the $24$ prototypes <!--and the data subset consisting of $353$ cu
 
 <!-- GroupA and Group B may represent different set of customers as they are groupings based on different number of clusters. -->
 
-```{r groups-4and5, fig.cap = "Summary plots for four and five clusters from JS-NQT showing the distribution of electricity demand combined for all members over *hod*, *moy*, and *wnwd*. Groups A-1 (customers 21-24), A-2 (customers 4-9), and A-3 (customers 10-15) profiles correspond to Groups B-1, B-2, and B-3, respectively. Cluster A-4 splits into B-4 (customers 16-20) and B-5 (customers 1-3) to produce the five clusters, which better resolves the *moy* distribution.", fig.height=5}
+(ref:groups-4and5) Summary plots for four and five clusters from JS-NQT showing the distribution of electricity demand combined for all members over *hod*, *moy*, and *wnwd*. Groups A-1 (customers 21-24), A-2 (customers 4-9), and A-3 (customers 10-15) profiles correspond to Groups B-1, B-2, and B-3, respectively. Cluster A-4 splits into B-4 (customers 16-20) and B-5 (customers 1-3) to produce the five clusters, which better resolves the *moy* distribution.
+
+
+```{r groups-4and5, fig.cap = "(ref:groups-4and5)", fig.height=5}
 
 ```
 
