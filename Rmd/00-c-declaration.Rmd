@@ -35,7 +35,7 @@ I have renumbered sections of submitted or published papers in order to generate
 
 \textbf{Student signature:}
 
-```{r signature, out.width = "20%", fig.align = "left", eval = FALSE}
+```{r signature, out.width = "20%", fig.align = "left"}
 knitr::include_graphics("img/signature.png")
 ```
 
