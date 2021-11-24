@@ -37,7 +37,7 @@ knitr::include_graphics("img/signature.png")
 
 <!-- eval = file.exists("img/signature.png") -->
 
-\textbf{Date:} `r Sys.Date()`
+\textbf{Date:} `r as.Date("2021-11-19")`
 
 `r if (knitr::is_html_output()) '-->'`
 
@@ -53,6 +53,6 @@ In instances where I am not the responsible author I have consulted with the res
 
 \textbf{Main Supervisor signature:}
 
-\textbf{Date:} `r Sys.Date()`
+\textbf{Date:} `r as.Date("2021-11-19")`
 
 	
