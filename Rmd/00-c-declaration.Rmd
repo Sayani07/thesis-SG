@@ -7,7 +7,7 @@ output:
 
 \newpage
 
-# Declaration {-#ch-declare}
+# Thesis including published works declaration {-#ch-declare}
 
 I hereby declare that this thesis contains no material which has been accepted for the award of any other degree or diploma at any university or equivalent institution and that, to the best of my knowledge and belief, this thesis contains no material previously published or written by another person, except where due reference is made in the text of the thesis. 
 
@@ -19,11 +19,6 @@ Three publications are included in this thesis, one of which has been accepted f
 \hline
 \RaggedRight\textbf{Thesis Chapter}  & \RaggedRight\textbf{Publication Title}  & \RaggedRight\textbf{Status (published, in press, accepted or returned for revision)}  & \RaggedRight\textbf{Nature and} {\%} \RaggedRight\textbf{of student contribution} & \RaggedRight\textbf{Co-author name(s) Nature and} {\%} \RaggedRight\textbf{of Co-author’s contribution} & \RaggedRight\textbf{Co-author(s), Monash student Y/N} \\ \hline
 2 & Visualizing probability distributions across bivariate cyclic temporal granularities & Published & 70\%. Concept, methodology development, writing first draft and software development & (1) Rob J Hyndman, Concept, methodology and software development, writing 12\% (2) Dianne Cook, Concept, methodology and software development, writing 12\% (3) Antony Unwin, Concept and software development 6\% & \multicolumn{1}{c|}{N} \\
-\hline
-3 & Detecting distributional differences between temporal granularities
-for exploratory time series analysis & Working Paper & 80\%. Concept, methodology development, writing first draft and software development & (1) Rob J Hyndman, Concept, methodology development and writing 10\% (2) Dianne Cook, Concept, methodology development and writing 10\%  & \multicolumn{1}{c|}{N} \\
-\hline
-4 & Clustering time series based on probability distributions across temporal granularities & To be submitted & 80\%. Concept, methodology development, writing first draft and software development & (1) Dianne Cook, Concept, methodology development and writing 15\% (2) Rob J Hyndman, Concept, methodology development and writing 5\% & \multicolumn{1}{c|}{N} \\
 \hline
 \end{tabular}
 \end{table}
@@ -39,8 +34,25 @@ I have renumbered sections of submitted or published papers in order to generate
 knitr::include_graphics("img/signature.png")
 ```
 
+
 <!-- eval = file.exists("img/signature.png") -->
 
 \textbf{Date:} `r Sys.Date()`
 
 `r if (knitr::is_html_output()) '-->'`
+
+
+\vspace{2em}
+\noindent
+The undersigned hereby certify that the above declaration correctly reflects the nature and extent of the student's co-authors' contribution to this work.
+In instances where I am not the responsible author I have consulted with the responsible author to agree on the respective contributions of the authors.
+
+
+
+\textbf{Main Supervisor name:} Rob J Hyndman
+
+\textbf{Main Supervisor signature:}
+
+\textbf{Date:} `r Sys.Date()`
+
+	
