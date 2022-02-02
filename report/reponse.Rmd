@@ -1,0 +1,169 @@
+---
+title: Amendments summary
+author: Sayani Gupta
+output:
+  MonashEBSTemplates::memo:
+    includes:
+      in_header: preamble2.tex
+fontfamily: mathpazo
+---
+
+I thank my examiners for their thorough and constructive comments. The point by point description of changes are below: the examiners' comments are in red and my response is in black.
+
+## Professor Catherine Hurley {-}
+
+I appreciate all the comments and suggestions, and will incorporate them into future work. Specific comments are addressed as follows:
+
+### Chapter 2
+
+> Q1. In Figure 2.1 on the right hand side it should be t/24, t/(24 × 7)
+
+> Q2. Last sentence of Section 2.3.4: fix the table reference
+
+Done.
+
+> Q3. In Figure 2.4, the outlier glyphs are in my opinion too big and dark and attract too much attention.
+The log scale for the y-axis should be mentioned in the caption.
+
+
+
+> Q4. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging.
+The plot deserves a bit more space.
+
+
+### Chapter 3
+
+> Q1. On page 33 there is a mention of the hakear package, without a reference.
+
+It appears in the abstract of the paper. 
+For the thesis, I have added it since the abstract acts as a summary to the chapter.
+
+> Q2. In the Introduction state the methods are for continuous variables.
+
+Added "for a continuous univariate dependent variable" in the last paragraph of Introduction.
+
+> Q3. In Figure 3.1, the points are a bit hard to see, so it looks like whiskers extend beyond the data.
+
+Changed to theme_bw() instead of default and outlier.alpha (0.5 ->0.1) and geom_jitter(alpha = 0.04 -> 0.06)
+
+> Q4. On page 35, refer to months consistently using short or long names.
+
+No change. Refer as months or month_year depending on the context.
+
+> Q5. On page 35 v refers to the number of variables, in Section 3.3.3 it refers to the variable.
+
+Changed. On p35, $v$ changed to $p$, where $p$ represents the number of variables. This is analogous to many time granularities and their pairwise combinations and $v$ represents the univariate measured variable for which distributions are constructed for different time granularities and their pairs.
+
+> Q6. In the Figure 3.2 caption, I do not understand the comment beginning “Difference between the 90th. . . ”.
+Also for the sentence “Energy consumption for (a)..”, it would clarify to insert the word “median”.
+
+No change.
+Changed to "distribution of energy usage"
+
+> Q6. On the top of page 38, it should say “the distribution means are three standard deviations apart”.
+
+> Q7. Maybe include a reference for gestalt theory.
+
+> Q8. In Section 3.2.2, I find the references to the null distribution confusing. Surelt that is the design in
+Figure 3.3(a) only?
+
+> Q9. In table 3.1 Nc is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
+3.3.3) it is m.
+
+> Q10. Add v to table 3.1.
+
+Q42. In the first sentence on the top of page 42, ordered and unordered are mixed up. Have you considered
+the setting where the facet variable levels are ordered? For the within-facet ordered distances, you
+could consider a distance measure that respects circular order, or choose the start level appropriate to
+the display.
+
+Q43. I like Figure 3.4. In (3), the dotted arcs only connect to a1 which might be misleading.
+
+Q44. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of
+observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at
+xlevel=1 the comparison shown is less interesting
+
+
+Q45. The equations on page 44 could be tidied up. There are extra () on the definition of wpdperm and on
+the residual definition at the bottom of the page. Use × not  for the equations.
+
+Q46. Is there a practical reason why wpdglm is not working as expected for lower nx and nf ?
+
+Q47. In the 3.3.1 algorithm, there is m, and then M.
+
+Q48. In Table 3.2, I would suggest separating the m = 1 and m = 2 tables.
+
+
+Q49. The presentation of the material on the simulation study on page 48 could be improved. Where is
+the notation wpdl,s used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation
+involving different underlying distributions, but this is not mentioned again.
+
+
+Q410: In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
+show fewer panels?
+
+Q411: In Figure 3.6 the axis tick labels should be smaller. The blue and orange are hard to see. The caption
+should refer to the rug. Maybe show fewer panels?
+
+Q412: In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend.Maybe use a
+different colour in the heatmap for the significant comparisons. State the threshold for significance in
+the caption. In Table 3.3 the caption should explain the threshold. Maybe use colour instead of stars
+to indicate significance?
+
+Q413: The link in the Acknowledgements https://github.com/Sayani07/paper-hakear is not available. Neither
+are the supplementary materials. I understand this is for the paper version, I mention it for completeness.
+
+
+Q51:In Section 4.1, line 5 “method of time series clustering”.
+
+Q52: Page 59, fourth bullet point. I found these sentences confusing.
+
+Q53: In the material in the bottom of page 59, make it clear from the outset you only have data on energy
+use, not on property size, location, family size and so on.
+
+Q54. End of Chapter 4.1: incorrect reference to Section 2.7.
+
+Q55. I found Figure 4.1 very useful. In each box, would be helpful to put in “or”, in places where only one of
+the steps listed is performed, eq Normal quantile transform or Robust scaling. As there are many steps
+in the algorithm, it would be helpful to the reader to label the pipeline steps and to refer back to them
+in the text. The text in the Data pre-processing box does not make sense to me.
+
+
+Q56. The section describing RS and NQT is confusing. It states RS is applied to each time series separately.
+Is NQT also applied to each observation separately? How does “it could be useful to standardize it for
+the selected set of significant granularities prior to computing the distances” relate to the following
+bullet points?
+
+
+Q57. Page 64 “D is the Jensen-Shannon distance”.
+
+Q58. In Table 4.1, the R column should have 250, not 20.
+
+Q59. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the
+distribution of each vt.
+
+Q510. Where is μ in Table 4.2?
+
+
+Q511. In Section 4.3.3 what are the values of R and T?
+
+
+Q512. Figure 4.5 caption: MDS summary plots of what?
+
+Q513: Figure 4.7 is missing labels (a), (b) (c).
+
+Q514: Why do you chose to summarize 4 and 5 clusters from JS-NQT when sindex suggests 3 clusters?
+
+Q515: The reference to the stationarity assumption in the Discussion needs clarification.
+
+Q516: Page 81 “can not” should be “cannot”
+
+Q517: Again, the computational burden could do with more Discussion. At present, if I were to use this
+method on my data, what kind of sizes are realistic to work with?
+
+
+
+
+
+
+
