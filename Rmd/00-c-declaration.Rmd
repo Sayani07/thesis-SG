@@ -1,32 +1,8 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-`r if (knitr::is_html_output()) '<!--'` 
+# Declaration {-#ch-declare}
 
-\newpage
+This thesis is an original work of my research and contains no material which has been accepted for the award of any other degree or diploma at any university or equivalent institution and that, to the best of my knowledge and belief, this thesis contains no material previously published or written by another person, except where due reference is made in the text of the thesis.
 
-# Thesis including published works declaration {-#ch-declare}
-
-I hereby declare that this thesis contains no material which has been accepted for the award of any other degree or diploma at any university or equivalent institution and that, to the best of my knowledge and belief, this thesis contains no material previously published or written by another person, except where due reference is made in the text of the thesis. 
-
-Three publications are included in this thesis, one of which has been accepted for publication in the _Journal of Computational and Graphical Statistics_ (@Gupta2021-gravitas). Two others have not yet been submitted. "Exploring probability distributions across cyclic temporal granularities" is the central theme of the thesis. All of the papers in the thesis were conceptualized, developed, and written by myself, the student, while working in the Department of Econometrics and Business Statistics under the supervision of Professor Rob J Hyndman and Professor Dianne Cook. When co-authors are listed, it indicates that the work was produced through active collaboration between researchers and that their contributions to team-based research have been recognized. The following table details the work, including my and my fellow co-authors' contributions.
-
-\begin{table}
-\centering\footnotesize\tabcolsep=0.12cm
-\begin{tabular}{|p{1cm}|p{2cm}|p{1.5cm}|p{3.5cm}|p{3.5cm}|p{1.5cm}|}
-\hline
-\RaggedRight\textbf{Thesis Chapter}  & \RaggedRight\textbf{Publication Title}  & \RaggedRight\textbf{Status (published, in press, accepted or returned for revision)}  & \RaggedRight\textbf{Nature and} {\%} \RaggedRight\textbf{of student contribution} & \RaggedRight\textbf{Co-author name(s) Nature and} {\%} \RaggedRight\textbf{of Co-author’s contribution} & \RaggedRight\textbf{Co-author(s), Monash student Y/N} \\ \hline
-2 & Visualizing probability distributions across bivariate cyclic temporal granularities & Published & 70\%. Concept, methodology development, writing first draft and software development & (1) Rob J Hyndman, Concept, methodology and software development, writing 12\% (2) Dianne Cook, Concept, methodology and software development, writing 12\% (3) Antony Unwin, Concept and software development 6\% & \multicolumn{1}{c|}{N} \\
-\hline
-\end{tabular}
-\end{table}
-
-
-I have renumbered sections of submitted or published papers in order to generate a consistent presentation within the thesis.
-
-\textbf{Student name:} Sayani Gupta
+\vspace{4em}
 
 \textbf{Student signature:}
 
@@ -34,25 +10,6 @@ I have renumbered sections of submitted or published papers in order to generate
 knitr::include_graphics("img/signature.png")
 ```
 
-
-<!-- eval = file.exists("img/signature.png") -->
-
-\textbf{Date:} `r as.Date("2021-11-19")`
-
-`r if (knitr::is_html_output()) '-->'`
-
-
-\vspace{2em}
-\noindent
-The undersigned hereby certify that the above declaration correctly reflects the nature and extent of the student's co-authors' contribution to this work.
-In instances where I am not the responsible author I have consulted with the responsible author to agree on the respective contributions of the authors.
-
-
-
-\textbf{Main Supervisor name:} Rob J Hyndman
-
-\textbf{Main Supervisor signature:}
+\textbf{Student name:} Sayani Gupta
 
 \textbf{Date:} `r as.Date("2021-11-19")`
-
-	
