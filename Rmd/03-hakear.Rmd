@@ -257,7 +257,7 @@ Two approaches for adjusting the number of comparisons are discussed, both of wh
 
 This method is somewhat similar in spirit to bootstrap or permutation tests, where the goal is to test the hypothesis that the groups under study have identical distributions. This method accomplishes a different goal of finding the null distribution for different groups (panels in our case) and standardizing the raw values using that distribution. The values of $\wpdsub{raw}$ are computed on many ($\nsub{perm}$) permuted data sets and stored in $\wpdsub{perm-data}$. Then $\wpdsub{perm}$ is computed as follows:
 \begin{align*}
-  \wpdsub{perm} = \frac{(\wpdsub{raw} - \text{mean}(\wpdsub{perm-data}))}{\text{sd}(\wpdsub{perm-data})}
+  \wpdsub{perm} = \frac{\wpdsub{raw} - \text{mean}(\wpdsub{perm-data})}{\text{sd}(\wpdsub{perm-data})}
 \end{align*}
 where $\text{mean}(\wpdsub{perm-data})$ and $\text{sd}(\wpdsub{perm-data})$ are the mean and standard deviation of $\wpdsub{perm-data}$ respectively. Standardizing $\wpd$ in the permutation approach ensures that the distribution of $\wpdsub{perm}$ under $\Dnull$ has zero mean and unit variance across all comparisons. While this works successfully to make the location and scale similar across different $\nx$ and $\nf$, it is computationally heavy and time consuming, and hence less user-friendly. Hence, another approach to adjustment, with potentially less computational time, is proposed.
 
@@ -265,13 +265,13 @@ where $\text{mean}(\wpdsub{perm-data})$ and $\text{sd}(\wpdsub{perm-data})$ are 
 
 #### Modeling approach {-}
 
-In this approach, a Gamma generalized linear model (GLM) for $\wpdsub{raw}$ is fitted with the number of comparisons as the explanatory variable. Since, $\wpdsub{raw}$ is a Jensen-Shannon distance, it follows a Chi-square distribution [@Menendez1997-in], which is a special case of a Gamma distribution. Furthermore, the mean response is bounded, since any JSD is bounded by $1$ if a base $2$ logarithm is used [@Lin1991-pt]. Hence, by @Faraway2016-uk, an inverse link is used for the model, which is of the form $y = a+b*\log(z) + e$, where $y = \wpdsub{raw}$, $z = (\nx*\nf)$ is the number of groups and $e$ are idiosyncratic errors. Let $\text{E}(y) = \mu$ and $a + b*\log(z) = g(\mu)$ where $g(\mu)= 1/\mu$ and $\hat \mu = 1/(\hat a + \hat b \log(z))$. The residuals from this model $(y-\hat y) = (y-1/(\hat a + \hat b \log(z)))$ would be expected to have no dependency on $z$. Thus, $\wpdsub{glm}$ is defined as the residuals from this model given by
-$$\wpdsub{glm} = \wpdsub{raw} - 1/(\hat a + \hat b*\log(\nx*\nf))$$
+In this approach, a Gamma generalized linear model (GLM) for $\wpdsub{raw}$ is fitted with the number of comparisons as the explanatory variable. Since, $\wpdsub{raw}$ is a Jensen-Shannon distance, it follows a Chi-square distribution [@Menendez1997-in], which is a special case of a Gamma distribution. Furthermore, the mean response is bounded, since any JSD is bounded by $1$ if a base $2$ logarithm is used [@Lin1991-pt]. Hence, by @Faraway2016-uk, an inverse link is used for the model, which is of the form $y = a+b\times\log(z) + e$, where $y = \wpdsub{raw}$, $z = (\nx \times \nf)$ is the number of groups and $e$ are idiosyncratic errors. Let $\text{E}(y) = \mu$ and $a + b\times\log(z) = g(\mu)$ where $g(\mu)= 1/\mu$ and $\hat \mu = 1/(\hat a + \hat b \log(z))$. The residuals from this model $(y-\hat y) = (y-1/(\hat a + \hat b \log(z)))$ would be expected to have no dependency on $z$. Thus, $\wpdsub{glm}$ is defined as the residuals from this model given by
+$$\wpdsub{glm} = \wpdsub{raw} - 1/(\hat a + \hat b\times\log(\nx\times\nf))$$
 The distribution of $\wpdsub{glm}$ under $\Dnull$ will have approximately zero mean and a constant variance (not necessarily 1).
 
 #### Combination approach {-}
 
-The simulation results (in Section \ref{sec:simulations}) show that the distribution of $\wpdsub{glm}$ under the null design is similar for high $\nx$ and $\nf$ (levels higher than $5$) but less so for lower values of $\nx$ and $\nf$. Hence, a combination approach is proposed where we use a permutation approach for categories with small numbers of levels, and a modeling approach for categories with higher numbers of levels. This ensures that the computational load of the permutation approach is alleviated while maintaining a similar null distribution across different categories. This approach, however, requires that the adjusted variables from the two approaches are brought to the same scale. We define $\wpdsub{glm-scaled} = \wpdsub{glm}*\sigma^2_{\text{perm}}/\sigma^2_{\text{glm}}$ as the transformed $\wpdsub{glm}$ with a similar scale as $\wpdsub{perm}$. The adjusted measure from the combination approach, denoted by $\wpd$ is then defined as follows:
+The simulation results (in Section \ref{sec:simulations}) show that the distribution of $\wpdsub{glm}$ under the null design is similar for high $\nx$ and $\nf$ (levels higher than $5$) but less so for lower values of $\nx$ and $\nf$. Hence, a combination approach is proposed where we use a permutation approach for categories with small numbers of levels, and a modeling approach for categories with higher numbers of levels. This ensures that the computational load of the permutation approach is alleviated while maintaining a similar null distribution across different categories. This approach, however, requires that the adjusted variables from the two approaches are brought to the same scale. We define $\wpdsub{glm-scaled} = \wpdsub{glm}\times \sigma^2_{\text{perm}}/\sigma^2_{\text{glm}}$ as the transformed $\wpdsub{glm}$ with a similar scale as $\wpdsub{perm}$. The adjusted measure from the combination approach, denoted by $\wpd$ is then defined as follows:
 \begin{equation}
 \wpd = \begin{cases}
          \wpdsub{perm},       & \text{if $\nx, \nf \le 5$};\\
@@ -421,7 +421,7 @@ A threshold (and consequently a selection criterion) is chosen using the notion 
 1. For each harmony pair $(A, B) \in H_{N_C}$, the following steps are taken.
 
     a. Given the measured variable; $\{v_t: t=0, 1, 2, \dots, T-1\}$, $\wpd$ is computed and is represented by $\wpd^{A, B}_{obs}$.
-    b. For $i=1,\dots,m$, randomly permute the original time series: $\{v_t^{i}: t=0, 1, 2, \dots, T-1\}$ and compute $\wpd^{A, B}_{i}$ from $\{v_t^{i}\}$.
+    b. For $i=1,\dots,M$, randomly permute the original time series: $\{v_t^{i}: t=0, 1, 2, \dots, T-1\}$ and compute $\wpd^{A, B}_{i}$ from $\{v_t^{i}\}$.
     c. Define $\wpdsub{sample} = \{\wpd^{A, B}_{1}, \dots, \wpd^{A, B}_{M}\}$.
 
 2. Stack the $\wpdsub{sample}$ vectors as $\wpdsub{sample}^{\text{all}}$ and compute its $p = 100(1-\alpha)$ percentiles as $\wpdsub{threshold\emph{p}}$.
@@ -644,3 +644,4 @@ The authors thank the ARC Centre of Excellence for Mathematical and Statistical 
 
 \noindent
 **R-package:** The open-source R package `hakear` is available on Github (https://github.com/Sayani07/hakear) to implement ideas presented in this paper.
+

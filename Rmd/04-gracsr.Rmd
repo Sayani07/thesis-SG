@@ -69,7 +69,7 @@ There is an extensive body of literature focused on time series clustering relat
 <!-- Given none of the methods use probability distributions across cyclic granularity to explore heterogeneity in different repetitive behaviors, we present a way to do that by presenting similarity through probability distributions across cyclic granularities.  -->
 
 
-This paper is organized as follows. Section \ref{sec:methodology} provides the clustering methodology. Section \ref{sec:validation} shows data designs to validate our methods. Section \ref{sec:application-gracsr} discusses the application of the method to a subset of the real data. Finally, we summarize our results and discuss possible future directions in Section \ref{sec:discussion}.
+This paper is organized as follows. Section \ref{sec:methodology} provides the clustering methodology. Section \ref{sec:validation} shows data designs to validate our methods. Section \ref{sec:application-gracsr} discusses the application of the method to a subset of the real data. Finally, we summarize our results and discuss possible future directions in Section \ref{sec:discussion-gracsr}.
 
 
 

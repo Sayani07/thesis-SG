@@ -60,21 +60,21 @@ Also for the sentence “Energy consumption for (a)..”, it would clarify to in
 No change.
 Changed to "distribution of energy usage"
 
-> Q6. On the top of page 38, it should say “the distribution means are three standard deviations apart”.
+> Q7. On the top of page 38, it should say “the distribution means are three standard deviations apart”.
 
 Done.
 
-> Q7. Maybe include a reference for gestalt theory.
+> Q8. Maybe include a reference for gestalt theory.
 
 To do.
 
-> Q8. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
+> Q9. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
 
 No change.
 Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities.
 
-> Q9. In table 3.1 Nc is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
+> Q10. In table 3.1 Nc is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
 3.3.3) it is m.
 
 Add $m$ to table 3.1
@@ -82,12 +82,12 @@ $m$ = number of cyclic granularities to display together
 
 $N_c$ refers to the total number of contextual cyclic granularities. $m$ refers to the number of cyclic granularities we are considering together in the display. For example, contextual cyclic granularities could be $hour_day$, $day_week$ and $month_year$ and we want to visualize any one granularity at a time. So $N_c = 3$ and $m=1$. 
 
-> Q10. Add v to table 3.1.
+> Q11. Add v to table 3.1.
 
 Done.
 Added v:continuous univariate measured variable
 
-> Q11. In the first sentence on the top of page 42, ordered and unordered are mixed up. Have you considered
+> Q12. In the first sentence on the top of page 42, ordered and unordered are mixed up. Have you considered
 the setting where the facet variable levels are ordered? For the within-facet ordered distances, you
 could consider a distance measure that respects circular order, or choose the start level appropriate to
 the display.
@@ -95,14 +95,14 @@ the display.
 first part: Done.
 second part: To do
 
-> Q12. I like Figure 3.4. In (3), the dotted arcs only connect to a1 which might be misleading.
+> Q13. I like Figure 3.4. In (3), the dotted arcs only connect to a1 which might be misleading.
 
 Changed.
 Caption changed to incorporate that.
 Within-facet distances are illustrated in Panels 3) (when categories are un-ordered, shown only with respect to a1) and Panel 4) (when categories are ordered)
 
 
-> Q13. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of
+> Q14. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of
 observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at
 xlevel=1 the comparison shown is less interesting
 
@@ -110,83 +110,108 @@ No change.
 We assume we have enough observations for each level or combination of levels to compute distributions. As long as that holds, no adjustment made for varying number of observations.
 
 
-> Q14. The equations on page 44 could be tidied up. There are extra () on the definition of wpdperm and on
+> Q15. The equations on page 44 could be tidied up. There are extra () on the definition of wpdperm and on
 the residual definition at the bottom of the page. Use × not  for the equations.
 
-Q46. Is there a practical reason why wpdglm is not working as expected for lower nx and nf ?
+Done.
 
-Q47. In the 3.3.1 algorithm, there is m, and then M.
+> Q16. Is there a practical reason why wpdglm is not working as expected for lower nx and nf ?
 
-Q48. In Table 3.2, I would suggest separating the m = 1 and m = 2 tables.
+To do.
 
+> Q17. In the 3.3.1 algorithm, there is m, and then M.
 
-Q49. The presentation of the material on the simulation study on page 48 could be improved. Where is
+Changed.
+1.b) for $i \in {1, 2, \dots, M}$.
+
+> Q18. In Table 3.2, I would suggest separating the m = 1 and m = 2 tables.
+
+Not changed.
+
+> Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is
 the notation wpdl,s used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation
 involving different underlying distributions, but this is not mentioned again.
 
+first part: How?
+second part: After NQT, results are pretty similar to an underlying normal distribution.
 
-Q410: In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
+
+> Q20. In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
 show fewer panels?
 
-Q411: In Figure 3.6 the axis tick labels should be smaller. The blue and orange are hard to see. The caption
+To do.
+
+> Q21. In Figure 3.6 the axis tick labels should be smaller. The blue and orange are hard to see. The caption
 should refer to the rug. Maybe show fewer panels?
 
-Q412: In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend.Maybe use a
+To do.
+
+> Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a
 different colour in the heatmap for the significant comparisons. State the threshold for significance in
 the caption. In Table 3.3 the caption should explain the threshold. Maybe use colour instead of stars
 to indicate significance?
 
-Q413: The link in the Acknowledgements https://github.com/Sayani07/paper-hakear is not available. Neither
+To do.
+
+> Q23. The link in the Acknowledgements https://github.com/Sayani07/paper-hakear is not available. Neither
 are the supplementary materials. I understand this is for the paper version, I mention it for completeness.
 
 
-Q51:In Section 4.1, line 5 “method of time series clustering”.
+Changed.
+The link works. The repository has now been made public.
 
-Q52: Page 59, fourth bullet point. I found these sentences confusing.
+### Chapter 4
 
-Q53: In the material in the bottom of page 59, make it clear from the outset you only have data on energy
+> Q1. In Section 4.1, line 5 “method of time series clustering”.
+
+Done.
+
+> Q2. Page 59, fourth bullet point. I found these sentences confusing.
+
+To do.
+
+> Q3. In the material in the bottom of page 59, make it clear from the outset you only have data on energy
 use, not on property size, location, family size and so on.
 
-Q54. End of Chapter 4.1: incorrect reference to Section 2.7.
+To do.
 
-Q55. I found Figure 4.1 very useful. In each box, would be helpful to put in “or”, in places where only one of
+> Q4. End of Chapter 4.1: incorrect reference to Section 2.7.
+
+> Q5. I found Figure 4.1 very useful. In each box, would be helpful to put in “or”, in places where only one of
 the steps listed is performed, eq Normal quantile transform or Robust scaling. As there are many steps
 in the algorithm, it would be helpful to the reader to label the pipeline steps and to refer back to them
 in the text. The text in the Data pre-processing box does not make sense to me.
 
 
-Q56. The section describing RS and NQT is confusing. It states RS is applied to each time series separately.
+> Q6. The section describing RS and NQT is confusing. It states RS is applied to each time series separately.
 Is NQT also applied to each observation separately? How does “it could be useful to standardize it for
 the selected set of significant granularities prior to computing the distances” relate to the following
 bullet points?
 
 
-Q57. Page 64 “D is the Jensen-Shannon distance”.
+> Q7. Page 64 “D is the Jensen-Shannon distance”.
 
-Q58. In Table 4.1, the R column should have 250, not 20.
+> Q8. In Table 4.1, the R column should have 250, not 20.
 
-Q59. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the
+> Q9. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the
 distribution of each vt.
 
-Q510. Where is μ in Table 4.2?
+> Q10. Where is μ in Table 4.2?
 
+> Q11. In Section 4.3.3 what are the values of R and T?
 
-Q511. In Section 4.3.3 what are the values of R and T?
+> Q12. Figure 4.5 caption: MDS summary plots of what?
 
+> Q13. Figure 4.7 is missing labels (a), (b) (c).
 
-Q512. Figure 4.5 caption: MDS summary plots of what?
+> Q14. Why do you chose to summarize 4 and 5 clusters from JS-NQT when sindex suggests 3 clusters?
 
-Q513: Figure 4.7 is missing labels (a), (b) (c).
+> Q15. The reference to the stationarity assumption in the Discussion needs clarification.
 
-Q514: Why do you chose to summarize 4 and 5 clusters from JS-NQT when sindex suggests 3 clusters?
+> Q16. Page 81 “can not” should be “cannot”
 
-Q515: The reference to the stationarity assumption in the Discussion needs clarification.
-
-Q516: Page 81 “can not” should be “cannot”
-
-Q517: Again, the computational burden could do with more Discussion. At present, if I were to use this
+> Q17. Again, the computational burden could do with more Discussion. At present, if I were to use this
 method on my data, what kind of sizes are realistic to work with?
-
 
 
 
