@@ -408,10 +408,10 @@ p_varx <- sim_panel_varx %>%
 ## ---- notations
 ## 
 d1 <- tibble (
-  variable = c("$N_C$", "$H_{N_C}$", "$\\nx$", "$\\nf$" ,
+  variable = c("$N_C$", "$H_{N_C}$", "m", "$\\nx$", "$\\nf$" ,
                "$\\lambda$", "$\\omega$", "$\\wpd$", "$\\wpdsub{norm}$",
                "$\\nsub{perm}$", "$\\nsub{sim}$"),
-  description = c("number of cyclic granularities", "set of harmonies",
+  description = c("number of cyclic granularities", "set of harmonies", "number of cyclic granularities to display together",
                   "number of x-axis categories", "number of facet categories",
                   "tuning parameter", "increment (mean or sd)",
                   "raw weighted pairwise distance", "normalized weighted pairwise distance",
@@ -423,13 +423,15 @@ d2 <- tibble(variable =  c(
   "$\\Dnull$",
   "$\\Df$",
   "$\\Dx$",
-  "$\\Dfx$"),
+  "$\\Dfx$",
+  "v"),
   description = c(
     "threshold for significance",
     "null design with no distributional difference across categories",
     "design with distributional difference only across facets categories", 
     "design with distributional difference only across x-axis categories", 
-    "design with distributional difference across both facet and x-axis"))
+    "design with distributional difference across both facet and x-axis",
+    "continuous univariate measured variable"))
 
 
 d <- bind_rows(d1, d2)

@@ -62,29 +62,55 @@ Changed to "distribution of energy usage"
 
 > Q6. On the top of page 38, it should say “the distribution means are three standard deviations apart”.
 
+Done.
+
 > Q7. Maybe include a reference for gestalt theory.
 
-> Q8. In Section 3.2.2, I find the references to the null distribution confusing. Surelt that is the design in
+To do.
+
+> Q8. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
+
+No change.
+Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities.
 
 > Q9. In table 3.1 Nc is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
 3.3.3) it is m.
 
+Add $m$ to table 3.1
+$m$ = number of cyclic granularities to display together
+
+$N_c$ refers to the total number of contextual cyclic granularities. $m$ refers to the number of cyclic granularities we are considering together in the display. For example, contextual cyclic granularities could be $hour_day$, $day_week$ and $month_year$ and we want to visualize any one granularity at a time. So $N_c = 3$ and $m=1$. 
+
 > Q10. Add v to table 3.1.
 
-Q42. In the first sentence on the top of page 42, ordered and unordered are mixed up. Have you considered
+Done.
+Added v:continuous univariate measured variable
+
+> Q11. In the first sentence on the top of page 42, ordered and unordered are mixed up. Have you considered
 the setting where the facet variable levels are ordered? For the within-facet ordered distances, you
 could consider a distance measure that respects circular order, or choose the start level appropriate to
 the display.
 
-Q43. I like Figure 3.4. In (3), the dotted arcs only connect to a1 which might be misleading.
+first part: Done.
+second part: To do
 
-Q44. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of
+> Q12. I like Figure 3.4. In (3), the dotted arcs only connect to a1 which might be misleading.
+
+Changed.
+Caption changed to incorporate that.
+Within-facet distances are illustrated in Panels 3) (when categories are un-ordered, shown only with respect to a1) and Panel 4) (when categories are ordered)
+
+
+> Q13. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of
 observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at
 xlevel=1 the comparison shown is less interesting
 
+No change.
+We assume we have enough observations for each level or combination of levels to compute distributions. As long as that holds, no adjustment made for varying number of observations.
 
-Q45. The equations on page 44 could be tidied up. There are extra () on the definition of wpdperm and on
+
+> Q14. The equations on page 44 could be tidied up. There are extra () on the definition of wpdperm and on
 the residual definition at the bottom of the page. Use × not  for the equations.
 
 Q46. Is there a practical reason why wpdglm is not working as expected for lower nx and nf ?
