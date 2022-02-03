@@ -1,5 +1,5 @@
 ---
-title: Amendments summary
+title: Response document
 author: Sayani Gupta
 output:
   MonashEBSTemplates::memo:
@@ -25,11 +25,12 @@ Done.
 > Q3. In Figure 2.4, the outlier glyphs are in my opinion too big and dark and attract too much attention.
 The log scale for the y-axis should be mentioned in the caption.
 
-
+Discuss before change.
 
 > Q4. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging.
 The plot deserves a bit more space.
 
+Discuss before change.
 
 ## Chapter 3
 
@@ -44,6 +45,7 @@ Added "for a continuous univariate dependent variable" in the last paragraph of 
 
 > Q3. In Figure 3.1, the points are a bit hard to see, so it looks like whiskers extend beyond the data.
 
+Discuss.
 Changed to theme_bw() instead of default and outlier.alpha (0.5 ->0.1) and geom_jitter(alpha = 0.04 -> 0.06)
 
 > Q4. On page 35, refer to months consistently using short or long names.
@@ -71,6 +73,7 @@ To do.
 > Q9. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
 
+Discuss.
 No change.
 Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities.
 
@@ -93,7 +96,7 @@ could consider a distance measure that respects circular order, or choose the st
 the display.
 
 first part: Done.
-second part: To do
+second part: Discuss.
 
 > Q13. I like Figure 3.4. In (3), the dotted arcs only connect to a1 which might be misleading.
 
@@ -106,6 +109,7 @@ Within-facet distances are illustrated in Panels 3) (when categories are un-orde
 observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at
 xlevel=1 the comparison shown is less interesting
 
+Discuss.
 No change.
 We assume we have enough observations for each level or combination of levels to compute distributions. As long as that holds, no adjustment made for varying number of observations.
 
@@ -117,6 +121,7 @@ Done.
 
 > Q16. Is there a practical reason why wpdglm is not working as expected for lower nx and nf ?
 
+Discuss.
 To do.
 
 > Q17. In the 3.3.1 algorithm, there is m, and then M.
@@ -126,6 +131,7 @@ Changed.
 
 > Q18. In Table 3.2, I would suggest separating the m = 1 and m = 2 tables.
 
+Discuss.
 Not changed.
 
 > Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is
@@ -133,25 +139,24 @@ the notation wpdl,s used? Figure 3.5 shows the m = 2 results only. The text allu
 involving different underlying distributions, but this is not mentioned again.
 
 first part: How?
-second part: After NQT, results are pretty similar to an underlying normal distribution.
+second part: After NQT, results are pretty similar to an underlying normal distribution. (Discuss)
 
 
 > Q20. In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
 show fewer panels?
 
-To do.
+To do. Discuss.
 
 > Q21. In Figure 3.6 the axis tick labels should be smaller. The blue and orange are hard to see. The caption
 should refer to the rug. Maybe show fewer panels?
 
-To do.
+To do. Discuss.
 
 > Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a
 different colour in the heatmap for the significant comparisons. State the threshold for significance in
-the caption. In Table 3.3 the caption should explain the threshold. Maybe use colour instead of stars
-to indicate significance?
+the caption. In Table 3.3 the caption should explain the threshold. Maybe use colour instead of stars to indicate significance?
 
-To do.
+To do. Discuss.
 
 > Q23. The link in the Acknowledgements https://github.com/Sayani07/paper-hakear is not available. Neither
 are the supplementary materials. I understand this is for the paper version, I mention it for completeness.
@@ -160,7 +165,7 @@ are the supplementary materials. I understand this is for the paper version, I m
 Changed.
 The link works. The repository has now been made public.
 
-### Chapter 4
+## Chapter 4
 
 > Q1. In Section 4.1, line 5 “method of time series clustering”.
 
@@ -230,6 +235,109 @@ method on my data, what kind of sizes are realistic to work with?
 
 # Prof Juergen Symanzik
 
+## Chapter 3
+
+> Q1. In Figure 3.1, it would help the reader to mention in the figure caption that a log-scale has been used for the vertical axis. Moreover, it might be helpful to add a ticmark label at 10 kWh and add ticmarks representing each fraction of 10 on the log-scale and not only the mid{point between two ticmark labels. Also, reminding the reader that summer months are in January and February in Australia would be helpful. When looking at the figure (prior to reading the main text), my first interpretation for the increased energy usage in January and February was because of (electric) heating | and not cooling.
+
+Can do.
+
+> Q2. Readers may not be familiar with administrative units in Australia. So, instead of speaking of Victoria on p. 35, simply speak of Melbourne (as this seems to be the source of the data).
+
+Can do.
+
+> Q3. In Figure 3.2, two households are being compared. It would be much easier for most readers if the graphs use a common scale, thus following the small multiple principle. Both vertical axes should be extend to 1.5 kWh and a ticmark label should be placed there as well.
+
+Can do.
+
+> Q4. In general, I like to see ticmark labels close to the extrema of the shown data points. So, in Figure 3.3a, there should be additional ticmark labels at -3 and +3, in 3.3b at -5
+and +10, and so on.
+
+Can do.
+
+
+> Q5. Before introducing a new distance measure in Section 3.2, I would like to see a literature review of existing distance measures | and their limitations. Why is it necessary to introduce a new distance measure here? This is partially addressed on p. 41, but that should be placed earlier in the text. One clarifying question: Which density is represented by f in the equation? And shouldn't there be a dx at the end of the integral? Also, the distance measures that are mentioned at the end of that paragraph should be explained in one or two sentences.
+
+Discuss.
+
+> Q6. For the data transformation steps on p. 40, a small table, say with a sample of 5 values from an exponential distribution, might be helpful to better explain each of the three steps.
+
+Discuss.
+
+> Q7. A few editorial corrections are necessary, e.g.,
+Dang and Wilkinson (2014); Wilkinson, Anand, and Grossman (2005) provide misses an \and" between the two references. The same holds for Buja et al. (2009); Majumder, Hofmann, and Cook (2013) present.
+I would leave it to the author to check for similar omissions. Moreover, these should be past tense: "provided" and "presented".
+
+Done. "and" needed?
+
+> Q8. The term Gestalt theory is mentioned a few times (p. 38 & p. 42), but it is never supported by a reference.
+
+
+> Q9. It would be helpful to add a specific link to a subsection in a cross-reference such as (See the supplements for more details.) on p. 42. Same on p. 47 and p. 48.
+
+Discuss. (Not adding link in supplementary section enough?)
+
+> Q10. On p. 45 and in (3.2), it is not immediately clear whether nx; nf simultaneously have to be less than or equal to 5 so that wpdperm is being used - or whether only one of them has to be less than 5. Just a verbal clarification is needed. A practical scenario where this applies might be months (12) and weekdays/weekend (2).
+
+Discuss.
+
+> Q11. On p. 47, Again consider 3.1(a) and 3.1(b) seems to miss the word "Figure".
+
+Done.
+
+> Q12. In Table 3.2, listing a p-value as 0 never is a good idea. List it as < 0:01 or < 0:0001 or any other meaningful threshold that matches the number of your simulation runs.
+
+
+> Q13. The Results section and Figure 3.5 need some clarifications. The text states: Figure 3.5 shows that both the location and scale of the distributions change across panels. I suppose this figure relates to m = 2, but this is not stated in the main text. Table 3.2
+lists both, m = 1 and m = 2. Moreover, in Figure 3.5, the y{axis ticmark labels overplot and the nx values are partially cut off. 
+
+Discuss for changes. Can do.
+
+> Q14. There are similar problems with the labels in Figure 3.6. Moreover, the two overlaid curves are very hard to distinguish. Would it help to change colors and transparency, or draw the boundary of the curves with the specific colors (and not in black)? This may require some experimentation. Finally, using a differently colored background (say light yellow) would be helpful to visually demonstrate where wpdperm is being used. For the legend, use the terms as in equation (3.2) and not the full word.
+
+Discuss
+
+> Q15. The last paragraph on p. 48 uses $<$ while equation (3.2) uses $\leqslant$. Which one is correct?
+
+Can do. 
+
+> Q16. Match the text on p. 50 and introduce the abbreviations from Figure 3.7 and Table 3.3, e.g., "hod" likely is "hour day" and so on. Introducing these abbreviations on p. 53 comes
+too late.
+
+Can do.
+
+> Q17. In Figure 3.7a, it is not clear what the eight heatmaps represent. Do they belong to id 1, ..., id 8 ? Some explanation in the text or listing the id information on the left would be helpful. Similarly, on p. 53, the text states: id 7 and 8 have the same significant harmonies. I do not know where to look at the heatmaps in Figure 3.7a to find this information (and what is mentioned under items 2. and 3. in the text). Some explanation and labeling is
+needed here.
+
+discuss.
+
+> Q18. How were the harmony pairs selected and sorted in Figure 3.7 and Table 3.3? headmaps show 25 pairs, the parallel coordinate plot shows only 14 (same as Table 3.3). However, the last two are sorted differently, "hod wdwnd" (the first row in the table) is neither the first nor the last row in the parallel coordinate plot.
+
+Can do.
+
+> Q19. On p. 53, you use the term inconsequential.This hasn't been introduced. Do you mean "not significant" here?
+
+Can do.
+
+> Q20. Apparently, Figure 3.8 uses a logscale again. Adjust similar to my comments for Figure 3.1.
+
+Can do.
+
+> Q21. Are parts a and b in Figure 3.8 correctly labeled and also matching with the figure caption? The caption reads For id 1, patterns look similar within weekdays and weekends.
+Visually, this seems to be the case for id 7 (in part b). This also visually matches Figure 3.7b.
+
+Discuss.
+
+> Q22. I didn't ask earlier, but how were the eight households for Section 3.4 being selected? Was this based on a random sample, or manually do obtain rather different energy usage patterns? This should be answered earlier on, but this also should be addressed in the Discussion: What can be expected when working with the full data set of Chapter 2, i.e., about 13,000. You indicate:
+A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities. What would be computationally (and visually) feasible as 13,000 is a few orders of magnitude
+higher than the number of eight households used in this example? Clearly, no full answer is expected here, but rather some speculation of what could possibly be done in
+the future (or what is done in the next chapter).
+
+Discuss.
+
+> Q23.The Supplementary materials section mentions data and scripts and a supplementary paper. For the thesis, it would be helpful to indicate where these can be located on github. There is only a link for the R package.
+
+Can do.
+
 ## Chapter 4
 
 
@@ -289,3 +397,4 @@ Done. (but not showing in pdf check again)
 > Q13. For the thesis, the work is adequate and meaningful. For a journal paper, I would like to see some of the points outlined in the Discussion being addressed. What happens if this method is applied to the data from the 13,000 customers that were introduced earlier on? As a reader of a journal paper, I would rather like to see limitations of the method proposed here, e.g., if it does not scale up then why it most likely does not scale up. Otherwise, it is hard to assess whether it is worthwhile to try this method for one's own data.
 
 Discuss.
+
