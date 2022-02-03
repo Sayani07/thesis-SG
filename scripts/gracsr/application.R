@@ -211,7 +211,8 @@ hod_ind_group1 <- data_hod %>%
   ggrepel::geom_label_repel(aes(label = label, y = `50%`),
     nudge_x = -1,
     na.rm = TRUE, max.overlaps = 12
-  )
+  ) + plot_annotation("a")
+
 
 
 
@@ -253,7 +254,7 @@ hod_ind_group2 <- data_hod %>%
   ggrepel::geom_label_repel(aes(label = label, y = `50%`),
     nudge_x = -1,
     na.rm = TRUE
-  )
+  )+ plot_annotation("b")
 
 
 moy_ind_group1 <- data_moy %>%
@@ -830,7 +831,7 @@ data_table <- bind_rows(data_table3,
 data_table %>% 
 knitr::kable(format = "latex",
              escape = FALSE,
-             caption = "Summary table from WPD clusters showing median $wpd$ values ($moy$, $hod$, $wnwd$), cluster size ($nobs$) and the list of the customer-prototype id for each cluster with $3$ and $5$ number of clusters ($k$).")%>% 
+             caption = "Summary table from WPD clusters showing median $wpd$ values ($moy$, $hod$, $wnwd$), cluster size ($nobs$) and the list of the customer-prototype id for each cluster with $3$ and $5$ number of clusters ($k$). It is to be noted that $P-1$, $Q-1$ and $P-2$, $Q-2$ are identical and $P-3$ gets split into $Q-3$, $Q-4$ and $Q-5$.")%>% 
   kableExtra::collapse_rows(columns = 1)
 
 ## ----summary-plot-wpd------------------------------------------------------------
