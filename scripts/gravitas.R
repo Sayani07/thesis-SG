@@ -228,7 +228,7 @@ cust2_box <- smart_meter10 %>%
   prob_plot(
     "hour_day", "wknd_wday",
     response = "general_supply_kwh",
-    plot_type = "boxplot"
+    plot_type = "boxplot", outlier.size = 0.5, outlier.alpha = 0.1
   ) +
   xlab("") +
   ylab("") +
