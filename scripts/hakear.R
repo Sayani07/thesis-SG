@@ -676,18 +676,34 @@ summary_data <- G21_all_data %>%
 G21_all_data %>% 
   filter(type_estimate %in% c("wpd_glm_scaled", "wpd_permutation")) %>% 
   ggplot(aes(x = value_estimate)) +
-  geom_density(aes(fill = type_estimate), alpha = 0.5, size = .5) +
+  geom_density(aes(fill = type_estimate, color = type_estimate), 
+               alpha = 0.5, size = .5) +
   #geom_vline(data = summary_data, aes(xintercept = mean, color = type_estimate)) + 
-  geom_rug(aes(color = type_estimate), length = unit(0.09,"cm"), alpha = 0.5) +
+  #geom_rug(aes(color = type_estimate),
+   #        length = unit(0.09,"cm"), alpha = 0.5) +
   #coord_cartesian(clip = "off") + 
   facet_grid(nx~nfacet,
              labeller = "label_both") +
   theme_bw() + 
   theme(legend.position = "bottom") +
-  scale_fill_manual(values = c( "#D55E00", "#0072B2")) +
-  scale_color_manual(values = c( "#D55E00", "#0072B2")) +
+  scale_fill_manual(values = c( "#D55E00", "#0072B2"),
+                    labels = c(expression(wpd_perm), expression(wpd_glm-scaled))) +
+  scale_color_manual(values = c( "#D55E00", "#0072B2"),
+                     labels = c(expression(wpd_perm), expression(wpd_glm-scaled))) +
+                    # labels = c("$wpd_perm$", "$wpd_{glm-scaled}$")) +
   xlab("adjusted values of wpd") +
-  scale_x_continuous(breaks = c(-5, -3, 0, 3, 5)) 
+  scale_x_continuous(breaks = c(-5, -3, 0, 3, 5), 
+                     expand = c(0,0)) +
+  theme(axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        #axis.ticks.x = element_text(),
+        axis.text.x = element_text(size = 7)) + 
+  scale_y_continuous(breaks=NULL) +
+  theme(strip.text = element_text(size = 7)) + 
+  theme(panel.spacing = unit(0, "lines")) 
+  
+#+guides(color = guide_legend("approach"))
+
 # G21_all_data %>% 
 #   filter(type_estimate %in% c("wpd_permutation", "wpd_glm")) %>% 
 #   ggplot() +
