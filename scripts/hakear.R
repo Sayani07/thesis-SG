@@ -942,16 +942,17 @@ heatplot <- elec_sig_split %>%
   scale_fill_gradient(low = "white",high = "#ba5370") +
   #scale_fill_manual(palette = "Dark2") +
   #scale_colour_manual(values = c("white","red")) + 
-  theme(legend.position = "none") +
+  theme(legend.position = "right") +
   coord_fixed() + 
   guides(fill = guide_legend()) +
   theme_void() +
   theme_gray(base_size = 12, base_family = "Times") +
-  theme(panel.grid = element_blank(),
-        axis.text.x = element_text(angle = 60, hjust=1),legend.position = "bottom") + ggtitle("a") +
   theme(
-    strip.background = element_blank(),
-    strip.text.y  = element_blank(), plot.margin = unit(c(0, -2, 0, 0), "cm")) + ggtitle("(a)") + xlab("x") + ylab("facet") 
+        axis.text.x = element_text(angle = 60, hjust=1),
+        legend.position = "bottom") + ggtitle("a") +
+  theme(
+    #strip.background = element_blank(),
+    strip.text.y  = element_blank(), plot.margin = unit(c(0, -2, 0, 0), "cm")) + ggtitle("(a)") + xlab("x") + ylab("facet")
 
 elec <- read_rds(here("data/hakear/elec_all-8.rds")) %>% 
   dplyr::filter(date(reading_datetime) >= ymd("20190701"), date(reading_datetime) < ymd("20191231"), meter_id==1) %>% 
@@ -1007,7 +1008,8 @@ elec_zoom <-  elec %>%
         panel.grid.minor.x =  element_line(colour = "#D3D3D3")) +
   theme(
     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0))) +
-  scale_color_discrete(type = okabeito)
+  scale_color_discrete(type = okabeito) +
+  theme(axis.ticks.y=element_blank())
 
 
 
@@ -1048,13 +1050,16 @@ parcoord <- GGally::ggparcoord(data_pcp,
   ylab("wpd")
 
 
-(heatplot + 
-    theme(legend.position = "none") +
-    facet_grid(id~.) +
-    elec_zoom +
-    theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))) +  
+((heatplot + 
+    #theme(legend.position = "none") +
+    facet_wrap(~id, ncol = 1, strip.position = "right")) +
+    (elec_zoom +
+    theme(plot.margin = unit(c(0, 0, 0, 0), "cm"),
+    axis.text.y=element_blank(),  #remove y axis labels
+  axis.ticks.y=element_blank()  #remove y axis ticks
+))) + 
   parcoord + 
-  plot_layout(widths = c(1, 3, 1.5), guides = "collect") &
+  plot_layout(widths = c(2, 3, 1.5), guides = "collect") &
   theme(legend.position='bottom') + 
   theme(panel.spacing = unit(0.2, "lines"))
 

@@ -64,7 +64,7 @@ scene1 <- VIC %>%
   ggplot(aes(x = wknd_wday,
              y = general_supply_kwh)) +
   facet_wrap(~quarter_year, nrow = 1) +
-  geom_lv(aes(fill = ..LV..), k = 5) +
+  geom_lv(aes(fill = ..LV..), k = 5, outlier.size = 0.5, outlier.alpha = 0.1) +
   ylab("") +
   xlab("") +
   scale_fill_brewer(type = "seq", direction = -1) +
@@ -86,7 +86,7 @@ scene2 <- VIC %>%
     "wknd_wday", "quarter_year",
     response = "general_supply_kwh",
     plot_type = "lv",
-    symmetric = FALSE
+    symmetric = FALSE, outlier.size = 0.5, outlier.alpha = 0.1
   ) +
   ylab("") +
   xlab("quarters of the year") +
@@ -106,7 +106,8 @@ scene3 <- VIC %>%
     "quarter_year", "month_year",
     response = "general_supply_kwh",
     plot_type = "lv",
-    symmetric = FALSE
+    symmetric = FALSE,
+    outlier.size = 0.5, outlier.alpha = 0.1
   ) +
   ylab("") +
   xlab("months of the year") +

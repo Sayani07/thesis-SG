@@ -25,7 +25,8 @@ Done.
 > Q3. In Figure 2.4, the outlier glyphs are in my opinion too big and dark and attract too much attention.
 The log scale for the y-axis should be mentioned in the caption.
 
-
+Done. 
+The outliers are made smaller and transparent and caption changed.
 
 > Q4. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging.
 The plot deserves a bit more space.
