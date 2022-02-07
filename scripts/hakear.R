@@ -455,16 +455,25 @@ summary_data <- G21 %>%
 
 G21 %>% 
   ggplot(aes(x = value)) + 
-  geom_density(fill = "#999999") +
+  geom_density(fill = "#999999", color = "#999999") +
   facet_grid(nx~nfacet,
              labeller = "label_both") + 
   xlab("raw values of wpd") +
-  geom_vline(data = summary_data, aes(xintercept  = mean), color = "#0072B2") +
-  geom_rug(sides = "b", colour = "#D55E00") + 
+  geom_vline(data = summary_data, aes(xintercept  = mean), color = "#0072B2", size = 0.4)  +
+  #geom_rug(sides = "b", colour = "#D55E00") + 
   # scale_x_continuous(breaks = scales::breaks_extended(2)) +
   theme_bw() +
   theme(panel.grid.major.x = element_blank()) +
-  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5)) +
+  theme(axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        #axis.ticks.x = element_text(),
+        axis.text.x = element_text(size = 7)) + 
+  scale_y_continuous(breaks=NULL) +
+  theme(strip.text = element_text(size = 7)) +
+  scale_x_continuous(expand = c(0,0))+
+  theme(panel.spacing = unit(0, "lines"))
+  
 
 ##----raw-onegran
 G21 <- read_rds(here("data/hakear/simulations/supplementary/one-gran/raw/null_design_quantrans/data-agg/all_data_wpd_N01.rds"))
