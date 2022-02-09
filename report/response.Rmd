@@ -14,6 +14,10 @@ I thank my examiners for their thorough and constructive comments. The point by 
 
 I appreciate all the comments and suggestions, and will incorporate them into future work. Specific comments are addressed as follows:
 
+## Chapter 1
+
+Perhaps though, this would be a good place to detail the co-authorship arrangements for the succeeding chapters, and for the student’s contribution to be stated clearly.
+
 ## Chapter 2
 
 > Q1. In Figure 2.1 on the right hand side it should be t/24, t/(24 × 7)
@@ -25,36 +29,41 @@ Done.
 > Q3. In Figure 2.4, the outlier glyphs are in my opinion too big and dark and attract too much attention.
 The log scale for the y-axis should be mentioned in the caption.
 
-Discuss before change.
+Done. 
+The outliers are made smaller and transparent and caption changed.
 
 > Q4. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging.
 The plot deserves a bit more space.
 
-Discuss before change.
+Not change.
+Due to the space constraint in the paper.
 
 ## Chapter 3
 
 > Q1. On page 33 there is a mention of the hakear package, without a reference.
 
-It appears in the abstract of the paper. 
-For the thesis, I have added it since the abstract acts as a summary to the chapter.
+No change.
+It appears in the abstract of the paper. For the thesis, I have added it since the abstract acts as a summary to the chapter. The package reference is mentioned in the Supplementary section of the paper. Moreover, the plan is to bring all the functions from `gravitas` to `hakear` when we publish it.
 
 > Q2. In the Introduction state the methods are for continuous variables.
 
+Done.
 Added "for a continuous univariate dependent variable" in the last paragraph of Introduction.
 
 > Q3. In Figure 3.1, the points are a bit hard to see, so it looks like whiskers extend beyond the data.
 
-Discuss.
+Done.
 Changed to theme_bw() instead of default and outlier.alpha (0.5 ->0.1) and geom_jitter(alpha = 0.04 -> 0.06)
 
 > Q4. On page 35, refer to months consistently using short or long names.
 
-No change. Refer as months or month_year depending on the context.
+No change. 
+Refer as months or month_year depending on the context.
 
 > Q5. On page 35 v refers to the number of variables, in Section 3.3.3 it refers to the variable.
 
-Changed. On p35, $v$ changed to $p$, where $p$ represents the number of variables. This is analogous to many time granularities and their pairwise combinations and $v$ represents the univariate measured variable for which distributions are constructed for different time granularities and their pairs.
+Done.
+On p35, $v$ changed to $p$, where $p$ represents the number of variables. This is analogous to many time granularities and their pairwise combinations and $v$ represents the univariate measured variable for which distributions are constructed for different time granularities and their pairs.
 
 > Q6. In the Figure 3.2 caption, I do not understand the comment beginning “Difference between the 90th. . . ”.
 Also for the sentence “Energy consumption for (a)..”, it would clarify to insert the word “median”.
@@ -68,17 +77,20 @@ Done.
 
 > Q8. Maybe include a reference for gestalt theory.
 
-To do.
+Added.
+@wertheimer1938gestalt
 
 > Q9. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
 
-Discuss.
+CHECK
 No change.
 Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities.
 
 > Q10. In table 3.1 Nc is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
 3.3.3) it is m.
+
+Done.
 
 Add $m$ to table 3.1
 $m$ = number of cyclic granularities to display together
@@ -96,11 +108,11 @@ could consider a distance measure that respects circular order, or choose the st
 the display.
 
 first part: Done.
-second part: Discuss.
+second part: This is a good suggestion. We will include that into future work. 
 
 > Q13. I like Figure 3.4. In (3), the dotted arcs only connect to a1 which might be misleading.
 
-Changed.
+Done.
 Caption changed to incorporate that.
 Within-facet distances are illustrated in Panels 3) (when categories are un-ordered, shown only with respect to a1) and Panel 4) (when categories are ordered)
 
@@ -109,20 +121,20 @@ Within-facet distances are illustrated in Panels 3) (when categories are un-orde
 observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at
 xlevel=1 the comparison shown is less interesting
 
-Discuss.
+CHECK.
 No change.
 We assume we have enough observations for each level or combination of levels to compute distributions. As long as that holds, no adjustment made for varying number of observations.
 
 
-> Q15. The equations on page 44 could be tidied up. There are extra () on the definition of wpdperm and on
-the residual definition at the bottom of the page. Use $\times$ for the equations.
+> Q15. The equations on page 44 could be tidied up. There are extra () on the definition of wpdperm and on the residual definition at the bottom of the page. Use $\times$ for the equations.
 
 Done.
 
-> Q16. Is there a practical reason why wpdglm is not working as expected for lower nx and nf ?
+> Q16. Is there a practical reason why wpdglm is not working as expected for lower nx and nf?
 
-Discuss.
-To do.
+CHECK.
+No practical reason but a more theoretical one.
+For lower $n_x$ and $n_f$, the number of combinations $n_xn_f$ is low such that the max do not have an assymptotic distribution which can be assumed as Normal by CLT. With higher combinations, the distribution of the each combination could be assumed to be normal.
 
 > Q17. In the 3.3.1 algorithm, there is m, and then M.
 
@@ -131,13 +143,11 @@ Changed.
 
 > Q18. In Table 3.2, I would suggest separating the m = 1 and m = 2 tables.
 
-Discuss.
 Not changed.
 
-> Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is
-the notation wpdl,s used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation
-involving different underlying distributions, but this is not mentioned again.
+> Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is the notation $wpd_{l,s}$ used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation involving different underlying distributions, but this is not mentioned again.
 
+DISCUSS
 first part: How?
 second part: After NQT, results are pretty similar to an underlying normal distribution. (Discuss)
 
@@ -145,16 +155,14 @@ second part: After NQT, results are pretty similar to an underlying normal distr
 > Q20. In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
 show fewer panels?
 
-To do. Discuss.
+Done.
 
 > Q21. In Figure 3.6 the axis tick labels should be smaller. The blue and orange are hard to see. The caption
 should refer to the rug. Maybe show fewer panels?
 
-To do. Discuss.
+Done.
 
-> Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a
-different colour in the heatmap for the significant comparisons. State the threshold for significance in
-the caption. In Table 3.3 the caption should explain the threshold. Maybe use colour instead of stars to indicate significance?
+> Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a different colour in the heatmap for the significant comparisons. State the threshold for significance in the caption. In Table 3.3 the caption should explain the threshold. Maybe use colour instead of stars to indicate significance?
 
 To do. Discuss.
 
@@ -219,11 +227,20 @@ To do.
 
 > Q12. Figure 4.5 caption: MDS summary plots of what?
 
+MDS plot summary of the data sets from the validation study.
+
+
 > Q13. Figure 4.7 is missing labels (a), (b) (c).
+
+Done. Added a, b representing 12 customers (rows) in each of them.
 
 > Q14. Why do you chose to summarize 4 and 5 clusters from JS-NQT when sindex suggests 3 clusters?
 
+It is told in the "number of clusters" section that the number of optimal number of clusters is a difficult exercise. The idea was to show how decreasing the number of clusters can hide distinct patterns.
+
+
 > Q15. The reference to the stationarity assumption in the Discussion needs clarification.
+
 
 > Q16. Page 81 “can not” should be “cannot”
 
@@ -235,7 +252,30 @@ method on my data, what kind of sizes are realistic to work with?
 
 # Prof Juergen Symanzik
 
+## Chapter 1
+
+> Q1. While the author hints at other sources of similar data, I think it would be worthwhile to give the reader some further specific ideas here in the Introduction where similar complex data may occur, e.g., data from traffic sensors, movement data (turnstiles in metro stations or public buildings), and even more traditional measurements such as temperatures or precipitation over
+time that could benefit from the methods and software described in this thesis.
+
+
+> Q2. It may also be helpful to state what is not be covered in this thesis: The spatial component of such data where an additional component could be latitude and longitude or some areal code,
+such as the post code or some administrative units. Extending the work from this thesis with spatial proximity methods for clustering (https://doi.org/10.1016/j.cageo.2011.12.017) [assuming that households in certain residential neighborhoods may have similar energy usage patterns] and trying spatial visualization methods (if possible) such as glyph maps (https:
+//onlinelibrary.wiley.com/doi/abs/10.1002/env.2152) should be mentioned somewhere as a consideration for future work | but that may become a future new thesis by itself.
+
+> Q3. Finally, it would be helpful to indicate here (and in each chapter) what the names or abbreviations for the three R packages (gravitas, hakear, and gracsr) represent. Even the full R package
+title of "gravitas: Explore Probability Distributions for Bivariate Temporal Granularities" does not provide a full answer what the "tas" component means (I am assuming that Gravi stands for Granularities Visualization). I am even more lost with hakear.
+
+## Chapter 2
+
+> Q1. One reference to a table (Table 2.3) does not resolve and appears as @ref{tab:tab-mayan} in the main text on p. 16.
+
+Done.
+
+> Q2. how to define and handle pay day (or loan day) which often is defined as the 1st (and/or possibly 15th) work day of a month, resulting in some aperiodic granularity as some of these days across the year could initially fall on a weekend, but even more in a few
+cases, may coincide with a public holiday (and thus shifting pay day by 2 or 3 days). Similarly, extended weekends that could stretch from Fridays to Sundays or from Saturdays to Mondays (and possibly even over a 4{day period) might be worth some discussion, in particular as a case of variable{length aperiodic granularity. This latter granularity may be of particular interest when working with temporal data with an economic (travel, restaurants, etc.) or entertainment (movie theaters, casinos, etc.) aspect.
+
 ## Chapter 3
+
 
 > Q1. In Figure 3.1, it would help the reader to mention in the figure caption that a log-scale has been used for the vertical axis. Moreover, it might be helpful to add a ticmark label at 10 kWh and add ticmarks representing each fraction of 10 on the log-scale and not only the mid{point between two ticmark labels. Also, reminding the reader that summer months are in January and February in Australia would be helpful. When looking at the figure (prior to reading the main text), my first interpretation for the increased energy usage in January and February was because of (electric) heating | and not cooling.
 
@@ -274,11 +314,12 @@ Done. "and" needed?
 
 > Q9. It would be helpful to add a specific link to a subsection in a cross-reference such as (See the supplements for more details.) on p. 42. Same on p. 47 and p. 48.
 
-Discuss. (Not adding link in supplementary section enough?)
+Done. (Adding link in supplementary section enough?)
 
 > Q10. On p. 45 and in (3.2), it is not immediately clear whether nx; nf simultaneously have to be less than or equal to 5 so that wpdperm is being used - or whether only one of them has to be less than 5. Just a verbal clarification is needed. A practical scenario where this applies might be months (12) and weekdays/weekend (2).
 
-Discuss.
+Done.
+We have assumed both nx; nf simultaneously to be less than or equal to 5
 
 > Q11. On p. 47, Again consider 3.1(a) and 3.1(b) seems to miss the word "Figure".
 
@@ -298,7 +339,8 @@ Discuss
 
 > Q15. The last paragraph on p. 48 uses $<$ while equation (3.2) uses $\leqslant$. Which one is correct?
 
-Can do. 
+Done.
+$\leqslant$ for both.
 
 > Q16. Match the text on p. 50 and introduce the abbreviations from Figure 3.7 and Table 3.3, e.g., "hod" likely is "hour day" and so on. Introducing these abbreviations on p. 53 comes
 too late.
@@ -316,11 +358,12 @@ Can do.
 
 > Q19. On p. 53, you use the term inconsequential.This hasn't been introduced. Do you mean "not significant" here?
 
-Can do.
+Done.
+Changed to "insignificant"
 
 > Q20. Apparently, Figure 3.8 uses a logscale again. Adjust similar to my comments for Figure 3.1.
 
-Can do.
+Done.
 
 > Q21. Are parts a and b in Figure 3.8 correctly labeled and also matching with the figure caption? The caption reads For id 1, patterns look similar within weekdays and weekends.
 Visually, this seems to be the case for id 7 (in part b). This also visually matches Figure 3.7b.
@@ -336,7 +379,7 @@ Discuss.
 
 > Q23.The Supplementary materials section mentions data and scripts and a supplementary paper. For the thesis, it would be helpful to indicate where these can be located on github. There is only a link for the R package.
 
-Can do.
+Done.
 
 ## Chapter 4
 
