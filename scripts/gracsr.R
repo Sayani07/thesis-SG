@@ -1064,13 +1064,14 @@ mds_plot_10 <- ggplot(all_data,
                       aes(x = Dim.1,
                           y = Dim.2,
                           color = group)) +
-  geom_point(size = 2, alpha = 0.5, shape = 3) +
+  geom_point(size = 2, alpha = 0.5, aes(shape = group)) +
   facet_grid(diff~Scenario, labeller = "label_both") +
   #geom_text(check_overlap = TRUE)  +
   theme_bw()+
   theme(legend.position = "bottom") +
   scale_color_brewer(palette = "Dark2")+
-  ylab("mds1") + xlab("mds2")
+  ylab("mds1") + xlab("mds2") +
+  scale_shape_manual(values = c(3, 4, 2, 0, 1)) 
 
 mds_plot_10
 

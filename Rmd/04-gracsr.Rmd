@@ -119,7 +119,7 @@ This paper is organized as follows. Section \ref{sec:methodology} provides the c
 
 
 ```{r flowchart, fig.cap = "Flow chart illustrating the pipeline for our method for clustering time series.", out.width="100%"}
-knitr::include_graphics("img/flowchart.png")
+knitr::include_graphics("img/flowchart-comment.png")
 
 ```
 
@@ -686,7 +686,8 @@ Clustering of the $24$ prototypes <!--and the data subset consisting of $353$ cu
 ```
 
 
-(ref:hod-ind-group-png) The distribution of electricity demand across individual customers over three granularities *hod*, *moy*, and *wnwd* are shown for the $24$ selected customers using quantile and box plots. They are split into batches of $12$ in (a) and (b), with each row in (a) or (b) representing a customer. The number indicates a unique customer id and a prototype id.
+(ref:hod-ind-group-png) The distribution of electricity demand across individual customers over three granularities *hod*, *moy*, and *wnwd* are shown for the $24$ selected customers using quantile and box plots. They are split into batches of $12$ in (a) and (b), with each row in (a) or (b) representing a customer. The number indicates a unique customer id and a prototype id. In each of the plots, the line
+represents the median, and the grey region shows the area between the 25th and 75th percentiles.
 
 ```{r hod-ind-group-png, fig.cap = "(ref:hod-ind-group-png)"}
 ```
