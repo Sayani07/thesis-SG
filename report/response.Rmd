@@ -18,6 +18,8 @@ I appreciate all the comments and suggestions, and will incorporate them into fu
 
 Perhaps though, this would be a good place to detail the co-authorship arrangements for the succeeding chapters, and for the student’s contribution to be stated clearly.
 
+DISCUSS
+
 ## Chapter 2
 
 > Q1. In Figure 2.1 on the right hand side it should be t/24, t/(24 × 7)
@@ -35,6 +37,7 @@ The outliers are made smaller and transparent and caption changed.
 > Q4. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging.
 The plot deserves a bit more space.
 
+. DISCUSS
 Not change.
 Due to the space constraint in the paper.
 
@@ -83,7 +86,7 @@ Added.
 > Q9. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
 
-CHECK
+. DISCUSS
 No change.
 Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities.
 
@@ -121,7 +124,7 @@ Within-facet distances are illustrated in Panels 3) (when categories are un-orde
 observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at
 xlevel=1 the comparison shown is less interesting
 
-CHECK.
+. DISCUSS
 No change.
 We assume we have enough observations for each level or combination of levels to compute distributions. As long as that holds, no adjustment made for varying number of observations.
 
@@ -132,7 +135,7 @@ Done.
 
 > Q16. Is there a practical reason why wpdglm is not working as expected for lower nx and nf?
 
-CHECK.
+. DISCUSS
 No practical reason but a more theoretical one.
 For lower $n_x$ and $n_f$, the number of combinations $n_xn_f$ is low such that the max do not have an assymptotic distribution which can be assumed as Normal by CLT. With higher combinations, the distribution of the each combination could be assumed to be normal.
 
@@ -147,7 +150,7 @@ Not changed.
 
 > Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is the notation $wpd_{l,s}$ used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation involving different underlying distributions, but this is not mentioned again.
 
-DISCUSS
+. DISCUSS
 first part: How?
 second part: After NQT, results are pretty similar to an underlying normal distribution. (Discuss)
 
@@ -164,7 +167,7 @@ Done.
 
 > Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a different colour in the heatmap for the significant comparisons. State the threshold for significance in the caption. In Table 3.3 the caption should explain the threshold. Maybe use colour instead of stars to indicate significance?
 
-To do. Discuss.
+To do. DISCUSS.
 
 > Q23. The link in the Acknowledgements https://github.com/Sayani07/paper-hakear is not available. Neither
 are the supplementary materials. I understand this is for the paper version, I mention it for completeness.
@@ -198,6 +201,7 @@ in the algorithm, it would be helpful to the reader to label the pipeline steps 
 in the text. The text in the Data pre-processing box does not make sense to me.
 
 To do? (Or not)
+Partially done. Need to add "or"
 
 
 > Q6. The section describing RS and NQT is confusing. It states RS is applied to each time series separately.
@@ -238,9 +242,11 @@ Done. Added a, b representing 12 customers (rows) in each of them.
 
 It is told in the "number of clusters" section that the number of optimal number of clusters is a difficult exercise. The idea was to show how decreasing the number of clusters can hide distinct patterns.
 
+. DISCUSS
 
 > Q15. The reference to the stationarity assumption in the Discussion needs clarification.
 
+. DISCUSS
 
 > Q16. Page 81 “can not” should be “cannot”
 
@@ -249,7 +255,7 @@ Done.
 > Q17. Again, the computational burden could do with more Discussion. At present, if I were to use this
 method on my data, what kind of sizes are realistic to work with?
 
-
+. DISCUSS
 # Prof Juergen Symanzik
 
 ## Chapter 1
@@ -257,11 +263,13 @@ method on my data, what kind of sizes are realistic to work with?
 > Q1. While the author hints at other sources of similar data, I think it would be worthwhile to give the reader some further specific ideas here in the Introduction where similar complex data may occur, e.g., data from traffic sensors, movement data (turnstiles in metro stations or public buildings), and even more traditional measurements such as temperatures or precipitation over
 time that could benefit from the methods and software described in this thesis.
 
+. DISCUSS
 
 > Q2. It may also be helpful to state what is not be covered in this thesis: The spatial component of such data where an additional component could be latitude and longitude or some areal code,
 such as the post code or some administrative units. Extending the work from this thesis with spatial proximity methods for clustering (https://doi.org/10.1016/j.cageo.2011.12.017) [assuming that households in certain residential neighborhoods may have similar energy usage patterns] and trying spatial visualization methods (if possible) such as glyph maps (https:
 //onlinelibrary.wiley.com/doi/abs/10.1002/env.2152) should be mentioned somewhere as a consideration for future work | but that may become a future new thesis by itself.
 
+. DISCUSS
 > Q3. Finally, it would be helpful to indicate here (and in each chapter) what the names or abbreviations for the three R packages (gravitas, hakear, and gracsr) represent. Even the full R package
 title of "gravitas: Explore Probability Distributions for Bivariate Temporal Granularities" does not provide a full answer what the "tas" component means (I am assuming that Gravi stands for Granularities Visualization). I am even more lost with hakear.
 
@@ -273,6 +281,8 @@ Done.
 
 > Q2. how to define and handle pay day (or loan day) which often is defined as the 1st (and/or possibly 15th) work day of a month, resulting in some aperiodic granularity as some of these days across the year could initially fall on a weekend, but even more in a few
 cases, may coincide with a public holiday (and thus shifting pay day by 2 or 3 days). Similarly, extended weekends that could stretch from Fridays to Sundays or from Saturdays to Mondays (and possibly even over a 4{day period) might be worth some discussion, in particular as a case of variable{length aperiodic granularity. This latter granularity may be of particular interest when working with temporal data with an economic (travel, restaurants, etc.) or entertainment (movie theaters, casinos, etc.) aspect.
+
+DISCUSS
 
 ## Chapter 3
 
@@ -297,7 +307,7 @@ Can do.
 
 > Q5. Before introducing a new distance measure in Section 3.2, I would like to see a literature review of existing distance measures | and their limitations. Why is it necessary to introduce a new distance measure here? This is partially addressed on p. 41, but that should be placed earlier in the text. One clarifying question: Which density is represented by f in the equation? And shouldn't there be a dx at the end of the integral? Also, the distance measures that are mentioned at the end of that paragraph should be explained in one or two sentences.
 
-Discuss.
+DISCUSS
 
 > Q6. For the data transformation steps on p. 40, a small table, say with a sample of 5 values from an exponential distribution, might be helpful to better explain each of the three steps.
 
@@ -307,7 +317,8 @@ Discuss.
 Dang and Wilkinson (2014); Wilkinson, Anand, and Grossman (2005) provide misses an \and" between the two references. The same holds for Buja et al. (2009); Majumder, Hofmann, and Cook (2013) present.
 I would leave it to the author to check for similar omissions. Moreover, these should be past tense: "provided" and "presented".
 
-Done. "and" needed?
+Done.
+. DISCUSS "and" needed?
 
 > Q8. The term Gestalt theory is mentioned a few times (p. 38 & p. 42), but it is never supported by a reference.
 
@@ -386,13 +397,14 @@ Done.
 
 > Q1. There seems to be some contradiction on p. 60. One sentence states: Tureczek and Nielsen (2017) conducted a systematic study of over 2100 peer-reviewed papers on smart meter data analytics. Another sentence states: Time series data, such as smart meter data, are not well-suited to any of the techniques mentioned in Tureczek and Nielsen (2017).
 
-
+Done.
+Rephrased to make it clear that most techniques mentioned in Tureczek and Nielsen (2017) do not treat smart meter data as a data type with temporal component.
 
 > Q2. Use a consistent style and use past tense throughout when you summarize what was previously published.
 
 Done.
 
-> Q3. The last cross{reference at the end of the Introduction should be to Section 4.5 (and not Section 2.7).
+> Q3. The last cross-reference at the end of the Introduction should be to Section 4.5 (and not Section 2.7).
 
 Done.
 
@@ -400,8 +412,7 @@ Done.
 The flow of the procedures is illustrated in Figure 4.1.
 should be extended with "and is further described in the following subsections." Also match subsection headings and headers in Figure 4.1, e.g., Selecting granularities vs. Find significant granularities and more.
 
-first part: Done
-second part: Discuss (The diagram to be changed as per text or reverse)
+Done.
 
 > Q5. The text on p. 68 speaks of Figure 4.3(b) and Figure 4.3 (right). Either add letters a and b or speak of left and right.
 
@@ -409,21 +420,22 @@ Done.
 
 >Q6. Similar to Chapter 3, supplementary material should be specified in more detail, e.g., on p. 68, p. 70, p. 71, and p. 75.
 
-Done. Added links in the supplementary materials section at the end of the chapter.
+Done. 
+Added links in the supplementary materials section at the end of the chapter.
 
 > Q7. In Figure 4.5, it is hard to see which groups are overplotting, in particular for S3. To better reveal this graphically, use different (open) glyphs in addition to different colors. In particular, a + for group 1 and an open circle for group 5 may help to better distinguish the groups (and possibly $\times$, open triangle, and open box to be used for groups 2 to 4).
 
-Discuss.
+Done.
+Not showing in the plot, check again.
 
 > Q8. Apparently, in Figure 4.6, the vertical axis is not standardized to [0; 1] as it is frequently done for parallel coordinate plots. Therefore, it would make sense to display an actual vertical axis in each of the three graphs.
 
-Discuss.
+No change.
+Showing the vertical axis would not give us any more information than it is already giving.
 
-> Q9. Figure 4.7 speaks of (a) and (b) in the caption, but those letters do not appear in the figure. Either add them or refer to left and right. Moreover, in previous chapters, you used orange and green for the quartiles and 10th/90th quantile. Why not using the
-same colors and quantiles here? If this becomes too confusing for a reader, then at least, indicate in the caption which quantiles are covered by the gray areas.
+> Q9. Figure 4.7 speaks of (a) and (b) in the caption, but those letters do not appear in the figure. Either add them or refer to left and right. Moreover, in previous chapters, you used orange and green for the quartiles and 10th/90th quantile. Why not using the same colors and quantiles here? If this becomes too confusing for a reader, then at least, indicate in the caption which quantiles are covered by the gray areas.
 
-first part: Done.
-second part: Discuss
+Done.
 
 > Q10. Be consistent across chapters. For example, in Table 3.3, you use wdwnd. On p. 72 and in Figure 4.7, you use wnwd. Adjust across all chapters. Check whether other abbreviations need to be standardized as well.
 
@@ -435,9 +447,37 @@ Discuss.
 
 > Q12. It would help the reader to also mention in the caption of Table 4.3 that P-1 & Q-1 and P-2 & Q-2 are identical. I first looked at Figure 4.9 and then at Table 4.3, but if read in the other order, I likely would have been surprised, to see identical values in some of the table rows (without any further explanation).
 
-Done. (but not showing in pdf check again)
+Done.
 
 > Q13. For the thesis, the work is adequate and meaningful. For a journal paper, I would like to see some of the points outlined in the Discussion being addressed. What happens if this method is applied to the data from the 13,000 customers that were introduced earlier on? As a reader of a journal paper, I would rather like to see limitations of the method proposed here, e.g., if it does not scale up then why it most likely does not scale up. Otherwise, it is hard to assess whether it is worthwhile to try this method for one's own data.
 
-Discuss.
+We will include it in the journal paper. 
+
+## Bibliography
+
+> Q1. Capitalize all nouns, e.g., in
+Time-series clustering - A decade review.
+
+CHECK?
+Google scholar citation appears like this, is it important?
+
+> Q2. Use full{length journal names, i.e., do not use abbreviations, e.g., in Inf. Syst.
+
+Done.
+Fixed all similar problems.
+
+> Q5. Make sure that URLs are clickable and lead to the correct web page, e.g.,
+robjhyndman.com/publications/hakear does not resolve correctly.
+
+Done.
+All URLs checked and they are clickable.
+
+> Q6. For Gupta, S, RJ Hyndman, D Cook, and A Unwin (2021), I would suggest to list the DOI as https://doi.org/10.1080/10618600.2021.1938588 as part of the reference.
+
+Done.
+
+> Q7. No need to list the ISBN, e.g., in Xie, Y (2016).
+
+Done.
+
 
