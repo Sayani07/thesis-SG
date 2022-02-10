@@ -37,9 +37,9 @@ The outliers are made smaller and transparent and caption changed.
 > Q4. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging.
 The plot deserves a bit more space.
 
-. DISCUSS
+
 Not change.
-Due to the space constraint in the paper.
+Figure is already published
 
 ## Chapter 3
 
@@ -88,6 +88,7 @@ Figure 3.3(a) only?
 
 . DISCUSS
 No change.
+Data in Fig 3.3 (a) is consistent with the null distribution.
 Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities.
 
 > Q10. In table 3.1 Nc is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
@@ -128,6 +129,8 @@ xlevel=1 the comparison shown is less interesting
 No change.
 We assume we have enough observations for each level or combination of levels to compute distributions. As long as that holds, no adjustment made for varying number of observations.
 
+Add it somewhere, need to have reasonable number of observations, otherwise collapse categories (To do)
+
 
 > Q15. The equations on page 44 could be tidied up. There are extra () on the definition of wpdperm and on the residual definition at the bottom of the page. Use $\times$ for the equations.
 
@@ -135,9 +138,10 @@ Done.
 
 > Q16. Is there a practical reason why wpdglm is not working as expected for lower nx and nf?
 
-. DISCUSS
+To do. Need to mention it in the paper.
 No practical reason but a more theoretical one.
 For lower $n_x$ and $n_f$, the number of combinations $n_xn_f$ is low such that the max do not have an assymptotic distribution which can be assumed as Normal by CLT. With higher combinations, the distribution of the each combination could be assumed to be normal.
+
 
 > Q17. In the 3.3.1 algorithm, there is m, and then M.
 
@@ -152,7 +156,10 @@ Not changed.
 
 . DISCUSS
 first part: How?
-second part: After NQT, results are pretty similar to an underlying normal distribution. (Discuss)
+second part: The results are made available in the supplementary paper (Discuss)
+
+Mention m=1 results are same as m=2, although important not included in the paper but in the supplements. Make subsections for m=1 and 2.
+TO DO
 
 
 > Q20. In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
@@ -165,7 +172,7 @@ should refer to the rug. Maybe show fewer panels?
 
 Done.
 
-> Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a different colour in the heatmap for the significant comparisons. State the threshold for significance in the caption. In Table 3.3 the caption should explain the threshold. Maybe use colour instead of stars to indicate significance?
+> Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a different colour in the heatmap for the significant comparisons. State the threshold for significance in the caption. In Table 3.3 the caption should explain the threshold. (Maybe use colour instead of stars to indicate significance?)
 
 To do. DISCUSS.
 
@@ -242,11 +249,16 @@ Done. Added a, b representing 12 customers (rows) in each of them.
 
 It is told in the "number of clusters" section that the number of optimal number of clusters is a difficult exercise. The idea was to show how decreasing the number of clusters can hide distinct patterns.
 
+Visual summary to show why 3 clusters are inadequate for this data set.
+It is pretty normal in a cluster analysis to check few $k$ before and after the optimal $k$.
+
+
+
 . DISCUSS
 
 > Q15. The reference to the stationarity assumption in the Discussion needs clarification.
 
-. DISCUSS
+The conditional distributions are constant. Don't talk about the stationary time series. If there are jumps, then out methods can't model it.
 
 > Q16. Page 81 “can not” should be “cannot”
 
@@ -282,7 +294,7 @@ Done.
 > Q2. how to define and handle pay day (or loan day) which often is defined as the 1st (and/or possibly 15th) work day of a month, resulting in some aperiodic granularity as some of these days across the year could initially fall on a weekend, but even more in a few
 cases, may coincide with a public holiday (and thus shifting pay day by 2 or 3 days). Similarly, extended weekends that could stretch from Fridays to Sundays or from Saturdays to Mondays (and possibly even over a 4{day period) might be worth some discussion, in particular as a case of variable{length aperiodic granularity. This latter granularity may be of particular interest when working with temporal data with an economic (travel, restaurants, etc.) or entertainment (movie theaters, casinos, etc.) aspect.
 
-DISCUSS
+Very good point. Paper is already published. We would incorporate this in our future work.
 
 ## Chapter 3
 
@@ -308,6 +320,9 @@ Can do.
 > Q5. Before introducing a new distance measure in Section 3.2, I would like to see a literature review of existing distance measures | and their limitations. Why is it necessary to introduce a new distance measure here? This is partially addressed on p. 41, but that should be placed earlier in the text. One clarifying question: Which density is represented by f in the equation? And shouldn't there be a dx at the end of the integral? Also, the distance measures that are mentioned at the end of that paragraph should be explained in one or two sentences.
 
 DISCUSS
+(Existing distance measure to obtain differences between categories like in ANOVA, limitation: only capture one measure of central tendency
+Cite some anova here as lit review?
+
 
 > Q6. For the data transformation steps on p. 40, a small table, say with a sample of 5 values from an exponential distribution, might be helpful to better explain each of the three steps.
 
@@ -318,7 +333,8 @@ Dang and Wilkinson (2014); Wilkinson, Anand, and Grossman (2005) provide misses 
 I would leave it to the author to check for similar omissions. Moreover, these should be past tense: "provided" and "presented".
 
 Done.
-. DISCUSS "and" needed?
+Made it past tense.
+
 
 > Q8. The term Gestalt theory is mentioned a few times (p. 38 & p. 42), but it is never supported by a reference.
 
@@ -452,14 +468,16 @@ Done.
 > Q13. For the thesis, the work is adequate and meaningful. For a journal paper, I would like to see some of the points outlined in the Discussion being addressed. What happens if this method is applied to the data from the 13,000 customers that were introduced earlier on? As a reader of a journal paper, I would rather like to see limitations of the method proposed here, e.g., if it does not scale up then why it most likely does not scale up. Otherwise, it is hard to assess whether it is worthwhile to try this method for one's own data.
 
 We will include it in the journal paper. 
+Split into a "Limitation" and "Discussion" section separately detailing the drawbacks.
+
 
 ## Bibliography
 
 > Q1. Capitalize all nouns, e.g., in
 Time-series clustering - A decade review.
 
-CHECK?
-Google scholar citation appears like this, is it important?
+
+To do. Make it consistent sentence case.
 
 > Q2. Use full{length journal names, i.e., do not use abbreviations, e.g., in Inf. Syst.
 
