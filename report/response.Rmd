@@ -191,31 +191,31 @@ Done.
 
 > Q2. Page 59, fourth bullet point. I found these sentences confusing.
 
-To do.
+Done.
+Rephrased to make it clear.
 
 > Q3. In the material in the bottom of page 59, make it clear from the outset you only have data on energy
 use, not on property size, location, family size and so on.
 
-To do.
+Done.
+Added the statement in page 60.
 
 > Q4. End of Chapter 4.1: incorrect reference to Section 2.7.
 
 Done.
 
-> Q5. I found Figure 4.1 very useful. In each box, would be helpful to put in “or”, in places where only one of
-the steps listed is performed, eq Normal quantile transform or Robust scaling. As there are many steps
-in the algorithm, it would be helpful to the reader to label the pipeline steps and to refer back to them
-in the text. The text in the Data pre-processing box does not make sense to me.
+> Q5. I found Figure 4.1 very useful. In each box, would be helpful to put in “or”, in places where only one of the steps listed is performed, eq Normal quantile transform or Robust scaling. As there are many steps
+in the algorithm, it would be helpful to the reader to label the pipeline steps and to refer back to them in the text. The text in the Data pre-processing box does not make sense to me.
 
 To do? (Or not)
 Partially done. Need to add "or"
 
 
-> Q6. The section describing RS and NQT is confusing. It states RS is applied to each time series separately.
-Is NQT also applied to each observation separately? How does “it could be useful to standardize it for
-the selected set of significant granularities prior to computing the distances” relate to the following
-bullet points?
+> Q6. The section describing RS and NQT is confusing. It states RS is applied to each time series separately. Is NQT also applied to each observation separately? How does “it could be useful to standardize it for
+the selected set of significant granularities prior to computing the distances” relate to the following bullet points?
 
+Done.
+Clarification: Each observation (time series) is scaled independently in both JS-NQT and JS-RS. For the WPD approach, each observation might be scaled or not scaled, resulting in usable groups in either case.
 
 > Q7. Page 64 “D is the Jensen-Shannon distance”.
 
@@ -392,10 +392,12 @@ Changed to "insignificant"
 
 Done.
 
-> Q21. Are parts a and b in Figure 3.8 correctly labeled and also matching with the figure caption? The caption reads For id 1, patterns look similar within weekdays and weekends.
-Visually, this seems to be the case for id 7 (in part b). This also visually matches Figure 3.7b.
+> Q21. Are parts a and b in Figure 3.8 correctly labeled and also matching with the figure caption? The caption reads For id 1, patterns look similar within weekdays and weekends. Visually, this seems to be the case for id 7 (in part b). This also visually matches Figure 3.7b.
 
-Discuss.
+
+Caption rephrased to make it more clear.
+
+For id: 7, there is more distributional difference between consecutive hours of the day compared to id:1. Also all the days of the week are different from each other in id:7. id:1 has similar behavior across all days within both weekdays and weekends. For this reason, the wpd for id:7 has a higher value than id:1 as the similar behavior within weekdays and weekends balances out the difference between weekdays and weekends. The display with hod vs wdwnd would have shown higher values of wpd for id:1 (as can be verified from Table 3).
 
 > Q22. I didn't ask earlier, but how were the eight households for Section 3.4 being selected? Was this based on a random sample, or manually do obtain rather different energy usage patterns? This should be answered earlier on, but this also should be addressed in the Discussion: What can be expected when working with the full data set of Chapter 2, i.e., about 13,000. You indicate:
 A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities. What would be computationally (and visually) feasible as 13,000 is a few orders of magnitude
