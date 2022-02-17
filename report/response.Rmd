@@ -25,6 +25,9 @@ A table outlining the main chapters’ co-authorship arrangements included in In
 
 > Q1. In Figure 2.1 on the right hand side it should be t/24, t/(24 × 7)
 
+Not change.
+Figure is already published.
+
 > Q2. Last sentence of Section 2.3.4: fix the table reference
 
 Done.
@@ -35,8 +38,7 @@ The log scale for the y-axis should be mentioned in the caption.
 Done. 
 The outliers are made smaller and transparent and caption changed.
 
-> Q4. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging.
-The plot deserves a bit more space.
+> Q4. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging. The plot deserves a bit more space.
 
 
 Not change.
@@ -57,7 +59,7 @@ Added "for a continuous univariate dependent variable" in the last paragraph of 
 > Q3. In Figure 3.1, the points are a bit hard to see, so it looks like whiskers extend beyond the data.
 
 Done.
-Changed to theme_bw() instead of default and outlier.alpha (0.5 ->0.1) and geom_jitter(alpha = 0.04 -> 0.06)
+Changed to theme_bw() instead of default and outlier.alpha (0.5 ->0.2) and geom_jitter(alpha = 0.04 -> 0.03). Also jitter-width decreased to 0.2.
 
 > Q4. On page 35, refer to months consistently using short or long names.
 
@@ -72,7 +74,7 @@ On p35, $v$ changed to $p$, where $p$ represents the number of variables. This i
 > Q6. In the Figure 3.2 caption, I do not understand the comment beginning “Difference between the 90th. . . ”.
 Also for the sentence “Energy consumption for (a)..”, it would clarify to insert the word “median”.
 
-No change.
+Done.
 Changed to "distribution of energy usage"
 
 > Q7. On the top of page 38, it should say “the distribution means are three standard deviations apart”.
@@ -337,6 +339,7 @@ Made it past tense.
 
 > Q8. The term Gestalt theory is mentioned a few times (p. 38 & p. 42), but it is never supported by a reference.
 
+Done.
 
 > Q9. It would be helpful to add a specific link to a subsection in a cross-reference such as (See the supplements for more details.) on p. 42. Same on p. 47 and p. 48.
 
