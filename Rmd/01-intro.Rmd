@@ -71,4 +71,21 @@ In Chapter \@ref(ch-gracsr), we look at the problem of using clustering to disco
 
 ## Thesis structure
 
-The thesis is structured as follows. Chapter \@ref(ch-gravitas) provides details of the cyclic granularities, different classes, and computation, and also its usage in exploratory time series analysis through applications. This is implemented in the R package `gravitas`. Chapter \@ref(ch-hakear) provides guidance on how to choose significant cyclic granularities, which are likely to have interesting patterns across its categories. This is available as the R package `hakear`. Chapter \@ref(ch-gracsr) provides methods to explore heterogeneity in repetitive behavior for multiple time series over multiple cyclic granularities. This is in the developing R package `gracsr`. Chapter \@ref(ch-conclusion) summarizes the software tools developed for the work, and discusses future plans.
+The thesis is structured as follows. Chapter \@ref(ch-gravitas) provides details of the cyclic granularities, different classes, and computation, and also its usage in exploratory time series analysis through applications. This is implemented in the R package `gravitas`. Chapter \@ref(ch-hakear) provides guidance on how to choose significant cyclic granularities, which are likely to have interesting patterns across its categories. This is available as the R package `hakear`. Chapter \@ref(ch-gracsr) provides methods to explore heterogeneity in repetitive behavior for multiple time series over multiple cyclic granularities. This is in the developing R package `gracsr`. Chapter \@ref(ch-conclusion) summarizes the software tools developed for the work, and discusses future plans. Table \ref{tab:contribution-outline} details the publications, including my and my fellow co-authors contributions.
+
+\begin{table}
+\centering\footnotesize\tabcolsep=0.12cm
+\caption{Table outlining the main chapters' co-authorship arrangements.}
+\label{tab:contribution-outline}
+\begin{tabular}{|p{1cm}|p{2cm}|p{1.5cm}|p{3.5cm}|p{3.5cm}|p{1.5cm}|}
+\hline
+\RaggedRight\textbf{Thesis Chapter}  & \RaggedRight\textbf{Publication Title}  & \RaggedRight\textbf{Status (published, in press, accepted or returned for revision)}  & \RaggedRight\textbf{Nature and} {\%} \RaggedRight\textbf{of student contribution} & \RaggedRight\textbf{Co-author name(s) Nature and} {\%} \RaggedRight\textbf{of Co-author’s contribution} & \RaggedRight\textbf{Co-author(s), Monash student Y/N} \\ \hline
+2 & Visualizing probability distributions across bivariate cyclic temporal granularities & Published & 70\%. Concept, methodology development, writing first draft and software development & (1) Rob J Hyndman, Concept, methodology and software development, writing 12\% (2) Dianne Cook, Concept, methodology and software development, writing 12\% (3) Antony Unwin, Concept and software development 6\% & \multicolumn{1}{c|}{N} \\
+\hline
+3 & Detecting distributional differences between temporal granularities
+for exploratory time series analysis & Working Paper & 80\%. Concept, methodology development, writing first draft and software development & (1) Rob J Hyndman, Concept, methodology development and writing 10\% (2) Dianne Cook, Concept, methodology development and writing 10\%  & \multicolumn{1}{c|}{N} \\
+\hline
+4 & Clustering time series based on probability distributions across temporal granularities & To be submitted & 80\%. Concept, methodology development, writing first draft and software development & (1) Dianne Cook, Concept, methodology development and writing 15\% (2) Rob J Hyndman, Concept, methodology development and writing 5\% & \multicolumn{1}{c|}{N} \\
+\hline
+\end{tabular}
+\end{table}

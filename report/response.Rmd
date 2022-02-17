@@ -18,7 +18,8 @@ I appreciate all the comments and suggestions, and will incorporate them into fu
 
 Perhaps though, this would be a good place to detail the co-authorship arrangements for the succeeding chapters, and for the student’s contribution to be stated clearly.
 
-DISCUSS
+Done.
+A table outlining the main chapters’ co-authorship arrangements included in Introduction.
 
 ## Chapter 2
 
@@ -250,20 +251,21 @@ Done. Added a, b representing 12 customers (rows) in each of them.
 > Q14. Why do you chose to summarize 4 and 5 clusters from JS-NQT when sindex suggests 3 clusters?
 
 Done.
-The caption and description of the figure in the text have been changed to indicate that Fig. 4.9 depicts a visual summary of why three clusters are insufficient for this data set, however it is recommended by sindex summary plots. In a cluster analysis, it is standard practice to test a few cluster sizes before and after the optimal $k$ to see if a different number of clusters is useful. In this example, increasing the number of clusters actually unfolds some behavior which was not apparent with $k=3$ as suggested by sindex.    
+The caption and description of the figure in the text have been changed to indicate that Fig. 4.9 depicts a visual summary of why three clusters are insufficient for this data set, however it is recommended by sindex summary plots. In a cluster analysis, it is standard practice to test a few cluster sizes before and after the optimal $k$ to see if a different number of clusters is useful. In this example, increasing the number of clusters actually unfolds some behavior which was not apparent with $k=3$ as suggested by sindex.
 
 > Q15. The reference to the stationarity assumption in the Discussion needs clarification.
 
-The conditional distributions are constant. Don't talk about the stationary time series. If there are jumps, then out methods can't model it.
+Done.
+Clarification: "we have assumed the time series to be stationary" has been changed to "the conditional distributions are assumed to remain constant for the observation period" in the Discussion section.
 
 > Q16. Page 81 “can not” should be “cannot”
 
 Done.
 
-> Q17. Again, the computational burden could do with more Discussion. At present, if I were to use this
-method on my data, what kind of sizes are realistic to work with?
+> Q17. Again, the computational burden could do with more Discussion. At present, if I were to use this method on my data, what kind of sizes are realistic to work with?
 
 . DISCUSS
+
 # Prof Juergen Symanzik
 
 ## Chapter 1
@@ -278,6 +280,7 @@ such as the post code or some administrative units. Extending the work from this
 //onlinelibrary.wiley.com/doi/abs/10.1002/env.2152) should be mentioned somewhere as a consideration for future work | but that may become a future new thesis by itself.
 
 . DISCUSS
+
 > Q3. Finally, it would be helpful to indicate here (and in each chapter) what the names or abbreviations for the three R packages (gravitas, hakear, and gracsr) represent. Even the full R package
 title of "gravitas: Explore Probability Distributions for Bivariate Temporal Granularities" does not provide a full answer what the "tas" component means (I am assuming that Gravi stands for Granularities Visualization). I am even more lost with hakear.
 
