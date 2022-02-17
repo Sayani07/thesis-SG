@@ -121,9 +121,7 @@ Caption changed to incorporate that.
 Within-facet distances are illustrated in Panels 3) (when categories are un-ordered, shown only with respect to a1) and Panel 4) (when categories are ordered)
 
 
-> Q14. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of
-observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at
-xlevel=1 the comparison shown is less interesting
+> Q14. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at xlevel=1 the comparison shown is less interesting
 
 . DISCUSS
 No change.
@@ -225,16 +223,20 @@ What is the question? I have mentioned that D stands for Jensen-Shannon distance
 
 Done.
 
-> Q9. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the
-distribution of each vt.
+> Q9. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the distribution of each vt.
 
 To do.
 
 > Q10. Where is $\mu$ in Table 4.2?
 
- $\mu$ is the difference between means considered for consecutive categories.
+Done.
+Clarification: $\mu$ is the difference between means considered for consecutive categories.
  
 > Q11. In Section 4.3.3 what are the values of R and T?
+
+
+Done.
+Clarification: All 
 
 > Q12. Figure 4.5 caption: MDS summary plots of what?
 
@@ -247,14 +249,8 @@ Done. Added a, b representing 12 customers (rows) in each of them.
 
 > Q14. Why do you chose to summarize 4 and 5 clusters from JS-NQT when sindex suggests 3 clusters?
 
-It is told in the "number of clusters" section that the number of optimal number of clusters is a difficult exercise. The idea was to show how decreasing the number of clusters can hide distinct patterns.
-
-Visual summary to show why 3 clusters are inadequate for this data set.
-It is pretty normal in a cluster analysis to check few $k$ before and after the optimal $k$.
-
-
-
-. DISCUSS
+Done.
+The caption and description of the figure in the text have been changed to indicate that Fig. 4.9 depicts a visual summary of why three clusters are insufficient for this data set, however it is recommended by sindex summary plots. In a cluster analysis, it is standard practice to test a few cluster sizes before and after the optimal $k$ to see if a different number of clusters is useful. In this example, increasing the number of clusters actually unfolds some behavior which was not apparent with $k=3$ as suggested by sindex.    
 
 > Q15. The reference to the stationarity assumption in the Discussion needs clarification.
 
