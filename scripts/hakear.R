@@ -66,11 +66,15 @@ p1 <- id2_tsibble %>%
             response = "kwh",
             plot_type = "quantile",
             symmetric = TRUE,
-            quantile_prob = c(0.1, 0.25,0.5,0.75, 0.9)) +
+            quantile_prob = c(0.1, 0.25,0.5,0.75, 0.9), size = 1) +
   ggtitle("(a)") + theme(
     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0))) + 
   scale_colour_brewer(name = "", palette = "PiYG") + 
-  ylab ("energy usage [kWh]")
+  ylab ("energy usage [kWh]") +
+  scale_y_log10(breaks = scales::trans_breaks("log10", 
+                                              function(x) 10^x),
+                 labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  theme_bw()
 
 
 p2 <- id4_tsibble %>%
@@ -79,11 +83,14 @@ p2 <- id4_tsibble %>%
             response = "kwh",
             plot_type = "quantile",
             symmetric = TRUE,
-            quantile_prob = c(0.1, 0.25,0.5,0.75, 0.9)) + 
+            quantile_prob = c(0.1, 0.25,0.5,0.75, 0.9), size = 1) + 
   ggtitle("(b)") + theme(
     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0)))+
-  ylab ("energy usage [kWh]")
-
+  ylab ("energy usage [kWh]")+
+  scale_y_log10(breaks = scales::trans_breaks("log10", 
+                                              function(x) 10^x),
+                labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  theme_bw()
 
 
 p3 <- id2_tsibble %>%
