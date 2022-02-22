@@ -496,7 +496,7 @@ Simulations were carried out to explore the behavior of $\wpd$ as $\nx$ and $\nf
 
 Figure \ref{fig:raw} shows that both the location and scale of the distributions change across panels. This is not desirable under $\Dnull$ as it would mean comparisons of $\wpd$ values are not appropriate across different $\nx$ and $\nf$ values. Table \ref{tab:glm-tab} gives the summary of a Gamma generalized linear model to capture the relationship between $\wpdsub{raw}$ and the number of comparisons. The intercepts and slopes are similar, independent of the underlying distributions (see [Table 3 supplementary paper](https://github.com/Sayani07/paper-hakear/blob/master/paper/paper-supplementary.pdf) for details) and hence the coefficients are shown for the case when observations are drawn from a N(0,1) distribution. Figure \ref{fig:dist-new-same-scale-link} shows the distribution of $\wpdsub{perm}$ and $\wpdsub{glm-scaled}$ on the same scale to show that a combination approach could be used for higher values of $\nx$ and $\nf$ to alleviate the computational time of the permutation approach.
 
-(ref:raw) Distribution of $\wpdsub{raw}$ is plotted across different $\nx$ and $\nf$ categories under $\Dnull$ through density and rug plots. Both location (blue line) and scale (orange marks) of the distribution shifts for different panels. This is not desirable since under the null design, the distribution is not expected to capture any differences.
+(ref:raw) Distribution of $\wpdsub{raw}$ is plotted across different $\nx$ and $\nf$ categories under $\Dnull$ through density and rug plots for $m=2$. Both location (blue line) and scale of the distribution shifts for different panels. This is not desirable since under the null design, the distribution is not expected to capture any differences.
 
 ```{r raw, fig.cap = "(ref:raw)", fig.pos="!htb"}
 ```
@@ -519,7 +519,7 @@ Figure \ref{fig:raw} shows that both the location and scale of the distributions
 ```{r norm, eval}
 ```
 
-(ref:dist-new-same-scale-link) The distributions of $\wpdsub{perm}$ and $\wpdsub{glm-scaled}$ are overlaid to compare the location and scale across different $\nx$ and $\nf$. $\wpdsub{norm}$ takes the value of $\wpdsub{perm}$ for lower levels, and $\wpdsub{glm-scaled}$ for higher levels to to alleviate the problem of computational time in permutation approaches. This is possible as the distribution of the adjusted measure looks similar for both approaches for higher levels.
+(ref:dist-new-same-scale-link) The distributions of $\wpdsub{perm}$ and $\wpdsub{glm-scaled}$ are overlaid to compare the location and scale across different $\nx$ and $\nf$ for $m=2$. $\wpdsub{norm}$ takes the value of $\wpdsub{perm}$ for lower levels, and $\wpdsub{glm-scaled}$ for higher levels to to alleviate the problem of computational time in permutation approaches. This is possible as the distribution of the adjusted measure looks similar for both approaches for higher levels.
 
 ```{r dist-new-same-scale-link, fig.cap = "(ref:dist-new-same-scale-link)"}
 ```
