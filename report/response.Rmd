@@ -383,7 +383,8 @@ $\leqslant$ for both.
 > Q16. Match the text on p. 50 and introduce the abbreviations from Figure 3.7 and Table 3.3, e.g., "hod" likely is "hour day" and so on. Introducing these abbreviations on p. 53 comes
 too late.
 
-Can do.
+Done.
+Added the abbreviations on Page 50 in "Choosing cyclic granularities of interest and removing clashes" section.
 
 > Q17. In Figure 3.7a, it is not clear what the eight heatmaps represent. Do they belong to id 1, ..., id 8 ? Some explanation in the text or listing the id information on the left would be helpful. Similarly, on p. 53, the text states: id 7 and 8 have the same significant harmonies. I do not know where to look at the heatmaps in Figure 3.7a to find this information (and what is mentioned under items 2. and 3. in the text). Some explanation and labeling is
 needed here.
@@ -392,7 +393,13 @@ discuss.
 
 > Q18. How were the harmony pairs selected and sorted in Figure 3.7 and Table 3.3? headmaps show 25 pairs, the parallel coordinate plot shows only 14 (same as Table 3.3). However, the last two are sorted differently, "hod wdwnd" (the first row in the table) is neither the first nor the last row in the parallel coordinate plot.
 
-Can do.
+Done.
+
+CLARIFICATION 1: Each household is represented by 25 tiles, each tile representing a pair of cyclic granularities. The colors (in shades of red) represent the value of $wpd$ for each of the harmony pairs (in Table Table 3.3) and the grey tiles correspond to clashes. A darker shade of red corresponds to higher values of $wpd$. 
+
+CLARIFICATION 2: The harmony pairs in the parallel coordinate plot are arranged from highest to lowest values of $wpd$ averaged over all households and hence do not correspond to the first or last rows of Table 3.3.
+
+Changed the text description of Figure 3.7.
 
 > Q19. On p. 53, you use the term inconsequential.This hasn't been introduced. Do you mean "not significant" here?
 
