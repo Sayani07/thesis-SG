@@ -234,7 +234,7 @@ Pairwise distances could be within-facets or between-facets for $m = 2$. Figure 
 
 For displays with $m>1$ granularities, we can use a tuning parameter to specify the relative weight given to each granularity. In general, the tuning parameters should be chosen such that $\sum_{i=1}^m \lambda_i = 1$.
 
-Following the general principles of Gestalt theory, we wish to weight more heavily granularities that are plotted closer together. For $m=2$ we choose  $\lambda_x = \frac{2}{3}$ for the granularity on the x-axis and $\lambda_f = \frac13$ for the granularity mapped to facets, giving a relative weight of $2:1$ for within-facet to between-facet distances. No human experiment has been conducted to justify this ratio.  Specifying $\lambda_x>0.5$ will weight within-facet distances more heavily, while $\lambda_x <0.5$ would weight the between-facet distances more heavily. (See the supplements for more details.)
+Following the general principles of Gestalt theory, we wish to weight more heavily granularities that are plotted closer together. For $m=2$ we choose  $\lambda_x = \frac{2}{3}$ for the granularity on the x-axis and $\lambda_f = \frac13$ for the granularity mapped to facets, giving a relative weight of $2:1$ for within-facet to between-facet distances. No human experiment has been conducted to justify this ratio.  Specifying $\lambda_x>0.5$ will weight within-facet distances more heavily, while $\lambda_x <0.5$ would weight the between-facet distances more heavily. (See [Section 2.1 supplements](https://github.com/Sayani07/paper-hakear/blob/master/paper/paper-supplementary.pdf) for more details.)
 
 #### Raw distance measure {-}
 
@@ -480,7 +480,7 @@ Again consider Figures \ref{fig:onegran-new}(a) and \ref{fig:onegran-new}(b) wit
 
 ### Simulations {#sec:simulations}
 
-Simulations were carried out to explore the behavior of $\wpd$ as $\nx$ and $\nf$ were varied, in order to compare and evaluate different normalization approaches. More detailed simulation results, including an exploration of the size and power of the proposed test, are contained in the supplements.
+Simulations were carried out to explore the behavior of $\wpd$ as $\nx$ and $\nf$ were varied, in order to compare and evaluate different normalization approaches. More detailed simulation results, including an exploration of the size of the proposed test, are contained in the [supplements](https://github.com/Sayani07/paper-hakear/blob/master/paper/paper-supplementary.pdf).
 
 #### Simulation design {-}
 
@@ -494,7 +494,7 @@ Simulations were carried out to explore the behavior of $\wpd$ as $\nx$ and $\nf
 
 #### Results {-}
 
-Figure \ref{fig:raw} shows that both the location and scale of the distributions change across panels. This is not desirable under $\Dnull$ as it would mean comparisons of $\wpd$ values are not appropriate across different $\nx$ and $\nf$ values. Table \ref{tab:glm-tab} gives the summary of a Gamma generalized linear model to capture the relationship between $\wpdsub{raw}$ and the number of comparisons. The intercepts and slopes are similar, independent of the underlying distributions (see supplementary paper for details) and hence the coefficients are shown for the case when observations are drawn from a N(0,1) distribution. Figure \ref{fig:dist-new-same-scale-link} shows the distribution of $\wpdsub{perm}$ and $\wpdsub{glm-scaled}$ on the same scale to show that a combination approach could be used for higher values of $\nx$ and $\nf$ to alleviate the computational time of the permutation approach.
+Figure \ref{fig:raw} shows that both the location and scale of the distributions change across panels. This is not desirable under $\Dnull$ as it would mean comparisons of $\wpd$ values are not appropriate across different $\nx$ and $\nf$ values. Table \ref{tab:glm-tab} gives the summary of a Gamma generalized linear model to capture the relationship between $\wpdsub{raw}$ and the number of comparisons. The intercepts and slopes are similar, independent of the underlying distributions (see [Table 3 supplementary paper](https://github.com/Sayani07/paper-hakear/blob/master/paper/paper-supplementary.pdf) for details) and hence the coefficients are shown for the case when observations are drawn from a N(0,1) distribution. Figure \ref{fig:dist-new-same-scale-link} shows the distribution of $\wpdsub{perm}$ and $\wpdsub{glm-scaled}$ on the same scale to show that a combination approach could be used for higher values of $\nx$ and $\nf$ to alleviate the computational time of the permutation approach.
 
 (ref:raw) Distribution of $\wpdsub{raw}$ is plotted across different $\nx$ and $\nf$ categories under $\Dnull$ through density and rug plots. Both location (blue line) and scale (orange marks) of the distribution shifts for different panels. This is not desirable since under the null design, the distribution is not expected to capture any differences.
 

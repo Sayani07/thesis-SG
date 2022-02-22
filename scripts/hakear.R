@@ -615,7 +615,8 @@ bind_rows(broom::tidy(glm_fit_onegran),
   mutate(estimate = round(estimate, 2),
          std.error = round(std.error, 2),
          statistic = round(statistic, 2),
-         p.value = round(p.value, 2),
+         #p.value = round(p.value, 2),
+         p.value = "<.001",
          term = rep(c("Intercept","$\\log(\\nx \\times \\nf)$"),2)
   ) %>%
   kable(booktabs=TRUE, escape=FALSE,
