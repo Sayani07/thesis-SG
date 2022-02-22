@@ -209,7 +209,7 @@ v <- hakear::compute_pairwise_norm_scalar(sm, gran_x, gran_facet,
                                           response = kwh, lambda = 0.9, dist_ordered = FALSE)
 
 
-## ---- null4by2
+##----compute-pairwise-norm-null4by2
 
 set.seed(9999)
 
@@ -328,11 +328,6 @@ varall_sd <- compute_pairwise_norm(sim_panel_varall_sd,
                                    nperm = 200
 )
 
-# plot
-p_varall <- sim_panel_varall %>%
-  ggplot(aes(x = as.factor(id_x), y = sim_data)) + facet_wrap(~id_facet) + geom_boxplot() +
-  ggtitle(paste("(d)", round(varall, 2))) + xlab("x level") +
-  ylab ("simulated response")
 
 
 set.seed(9999)
@@ -363,11 +358,6 @@ null_sd <- compute_pairwise_norm(sim_panel_null_sd,
 # 
 # 
 
-p_null <- sim_panel_null %>%
-  ggplot(aes(x = as.factor(id_x), y = sim_data)) + facet_wrap(~id_facet) + geom_boxplot() +
-  ggtitle(paste("(a)", round(null, 2))) + xlab("x level") +
-  ylab ("simulated response")
-
 
 
 
@@ -379,12 +369,6 @@ varf <- compute_pairwise_norm(sim_panel_varf,
                               nperm = 200
 )
 
-p_varf <- sim_panel_varf %>%
-  ggplot(aes(x = as.factor(id_x), y = sim_data)) + facet_wrap(~id_facet) + geom_boxplot() +
-  ggtitle(paste("(b)", round(varf, 2))) + xlab("x level") +
-  ylab ("simulated response")
-
-
 set.seed(9999)
 varx <- compute_pairwise_norm(sim_panel_varx, 
                               gran_x = "id_x",
@@ -393,15 +377,44 @@ varx <- compute_pairwise_norm(sim_panel_varx,
                               nperm = 200
 )
 
+
+
+## ---- null4by2
+# plot
+p_varall <- sim_panel_varall %>%
+  ggplot(aes(x = as.factor(id_x), y = sim_data)) + facet_wrap(~id_facet) + geom_boxplot() +
+  ggtitle(paste("(d)", round(varall, 2))) + xlab("x level") +
+  ylab ("simulated response")+ scale_y_continuous(breaks = seq(-3, 18, 5))
+  #ylim(-3,18)
+
+
+p_null <- sim_panel_null %>%
+  ggplot(aes(x = as.factor(id_x), y = sim_data)) + facet_wrap(~id_facet) + geom_boxplot() +
+  ggtitle(paste("(a)", round(null, 2))) + xlab("x level") +
+  ylab ("simulated response") + 
+  #ylim(-3,3) +
+ scale_y_continuous(breaks = seq(-3, 3, 2))
+
+
+p_varf <- sim_panel_varf %>%
+  ggplot(aes(x = as.factor(id_x), y = sim_data)) + facet_wrap(~id_facet) + geom_boxplot() +
+  ggtitle(paste("(b)", round(varf, 2))) + xlab("x level") +
+  ylab ("simulated response")+ ylim(-3,10) +
+  scale_y_continuous(breaks = seq(-3, 10, 3))
+
+
 # plot
 p_varx <- sim_panel_varx %>%
   ggplot(aes(x = as.factor(id_x), y = sim_data)) + facet_wrap(~id_facet) + geom_boxplot() +
   ggtitle(paste("(c)", round(varx, 2))) + xlab("x level") +
-  ylab ("simulated response")
-
-
+  ylab ("simulated response")+
+  #ylim(-3,6) +
+  scale_y_continuous(breaks = seq(-3, 6, 3))
 
 (p_null + p_varf)/(p_varx + p_varall)
+
+
+
 
 # 
 # ggpubr::ggarrange(p_null, p_varf,  p_varx, p_varall, nrow = 2, ncol = 2,

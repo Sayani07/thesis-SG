@@ -310,12 +310,12 @@ Done.
 
 > Q3. In Figure 3.2, two households are being compared. It would be much easier for most readers if the graphs use a common scale, thus following the small multiple principle. Both vertical axes should be extend to 1.5 kWh and a ticmark label should be placed there as well.
 
-Not changed. More than comparing the two houses, it is important to compare the patterns of their distributons across months. They have very different scales and showing them in the same scale would make it less clear.
+The ticmark labels are placed in both the figures but the houses are not brought to a same scale. More than comparing the two houses, it is important to compare the patterns of their distributions across months. They have different scales and showing them in the same scale is making the individual distributional differences seem less clear.
 
 > Q4. In general, I like to see ticmark labels close to the extrema of the shown data points. So, in Figure 3.3a, there should be additional ticmark labels at -3 and +3, in 3.3b at -5
 and +10, and so on.
 
-Can do.
+Done.
 
 
 > Q5. Before introducing a new distance measure in Section 3.2, I would like to see a literature review of existing distance measures | and their limitations. Why is it necessary to introduce a new distance measure here? This is partially addressed on p. 41, but that should be placed earlier in the text. One clarifying question: Which density is represented by f in the equation? And shouldn't there be a dx at the end of the integral? Also, the distance measures that are mentioned at the end of that paragraph should be explained in one or two sentences.
