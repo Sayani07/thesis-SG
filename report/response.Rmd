@@ -300,17 +300,17 @@ Very good point. Paper is already published. We would incorporate this in our fu
 ## Chapter 3
 
 
-> Q1. In Figure 3.1, it would help the reader to mention in the figure caption that a log-scale has been used for the vertical axis. Moreover, it might be helpful to add a ticmark label at 10 kWh and add ticmarks representing each fraction of 10 on the log-scale and not only the mid{point between two ticmark labels. Also, reminding the reader that summer months are in January and February in Australia would be helpful. When looking at the figure (prior to reading the main text), my first interpretation for the increased energy usage in January and February was because of (electric) heating | and not cooling.
+> Q1. In Figure 3.1, it would help the reader to mention in the figure caption that a log-scale has been used for the vertical axis. Moreover, it might be helpful to add a ticmark label at 10 kWh and add ticmarks representing each fraction of 10 on the log-scale and not only the mid-point between two ticmark labels. Also, reminding the reader that summer months are in January and February in Australia would be helpful. When looking at the figure (prior to reading the main text), my first interpretation for the increased energy usage in January and February was because of (electric) heating and not cooling.
 
-Can do.
+Done. (Can't get the tick marks at the right place)
 
 > Q2. Readers may not be familiar with administrative units in Australia. So, instead of speaking of Victoria on p. 35, simply speak of Melbourne (as this seems to be the source of the data).
 
-Can do.
+Done.
 
 > Q3. In Figure 3.2, two households are being compared. It would be much easier for most readers if the graphs use a common scale, thus following the small multiple principle. Both vertical axes should be extend to 1.5 kWh and a ticmark label should be placed there as well.
 
-Can do.
+Not changed. More than comparing the two houses, it is important to compare the patterns of their distributons across months. They have very different scales and showing them in the same scale would make it less clear.
 
 > Q4. In general, I like to see ticmark labels close to the extrema of the shown data points. So, in Figure 3.3a, there should be additional ticmark labels at -3 and +3, in 3.3b at -5
 and +10, and so on.
@@ -320,10 +320,16 @@ Can do.
 
 > Q5. Before introducing a new distance measure in Section 3.2, I would like to see a literature review of existing distance measures | and their limitations. Why is it necessary to introduce a new distance measure here? This is partially addressed on p. 41, but that should be placed earlier in the text. One clarifying question: Which density is represented by f in the equation? And shouldn't there be a dx at the end of the integral? Also, the distance measures that are mentioned at the end of that paragraph should be explained in one or two sentences.
 
-DISCUSS
-(Existing distance measure to obtain differences between categories like in ANOVA, limitation: only capture one measure of central tendency
-Cite some anova here as lit review?
 
+CLARIFICATION 1:
+The goal is to determine if there are any statistically significant differences between independent (unrelated) groups similar to a one-way or two-way ANOVA. A one-way ANOVA, for example, is analogous to $m=1$ (looking at one cyclic granularity at a time) in our approach. Assume we want to examine whether there is a significant difference in electricity demand on various days of the week. In this case, each day of the week may be regarded as an independent group, and we are looking at distributional differences rather than mean differences (as in a standard ANOVA). Similarly, considering $m=2$ (two cyclic granularities) is equivalent to a two-way ANOVA and is used to assess how distributions of quantitative variables vary according to the levels of two categorical variables rather than merely the mean or one measure of central tendency. There are other ways to obtain distributional differences, but we chose Jensen-Shannon distances between quantiles for ease of computation.
+
+CALRIFICATION 2: f in the equation was a typo. Replaced by log now.
+
+CALRIFICATION 3: Distance measures that are mentioned at the end of that paragraph are not explained in details but mentioned that they are all special cases of f-divergence.
+
+  
+CHANGED: Introduction (last but one paragraph) and Distance between distributions section.
 
 > Q6. For the data transformation steps on p. 40, a small table, say with a sample of 5 values from an exponential distribution, might be helpful to better explain each of the three steps.
 
