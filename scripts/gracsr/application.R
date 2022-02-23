@@ -836,6 +836,8 @@ knitr::kable(format = "latex",
 
 ## ----summary-plot-wpd------------------------------------------------------------
 
+data_pcp_plot$group5 <- factor(data_pcp_plot$group5, levels = c(1, 2, 3, 4, 5))
+
 parcoord5 <- GGally::ggparcoord(data_pcp_plot %>% select(-group3)%>% left_join(cluster_result_id, by = "customer_id"),
                                 columns = 3:5,
                                 groupColumn = "group5",
@@ -854,9 +856,9 @@ parcoord5 <- GGally::ggparcoord(data_pcp_plot %>% select(-group3)%>% left_join(c
   labs(colour = "group") +
   theme(panel.border = element_blank()) +
   scale_color_discrete(labels = c(c("Q-1","Q-2", "Q-3", "Q-4", "Q-5")))+
-  scale_color_manual(values = c("#3300FF", "#1B9E77", "#3B3178", "#1D7CF2", "#AE6D1C"), labels = c("Q-5","Q-2", "Q-3", "Q-4", "Q-1"))
+  scale_color_manual(values = c("#AE6D1C", "#1B9E77","#3300FF",  "#3B3178", "#1D7CF2"), labels = c("Q-1","Q-2", "Q-3", "Q-4", "Q-5"))
 
-
+data_pcp_plot$group3 <- factor(data_pcp_plot$group3, levels = c(1, 2, 3))
 
 parcoord3 <- GGally::ggparcoord(data_pcp_plot %>% select(-group5)%>% left_join(cluster_result_id, by = "customer_id"),
                                 columns = 3:5,
@@ -875,7 +877,7 @@ parcoord3 <- GGally::ggparcoord(data_pcp_plot %>% select(-group5)%>% left_join(c
   ylab("wpd") +
   labs(colour = "group") +
   theme(panel.border = element_blank()) +
-  scale_color_manual(values = c("#D8367D", "#1B9E77","#AE6D1C"), labels = c("P-3","P-2", "P-1"))
+  scale_color_manual(values = c("#AE6D1C", "#1B9E77","#00008B"), labels = c("P-1","P-2", "P-3"))
 
 
 parcoord3 <- parcoord3 +geom_text_repel(aes(label = sort_group_id), size = 2) &theme_light()&theme(legend.position = "bottom") 

@@ -461,9 +461,9 @@ Done.
 
 Done. 
 
-> Q11. Similar to Figure 4.9, it would help the reader that cluster P-3 is visually represented via three somewhat similar colors for Q-3, Q-4, and Q-5. Changing from red to blue/purple initially hides this information. Also arrange the legend from P-1 to P-3 and Q-1 to Q-5 to make it more obvious that P-1 & Q-1 and P-2 & Q-2 are identic
+> Q11. Similar to Figure 4.9, it would help the reader that cluster P-3 is visually represented via three somewhat similar colors for Q-3, Q-4, and Q-5. Changing from red to blue/purple initially hides this information. Also arrange the legend from P-1 to P-3 and Q-1 to Q-5 to make it more obvious that P-1 & Q-1 and P-2 & Q-2 are identical
 
-To do.(Medium)
+Done.
 
 > Q12. It would help the reader to also mention in the caption of Table 4.3 that P-1 & Q-1 and P-2 & Q-2 are identical. I first looked at Figure 4.9 and then at Table 4.3, but if read in the other order, I likely would have been surprised, to see identical values in some of the table rows (without any further explanation).
 
@@ -480,8 +480,7 @@ Split into a "Limitation" and "Discussion" section separately detailing the draw
 > Q1. Capitalize all nouns, e.g., in
 Time-series clustering - A decade review.
 
-
-To do. Make it consistent sentence case. (Easy)
+Made all bib entries consistent (sentence case)
 
 > Q2. Use full{length journal names, i.e., do not use abbreviations, e.g., in Inf. Syst.
 
