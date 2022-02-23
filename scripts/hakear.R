@@ -610,18 +610,29 @@ glm_fit_onegran  <- glm(actual ~ log(`nx * nfacet`),
                         family = Gamma(link = "inverse"),
                         data = G21_median_onegran)
 
-bind_rows(broom::tidy(glm_fit_onegran),
-          tidy(glm_fit), .id = "$m$") %>%
+# bind_rows(broom::tidy(glm_fit_onegran),
+#           tidy(glm_fit), .id = "$m$") %>%
+#   mutate(estimate = round(estimate, 2),
+#          std.error = round(std.error, 2),
+#          statistic = round(statistic, 2),
+#          #p.value = round(p.value, 2),
+#          p.value = "<.001",
+#          term = rep(c("Intercept","$\\log(\\nx \\times \\nf)$"),2)
+#   ) %>%
+#   kable(booktabs=TRUE, escape=FALSE,
+#         caption = "Results of generalised linear model to capture the relationship between $\\wpdsub{raw}$ and the number of comparisons.")
+
+
+          bind_rows(tidy(glm_fit)) %>%
   mutate(estimate = round(estimate, 2),
          std.error = round(std.error, 2),
          statistic = round(statistic, 2),
          #p.value = round(p.value, 2),
          p.value = "<.001",
-         term = rep(c("Intercept","$\\log(\\nx \\times \\nf)$"),2)
+         term = rep(c("Intercept","$\\log(\\nx \\times \\nf)$"),1)
   ) %>%
   kable(booktabs=TRUE, escape=FALSE,
         caption = "Results of generalised linear model to capture the relationship between $\\wpdsub{raw}$ and the number of comparisons.")
-
 
 ## ---- wpd-glm-dist
 

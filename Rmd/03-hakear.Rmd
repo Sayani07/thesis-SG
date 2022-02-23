@@ -480,17 +480,17 @@ Again consider Figures \ref{fig:onegran-new}(a) and \ref{fig:onegran-new}(b) wit
 
 ### Simulations {#sec:simulations}
 
-Simulations were carried out to explore the behavior of $\wpd$ as $\nx$ and $\nf$ were varied, in order to compare and evaluate different normalization approaches. More detailed simulation results, including an exploration of the size of the proposed test, are contained in the [supplements](https://github.com/Sayani07/paper-hakear/blob/master/paper/paper-supplementary.pdf).
+Simulations were carried out to explore how the behavior of $\wpd$ as $\nx$ and $\nf$ were varied, in order to compare and evaluate different normalization approaches for both $m=1$ and $m=2$. Here the simulation design and results corresponding to $m=2$ are presented. Similar design and results for $m=1$, although important, are not included in the paper but in the [supplements](https://github.com/Sayani07/paper-hakear/blob/master/paper/paper-supplementary.pdf) along with other more detailed simulation results.
 
 #### Simulation design {-}
 
-\noindent $m=1$
+<!-- \noindent $m=1$ -->
 
-\noindent Observations were generated from a N(0,1) distribution for $\nx \in \{2, 3, 5, 7, 9, 14, 17, 20, 24, 31, 42, 50\}$, with $\nsub{times} = 500$ observations drawn for each combination of categories. This design corresponds to $\Dnull$. For each of the categories, there were $\nsub{sim}=200$ replications, so that the distribution of $\wpd$ under $\Dnull$ could be observed. Let $\wpd_{\ell, s}$ denote the value of $\wpd$ obtained for the $\ell^{th}$ panel and $s^{th}$ simulation.
+<!-- \noindent Observations were generated from a N(0,1) distribution for $\nx \in \{2, 3, 5, 7, 9, 14, 17, 20, 24, 31, 42, 50\}$, with $\nsub{times} = 500$ observations drawn for each combination of categories.  Let $\wpd_{\ell, s}$ denote the value of $\wpd$ obtained for the $\ell^{th}$ panel and $s^{th}$ simulation. -->
 
-\noindent $m=2$
+<!-- \noindent $m=2$ -->
 
-\noindent Similarly, observations were generated from a N(0,1) distribution for each combination of $\nx$ and $\nf$ from $\{2, 3, 5, 7, 14, 20, 31, 50\}$, with $\nsub{times} = 500$ observations drawn for each of the $64$ combinations.
+\noindent Observations were generated from a N(0,1) distribution for each combination of $\nx$ and $\nf$ from $\{2, 3, 5, 7, 14, 20, 31, 50\}$, with $\nsub{times} = 500$ observations drawn for each of the $64$ combinations. This design corresponds to $\Dnull$. For each of the categories, there were $\nsub{sim}=200$ replications, so that the distribution of $\wpd$ under $\Dnull$ could be observed.
 
 #### Results {-}
 
