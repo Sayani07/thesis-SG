@@ -89,12 +89,9 @@ Added.
 > Q9. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
 
-. DISCUSS
-No change.
-Data in Fig 3.3 (a) is consistent with the null distribution.
-Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities.
+CLARIFICATION: Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities. Data in Fig 3.3 (a) is consistent with the null distribution.
 
-> Q10. In table 3.1 Nc is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
+> Q10. In table 3.1 $N_c$ is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
 3.3.3) it is m.
 
 Done.
@@ -126,23 +123,18 @@ Within-facet distances are illustrated in Panels 3) (when categories are un-orde
 
 > Q14. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at xlevel=1 the comparison shown is less interesting
 
-. DISCUSS
-No change.
-We assume we have enough observations for each level or combination of levels to compute distributions. As long as that holds, no adjustment made for varying number of observations.
+CLARIFICATION: As long as that there is enough data for each level or combination of levels, no adjustment for varying number of observations is done. If there are few data for one or more levels, subsequent categories could be collapsed to obtain precise estimates of quantiles. 
 
-Add it somewhere, need to have reasonable number of observations, otherwise collapse categories (To do)
+Added under the subsection "Characterizing distributions".
 
 
 > Q15. The equations on page 44 could be tidied up. There are extra () on the definition of wpdperm and on the residual definition at the bottom of the page. Use $\times$ for the equations.
 
 Done.
 
-> Q16. Is there a practical reason why wpdglm is not working as expected for lower nx and nf?
+> Q16. Is there a practical reason why $wpd_{glm}$ is not working as expected for lower nx and nf?
 
-To do. Need to mention it in the paper.
-No practical reason but a more theoretical one.
-For lower $n_x$ and $n_f$, the number of combinations $n_xn_f$ is low such that the max do not have an assymptotic distribution which can be assumed as Normal by CLT. With higher combinations, the distribution of the each combination could be assumed to be normal.
-
+CLARIFICATION: There is no practical explanation for this, but a more empirical one - with smaller $n_x$ and $n_f$, the variance in the values of $wpd_{raw}$ is greater. As a result, our modeling technique that attempts to fit $wpd_{raw}$ to the number of comparisons ($n_x\times n_f$) performs poorly. The increased volatility in the values of $wpd_{raw}$ with a smaller number of levels is due to the fact that no asymptotic distribution for the statistic "maximum" (which is the foundation of $wpd_{raw}$) across such small number of values could be produced.
 
 > Q17. In the 3.3.1 algorithm, there is m, and then M.
 
@@ -155,12 +147,11 @@ Not changed.
 
 > Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is the notation $wpd_{l,s}$ used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation involving different underlying distributions, but this is not mentioned again.
 
-. DISCUSS
+To do. (Easy)
 first part: How?
 second part: The results are made available in the supplementary paper (Discuss)
 
 Mention m=1 results are same as m=2, although important not included in the paper but in the supplements. Make subsections for m=1 and 2.
-TO DO
 
 
 > Q20. In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
@@ -175,7 +166,7 @@ Done.
 
 > Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a different colour in the heatmap for the significant comparisons. State the threshold for significance in the caption. In Table 3.3 the caption should explain the threshold. (Maybe use colour instead of stars to indicate significance?)
 
-To do. DISCUSS.
+To do. (Difficult viz)
 
 > Q23. The link in the Acknowledgements https://github.com/Sayani07/paper-hakear is not available. Neither
 are the supplementary materials. I understand this is for the paper version, I mention it for completeness.
@@ -208,7 +199,7 @@ Done.
 > Q5. I found Figure 4.1 very useful. In each box, would be helpful to put in “or”, in places where only one of the steps listed is performed, eq Normal quantile transform or Robust scaling. As there are many steps
 in the algorithm, it would be helpful to the reader to label the pipeline steps and to refer back to them in the text. The text in the Data pre-processing box does not make sense to me.
 
-To do? (Or not)
+To do? (Easy)
 Partially done. Need to add "or"
 
 
@@ -228,7 +219,7 @@ Done.
 
 > Q9. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the distribution of each vt.
 
-To do.
+To do.(Medium)
 
 > Q10. Where is $\mu$ in Table 4.2?
 
@@ -266,7 +257,7 @@ Done.
 
 > Q17. Again, the computational burden could do with more Discussion. At present, if I were to use this method on my data, what kind of sizes are realistic to work with?
 
-. DISCUSS
+To do.(Hard)
 
 # Prof Juergen Symanzik
 
@@ -275,13 +266,13 @@ Done.
 > Q1. While the author hints at other sources of similar data, I think it would be worthwhile to give the reader some further specific ideas here in the Introduction where similar complex data may occur, e.g., data from traffic sensors, movement data (turnstiles in metro stations or public buildings), and even more traditional measurements such as temperatures or precipitation over
 time that could benefit from the methods and software described in this thesis.
 
-. DISCUSS
+To do. (Medium)
 
 > Q2. It may also be helpful to state what is not be covered in this thesis: The spatial component of such data where an additional component could be latitude and longitude or some areal code,
 such as the post code or some administrative units. Extending the work from this thesis with spatial proximity methods for clustering (https://doi.org/10.1016/j.cageo.2011.12.017) [assuming that households in certain residential neighborhoods may have similar energy usage patterns] and trying spatial visualization methods (if possible) such as glyph maps (https:
 //onlinelibrary.wiley.com/doi/abs/10.1002/env.2152) should be mentioned somewhere as a consideration for future work | but that may become a future new thesis by itself.
 
-. DISCUSS
+To do. (Medium)
 
 > Q3. Finally, it would be helpful to indicate here (and in each chapter) what the names or abbreviations for the three R packages (gravitas, hakear, and gracsr) represent. Even the full R package
 title of "gravitas: Explore Probability Distributions for Bivariate Temporal Granularities" does not provide a full answer what the "tas" component means (I am assuming that Gravi stands for Granularities Visualization). I am even more lost with hakear.
@@ -333,7 +324,7 @@ CHANGED: Introduction (last but one paragraph) and Distance between distribution
 
 > Q6. For the data transformation steps on p. 40, a small table, say with a sample of 5 values from an exponential distribution, might be helpful to better explain each of the three steps.
 
-Discuss. (Time taking)
+To do. (Medium)
 
 > Q7. A few editorial corrections are necessary, e.g.,
 Dang and Wilkinson (2014); Wilkinson, Anand, and Grossman (2005) provide misses an \and" between the two references. The same holds for Buja et al. (2009); Majumder, Hofmann, and Cook (2013) present. I would leave it to the author to check for similar omissions. Moreover, these should be past tense: "provided" and "presented".
@@ -371,9 +362,9 @@ We decided to remove the y-axis labels in the interest of space. The y-axis is s
 
 CLARIFICATION: Added $m=2$ in the caption of Figures 3.5 and 3.6.
 
-> Q14. There are similar problems with the labels in Figure 3.6. Moreover, the two overlaid curves are very hard to distinguish. Would it help to change colors and transparency, or draw the boundary of the curves with the specific colors (and not in black)? This may require some experimentation. Finally, using a differently colored background (say light yellow) would be helpful to visually demonstrate where wpdperm is being used. For the legend, use the terms as in equation (3.2) and not the full word.
+> Q14. There are similar problems with the labels in Figure 3.6. Moreover, the two overlaid curves are very hard to distinguish. Would it help to change colors and transparency, or draw the boundary of the curves with the specific colors (and not in black)? This may require some experimentation. Finally, using a differently colored background (say light yellow) would be helpful to visually demonstrate where $wpd_{perm}$ is being used. For the legend, use the terms as in equation (3.2) and not the full word.
 
-Discuss
+Done. Changed to make it more clear than earlier.
 
 > Q15. The last paragraph on p. 48 uses $<$ while equation (3.2) uses $\leqslant$. Which one is correct?
 
@@ -386,10 +377,9 @@ too late.
 Done.
 Added the abbreviations on Page 50 in "Choosing cyclic granularities of interest and removing clashes" section.
 
-> Q17. In Figure 3.7a, it is not clear what the eight heatmaps represent. Do they belong to id 1, ..., id 8 ? Some explanation in the text or listing the id information on the left would be helpful. Similarly, on p. 53, the text states: id 7 and 8 have the same significant harmonies. I do not know where to look at the heatmaps in Figure 3.7a to find this information (and what is mentioned under items 2. and 3. in the text). Some explanation and labeling is
-needed here.
+> Q17. In Figure 3.7a, it is not clear what the eight heatmaps represent. Do they belong to id 1, ..., id 8 ? Some explanation in the text or listing the id information on the left would be helpful. Similarly, on p. 53, the text states: id 7 and 8 have the same significant harmonies. I do not know where to look at the heatmaps in Figure 3.7a to find this information (and what is mentioned under items 2. and 3. in the text). Some explanation and labeling is needed here.
 
-discuss.
+To do. (Difficult viz)
 
 > Q18. How were the harmony pairs selected and sorted in Figure 3.7 and Table 3.3? headmaps show 25 pairs, the parallel coordinate plot shows only 14 (same as Table 3.3). However, the last two are sorted differently, "hod wdwnd" (the first row in the table) is neither the first nor the last row in the parallel coordinate plot.
 
@@ -412,17 +402,16 @@ Done.
 
 > Q21. Are parts a and b in Figure 3.8 correctly labeled and also matching with the figure caption? The caption reads For id 1, patterns look similar within weekdays and weekends. Visually, this seems to be the case for id 7 (in part b). This also visually matches Figure 3.7b.
 
-
 Caption rephrased to make it more clear.
 
 For id: 7, there is more distributional difference between consecutive hours of the day compared to id:1. Also all the days of the week are different from each other in id:7. id:1 has similar behavior across all days within both weekdays and weekends. For this reason, the wpd for id:7 has a higher value than id:1 as the similar behavior within weekdays and weekends balances out the difference between weekdays and weekends. The display with hod vs wdwnd would have shown higher values of wpd for id:1 (as can be verified from Table 3).
 
-> Q22. I didn't ask earlier, but how were the eight households for Section 3.4 being selected? Was this based on a random sample, or manually do obtain rather different energy usage patterns? This should be answered earlier on, but this also should be addressed in the Discussion: What can be expected when working with the full data set of Chapter 2, i.e., about 13,000. You indicate:
+> Q22. I didn't ask earlier, but how were the eight households for Section 3.4 being selected? Was this based on a random sample, or manually do obtain rather different energy usage patterns? This should be answered earlier on, but this also should be addressed in the Discussion: 
+What can be expected when working with the full data set of Chapter 2, i.e., about 13,000. You indicate:
 A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities. What would be computationally (and visually) feasible as 13,000 is a few orders of magnitude
-higher than the number of eight households used in this example? Clearly, no full answer is expected here, but rather some speculation of what could possibly be done in
-the future (or what is done in the next chapter).
+higher than the number of eight households used in this example? Clearly, no full answer is expected here, but rather some speculation of what could possibly be done in the future (or what is done in the next chapter).
 
-Discuss.
+To do. (Hard)
 
 > Q23.The Supplementary materials section mentions data and scripts and a supplementary paper. For the thesis, it would be helpful to indicate where these can be located on github. There is only a link for the R package.
 
@@ -475,11 +464,11 @@ Done.
 
 > Q10. Be consistent across chapters. For example, in Table 3.3, you use wdwnd. On p. 72 and in Figure 4.7, you use wnwd. Adjust across all chapters. Check whether other abbreviations need to be standardized as well.
 
-Ok. To do in hakear.
+Ok. To do in hakear. (Easy)
 
 > Q11. Similar to Figure 4.9, it would help the reader that cluster P-3 is visually represented via three somewhat similar colors for Q-3, Q-4, and Q-5. Changing from red to blue/purple initially hides this information. Also arrange the legend from P-1 to P-3 and Q-1 to Q-5 to make it more obvious that P-1 & Q-1 and P-2 & Q-2 are identic
 
-Discuss.
+To do.(Medium)
 
 > Q12. It would help the reader to also mention in the caption of Table 4.3 that P-1 & Q-1 and P-2 & Q-2 are identical. I first looked at Figure 4.9 and then at Table 4.3, but if read in the other order, I likely would have been surprised, to see identical values in some of the table rows (without any further explanation).
 
@@ -497,7 +486,7 @@ Split into a "Limitation" and "Discussion" section separately detailing the draw
 Time-series clustering - A decade review.
 
 
-To do. Make it consistent sentence case.
+To do. Make it consistent sentence case. (Easy)
 
 > Q2. Use full{length journal names, i.e., do not use abbreviations, e.g., in Inf. Syst.
 
