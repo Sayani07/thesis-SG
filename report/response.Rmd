@@ -194,8 +194,8 @@ Done.
 > Q5. I found Figure 4.1 very useful. In each box, would be helpful to put in “or”, in places where only one of the steps listed is performed, eq Normal quantile transform or Robust scaling. As there are many steps
 in the algorithm, it would be helpful to the reader to label the pipeline steps and to refer back to them in the text. The text in the Data pre-processing box does not make sense to me.
 
-To do? (Easy)
-Partially done. Need to add "or"
+Rephrased to make it fluent.
+Figure 4.1 labels changed to make it consistent with the text.
 
 
 > Q6. The section describing RS and NQT is confusing. It states RS is applied to each time series separately. Is NQT also applied to each observation separately? How does “it could be useful to standardize it for
@@ -459,7 +459,7 @@ Done.
 
 > Q10. Be consistent across chapters. For example, in Table 3.3, you use wdwnd. On p. 72 and in Figure 4.7, you use wnwd. Adjust across all chapters. Check whether other abbreviations need to be standardized as well.
 
-Ok. To do in hakear. (Easy)
+Done. 
 
 > Q11. Similar to Figure 4.9, it would help the reader that cluster P-3 is visually represented via three somewhat similar colors for Q-3, Q-4, and Q-5. Changing from red to blue/purple initially hides this information. Also arrange the legend from P-1 to P-3 and Q-1 to Q-5 to make it more obvious that P-1 & Q-1 and P-2 & Q-2 are identic
 
