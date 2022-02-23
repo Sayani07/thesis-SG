@@ -159,10 +159,9 @@ The shape and scale of the distribution of the measured variable (e.g. energy us
 
 ### Data pre-preprocessing
 
-Computationally in R, the data is assumed to be a "tsibble object" [@wang2020tsibble] equipped with an index variable representing inherent ordering from past to present and a key variable that defines observational units over time. The measured variable for an observation is a time-indexed sequence of values. This sequence, however, could be shown in several ways. A shuffle of the raw sequence may represent hourly consumption throughout a day, a week, or a year. Cyclic granularities can be expressed in terms of the index set in the tsibble data structure.
+The initial data in R is supposed to be a "tsibble object" [@wang2020tsibble] with an index variable representing inherent ordering from past to present, a key variable that specifies observational units through time, and measured variables. As a result, the measured variable for a key is a sequence of values that is time-indexed. However, this sequence may be shown in a variety of ways. A shuffling of the raw sequence may reflect hourly consumption over the course of a day, a week, or a year.
 
-The data object will change when cyclic granularities are computed, as multiple observations will be categorized into levels of the granularity, thus inducing multiple probability distributions. Directly computing Jensen-Shannon distances between the entire probability distributions can be computationally intensive. Thus it is recommended that quantiles are used to characterize the probability distributions. In the final data object, each category of a cyclic granularity corresponds to a list of numbers which is composed of a few quantiles.
-
+The data object will change when cyclic granularities are computed, as multiple observations will be categorized into levels of the granularity, thus inducing multiple probability distributions. Directly calculating Jensen-Shannon distances between all probability distributions can be time-consuming. As a result, it is suggested that quantiles be employed to characterize probability distributions. In the final data object, each category of cyclic granularity corresponds to a list of numbers, which is composed of a few quantiles.
 
 ### Distance metrics
 

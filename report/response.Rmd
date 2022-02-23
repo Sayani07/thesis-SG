@@ -147,12 +147,7 @@ Not changed.
 
 > Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is the notation $wpd_{l,s}$ used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation involving different underlying distributions, but this is not mentioned again.
 
-To do. (Easy)
-first part: How?
-second part: The results are made available in the supplementary paper (Discuss)
-
-Mention m=1 results are same as m=2, although important not included in the paper but in the supplements. Make subsections for m=1 and 2.
-
+The simulation design and results corresponding to $m=2$ are presented. Similar design and results for $m=1$, although important, are not included in the paper but in the supplements. Simulation results involving different underlying distributions are also presented in the supplementary paper.
 
 > Q20. In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
 show fewer panels?
