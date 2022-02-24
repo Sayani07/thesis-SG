@@ -81,8 +81,7 @@ Done.
 
 > Q8. Maybe include a reference for gestalt theory.
 
-Added.
-@wertheimer1938gestalt
+Done.
 
 > Q9. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
@@ -257,11 +256,7 @@ Done.
 
 > Q17. Again, the computational burden could do with more Discussion. At present, if I were to use this method on my data, what kind of sizes are realistic to work with?
 
-To do.(Hard)
-
-
-Suppose there are $n$ observations. Our current methodology has a time complexity of $O(n^2)$ since it calculates distance between all pairs. The time taken to compute distances between a pair of observations based on $p$ cyclic granularity is 
-
+A similar question has been answered for the next reviewer.
 
 
 # Prof Juergen Symanzik
@@ -279,6 +274,12 @@ The name of the thesis implies that only analyzing temporal data is covered. Ext
 
 > Q3. Finally, it would be helpful to indicate here (and in each chapter) what the names or abbreviations for the three R packages (gravitas, hakear, and gracsr) represent. Even the full R package
 title of "gravitas: Explore Probability Distributions for Bivariate Temporal Granularities" does not provide a full answer what the "tas" component means (I am assuming that Gravi stands for Granularities Visualization). I am even more lost with hakear.
+
+Added under Thesis structure in Introduction.
+gravitas: GRAnularity VIsualization for Time-series AnalySis
+hakear: HArmonies KEeper And Rater
+gracsr: GRAnularity CluStering in R
+
 
 ## Chapter 2
 
@@ -327,7 +328,7 @@ CHANGED: Introduction (last but one paragraph) and Distance between distribution
 
 > Q6. For the data transformation steps on p. 40, a small table, say with a sample of 5 values from an exponential distribution, might be helpful to better explain each of the three steps.
 
-To do. (Medium)
+We will include this in the supplements while publishing the paper.
 
 > Q7. A few editorial corrections are necessary, e.g.,
 Dang and Wilkinson (2014); Wilkinson, Anand, and Grossman (2005) provide misses an \and" between the two references. The same holds for Buja et al. (2009); Majumder, Hofmann, and Cook (2013) present. I would leave it to the author to check for similar omissions. Moreover, these should be past tense: "provided" and "presented".
@@ -414,7 +415,7 @@ What can be expected when working with the full data set of Chapter 2, i.e., abo
 A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities. What would be computationally (and visually) feasible as 13,000 is a few orders of magnitude
 higher than the number of eight households used in this example? Clearly, no full answer is expected here, but rather some speculation of what could possibly be done in the future (or what is done in the next chapter).
 
-To do. (Hard)
+Suppose there are $n$ observations. Our current methodology has a time complexity of $O(n^2)$ since it calculates distance between all pairs. The time taken to compute distances between a pair of observations is also based on the number of cyclic granularities considered. For example, $1$, $2$ and $3$ cyclic granularities for JS-NQT are ~ 4.5s, 5.8s and 8.2s respectively. The times will be similar for JS-RS. For WPD, time taken will be more as the statistic $wpd$ need to be computed for each observation and each cyclic granularity. A rough estimate of working with $wpd$ working with two granularities with $(l,m)$ levels: ~(30s- 300s for 6<=l,m<=50) and ~40min-50min for (l,m<=5). But this is a one-time job to obtain the significant granularities and can be run for a few individuals to get a sense of the significant granularities for the context. for example, for the electricity data, the granularities that were significant for most individuals were "wkdn/wday", "hour-of-day", "day-of-month" and hence clustering was run only on these variables.
 
 > Q23.The Supplementary materials section mentions data and scripts and a supplementary paper. For the thesis, it would be helpful to indicate where these can be located on github. There is only a link for the R package.
 
@@ -480,7 +481,7 @@ Done.
 > Q13. For the thesis, the work is adequate and meaningful. For a journal paper, I would like to see some of the points outlined in the Discussion being addressed. What happens if this method is applied to the data from the 13,000 customers that were introduced earlier on? As a reader of a journal paper, I would rather like to see limitations of the method proposed here, e.g., if it does not scale up then why it most likely does not scale up. Otherwise, it is hard to assess whether it is worthwhile to try this method for one's own data.
 
 We will include it in the journal paper. 
-Split into a "Limitation" and "Discussion" section separately detailing the drawbacks.
+<!-- Split into a "Limitation" and "Discussion" section separately detailing the drawbacks. -->
 
 
 ## Bibliography
