@@ -1007,7 +1007,7 @@ heatplot <- elec_sig_split %>%
   ggplot(aes(x = x_variable,
              y = facet_variable)) +
   geom_tile(aes(fill = wpd)) + 
-  geom_polygon(aes(x = x,y = y, color = id),size=2, fill= NA, data = merge(outline, square))+
+  geom_polygon(aes(x = x,y = y, color = id),size=1, fill= NA, data = merge(outline, square))+
   scale_color_discrete(type = okabeito,
                        guide = "none")+
   #color = as.factor(significance_95)),
@@ -1086,7 +1086,10 @@ elec_zoom <-  elec %>%
   theme(
     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0))) +
   scale_color_discrete(type = okabeito) +
-  theme(axis.ticks.y=element_blank())
+  theme(axis.ticks.y=element_blank()) 
+
+# + 
+#   theme(strip.background =element_rect(aes(fill=id))) +scale_fill_discrete(type = okabeito)
 
 
 
@@ -1153,7 +1156,7 @@ elec_rank <- elec_sig_split %>%
 
 elec_rank %>% 
   kable(format = "markdown", 
-        caption = "Ranking of harmonies for the eight households with significance marked for different thresholds. Rankings are different and at most three harmonies are significant for any household. The number of harmonies to explore is reduced from 42 to 3.")
+        caption = "Ranking of harmonies for the eight households with significance marked for different thresholds. ***, ** and * correspond to the 99th, 95th and 90th percentile threshold. Rankings are different and at most three harmonies are significant for any household. The number of harmonies to explore is reduced from 42 to 3.")
 
 
 

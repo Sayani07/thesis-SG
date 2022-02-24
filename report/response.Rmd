@@ -12,11 +12,9 @@ I thank my examiners for their thorough and constructive comments. The point by 
 
 # Professor Catherine Hurley
 
-I appreciate all the comments and suggestions, and will incorporate them into future work. Specific comments are addressed as follows:
-
 ## Chapter 1
 
-Perhaps though, this would be a good place to detail the co-authorship arrangements for the succeeding chapters, and for the student’s contribution to be stated clearly.
+> This would be a good place to detail the co-authorship arrangements for the succeeding chapters, and for the student’s contribution to be stated clearly.
 
 Done.
 A table outlining the main chapters’ co-authorship arrangements included in Introduction.
@@ -25,7 +23,7 @@ A table outlining the main chapters’ co-authorship arrangements included in In
 
 > Q1. In Figure 2.1 on the right hand side it should be t/24, t/(24 × 7)
 
-Not change.
+Not changed.
 Figure is already published.
 
 > Q2. Last sentence of Section 2.3.4: fix the table reference
@@ -41,7 +39,7 @@ The outliers are made smaller and transparent and caption changed.
 > Q4. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging. The plot deserves a bit more space.
 
 
-Not change.
+Not changed.
 Figure is already published
 
 ## Chapter 3
@@ -99,7 +97,7 @@ Done.
 Add $m$ to table 3.1
 $m$ = number of cyclic granularities to display together
 
-$N_c$ refers to the total number of contextual cyclic granularities. $m$ refers to the number of cyclic granularities we are considering together in the display. For example, contextual cyclic granularities could be $hour_day$, $day_week$ and $month_year$ and we want to visualize any one granularity at a time. So $N_c = 3$ and $m=1$. 
+$N_c$ refers to the total number of contextual cyclic granularities. $m$ refers to the number of cyclic granularities we are considering together in the display. For example, contextual cyclic granularities could be $hour_{day}$, $day_{wee}k$ and $month_{year}$ and we want to visualize any one granularity at a time. So $N_c = 3$ and $m=1$. 
 
 > Q11. Add v to table 3.1.
 
@@ -143,7 +141,7 @@ Changed.
 
 > Q18. In Table 3.2, I would suggest separating the m = 1 and m = 2 tables.
 
-Not changed.
+$m=1$ removed from the main chapter and included in supplements.
 
 > Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is the notation $wpd_{l,s}$ used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation involving different underlying distributions, but this is not mentioned again.
 
@@ -161,7 +159,14 @@ Done.
 
 > Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a different colour in the heatmap for the significant comparisons. State the threshold for significance in the caption. In Table 3.3 the caption should explain the threshold. (Maybe use colour instead of stars to indicate significance?)
 
-To do. (Difficult viz)
+CHANGED.
+- Different box borders (instead of id labels) are added such that (a) and (b) display the household ids in the same order as indicated by the same colour of the line plot in (b) and box border 
+- threshold explained in caption in Table 3.3 
+- grey color explained in the text and caption
+
+CLARIFICATION 1: Using color to convey significance instead of stars (in the Fig 3.3a) is a not a great idea because the varied shades of the tiles represent different values of the $wpd$. For example, both tiles may be significant, and their colours may differ to represent distinct $wpd$ values. To be consistent, Table 3.3 also has stars to represent significance.
+
+
 
 > Q23. The link in the Acknowledgements https://github.com/Sayani07/paper-hakear is not available. Neither
 are the supplementary materials. I understand this is for the paper version, I mention it for completeness.
@@ -212,9 +217,9 @@ What is the question? I have mentioned that D stands for Jensen-Shannon distance
 
 Done.
 
-> Q9. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the distribution of each vt.
+> Q9. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the distribution of each $v_t$.
 
-To do.(Medium)
+Stating the distribution of each $v_t$ is difficult because the levels for each granularity and design varies, therefore I chose to divide it into two tables.
 
 > Q10. Where is $\mu$ in Table 4.2?
 
@@ -254,20 +259,23 @@ Done.
 
 To do.(Hard)
 
+
+Suppose there are $n$ observations. Our current methodology has a time complexity of $O(n^2)$ since it calculates distance between all pairs. The time taken to compute distances between a pair of observations based on $p$ cyclic granularity is 
+
+
+
 # Prof Juergen Symanzik
 
 ## Chapter 1
 
-> Q1. While the author hints at other sources of similar data, I think it would be worthwhile to give the reader some further specific ideas here in the Introduction where similar complex data may occur, e.g., data from traffic sensors, movement data (turnstiles in metro stations or public buildings), and even more traditional measurements such as temperatures or precipitation over
-time that could benefit from the methods and software described in this thesis.
+> Q1. While the author hints at other sources of similar data, I think it would be worthwhile to give the reader some further specific ideas here in the Introduction where similar complex data may occur, e.g., data from traffic sensors, movement data (turnstiles in metro stations or public buildings), and even more traditional measurements such as temperatures or precipitation over time that could benefit from the methods and software described in this thesis.
 
-To do. (Medium)
+Done. Added in the Introduction.
 
-> Q2. It may also be helpful to state what is not be covered in this thesis: The spatial component of such data where an additional component could be latitude and longitude or some areal code,
-such as the post code or some administrative units. Extending the work from this thesis with spatial proximity methods for clustering (https://doi.org/10.1016/j.cageo.2011.12.017) [assuming that households in certain residential neighborhoods may have similar energy usage patterns] and trying spatial visualization methods (if possible) such as glyph maps (https:
-//onlinelibrary.wiley.com/doi/abs/10.1002/env.2152) should be mentioned somewhere as a consideration for future work | but that may become a future new thesis by itself.
+> Q2. It may also be helpful to state what is not be covered in this thesis: The spatial component of such data where an additional component could be latitude and longitude or some areal code, such as the post code or some administrative units. Extending the work from this thesis with spatial proximity methods for clustering (https://doi.org/10.1016/j.cageo.2011.12.017) [assuming that households in certain residential neighborhoods may have similar energy usage patterns] and trying spatial visualization methods (if possible) such as glyph maps (https:
+//onlinelibrary.wiley.com/doi/abs/10.1002/env.2152) should be mentioned somewhere as a consideration for future work but that may become a future new thesis by itself.
 
-To do. (Medium)
+The name of the thesis implies that only analyzing temporal data is covered. Extending it to spatial is too broad a scope. The limitations of the study cater to aspects that could be addressed with some more time. This is not the case for extending the spatial component, which, as accurately pointed out, would require time comparable to another thesis.
 
 > Q3. Finally, it would be helpful to indicate here (and in each chapter) what the names or abbreviations for the three R packages (gravitas, hakear, and gracsr) represent. Even the full R package
 title of "gravitas: Explore Probability Distributions for Bivariate Temporal Granularities" does not provide a full answer what the "tas" component means (I am assuming that Gravi stands for Granularities Visualization). I am even more lost with hakear.
@@ -374,7 +382,7 @@ Added the abbreviations on Page 50 in "Choosing cyclic granularities of interest
 
 > Q17. In Figure 3.7a, it is not clear what the eight heatmaps represent. Do they belong to id 1, ..., id 8 ? Some explanation in the text or listing the id information on the left would be helpful. Similarly, on p. 53, the text states: id 7 and 8 have the same significant harmonies. I do not know where to look at the heatmaps in Figure 3.7a to find this information (and what is mentioned under items 2. and 3. in the text). Some explanation and labeling is needed here.
 
-To do. (Difficult viz)
+Caption changed to illustrate the plot better. Added box borders in (a) such that (a) and (b) display the household ids in the same order as indicated by the same color of the line plot in (b) and box border in (a).
 
 > Q18. How were the harmony pairs selected and sorted in Figure 3.7 and Table 3.3? headmaps show 25 pairs, the parallel coordinate plot shows only 14 (same as Table 3.3). However, the last two are sorted differently, "hod wdwnd" (the first row in the table) is neither the first nor the last row in the parallel coordinate plot.
 
