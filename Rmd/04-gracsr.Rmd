@@ -505,7 +505,7 @@ In our study sample, the method JS-NQT outperforms the method JS-RS for smaller 
 ```
 
 
-```{r mds-plot-validation, fig.cap = "MDS summary plots to illustrate the cluster separation for the range of mean differences (rows) under the different scenarios (columns). It can be observed that clusters become more compact and separated for higher mean differences between categories across all scenarios. Between scenarios, separation is least prominent corresponding to Scenario (S3) where only one granularity is responsible for distinguishing the clusters."}
+```{r mds-plot-validation, fig.cap = "MDS summary plots of clusters obtained from employing JS-NQT on the validation data sets. It illustrates the cluster separation for the range of mean differences (rows) under the different scenarios (columns). It can be observed that clusters become more compact and separated for higher mean differences between categories across all scenarios. Between scenarios, separation is least prominent corresponding to Scenario (S3) where only one granularity is responsible for distinguishing the clusters."}
 
 ```
 

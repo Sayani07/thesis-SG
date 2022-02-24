@@ -1015,7 +1015,7 @@ mds_plot_10 <- ggplot(
     color = group
   )
 ) +
-  geom_point(size = 2, alpha = 0.5, shape = 3) +
+  geom_point(size = 2, alpha = 0.5, aes(shape = group)) +
   facet_grid(diff ~ Scenario, labeller = "label_value") +
   # geom_text(check_overlap = TRUE)  +
   theme_bw() +
@@ -1023,8 +1023,12 @@ mds_plot_10 <- ggplot(
   scale_color_brewer(palette = "Dark2") +
   ylab("mds1") +
   xlab("mds2") +
-  theme(axis.text = element_text(size = 8))+
-  theme(aspect.ratio = 1)
+  theme(axis.text = element_text(size = 7),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  theme(aspect.ratio = 1)+
+  scale_shape_manual(values = c(3, 4, 2, 0, 1)) + 
+  theme(panel.spacing.x=unit(0, "lines"),
+        panel.spacing.y=unit(0.3, "lines"))
 
 mds_plot_10
 
