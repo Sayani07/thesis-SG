@@ -991,18 +991,32 @@ elec_sig_split <- elec_harmony_all %>%
 elec_sig_split$significant <- 
   factor(elec_sig_split$significant, levels = c("highest", "high", "medium", "low"))
 
+outline <- data.frame( 
+  id = unique(elec_sig_split$id), 
+  #outline_color = okabeito
+  outline_color = c("#D55E00", "#0072B2","#009E73", "#CC79A7", "#E69F00","#56B4E9", "#F0E442", "#000000")
+) 
+square <- with(elec_sig_split, data.frame( 
+  x = c(-Inf, Inf, Inf, -Inf), 
+  y = c(-Inf, -Inf, Inf, Inf)
+))
+
+
 heatplot <- elec_sig_split %>% 
   mutate(significance_95 = if_else(significant %in% c("high", "highest"), "*", "")) %>% 
   ggplot(aes(x = x_variable,
              y = facet_variable)) +
   geom_tile(aes(fill = wpd)) + 
+  geom_polygon(aes(x = x,y = y, color = id),size=2, fill= NA, data = merge(outline, square))+
+  scale_color_discrete(type = okabeito,
+                       guide = "none")+
   #color = as.factor(significance_95)),
   #size = 0.3) +
   geom_text(aes(label = significance_95), color = "#42275a") +
   scale_fill_gradient(low = "white",high = "#ba5370") +
   #scale_fill_manual(palette = "Dark2") +
   #scale_colour_manual(values = c("white","red")) + 
-  theme(legend.position = "right") +
+  theme(legend.position = "none") +
   coord_fixed() + 
   guides(fill = guide_legend()) +
   theme_void() +
@@ -1011,8 +1025,11 @@ heatplot <- elec_sig_split %>%
         axis.text.x = element_text(angle = 60, hjust=1),
         legend.position = "bottom") + ggtitle("a") +
   theme(
-    #strip.background = element_blank(),
-    strip.text.y  = element_blank(), plot.margin = unit(c(0, -2, 0, 0), "cm")) + ggtitle("(a)") + xlab("x") + ylab("facet")
+    strip.background = element_blank(),
+    strip.text.y  = element_blank(), 
+    strip.text.x  = element_blank(), 
+    plot.margin = unit(c(0, -2, 0, 0), "cm")) + ggtitle("(a)") + xlab("x") + ylab("facet") +
+  facet_wrap(~id, ncol = 1)
 
 elec <- read_rds(here("data/hakear/elec_all-8.rds")) %>% 
   dplyr::filter(date(reading_datetime) >= ymd("20190701"), date(reading_datetime) < ymd("20191231"), meter_id==1) %>% 
@@ -1110,9 +1127,9 @@ parcoord <- GGally::ggparcoord(data_pcp,
   ylab("wpd")
 
 
-((heatplot + 
+(heatplot + 
     #theme(legend.position = "none") +
-    facet_wrap(~id, ncol = 1, strip.position = "right")) +
+    #facet_wrap(~id, ncol = 1, strip.position = "right")) +
     (elec_zoom +
     theme(plot.margin = unit(c(0, 0, 0, 0), "cm"),
     axis.text.y=element_blank(),  #remove y axis labels
