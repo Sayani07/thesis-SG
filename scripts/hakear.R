@@ -162,11 +162,18 @@ id2_tsibble_hd <- elec %>%
   as_tsibble(index = date_time) %>% 
   create_gran("hour_day") %>% 
   ggplot(aes(x = hour_day, y = kwh)) +
-  geom_boxplot(width = 0.6, outlier.colour = "black", outlier.alpha = 0.2, fill = "#CC79A7", colour =  "#0072B2") + scale_y_log10() +
+  geom_boxplot(width = 0.6, outlier.colour = "black", outlier.alpha = 0.2, fill = "#CC79A7", colour =  "#0072B2")  +
   geom_jitter(alpha = 0.03, colour = "#E69F00", position = position_jitter(height = .2, width = .2)) +
   ggtitle("(a)")+ 
   ylab ("energy usage [kWh]") +
-  theme_bw() + xlab("hour-of-day")
+  theme_bw() + xlab("hour-of-day")+
+  scale_y_log10(minor_breaks = NULL) +
+  theme_bw()
+
+  # scale_y_log10(breaks = scales::trans_breaks("log10", 
+  #                                             function(x) 10^x)) +
+  # #labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  # theme_bw()
 
 
 
@@ -175,11 +182,14 @@ id2_tsibble_dw <- elec %>%
   as_tsibble(index = date_time) %>% 
   create_gran("month_year") %>% 
   ggplot(aes(x = month_year, y = kwh)) +
-  geom_boxplot(width = 0.6, outlier.colour = "black", outlier.alpha = 0.2, fill = "#CC79A7", colour =  "#0072B2") + scale_y_log10()+
+  geom_boxplot(width = 0.6, outlier.colour = "black", outlier.alpha = 0.2, fill = "#CC79A7", colour =  "#0072B2") +
   geom_jitter(alpha = 0.03, colour = "#E69F00", position = position_jitter(height = .2, width = .2)) +
   ggtitle("(b)")+ 
   ylab ("energy usage [kWh]") +
-  theme_bw() + xlab("month-of-year")
+  theme_bw() + xlab("month-of-year")+
+  scale_y_log10(minor_breaks = NULL) +
+  #labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  theme_bw()
 
 
 
