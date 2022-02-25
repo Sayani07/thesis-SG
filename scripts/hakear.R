@@ -73,9 +73,9 @@ p1 <- id2_tsibble %>%
   ylab ("energy usage [kWh]") +
   xlab("hour-of-day") +
   scale_y_log10(breaks = scales::trans_breaks("log10", 
-                                              function(x) 10^x),
-                 labels = scales::trans_format("log10", scales::math_format(10^.x))) +
-  theme_bw()
+                                              function(x) 10^x)) +
+                 #labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  theme_bw() + ylim(0, 1.5)
 
 
 p2 <- id4_tsibble %>%
@@ -89,9 +89,9 @@ p2 <- id4_tsibble %>%
     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0)))+
   ylab ("energy usage [kWh]")+
   scale_y_log10(breaks = scales::trans_breaks("log10", 
-                                              function(x) 10^x),
-                labels = scales::trans_format("log10", scales::math_format(10^.x))) +
-  theme_bw()
+                                              function(x) 10^x))+
+                #labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  theme_bw() + ylim(0, 1.5)
 
 
 p3 <- id2_tsibble %>%
