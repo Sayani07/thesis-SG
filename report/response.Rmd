@@ -23,8 +23,7 @@ A table outlining the main chapters’ co-authorship arrangements included in In
 
 > Q1. In Figure 2.1 on the right hand side it should be t/24, t/(24 × 7)
 
-Not changed.
-Figure is already published.
+Done.
 
 > Q2. Last sentence of Section 2.3.4: fix the table reference
 
@@ -88,16 +87,18 @@ Done.
 > Q9. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
 
+Added text in the caption of Figure 3.3(a) and "Notation" sub-section to make it clear.
+
 Clarification: Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities. Data in Fig 3.3 (a) is consistent with the null distribution.
+
 
 > Q10. In table 3.1 $N_c$ is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
 3.3.3) it is m.
 
-Clarification: $N_c$ refers to the total number of contextual cyclic granularities. $m$ refers to the number of cyclic granularities we are considering together in the display. For example, contextual cyclic granularities could be $hour_{day}$, $day_{week}$ and $month_{year}$ and we want to visualize any one granularity at a time. So $N_c = 3$ and $m=1$. 
-
-
 Added $m$ to table 3.1  
 $m$: number of cyclic granularities to display together
+
+Clarification: $N_c$ refers to the total number of contextual cyclic granularities. $m$ refers to the number of cyclic granularities we are considering together in the display. For example, contextual cyclic granularities could be $hour_{day}$, $day_{week}$ and $month_{year}$ and we want to visualize any one granularity at a time. So $N_c = 3$ and $m=1$. 
 
 > Q11. Add v to table 3.1.
 
@@ -116,10 +117,9 @@ Within-facet distances are illustrated in Panels 3) (when categories are un-orde
 
 > Q14. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at xlevel=1 the comparison shown is less interesting
 
-Clarification: As long as that there is enough data for each level or combination of levels, no adjustment for varying number of observations is done. If there are few data for one or more levels, subsequent categories could be collapsed to obtain precise estimates of quantiles. 
-
 Added under the subsection "Characterizing distributions".
 
+Clarification: As long as that there is enough data for each level or combination of levels, no adjustment for varying number of observations is done. If there are few data for one or more levels, subsequent categories could be collapsed to obtain precise estimates of quantiles. 
 
 > Q15. The equations on page 44 could be tidied up. There are extra () on the definition of $wpd_{perm}$ and on the residual definition at the bottom of the page. Use $\times$ for the equations.
 
@@ -140,7 +140,7 @@ $m=1$ removed from the main chapter and included in supplements.
 
 > Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is the notation $wpd_{l,s}$ used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation involving different underlying distributions, but this is not mentioned again.
 
-The simulation design and results corresponding to $m=2$ are presented. Similar design and results for $m=1$, although important, are not included in the main chapter but in the supplements. Simulation results involving different underlying distributions are also presented in the supplementary paper.
+Rephrased the simulation design and results corresponding to $m=2$. Similar design and results for $m=1$, although important, are not included in the main chapter but in the supplements. Simulation results involving different underlying distributions are also presented in the supplementary paper.
 
 > Q20. In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
 show fewer panels?
@@ -287,7 +287,10 @@ Done.
 
 > Q3. In Figure 3.2, two households are being compared. It would be much easier for most readers if the graphs use a common scale, thus following the small multiple principle. Both vertical axes should be extend to 1.5 kWh and a ticmark label should be placed there as well.
 
-The ticmark labels are placed in both the figures but the houses are not brought to a same scale. More than comparing the two houses, it is important to compare the patterns of their distributions across months. They have different scales and showing them in the same scale is making the individual distributional differences seem less clear.
+
+Done.
+
+<!-- The ticmark labels are placed in both the figures but the houses are not brought to a same scale. More than comparing the two houses, it is important to compare the patterns of their distributions across months. They have different scales and showing them in the same scale is making the individual distributional differences seem less clear. -->
 
 > Q4. In general, I like to see ticmark labels close to the extrema of the shown data points. So, in Figure 3.3a, there should be additional ticmark labels at -3 and +3, in 3.3b at -5
 and +10, and so on.
@@ -296,17 +299,23 @@ Done.
 
 
 > Q5. Before introducing a new distance measure in Section 3.2, I would like to see a literature review of existing distance measures and their limitations. Why is it necessary to introduce a new distance measure here? This is partially addressed on p. 41, but that should be placed earlier in the text. One clarifying question: Which density is represented by f in the equation? And shouldn't there be a dx at the end of the integral? Also, the distance measures that are mentioned at the end of that paragraph should be explained in one or two sentences.
-
-
-Clarification 1:
-The goal is to determine if there are any statistically significant differences between independent (unrelated) groups similar to a one-way or two-way ANOVA. A one-way ANOVA, for example, is analogous to $m=1$ (looking at one cyclic granularity at a time) in our approach. Assume we want to examine whether there is a significant difference in electricity demand on various days of the week. In this case, each day of the week may be regarded as an independent group, and we are looking at distributional differences rather than mean differences (as in a standard ANOVA). Similarly, considering $m=2$ (two cyclic granularities) is equivalent to a two-way ANOVA and is used to assess how distributions of quantitative variables vary according to the levels of two categorical variables rather than merely the mean or one measure of central tendency. There are other ways to obtain distributional differences, but we chose Jensen-Shannon distances between quantiles for ease of computation.
-
-CALRIFICATION 2: f in the equation was a typo. Replaced by log now.
-
-CALRIFICATION 3: Distance measures that are mentioned at the end of that paragraph are not explained in details but mentioned that they are all special cases of f-divergence.
-
   
-CHANGED: Introduction (last but one paragraph) and Distance between distributions section.
+Changed the following:
+
+- Introduction (last but one paragraph) to incorporate comments on existing distance measures and their limitations
+
+- "Distance between distributions" section to mention why we chose we chose Jensen-Shannon distances and some details about other distance measures.
+
+- f in the equation was a typo. Replaced by log now.
+
+<!-- Clarification 1: -->
+<!-- The goal is to determine if there are any statistically significant differences between independent (unrelated) groups similar to a one-way or two-way ANOVA. A one-way ANOVA, for example, is analogous to $m=1$ (looking at one cyclic granularity at a time) in our approach. Assume we want to examine whether there is a significant difference in electricity demand on various days of the week. In this case, each day of the week may be regarded as an independent group, and we are looking at distributional differences rather than mean differences (as in a standard ANOVA). Similarly, considering $m=2$ (two cyclic granularities) is equivalent to a two-way ANOVA and is used to assess how distributions of quantitative variables vary according to the levels of two categorical variables rather than merely the mean or one measure of central tendency. There are other ways to obtain distributional differences, but we chose Jensen-Shannon distances between quantiles for ease of computation. -->
+
+<!-- CALRIFICATION 2:  -->
+
+<!-- CALRIFICATION 3: Distance measures that are mentioned at the end of that paragraph are not explained in details but mentioned that they are all special cases of f-divergence. -->
+
+
 
 > Q6. For the data transformation steps on p. 40, a small table, say with a sample of 5 values from an exponential distribution, might be helpful to better explain each of the three steps.
 
@@ -389,9 +398,13 @@ What can be expected when working with the full data set of Chapter 2, i.e., abo
 A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities. What would be computationally (and visually) feasible as 13,000 is a few orders of magnitude
 higher than the number of eight households used in this example? Clearly, no full answer is expected here, but rather some speculation of what could possibly be done in the future (or what is done in the next chapter).
 
-Clarification 1: The data for eight households for Section 3.4 are from friends and colleagues. They were manually chosen from friends with different profession and lifestyle to reflect different energy behavior.
+- To reflect various energy behaviour, data for eight homes for Section 3.4 is acquired from friends and colleagues with different professions, lifestyles, and household sizes. This level of data is private, and we thank our friends and colleagues for agreeing to have their data used for this analysis. This is added in the first paragraph of Application.
 
-Suppose there are $n$ observations. Our current clustering methodology has a time complexity of $O(n^2)$ since it calculates distance between all pairs. The time taken to compute distances between a pair of observations is also based on the number of cyclic granularities considered. For example, $1$, $2$ and $3$ cyclic granularities for JS-NQT are ~ 4.5s, 5.8s and 8.2s respectively. The times will be similar for JS-RS. For WPD, time taken will be more as the statistic $wpd$ need to be computed for each observation and each cyclic granularity. A rough estimate of working with $wpd$ working with two granularities with $(l,m)$ levels: ~(30s - 300s for 6<=l,m<=50) and (~40min - 50min for (l,m<=5). But this is a one-time job to obtain the significant granularities and can be run for a few individuals to get a sense of the significant granularities for the context. for example, for the electricity data, the granularities that were significant for most individuals were "wkdn/wday", "hour-of-day", "day-of-month" and hence clustering was run only on these variables.
+- A paragraph is added to the Discussion section to incorporate comments on on the computational time.
+
+
+<!-- Suppose there are $n$ observations. Our current clustering methodology has a time complexity of $O(n^2)$ since it calculates distance between all pairs. The time taken to compute distances between a pair of observations is also based on the number of cyclic granularities considered. For example, $1$, $2$ and $3$ cyclic granularities for JS-NQT are ~ 4.5s, 5.8s and 8.2s respectively. The times will be similar for JS-RS. For WPD, time taken will be more as the statistic $wpd$ need to be computed for each observation and each cyclic granularity. A rough estimate of working with $wpd$ working with two granularities with $(l,m)$ levels: ~(30s - 300s for 6<=l,m<=50) and (~40min - 50min for (l,m<=5). But this is a one-time job to obtain the significant granularities and can be run for a few individuals to get a sense of the significant granularities for the context. for example, for the electricity data, the granularities that were significant for most individuals were "wkdn/wday", "hour-of-day", "day-of-month" and hence clustering was run only on these variables. -->
+
 
 > Q23.The Supplementary materials section mentions data and scripts and a supplementary paper. For the thesis, it would be helpful to indicate where these can be located on github. There is only a link for the R package.
 
