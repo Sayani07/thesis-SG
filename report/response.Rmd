@@ -465,7 +465,8 @@ Done.
 
 > Q13. For the thesis, the work is adequate and meaningful. For a journal paper, I would like to see some of the points outlined in the Discussion being addressed. What happens if this method is applied to the data from the 13,000 customers that were introduced earlier on? As a reader of a journal paper, I would rather like to see limitations of the method proposed here, e.g., if it does not scale up then why it most likely does not scale up. Otherwise, it is hard to assess whether it is worthwhile to try this method for one's own data.
 
-We will include it in the journal paper. 
+The Discussion section is split into (1) conclusions, and (2) limitations and future research (including a discussion on computational complexity) to address this comment.
+
 <!-- Split into a "Limitation" and "Discussion" section separately detailing the drawbacks. -->
 
 
