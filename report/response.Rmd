@@ -262,9 +262,9 @@ Added in the Introduction (page 2).
 > Q2. It may also be helpful to state what is not be covered in this thesis: The spatial component of such data where an additional component could be latitude and longitude or some areal code, such as the post code or some administrative units. Extending the work from this thesis with spatial proximity methods for clustering (https://doi.org/10.1016/j.cageo.2011.12.017) [assuming that households in certain residential neighborhoods may have similar energy usage patterns] and trying spatial visualization methods (if possible) such as glyph maps (https:
 //onlinelibrary.wiley.com/doi/abs/10.1002/env.2152) should be mentioned somewhere as a consideration for future work but that may become a future new thesis by itself.
 
-<!-- Added in the conclusion. To do. -->
+Added in section 5.3.2 (Future ideas) on page 90.
 
-The name of the thesis implies that only analyzing temporal data is covered. Extending it to spatial is too broad a scope. The limitations of the study cater to aspects that could be addressed with some more time. This is not the case for extending the spatial component, which, as accurately pointed out, would require time comparable to another thesis.
+<!-- The name of the thesis implies that only analyzing temporal data is covered. Extending it to spatial is too broad a scope. The limitations of the study cater to aspects that could be addressed with some more time. This is not the case for extending the spatial component, which, as accurately pointed out, would require time comparable to another thesis. -->
 
 > Q3. Finally, it would be helpful to indicate here (and in each chapter) what the names or abbreviations for the three R packages (gravitas, hakear, and gracsr) represent. Even the full R package title of "gravitas: Explore Probability Distributions for Bivariate Temporal Granularities" does not provide a full answer what the "tas" component means (I am assuming that Gravi stands for Granularities Visualization). I am even more lost with hakear.
 
