@@ -16,8 +16,7 @@ I thank my examiners for their thorough and constructive comments. The point by 
 
 > This would be a good place to detail the co-authorship arrangements for the succeeding chapters, and for the student’s contribution to be stated clearly.
 
-Done.
-A table outlining the main chapters’ co-authorship arrangements included in Introduction.
+A table outlining the main chapters’ co-authorship arrangements included in Introduction on page 5.
 
 ## Chapter 2
 
@@ -36,11 +35,9 @@ Reference is in an acceptable format. No change as already published.
 > Q4. In Figure 2.4, the outlier glyphs are in my opinion too big and dark and attract too much attention.
 The log scale for the y-axis should be mentioned in the caption.
 
-Done. 
 The outliers are made smaller and transparent and caption changed.
 
 > Q5. The violin plot in Figure 2.5c is barely recognisable, and comparison of the distributions is challenging. The plot deserves a bit more space.
-
 
 Not changed as figure is already published. Furthermore, the figure already occupies one page.
 
@@ -53,8 +50,7 @@ It appears in the abstract of the paper. For the thesis, I have added it since t
 
 > Q2. In the Introduction state the methods are for continuous variables.
 
-Done.
-Added "for a continuous univariate dependent variable" in the last paragraph of Introduction of Chapter 3.
+Added "for a continuous univariate dependent variable" in the last paragraph of Introduction of Chapter 3 on page 39.
 
 > Q3. In Figure 3.1, the points are a bit hard to see, so it looks like whiskers extend beyond the data.
 
@@ -87,9 +83,9 @@ Done.
 > Q9. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
 
-Added text in the caption of Figure 3.3(a) and "Notation" sub-section to make it clear.
+Added text in the caption of Figure 3.3(a) and Section 3.2.2 (Notation) on page 41 to make it clear.
 
-Clarification: Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities. Data in Fig 3.3 (a) is consistent with the null distribution.
+<!-- Clarification: Null distributions refer to the case when there is no significant distributional differences between categories of one or more granularities. Data in Fig 3.3 (a) is consistent with the null distribution. -->
 
 
 > Q10. In table 3.1 $N_c$ is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
@@ -102,37 +98,43 @@ Clarification: $N_c$ refers to the total number of contextual cyclic granulariti
 
 > Q11. Add v to table 3.1.
 
-Added v:continuous univariate measured variable
+Added v:continuous univariate measured variable to the table on page 42.
 
-> Q12. In the first sentence on the top of page 42, ordered and unordered are mixed up. Have you considered the setting where the facet variable levels are ordered? For the within-facet ordered distances, you could consider a distance measure that respects circular order, or choose the start level appropriate to the display.  
+> Q12. In the first sentence on the top of page 42, ordered and unordered are mixed up. Have you considered the setting where the facet variable levels are ordered? 
 
-first part: Done.
-second part: This is a good suggestion. We will include that into future work. 
+Done.
+
+> For the within-facet ordered distances, you could consider a distance measure that respects circular order, or choose the start level appropriate to the display.  
+
+This is a good suggestion. We will include that into future work. 
 
 > Q13. I like Figure 3.4. In (3), the dotted arcs only connect to a1 which might be misleading.
 
-Caption changed to incorporate that.
-Within-facet distances are illustrated in Panels 3) (when categories are un-ordered, shown only with respect to a1) and Panel 4) (when categories are ordered)
+Caption changed to address this comment.
+
+<!-- Within-facet distances are illustrated in Panels 3) (when categories are un-ordered, shown only with respect to a1) and Panel 4) (when categories are ordered) -->
 
 
 > Q14. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at xlevel=1 the comparison shown is less interesting
 
-Added under the subsection "Characterizing distributions".
+Added text in the section 3.2.3 under subsection "Characterizing distributions" on page 43 to address this comment.
 
-Clarification: As long as that there is enough data for each level or combination of levels, no adjustment for varying number of observations is done. If there are few data for one or more levels, subsequent categories could be collapsed to obtain precise estimates of quantiles. 
+<!-- Clarification: As long as that there is enough data for each level or combination of levels, no adjustment for varying number of observations is done. If there are few data for one or more levels, subsequent categories could be collapsed to obtain precise estimates of quantiles.  -->
 
 > Q15. The equations on page 44 could be tidied up. There are extra () on the definition of $wpd_{perm}$ and on the residual definition at the bottom of the page. Use $\times$ for the equations.
 
 Done.
 
-> Q16. Is there a practical reason why $wpd_{glm}$ is not working as expected for lower nx and nf?
+> Q16. Is there a practical reason why $wpd_{glm}$ is not working as expected for lower $nx$ and $nf$?
 
-Clarification: There is no practical explanation for this, but a more empirical one - with smaller $n_x$ and $n_f$, the variance in the values of $wpd_{raw}$ is greater. As a result, our modeling technique that attempts to fit $wpd_{raw}$ to the number of comparisons ($n_x\times n_f$) performs poorly. The increased volatility in the values of $wpd_{raw}$ with a smaller number of levels is due to the fact that no asymptotic distribution for the statistic "maximum" (which is the foundation of $wpd_{raw}$) across such small number of values could be produced.
+Added the empirical reason in Section 3.2.4 under sub-section "Combination approach" on page 47. 
+
+<!-- Clarification: There is no practical explanation for this, but a more empirical one - with smaller $n_x$ and $n_f$, the variance in the values of $wpd_{raw}$ is greater. As a result, our modeling technique that attempts to fit $wpd_{raw}$ to the number of comparisons ($n_x\times n_f$) performs poorly. The increased volatility in the values of $wpd_{raw}$ with a smaller number of levels is due to the fact that no asymptotic distribution for the statistic "maximum" (which is the foundation of $wpd_{raw}$) across such small number of values could be produced. -->
 
 > Q17. In the 3.3.1 algorithm, there is $m$, and then $M$.
 
-Changed.
-1.b) for $i \in {1, 2, \dots, M}$.
+Changed on page 49.
+<!-- 1.b) for $i \in {1, 2, \dots, M}$. -->
 
 > Q18. In Table 3.2, I would suggest separating the m = 1 and m = 2 tables.
 
@@ -140,21 +142,21 @@ $m=1$ removed from the main chapter and included in supplements.
 
 > Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is the notation $wpd_{l,s}$ used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation involving different underlying distributions, but this is not mentioned again.
 
-Rephrased the simulation design and results corresponding to $m=2$. Similar design and results for $m=1$, although important, are not included in the main chapter but in the supplements. Simulation results involving different underlying distributions are also presented in the supplementary paper.
+Rephrased the simulation design and results corresponding to $m=2$ on page 50. Similar design and results for $m=1$, although important, are not included in the main chapter but in the supplements. Simulation results involving different underlying distributions are also presented in the supplementary paper.
 
 > Q20. In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
 show fewer panels?
 
-Changed. Axis tick labels made smaller and space between facets minimised to allow for more space.
+Changed (page 51). Axis tick labels made smaller and space between facets minimised to allow for more space.
 
 > Q21. In Figure 3.6 the axis tick labels should be smaller. The blue and orange are hard to see. The caption
 should refer to the rug. Maybe show fewer panels?
 
-Changed. Axis tick labels made smaller and the rug plots are removed to make the display less busy.
+Changed (page 52). Axis tick labels made smaller and the rug plots are removed to make the display less busy.
 
 > Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a different colour in the heatmap for the significant comparisons. State the threshold for significance in the caption. In Table 3.3 the caption should explain the threshold. (Maybe use colour instead of stars to indicate significance?)
 
-CHANGED.
+Changed (page 53).
 - Different box borders (instead of id labels) are added such that (a) and (b) display the household ids in the same order as indicated by the same colour of the line plot in (b) and box border    
 - threshold explained in caption in Table 3.3   
 - grey color explained in the text and caption  
@@ -173,12 +175,12 @@ Done.
 
 > Q2. Page 59, fourth bullet point. I found these sentences confusing.
 
-Rephrased to make it clear.
+Rephrased to make it clear. (page 61)
 
 > Q3. In the material in the bottom of page 59, make it clear from the outset you only have data on energy
 use, not on property size, location, family size and so on.
 
-Added the statement in page 60.
+Added the statement in the first paragraph of page 62.
 
 > Q4. End of Chapter 4.1: incorrect reference to Section 2.7.
 
@@ -186,18 +188,17 @@ Done.
 
 > Q5. I found Figure 4.1 very useful. In each box, would be helpful to put in “or”, in places where only one of the steps listed is performed, eq Normal quantile transform or Robust scaling. As there are many steps in the algorithm, it would be helpful to the reader to label the pipeline steps and to refer back to them in the text. The text in the Data pre-processing box does not make sense to me.
 
-Rephrased the text in the  Data pre-processing section to make it easier to understand.  
+Rephrased the text in the section 4.2.3 (Data pre-processing) to make it easier to understand. Figure 4.1 labels changed to make it consistent with the text.
 
-Figure 4.1 labels changed to make it consistent with the text.
+> Q6. The section describing RS and NQT is confusing. It states RS is applied to each time series separately. Is NQT also applied to each observation separately? How does “it could be useful to standardize it for the selected set of significant granularities prior to computing the distances” relate to the following bullet points?
 
-> Q6. The section describing RS and NQT is confusing. It states RS is applied to each time series separately. Is NQT also applied to each observation separately? How does “it could be useful to standardize it for
-the selected set of significant granularities prior to computing the distances” relate to the following bullet points?
+Text added under Section 4.2.2 on pages 64 and 65 to clarify this.
 
-Clarification: Each observation (time series) is scaled independently in both JS-NQT and JS-RS. For the WPD approach, each observation might be scaled or not scaled, resulting in usable groups in either case.
+<!-- Clarification: Each observation (time series) is scaled independently in both JS-NQT and JS-RS. For the WPD approach, each observation might be scaled or not scaled, resulting in usable groups in either case. -->
 
 > Q7. Page 64 “D is the Jensen-Shannon distance”.
 
-No change. I had mentioned that $D$ stands for Jensen-Shannon distances.
+No change. I had mentioned that $D$ stands for Jensen-Shannon distances (now page 66).
 
 > Q8. In Table 4.1, the R column should have 250, not 20.
 
@@ -205,37 +206,42 @@ Done.
 
 > Q9. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the distribution of each $v_t$.
 
-The table format and caption changed to address this comment.
+The table format and caption changed to address this comment. (page 70)
 
 <!-- No change. Stating the distribution of each $v_t$ is difficult because the levels for each granularity and design varies, therefore I chose to divide it into two tables. -->
 
 > Q10. Where is $\mu$ in Table 4.2?
 
+The changed caption (Table 4.2 page 70) will help clarify this.
+
 Clarification: $\mu$ is the difference between means considered for consecutive categories. It will vary depending on the chosen design and hence not tabulated.
  
 > Q11. In Section 4.3.3 what are the values of R and T?
 
-Clarification: Various range of values of $R$ and $T$ are considered as stated in Table 4.1.
+Added in the first line of Section 4.3.3 (page 72.)
 
 > Q12. Figure 4.5 caption: MDS summary plots of what?
 
-CLARIFICATION: MDS summary plots of clusters obtained from employing JS-NQT on the validation data sets
-Added in the caption.
+Added in the caption (page 75) to address this comment.
+
+<!-- Clarification: MDS summary plots of clusters obtained from employing JS-NQT on the validation data sets. -->
 
 
 > Q13. Figure 4.7 is missing labels (a), (b) (c).
 
-Done. Added a, b representing 12 customers (rows) in each of them.
+Added a, b representing 12 customers (rows) in each of them (page 78).
 
 > Q14. Why do you chose to summarize 4 and 5 clusters from JS-NQT when sindex suggests 3 clusters?
 
-Caption and text changed.  
-The caption and description of the figure in the text have been changed to indicate that Fig. 4.9 depicts a visual summary of why three clusters are insufficient for this data set, however it is recommended by sindex summary plots. In a cluster analysis, it is standard practice to test a few cluster sizes before and after the optimal $k$ to see if a different number of clusters is useful. In this example, increasing the number of clusters actually unfolds some behavior which was not apparent with $k=3$ as suggested by sindex.
+Caption (Figure 4.9 page 80) and description in the text (page 78) changed to address this comment.  
+
+<!-- Clarification: Fig. 4.9 depicts a visual summary of why three clusters are insufficient for this data set, however it is recommended by sindex summary plots. In a cluster analysis, it is standard practice to test a few cluster sizes before and after the optimal $k$ to see if a different number of clusters is useful. In this example, increasing the number of clusters actually unfolds some behavior which was not apparent with $k=3$ as suggested by sindex. -->
 
 > Q15. The reference to the stationarity assumption in the Discussion needs Clarification.
 
+Text changed in the Discussion section (under Section 4.5.2) to address this.
 
-Changed. "we have assumed the time series to be stationary" has been changed to "the conditional distributions are assumed to remain constant for the observation period" in the Discussion section.
+<!-- Clarification: "we have assumed the time series to be stationary" has been changed to "the conditional distributions are assumed to remain constant for the observation period". -->
 
 > Q16. Page 81 “can not” should be “cannot”
 
@@ -243,7 +249,7 @@ Done.
 
 > Q17. Again, the computational burden could do with more Discussion. At present, if I were to use this method on my data, what kind of sizes are realistic to work with?
 
-A similar question has been answered for the next reviewer.
+A paragraph is added to the Discussion section to incorporate comments on the computational burden. (second paragraph of section 4.5.2 on pages 83, 84)
 
 # Prof Juergen Symanzik
 
@@ -251,16 +257,18 @@ A similar question has been answered for the next reviewer.
 
 > Q1. While the author hints at other sources of similar data, I think it would be worthwhile to give the reader some further specific ideas here in the Introduction where similar complex data may occur, e.g., data from traffic sensors, movement data (turnstiles in metro stations or public buildings), and even more traditional measurements such as temperatures or precipitation over time that could benefit from the methods and software described in this thesis.
 
-Added in the Introduction.
+Added in the Introduction (page 2).
 
 > Q2. It may also be helpful to state what is not be covered in this thesis: The spatial component of such data where an additional component could be latitude and longitude or some areal code, such as the post code or some administrative units. Extending the work from this thesis with spatial proximity methods for clustering (https://doi.org/10.1016/j.cageo.2011.12.017) [assuming that households in certain residential neighborhoods may have similar energy usage patterns] and trying spatial visualization methods (if possible) such as glyph maps (https:
 //onlinelibrary.wiley.com/doi/abs/10.1002/env.2152) should be mentioned somewhere as a consideration for future work but that may become a future new thesis by itself.
+
+<!-- Added in the conclusion. To do. -->
 
 The name of the thesis implies that only analyzing temporal data is covered. Extending it to spatial is too broad a scope. The limitations of the study cater to aspects that could be addressed with some more time. This is not the case for extending the spatial component, which, as accurately pointed out, would require time comparable to another thesis.
 
 > Q3. Finally, it would be helpful to indicate here (and in each chapter) what the names or abbreviations for the three R packages (gravitas, hakear, and gracsr) represent. Even the full R package title of "gravitas: Explore Probability Distributions for Bivariate Temporal Granularities" does not provide a full answer what the "tas" component means (I am assuming that Gravi stands for Granularities Visualization). I am even more lost with hakear.
 
-Added under Thesis structure in Introduction.
+Added under Thesis structure in Introduction on page 4.
 gravitas: GRAnularity VIsualization for Time-series AnalySis
 hakear: HArmonies KEeper And Rater
 gracsr: GRAnularity CluStering in R
@@ -281,7 +289,7 @@ Very good point. Paper is already published. We would incorporate this in our fu
 
 > Q1. In Figure 3.1, it would help the reader to mention in the figure caption that a log-scale has been used for the vertical axis. Moreover, it might be helpful to add a ticmark label at 10 kWh and add ticmarks representing each fraction of 10 on the log-scale and not only the mid-point between two ticmark labels. Also, reminding the reader that summer months are in January and February in Australia would be helpful. When looking at the figure (prior to reading the main text), my first interpretation for the increased energy usage in January and February was because of (electric) heating and not cooling.
 
-Done. 
+Done.
 
 > Q2. Readers may not be familiar with administrative units in Australia. So, instead of speaking of Victoria on p. 35, simply speak of Melbourne (as this seems to be the source of the data).
 
@@ -304,9 +312,9 @@ Done.
   
 Changed the following:
 
-- Introduction (last but one paragraph) to incorporate comments on existing distance measures and their limitations
+- Introduction (last but one paragraph on page 39) to incorporate comments on existing distance measures and their limitations
 
-- "Distance between distributions" section to mention why we chose we chose Jensen-Shannon distances and some details about other distance measures.
+- "Distance between distributions" (under section 3.2.3 on page 44) to mention why we chose we chose Jensen-Shannon distances and some details about other distance measures.
 
 - f in the equation was a typo. Replaced by log now.
 
@@ -367,11 +375,11 @@ $\leqslant$ for both.
 > Q16. Match the text on p. 50 and introduce the abbreviations from Figure 3.7 and Table 3.3, e.g., "hod" likely is "hour day" and so on. Introducing these abbreviations on p. 53 comes
 too late.
 
-Added the abbreviations on Page 50 in "Choosing cyclic granularities of interest and removing clashes" section.
+Added the abbreviations on page 54 in "Choosing cyclic granularities of interest and removing clashes" under section 3.4.
 
 > Q17. In Figure 3.7a, it is not clear what the eight heatmaps represent. Do they belong to id 1, ..., id 8 ? Some explanation in the text or listing the id information on the left would be helpful. Similarly, on p. 53, the text states: id 7 and 8 have the same significant harmonies. I do not know where to look at the heatmaps in Figure 3.7a to find this information (and what is mentioned under items 2. and 3. in the text). Some explanation and labeling is needed here.
 
-Caption changed to illustrate the plot better. Added box borders in (a) such that (a) and (b) display the household ids in the same order as indicated by the same color of the line plot in (b) and box border in (a).
+Caption changed on page 53 to illustrate the plot better. Added box borders in (a) such that (a) and (b) display the household ids in the same order as indicated by the same color of the line plot in (b) and box border in (a).
 
 > Q18. How were the harmony pairs selected and sorted in Figure 3.7 and Table 3.3? headmaps show 25 pairs, the parallel coordinate plot shows only 14 (same as Table 3.3). However, the last two are sorted differently, "hod wdwnd" (the first row in the table) is neither the first nor the last row in the parallel coordinate plot.
 
@@ -379,11 +387,11 @@ Clarification 1: Each household is represented by 25 tiles, each tile representi
 
 Clarification 2: The harmony pairs in the parallel coordinate plot are arranged from highest to lowest values of $wpd$ averaged over all households and hence do not correspond to the first or last rows of Table 3.3.
 
-Changed the text description of Figure 3.7.
+Changed the text description of Figure 3.7 on page 55.
 
 > Q19. On p. 53, you use the term inconsequential.This hasn't been introduced. Do you mean "not significant" here?
 
-Changed to "insignificant"
+Changed to "insignificant".
 
 > Q20. Apparently, Figure 3.8 uses a logscale again. Adjust similar to my comments for Figure 3.1.
 
@@ -391,7 +399,7 @@ Done.
 
 > Q21. Are parts a and b in Figure 3.8 correctly labeled and also matching with the figure caption? The caption reads For id 1, patterns look similar within weekdays and weekends. Visually, this seems to be the case for id 7 (in part b). This also visually matches Figure 3.7b.
 
-Caption rephrased to make it more clear.
+Caption rephrased to make it more clear on page 56.
 
 <!-- For id: 7, there is more distributional difference between consecutive hours of the day compared to id:1. Also all the days of the week are different from each other in id:7. id:1 has similar behavior across all days within both weekdays and weekends. For this reason, the wpd for id:7 has a higher value than id:1 as the similar behavior within weekdays and weekends balances out the difference between weekdays and weekends. The display with hod vs wdwnd would have shown higher values of wpd for id:1 (as can be verified from Table 3). -->
 
@@ -399,9 +407,9 @@ Caption rephrased to make it more clear.
 A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities. What would be computationally (and visually) feasible as 13,000 is a few orders of magnitude
 higher than the number of eight households used in this example? Clearly, no full answer is expected here, but rather some speculation of what could possibly be done in the future (or what is done in the next chapter).
 
-- To reflect various energy behavior, data for eight homes for Section 3.4 is acquired from friends and colleagues with different professions, lifestyles, and household sizes. This level of data is private, and we thank our friends and colleagues for agreeing to have their data used for this analysis. This is added in the first paragraph of Application.
+- Text added in the first paragraph of Application to elaborate how households were selected (page 51).
 
-- A paragraph is added to the Discussion section to incorporate comments on the computational time.
+- A paragraph is added to the Discussion section to incorporate comments on computational time (page 57).
 
 
 <!-- Suppose there are $n$ observations. Our current clustering methodology has a time complexity of $O(n^2)$ since it calculates distance between all pairs. The time taken to compute distances between a pair of observations is also based on the number of cyclic granularities considered. For example, $1$, $2$ and $3$ cyclic granularities for JS-NQT are ~ 4.5s, 5.8s and 8.2s respectively. The times will be similar for JS-RS. For WPD, time taken will be more as the statistic $wpd$ need to be computed for each observation and each cyclic granularity. A rough estimate of working with $wpd$ working with two granularities with $(l,m)$ levels: ~(30s - 300s for 6<=l,m<=50) and (~40min - 50min for (l,m<=5). But this is a one-time job to obtain the significant granularities and can be run for a few individuals to get a sense of the significant granularities for the context. for example, for the electricity data, the granularities that were significant for most individuals were "wkdn/wday", "hour-of-day", "day-of-month" and hence clustering was run only on these variables. -->
@@ -416,7 +424,7 @@ Done.
 
 > Q1. There seems to be some contradiction on p. 60. One sentence states: Tureczek and Nielsen (2017) conducted a systematic study of over 2100 peer-reviewed papers on smart meter data analytics. Another sentence states: Time series data, such as smart meter data, are not well-suited to any of the techniques mentioned in Tureczek and Nielsen (2017).
 
-Rephrased to make it clear that most techniques mentioned in Tureczek and Nielsen (2017) do not treat smart meter data as a data type with temporal component.
+Rephrased Section 4.1 on page 62 to make it clear that most techniques mentioned in Tureczek and Nielsen (2017) do not treat smart meter data as a data type with temporal component.
 
 > Q2. Use a consistent style and use past tense throughout when you summarize what was previously published.
 
@@ -466,7 +474,7 @@ Done.
 
 > Q13. For the thesis, the work is adequate and meaningful. For a journal paper, I would like to see some of the points outlined in the Discussion being addressed. What happens if this method is applied to the data from the 13,000 customers that were introduced earlier on? As a reader of a journal paper, I would rather like to see limitations of the method proposed here, e.g., if it does not scale up then why it most likely does not scale up. Otherwise, it is hard to assess whether it is worthwhile to try this method for one's own data.
 
-The Discussion section is split into (1) conclusions, and (2) limitations and future research (including a discussion on computational complexity) to address this comment.
+The Discussion section is split into (1) conclusions, and (2) limitations and future research (including a discussion on computational complexity) on pages 82-84 to address this comment.
 
 <!-- Split into a "Limitation" and "Discussion" section separately detailing the drawbacks. -->
 
