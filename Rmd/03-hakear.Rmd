@@ -634,7 +634,13 @@ Exploratory data analysis involves many iterations of finding and summarizing pa
 
 The significant granularities across different datasets (individuals/subjects) do not imply similar patterns across different datasets. They simply mean that maximum distributional differences are being captured across those granularities. A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities.
 
+_Computational time _
+
+<!-- A rough estimate of working with $\wpd$ working with two granularities with $(l,m)$ levels: ~(30s - 300s for 6<=l,m<=50) Computing $\wpd$ is computationally more expensive for cyclic granularities with lower levels $\nx,\nf<=5$. -->
 <!-- patterns are interesting and others are not. The subjects for which behaviors across a group of cyclic granularities are similar, could be grouped together as their periodic behavior is similar. to group subjects -->
+The computation time of $\wpd$ for a cyclic granularity or harmony is determined by its levels. For example, in a harmony with $6 \leq\nx,\nf \leq 50$, the computation time grows with the number of levels and ranges from $30-300$s. $\wpd$ becomes computationally more expensive for cyclic granularities with lower levels $\nx,\nf \leq 5$. It is around $40-50$ minutes for $\nx,\nf = \{2,3\}$. Even with parallel computation, computing $\wpd$ for many individuals and cyclic granularity/harmonies takes a long time. One solution could be to obtain the significant granularities for a smaller number of individuals in order to get a sense of the significant granularities for the context and then computing $\wpd$ only for those granularities for other individuals. <!--For example, in the case of electricity data, the important granularities for most people were *wnwd*, *hod*, *dow*, and *dom*. After this fact has been established for a few people, $\wpd$ can be computed exclusively for these granularities to save time for others.--> However, information may be lost for individuals with different sets of significant granularities. In any case, additional studies may be conducted to speed up the processing of cyclic granularities with low levels.
+
+
 
 ## Acknowledgments {-}
 
