@@ -312,9 +312,9 @@ tab_dist <- tibble::tibble(granularity = granularity, `Varying distributions` = 
 
 ##----tab-design
 design = c("design-1", "design-2", "design-3", "design-4", "design-5")
-g1 = c("fixed", "vary", "fixed", "fixed", "vary")
-g2 = c("fixed", "fixed", "vary", "fixed", "vary")
-g3 = c("fixed", "fixed", "fixed", "vary", "vary")
+g1 = c("(0,0)", "(0,2)", "(0,0)", "(0,0)", "(0,2)")
+g2 = c("(0,0,0)", "(0,0,0)", "(2,1,0)", "(0,0,0)", "(2,1,0)")
+g3 = c("(0,0,0,0,0)", "(0,0,0,0,0)", "(0,0,0,0,0)", "(0,1,2,1,0)", "(0,1,2,1,0)")
 table <- tibble(design, g1, g2, g3)
 
 #%>% kable(caption = "5 different designs resulting from considering different distributions across categories.")
@@ -333,7 +333,7 @@ table <- tibble(design, g1, g2, g3)
 # ) %>% kable_styling()
 
 knitr::kable(
-  list(tab_dist,  tibble(design, g1, g2, g3)),
+  table,
   caption = 'For Scenario (a), distributions of different categories when they vary (top). If distributions are fixed, they are set to N(0, 1). 5 designs resulting from different distributions across categories (below)',
   booktabs = TRUE, valign = 't'
 )

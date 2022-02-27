@@ -205,7 +205,9 @@ Done.
 
 > Q9. The description of the data generation on page 67 and Table 4.2 is confusing. Maybe state the distribution of each $v_t$.
 
-No change. Stating the distribution of each $v_t$ is difficult because the levels for each granularity and design varies, therefore I chose to divide it into two tables.
+The table format and caption changed to address this comment.
+
+<!-- No change. Stating the distribution of each $v_t$ is difficult because the levels for each granularity and design varies, therefore I chose to divide it into two tables. -->
 
 > Q10. Where is $\mu$ in Table 4.2?
 

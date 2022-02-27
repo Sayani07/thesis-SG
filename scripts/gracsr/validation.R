@@ -18,9 +18,10 @@ tab_dist <- tibble::tibble(
 
 ## ----tab-design-------------------------------------------------------------------------
 design <- c("design-1", "design-2", "design-3", "design-4", "design-5")
-g1 <- c("fixed", "vary", "fixed", "fixed", "vary")
-g2 <- c("fixed", "fixed", "vary", "fixed", "vary")
-g3 <- c("fixed", "fixed", "fixed", "vary", "vary")
+g1 = c("(0,0)", "(0,2)", "(0,0)", "(0,0)", "(0,2)")
+g2 = c("(0,0,0)", "(0,0,0)", "(2,1,0)", "(0,0,0)", "(2,1,0)")
+g3 = c("(0,0,0,0,0)", "(0,0,0,0,0)", "(0,0,0,0,0)", "(0,1,2,1,0)", "(0,1,2,1,0)")
+
 table <- tibble(design, g1, g2, g3)
 
 
@@ -28,9 +29,8 @@ table <- tibble(design, g1, g2, g3)
 ## ----tab-dist-design--------------------------------------------------------------------
 
 knitr::kable(
-  list(tab_dist, tibble(design, g1, g2, g3)),
-  caption = "For S1, distributions of different categories when they vary (displayed on top). If distributions are fixed, they are set to N(0, 1). The various distributions across categories result in five designs (displayed below).",
-  booktabs = TRUE, valign = "t"
+  table,
+  caption = "Summary of the data generating process for S1. The various distributions across levels of different granularities result in five designs. The granularities g1, g2 and g3 have 2,3 and 5 levels, each of which follows a normal distribution. The means of the distribution are presented for each level, and the standard deviation is set to 1. For example, g1 in design-2 is (0,2) implies $g1_{1} \\sim {N(0,1)}$ and $g1_{2} \\sim {N(2,1)}$.",booktabs = TRUE, valign = "t", escape= FALSE
 ) %>%
   kable_styling(latex_options = "hold_position")
 
