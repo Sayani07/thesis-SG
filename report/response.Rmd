@@ -30,7 +30,7 @@ Done.
 
 > Q3. On page 23 the references to parts of Figure 2.4 need fixing.
 
-Reference is in an acceptable format. No change as already published.
+Reference is in an acceptable format. Not changed as already published.
 
 > Q4. In Figure 2.4, the outlier glyphs are in my opinion too big and dark and attract too much attention.
 The log scale for the y-axis should be mentioned in the caption.
@@ -60,7 +60,7 @@ The following are changed in Figure 3.1 to address the comment on page 36:
 
  - changed to theme_bw() instead of default  
  - outliers and jitters are made more transparent  
- - jitter width reduced to make it narrower  
+ - jitter width reduced to make it clear that whiskers do not extend beyond data
 
 <!-- outlier.alpha (0.5 ->0.2) and geom_jitter(alpha = 0.04 -> 0.03). Also jitter-width decreased to 0.2. -->
 
@@ -170,9 +170,9 @@ Changed (page 52). Axis tick labels made smaller and the rug plots are removed t
 
 > Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a different colour in the heatmap for the significant comparisons. State the threshold for significance in the caption. In Table 3.3 the caption should explain the threshold. (Maybe use colour instead of stars to indicate significance?)
 
-The following are changed in Figure 3.7 (a) (page 53).  
+The following changes have been made to Figure 3.7 (a) (page 53):
 
- - Different box borders (instead of id labels) are added such that (a) and (b) display the household ids in the same order as indicated by the same colour of the line plot in (b) and box border
+ - different box borders (instead of id labels) are added such that (a) and (b) display the household ids in the same order as indicated by the same colour of the line plot in (b) and box border
  - grey color explained in the text and caption  
 
 The threshold explained in caption in Table 3.3 (page 54).
@@ -215,7 +215,7 @@ Text added under Section 4.2.2 on pages 64 and 65 to clarify this.
 
 > Q7. Page 64 “D is the Jensen-Shannon distance”.
 
-No change. I had mentioned that $D$ stands for Jensen-Shannon distances (now page 66).
+I have mentioned that $D$ stands for Jensen-Shannon distances (now page 66).
 
 > Q8. In Table 4.1, the R column should have 250, not 20.
 
@@ -229,7 +229,7 @@ The table format and caption changed to address this comment. (page 70)
 
 > Q10. Where is $\mu$ in Table 4.2?
 
-The changed caption (Table 4.2 page 70) will help clarify this.
+The changed caption (Table 4.2 page 70) will help to clarify this.
 
 Clarification: $\mu$ is the difference between means considered for consecutive categories. It will vary depending on the chosen design and hence not tabulated.  
  
@@ -268,7 +268,7 @@ Done.
 
 A paragraph is added to the Discussion section to incorporate comments on the computational burden. (second paragraph of section 4.5.2 on pages 83, 84)
 
-# Prof Juergen Symanzik
+# Professor Juergen Symanzik
 
 ## Chapter 1
 
@@ -331,7 +331,7 @@ Changed the following:
 
 - Introduction (last but one paragraph on page 39) to incorporate comments on existing distance measures and their limitations.
 
-- "Distance between distributions" (under section 3.2.3 on page 44) to mention why we chose we chose Jensen-Shannon distances and some details about other distance measures.
+- "Distance between distributions" (under section 3.2.3 on page 44) to mention why we chose Jensen-Shannon distances and some details about other distance measures.
 
 - f in the equation was a typo. Replaced by log now.
 
@@ -348,7 +348,7 @@ Changed the following:
 
 > Q6. For the data transformation steps on p. 40, a small table, say with a sample of 5 values from an exponential distribution, might be helpful to better explain each of the three steps.
 
-We will include this in the supplements while publishing the paper.
+We will include this in the supplements in the future.
 
 > Q7. A few editorial corrections are necessary, e.g.,
 Dang and Wilkinson (2014); Wilkinson, Anand, and Grossman (2005) provide misses an \and" between the two references. The same holds for Buja et al. (2009); Majumder, Hofmann, and Cook (2013) present. I would leave it to the author to check for similar omissions. Moreover, these should be past tense: "provided" and "presented".
@@ -388,7 +388,7 @@ Changed Figure 3 on page 52 to address comments.
 
 > Q15. The last paragraph on p. 48 uses $<$ while equation (3.2) uses $\leqslant$. Which one is correct?
 
-Done. $\leqslant$ for both.
+Corrected to be $\leqslant$ for both.
 
 > Q16. Match the text on p. 50 and introduce the abbreviations from Figure 3.7 and Table 3.3, e.g., "hod" likely is "hour day" and so on. Introducing these abbreviations on p. 53 comes
 too late.
@@ -473,7 +473,7 @@ Thanks for the idea. Done.
 
 > Q8. Apparently, in Figure 4.6, the vertical axis is not standardized to [0; 1] as it is frequently done for parallel coordinate plots. Therefore, it would make sense to display an actual vertical axis in each of the three graphs.
 
-No change. Showing the vertical axis would not give us any more information than it is already giving.
+Not changed. Showing the vertical axis would not give us any more information than it is already giving.
 
 > Q9. Figure 4.7 speaks of (a) and (b) in the caption, but those letters do not appear in the figure. Either add them or refer to left and right. Moreover, in previous chapters, you used orange and green for the quartiles and 10th/90th quantile. Why not using the same colors and quantiles here? If this becomes too confusing for a reader, then at least, indicate in the caption which quantiles are covered by the gray areas.
 
