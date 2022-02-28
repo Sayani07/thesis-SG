@@ -6,10 +6,10 @@ This thesis is an original work of my research and contains no material which ha
 
 \textbf{Student signature:}
 
-```{r signature, out.width = "20%", fig.align = "left"}
+```{r signature, out.width = "20%", fig.align = "left", eval = FALSE}
 knitr::include_graphics("img/signature.png")
 ```
 
 \textbf{Student name:} Sayani Gupta
 
-\textbf{Date:} `r as.Date("2021-11-19")`
+\textbf{Date:} `r as.Date("2022-02-28")`
