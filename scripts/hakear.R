@@ -72,8 +72,7 @@ p1 <- id2_tsibble %>%
   scale_colour_brewer(name = "", palette = "PiYG") + 
   ylab ("energy usage [kWh]") +
   xlab("hour-of-day") +
-  scale_y_log10(breaks = scales::trans_breaks("log10", 
-                                              function(x) 10^x)) +
+  scale_y_log10(minor_breaks = NULL) +
                  #labels = scales::trans_format("log10", scales::math_format(10^.x))) +
   theme_bw() + ylim(0, 1.5)
 
@@ -88,8 +87,8 @@ p2 <- id4_tsibble %>%
   ggtitle("(b)") + theme(
     strip.text = element_text(size = 10, margin = margin(b = 0, t = 0)))+
   ylab ("energy usage [kWh]")+
-  scale_y_log10(breaks = scales::trans_breaks("log10", 
-                                              function(x) 10^x))+
+  xlab("hour-of-day")+
+  scale_y_log10(minor_breaks = NULL)+
                 #labels = scales::trans_format("log10", scales::math_format(10^.x))) +
   theme_bw() + ylim(0, 1.5)
 
@@ -1167,7 +1166,7 @@ elec_rank <- elec_sig_split %>%
 
 elec_rank %>% 
   kable(format = "markdown", 
-        caption = "Ranking of harmonies for the eight households with significance or different thresholds. ***, ** and * correspond to the 99th, 95th and 90th percentile threshold. Rankings are different and at most three harmonies are significant for any household. The number of harmonies to explore is reduced from 42 to 3.")
+        caption = "Ranking of harmonies for the eight households with significance or different thresholds. $^{***}$, $^{**}$ and $^{*}$ corresponds to the $99^{th}$, $95^{th}$ and $90^{th}$ percentile threshold. Rankings are different and at most three harmonies are significant for any household. The number of pair of cyclic granularities to explore is reduced from 42 to 3.", escape = FALSE)
 
 
 

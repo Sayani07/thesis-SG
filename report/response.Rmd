@@ -8,7 +8,7 @@ output:
 fontfamily: mathpazo
 ---
 
-I thank my examiners for their thorough and constructive comments. The point by point description of changes are below: the examiners' comments are in red and my response is in black.
+I thank my examiners for such thorough and constructive comments. The point by point description of changes are below: the examiners' comments are in red and my response is in black.
 
 # Professor Catherine Hurley
 
@@ -45,32 +45,40 @@ Not changed as figure is already published. Furthermore, the figure already occu
 
 > Q1. On page 33 there is a mention of the hakear package, without a reference.
 
-No change.
-It appears in the abstract of the paper. For the thesis, I have added it since the abstract acts as a summary to the chapter. The package reference is mentioned in the Supplementary section of the paper. Moreover, the plan is to bring all the functions from `gravitas` to `hakear` when we publish it.
+Reference added as link on page 35. The package reference is also mentioned in the Supplementary section of the paper.
+
+<!-- No change. -->
+<!-- It appears in the abstract of the paper. For the thesis, I have added it since the abstract acts as a summary to the chapter. The package reference is mentioned in the Supplementary section of the paper. Moreover, the plan is to bring all the functions from `gravitas` to `hakear` when we publish it. -->
 
 > Q2. In the Introduction state the methods are for continuous variables.
 
-Added "for a continuous univariate dependent variable" in the last paragraph of Introduction of Chapter 3 on page 39.
+Added "for a continuous univariate dependent variable" in the last paragraph of section 3.1 (Introduction) on page 39.
 
 > Q3. In Figure 3.1, the points are a bit hard to see, so it looks like whiskers extend beyond the data.
 
-Done.
-Changed to theme_bw() instead of default and outlier.alpha (0.5 ->0.2) and geom_jitter(alpha = 0.04 -> 0.03). Also jitter-width decreased to 0.2.
+The following are changed in Figure 3.1 to address the comment on page 36:
+
+- changed to theme_bw() instead of default
+- outliers and jitters are made more transparent
+- jitter width reduced to make it narrower
+
+<!-- outlier.alpha (0.5 ->0.2) and geom_jitter(alpha = 0.04 -> 0.03). Also jitter-width decreased to 0.2. -->
+
 
 > Q4. On page 35, refer to months consistently using short or long names.
 
-Done. x-axis labels changed to month-of-year for Figure 3.1 and 3.2.
+The comment is addressed by changing the x-axis labels to month-of-year for Figures 3.1 (page 36) and 3.2 (page 38).
 
 > Q5. On page 35 v refers to the number of variables, in Section 3.3.3 it refers to the variable.
 
-Done.
-On p35, $v$ changed to $p$, where $p$ represents the number of variables. This is analogous to many time granularities and their pairwise combinations and $v$ represents the univariate measured variable for which distributions are constructed for different time granularities and their pairs.
+On p38, $v$ changed to $p$, where $p$ represents the number of variables. This is analogous to many time granularities and their pairwise combinations and $v$ represents the univariate measured variable for which distributions are constructed for different time granularities and their pairs (added to Table 3.1 on page 42).
 
 > Q6. In the Figure 3.2 caption, I do not understand the comment beginning “Difference between the 90th. . . ”.
 Also for the sentence “Energy consumption for (a)..”, it would clarify to insert the word “median”.
 
-Done.
-Changed to "distribution of energy usage"
+Caption changed on page 38 to address this.
+
+<!-- clarification: If the difference between $90^{th}$ and $75^{th}$ percentile of energy distribution is low implies that energy usage is extremely -->
 
 > Q7. On the top of page 38, it should say “the distribution means are three standard deviations apart”.
 
@@ -78,7 +86,7 @@ Done.
 
 > Q8. Maybe include a reference for gestalt theory.
 
-Done.
+Done on page 25.
 
 > Q9. In Section 3.2.2, I find the references to the null distribution confusing. Surely that is the design in
 Figure 3.3(a) only?
@@ -91,7 +99,7 @@ Added text in the caption of Figure 3.3(a) and Section 3.2.2 (Notation) on page 
 > Q10. In table 3.1 $N_c$ is the number of cyclic granularities, whereas in the text (first sentence of 3.3.2 and
 3.3.3) it is m.
 
-Added $m$ to table 3.1  
+Added $m$ to table 3.1 (page 42).
 $m$: number of cyclic granularities to display together
 
 Clarification: $N_c$ refers to the total number of contextual cyclic granularities. $m$ refers to the number of cyclic granularities we are considering together in the display. For example, contextual cyclic granularities could be $hour_{day}$, $day_{week}$ and $month_{year}$ and we want to visualize any one granularity at a time. So $N_c = 3$ and $m=1$. 
@@ -100,9 +108,13 @@ Clarification: $N_c$ refers to the total number of contextual cyclic granulariti
 
 Added v:continuous univariate measured variable to the table on page 42.
 
-> Q12. In the first sentence on the top of page 42, ordered and unordered are mixed up. Have you considered the setting where the facet variable levels are ordered? 
+> Q12. In the first sentence on the top of page 42, ordered and unordered are mixed up.
 
 Done.
+
+> Have you considered the setting where the facet variable levels are ordered? 
+
+This is a good suggestion. We will include that into future work.
 
 > For the within-facet ordered distances, you could consider a distance measure that respects circular order, or choose the start level appropriate to the display.  
 
@@ -110,14 +122,14 @@ This is a good suggestion. We will include that into future work.
 
 > Q13. I like Figure 3.4. In (3), the dotted arcs only connect to a1 which might be misleading.
 
-Caption changed to address this comment.
+Caption changed on page 44 to address this comment.
 
 <!-- Within-facet distances are illustrated in Panels 3) (when categories are un-ordered, shown only with respect to a1) and Panel 4) (when categories are ordered) -->
 
 
 > Q14. In the pairwise distance measure on page 43, is there any adjustment made for varying numbers of observations across the levels of A and B? For example in Figure 3.3(d) if there are few values at xlevel=1 the comparison shown is less interesting
 
-Added text in the section 3.2.3 under subsection "Characterizing distributions" on page 43 to address this comment.
+Added text in the section 3.2.3 under subsection "Characterizing distributions" on page 43 to clarify this.
 
 <!-- Clarification: As long as that there is enough data for each level or combination of levels, no adjustment for varying number of observations is done. If there are few data for one or more levels, subsequent categories could be collapsed to obtain precise estimates of quantiles.  -->
 
@@ -136,13 +148,13 @@ Added the empirical reason in Section 3.2.4 under sub-section "Combination appro
 Changed on page 49.
 <!-- 1.b) for $i \in {1, 2, \dots, M}$. -->
 
-> Q18. In Table 3.2, I would suggest separating the m = 1 and m = 2 tables.
+> Q18. In Table 3.2, I would suggest separating the $m = 1$ and $m = 2$ tables.
 
 $m=1$ removed from the main chapter and included in supplements.
 
 > Q19. The presentation of the material on the simulation study on page 48 could be improved. Where is the notation $wpd_{l,s}$ used? Figure 3.5 shows the m = 2 results only. The text alludes to a simulation involving different underlying distributions, but this is not mentioned again.
 
-Rephrased the simulation design and results corresponding to $m=2$ on page 50. Similar design and results for $m=1$, although important, are not included in the main chapter but in the supplements. Simulation results involving different underlying distributions are also presented in the supplementary paper.
+Presentation of the simulation design and results corresponding to $m=2$ changed on page 50. Similar design and results for $m=1$, although important, are not included in the main chapter but in the supplements. Simulation results involving different underlying distributions are also presented in the supplementary paper.
 
 > Q20. In Figure 3.5 the axis tick labels should be smaller. The blue and orange marks are hard to see. Maybe
 show fewer panels?
@@ -156,10 +168,12 @@ Changed (page 52). Axis tick labels made smaller and the rug plots are removed t
 
 > Q22. In Figure 3.7 (a) the heatmaps need id labels. The grey color is missing from the legend. Maybe use a different colour in the heatmap for the significant comparisons. State the threshold for significance in the caption. In Table 3.3 the caption should explain the threshold. (Maybe use colour instead of stars to indicate significance?)
 
-Changed (page 53).
-- Different box borders (instead of id labels) are added such that (a) and (b) display the household ids in the same order as indicated by the same colour of the line plot in (b) and box border    
-- threshold explained in caption in Table 3.3   
+The following are changed in Figure 3.7 (a) (page 53).
+- Different box borders (instead of id labels) are added such that (a) and (b) display the household ids in the same order as indicated by the same colour of the line plot in (b) and box border
 - grey color explained in the text and caption  
+
+The threshold explained in caption in Table 3.3 (page 54).
+
 
 Clarification: Using color to convey significance instead of stars (in the Fig 3.3a) is a not a great idea because the varied shades of the tiles represent different values of the $wpd$. For example, both tiles may be significant, and their colours may differ to represent distinct $wpd$ values. To be consistent, Table 3.3 also has stars to represent significance.
 
@@ -218,7 +232,7 @@ Clarification: $\mu$ is the difference between means considered for consecutive 
  
 > Q11. In Section 4.3.3 what are the values of R and T?
 
-Added in the first line of Section 4.3.3 (page 72.)
+Added in the first line of Section 4.3.3 (page 72).
 
 > Q12. Figure 4.5 caption: MDS summary plots of what?
 
@@ -312,11 +326,13 @@ Done.
   
 Changed the following:
 
-- Introduction (last but one paragraph on page 39) to incorporate comments on existing distance measures and their limitations
+- Introduction (last but one paragraph on page 39) to incorporate comments on existing distance measures and their limitations.
 
 - "Distance between distributions" (under section 3.2.3 on page 44) to mention why we chose we chose Jensen-Shannon distances and some details about other distance measures.
 
 - f in the equation was a typo. Replaced by log now.
+
+- dx added at the end of the integral.
 
 <!-- Clarification 1: -->
 <!-- The goal is to determine if there are any statistically significant differences between independent (unrelated) groups similar to a one-way or two-way ANOVA. A one-way ANOVA, for example, is analogous to $m=1$ (looking at one cyclic granularity at a time) in our approach. Assume we want to examine whether there is a significant difference in electricity demand on various days of the week. In this case, each day of the week may be regarded as an independent group, and we are looking at distributional differences rather than mean differences (as in a standard ANOVA). Similarly, considering $m=2$ (two cyclic granularities) is equivalent to a two-way ANOVA and is used to assess how distributions of quantitative variables vary according to the levels of two categorical variables rather than merely the mean or one measure of central tendency. There are other ways to obtain distributional differences, but we chose Jensen-Shannon distances between quantiles for ease of computation. -->
@@ -365,12 +381,11 @@ Clarification: Added $m=2$ in the caption of Figures 3.5 and 3.6.
 
 > Q14. There are similar problems with the labels in Figure 3.6. Moreover, the two overlaid curves are very hard to distinguish. Would it help to change colors and transparency, or draw the boundary of the curves with the specific colors (and not in black)? This may require some experimentation. Finally, using a differently colored background (say light yellow) would be helpful to visually demonstrate where $wpd_{perm}$ is being used. For the legend, use the terms as in equation (3.2) and not the full word.
 
-Done. Changed to make it more clear than earlier.
+Changed Figure 3 on page 52 to address comments.
 
 > Q15. The last paragraph on p. 48 uses $<$ while equation (3.2) uses $\leqslant$. Which one is correct?
 
-Done.
-$\leqslant$ for both.
+Done. $\leqslant$ for both.
 
 > Q16. Match the text on p. 50 and introduce the abbreviations from Figure 3.7 and Table 3.3, e.g., "hod" likely is "hour day" and so on. Introducing these abbreviations on p. 53 comes
 too late.
@@ -379,15 +394,15 @@ Added the abbreviations on page 54 in "Choosing cyclic granularities of interest
 
 > Q17. In Figure 3.7a, it is not clear what the eight heatmaps represent. Do they belong to id 1, ..., id 8 ? Some explanation in the text or listing the id information on the left would be helpful. Similarly, on p. 53, the text states: id 7 and 8 have the same significant harmonies. I do not know where to look at the heatmaps in Figure 3.7a to find this information (and what is mentioned under items 2. and 3. in the text). Some explanation and labeling is needed here.
 
-Caption changed on page 53 to illustrate the plot better. Added box borders in (a) such that (a) and (b) display the household ids in the same order as indicated by the same color of the line plot in (b) and box border in (a).
+Caption changed on page 53 to illustrate the plot better. Added box borders in (a) such that (a) and (b) display the household ids in the same order as indicated by the same color of the line plot in (b) and box border in (a). Added text on page 55 to state where to look at for item 2 and 3 in the text.
 
 > Q18. How were the harmony pairs selected and sorted in Figure 3.7 and Table 3.3? headmaps show 25 pairs, the parallel coordinate plot shows only 14 (same as Table 3.3). However, the last two are sorted differently, "hod wdwnd" (the first row in the table) is neither the first nor the last row in the parallel coordinate plot.
 
-Clarification 1: Each household is represented by 25 tiles, each tile representing a pair of cyclic granularities. The colors (in shades of red) represent the value of $wpd$ for each of the harmony pairs (in Table Table 3.3) and the grey tiles correspond to clashes. A darker shade of red corresponds to higher values of $wpd$. 
+Changed the text description of Figure 3.7 on page 55 to address the comments.
 
-Clarification 2: The harmony pairs in the parallel coordinate plot are arranged from highest to lowest values of $wpd$ averaged over all households and hence do not correspond to the first or last rows of Table 3.3.
+Clarification 1: The harmony pairs are selected using the same procedure described in Chapter 2 (as mentioned on page 54). The harmonies in Table 3.3 are sorted according to id 1. The cyclic granularities in Figure 3.7 (a) is in a lexicographic order. The harmony pairs in the parallel coordinate plot (Figure 3.7 (c)) are arranged from highest to lowest values of $wpd$ averaged over all households and hence do not correspond to the first or last rows of Table 3.3.
 
-Changed the text description of Figure 3.7 on page 55.
+Clarification 2: Each household is represented by 25 tiles, each tile representing a pair of cyclic granularities. The colors (in shades of red) represent the value of $wpd$ for each of the harmony pairs (in Table Table 3.3) and the grey tiles correspond to clashes. A darker shade of red corresponds to higher values of $wpd$. 
 
 > Q19. On p. 53, you use the term inconsequential.This hasn't been introduced. Do you mean "not significant" here?
 
@@ -407,7 +422,7 @@ Caption rephrased to make it more clear on page 56.
 A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities. What would be computationally (and visually) feasible as 13,000 is a few orders of magnitude
 higher than the number of eight households used in this example? Clearly, no full answer is expected here, but rather some speculation of what could possibly be done in the future (or what is done in the next chapter).
 
-- Text added in the first paragraph of Application to elaborate how households were selected (page 51).
+- Text added in the first paragraph of Section 3.4 to elaborate how households were selected (page 51).
 
 - A paragraph is added to the Discussion section to incorporate comments on computational time (page 57).
 
@@ -446,11 +461,12 @@ Done.
 
 >Q6. Similar to Chapter 3, supplementary material should be specified in more detail, e.g., on p. 68, p. 70, p. 71, and p. 75.
 
-Added links in the supplementary materials section at the end of the chapter.
+Added links to supplementary material in all the relevant places. 
+
 
 > Q7. In Figure 4.5, it is hard to see which groups are overplotting, in particular for S3. To better reveal this graphically, use different (open) glyphs in addition to different colors. In particular, a + for group 1 and an open circle for group 5 may help to better distinguish the groups (and possibly $\times$, open triangle, and open box to be used for groups 2 to 4).
 
-Done.
+Thanks for the idea. Done. 
 
 > Q8. Apparently, in Figure 4.6, the vertical axis is not standardized to [0; 1] as it is frequently done for parallel coordinate plots. Therefore, it would make sense to display an actual vertical axis in each of the three graphs.
 
@@ -462,7 +478,7 @@ Done.
 
 > Q10. Be consistent across chapters. For example, in Table 3.3, you use wdwnd. On p. 72 and in Figure 4.7, you use wnwd. Adjust across all chapters. Check whether other abbreviations need to be standardized as well.
 
-Done. Used "wnwd" through out Chapters 3 AND 4.
+Done. Used "wnwd" through out Chapters 3 and 4.
 
 > Q11. Similar to Figure 4.9, it would help the reader that cluster P-3 is visually represented via three somewhat similar colors for Q-3, Q-4, and Q-5. Changing from red to blue/purple initially hides this information. Also arrange the legend from P-1 to P-3 and Q-1 to Q-5 to make it more obvious that P-1 & Q-1 and P-2 & Q-2 are identical.
 
@@ -484,7 +500,7 @@ The Discussion section is split into (1) conclusions, and (2) limitations and fu
 > Q1. Capitalize all nouns, e.g., in
 Time-series clustering - A decade review.
 
-Made all bib entries consistent (sentence case)
+Made all bib entries consistent (sentence case).
 
 > Q2. Use full{length journal names, i.e., do not use abbreviations, e.g., in Inf. Syst.
 
