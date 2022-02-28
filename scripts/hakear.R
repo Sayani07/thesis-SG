@@ -21,6 +21,7 @@ library(GGally)
 #library(viridis)
 #remotes::install_github("Sayani07/hakear", force = TRUE)
 library(hakear)
+library(latex2exp)
 
 # OkabeIto color blind friendly scale
 okabeito <- c("#D55E00", "#0072B2","#009E73", "#CC79A7", "#E69F00", "#56B4E9", "#F0E442", "#333333")
@@ -488,7 +489,7 @@ G21 %>%
   geom_density(fill = "#999999", color = "#999999") +
   facet_grid(nx~nfacet,
              labeller = "label_both") + 
-  xlab("raw values of wpd") +
+  xlab(TeX("$wpd_{raw}$")) +
   geom_vline(data = summary_data, aes(xintercept  = mean), color = "#0072B2", size = 0.4)  +
   #geom_rug(sides = "b", colour = "#D55E00") + 
   # scale_x_continuous(breaks = scales::breaks_extended(2)) +
@@ -1228,7 +1229,7 @@ p1 <- id1_tsibble %>%
   scale_y_log10() + theme_bw()  +
   theme(legend.position = "none",
         strip.text = element_text(size = 10, margin = margin())) + 
-  theme(panel.spacing =unit(0, "lines"))
+  theme(panel.spacing =unit(0, "lines")) + xlab("hour-of-day")
 
 p2 <- id7_tsibble %>%
   prob_plot("day_week",
@@ -1243,7 +1244,7 @@ p2 <- id7_tsibble %>%
   scale_y_log10() + theme_bw()  +
   theme(legend.position = "none",
         strip.text = element_text(size = 10, margin = margin()))+ 
-  theme(panel.spacing =unit(0, "lines"))
+  theme(panel.spacing =unit(0, "lines"))+ xlab("hour-of-day")
 
 
 

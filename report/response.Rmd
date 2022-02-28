@@ -104,7 +104,7 @@ Added text in the caption of Figure 3.3(a) and Section 3.2.2 (Notation) on page 
 Added $m$ to table 3.1 (page 42).
 $m$: number of cyclic granularities to display together  
 
-Clarification: $N_c$ refers to the total number of contextual cyclic granularities. $m$ refers to the number of cyclic granularities we are considering together in the display. For example, contextual cyclic granularities could be $hour_{day}$, $day_{week}$ and $month_{year}$ and we want to visualize any one granularity at a time. So $N_c = 3$ and $m=1$.  
+Clarification: $N_c$ refers to the total number of contextual cyclic granularities. $m$ refers to the number of cyclic granularities we are considering together in the display. For example, contextual cyclic granularities could be hour_day, day_week and month_year and we want to visualize any one granularity at a time. So $N_c = 3$ and $m=1$.  
 
 > Q11. Add v to table 3.1.
 
@@ -329,13 +329,13 @@ Done.
   
 Changed the following:
 
-- Introduction (last but one paragraph on page 39) to incorporate comments on existing distance measures and their limitations.
+- Introduction (last but one paragraph on page 39) to incorporate comments on existing distance measures and their limitations
 
-- "Distance between distributions" (under section 3.2.3 on page 44) to mention why we chose Jensen-Shannon distances and some details about other distance measures.
+- "Distance between distributions" (under section 3.2.3 on page 44) to mention why we chose Jensen-Shannon distances and some details about other distance measures
 
-- f in the equation was a typo. Replaced by log now.
+- f in the equation was a typo. Replaced by log now
 
-- dx added at the end of the integral.
+- dx added at the end of the integral
 
 <!-- Clarification 1: -->
 <!-- The goal is to determine if there are any statistically significant differences between independent (unrelated) groups similar to a one-way or two-way ANOVA. A one-way ANOVA, for example, is analogous to $m=1$ (looking at one cyclic granularity at a time) in our approach. Assume we want to examine whether there is a significant difference in electricity demand on various days of the week. In this case, each day of the week may be regarded as an independent group, and we are looking at distributional differences rather than mean differences (as in a standard ANOVA). Similarly, considering $m=2$ (two cyclic granularities) is equivalent to a two-way ANOVA and is used to assess how distributions of quantitative variables vary according to the levels of two categorical variables rather than merely the mean or one measure of central tendency. There are other ways to obtain distributional differences, but we chose Jensen-Shannon distances between quantiles for ease of computation. -->
@@ -401,7 +401,7 @@ Caption changed on page 53 to illustrate the plot better. Added box borders in (
 
 > Q18. How were the harmony pairs selected and sorted in Figure 3.7 and Table 3.3? headmaps show 25 pairs, the parallel coordinate plot shows only 14 (same as Table 3.3). However, the last two are sorted differently, "hod wdwnd" (the first row in the table) is neither the first nor the last row in the parallel coordinate plot.
 
-Changed the text description of Figure 3.7 on page 55 to address the comments.
+Changed the text description of Figure 3.7 (page 55) and Table 3.3 (page 54) to address the comments.
 
 Clarification 1: The harmony pairs are selected using the same procedure described in Chapter 2 (as mentioned on page 54). The harmonies in Table 3.3 are sorted according to id 1. The cyclic granularities in Figure 3.7 (a) is in a lexicographic order. The harmony pairs in the parallel coordinate plot (Figure 3.7 (c)) are arranged from highest to lowest values of $wpd$ averaged over all households and hence do not correspond to the first or last rows of Table 3.3.
 
@@ -425,9 +425,9 @@ Caption rephrased to make it more clear on page 56.
 A future direction of work is to be able to explore and compare many individuals/subjects together for similar patterns across significant granularities. What would be computationally (and visually) feasible as 13,000 is a few orders of magnitude
 higher than the number of eight households used in this example? Clearly, no full answer is expected here, but rather some speculation of what could possibly be done in the future (or what is done in the next chapter).
 
-- Text added in the first paragraph of Section 3.4 to elaborate how households were selected (page 51).
+Text added in the first paragraph of Section 3.4 to elaborate how households were selected (page 51).  
 
-- A paragraph is added to the Discussion section to incorporate comments on computational time (page 57).
+A paragraph is added to the Discussion section to incorporate comments on computational time (page 57).
 
 
 <!-- Suppose there are $n$ observations. Our current clustering methodology has a time complexity of $O(n^2)$ since it calculates distance between all pairs. The time taken to compute distances between a pair of observations is also based on the number of cyclic granularities considered. For example, $1$, $2$ and $3$ cyclic granularities for JS-NQT are ~ 4.5s, 5.8s and 8.2s respectively. The times will be similar for JS-RS. For WPD, time taken will be more as the statistic $wpd$ need to be computed for each observation and each cyclic granularity. A rough estimate of working with $wpd$ working with two granularities with $(l,m)$ levels: ~(30s - 300s for 6<=l,m<=50) and (~40min - 50min for (l,m<=5). But this is a one-time job to obtain the significant granularities and can be run for a few individuals to get a sense of the significant granularities for the context. for example, for the electricity data, the granularities that were significant for most individuals were "wkdn/wday", "hour-of-day", "day-of-month" and hence clustering was run only on these variables. -->
